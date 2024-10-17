@@ -5,13 +5,17 @@
 
 ## DATA
 
-noticias.txt - list of news websites
+noticias.csv - list of news websites and their names
 
 data01.parquet - companies | aliases + everything from api requests
 
 data02.parquet - companies | aliases + removed 100% duplicates + removed text without any alias
 
-dtree.csv - dataset to train the decision tree to choose the news
+dtree01.csv - dataset to train the decision tree to choose the news
+
+dtree01.joblib - 
+
+data03.parquet - companies | aliases + applied decision tree
 
 
 ## IPYNB
