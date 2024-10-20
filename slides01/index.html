@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.555">
+
+  <meta name="author" content="Hugo Veríssimo">
+  <title>Media Analysis of PSI-20 Companies</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="mystyle.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Media Analysis of PSI-20 Companies</h1>
+  <p class="subtitle">Insights from News and Public Coverage</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Hugo Veríssimo 
+</div>
+        <p class="quarto-title-affiliation">
+            124348
+          </p>
+    </div>
+</div>
+
+</section>
+<section>
+<section id="context-and-objective" class="title-slide slide level1 center">
+<h1>Context and Objective</h1>
+<style>
+.dataframe {
+  display: block;
+  max-width: 100%;
+  max-height: 75%; /* vertical scrolling */
+  overflow-x: auto;
+  overflow-y: auto;
+  font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /*border: 1px solid #ddd; apply only to big dfs */
+}
+
+table {
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+th, td { /* th is about header*/
+  padding: 8px 16px;
+  border: 1px solid #ddd; /* Border between cells */
+  text-align: left;
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+thead th {
+  background-color: rgba(128, 128, 128, 0.3);
+  font-weight: bold;
+}
+
+tbody td:first-child {
+  background-color: rgba(128, 128, 128, 0.3);
+  font-weight: bold;
+}
+</style>
+</section>
+<section id="section" class="slide level2">
+<h2>.</h2>
+<ul>
+<li>intro qq</li>
+</ul>
+<p>Fonte de Dados: arquivo.pt (https://github.com/arquivo/pwa-technologies/wiki/Arquivo.pt-API)</p>
+</section>
+<section id="objective" class="slide level2 justify">
+<h2>Objective</h2>
+<p>Discover insights about specific companies, traded on the PSI-20 index, by analyzing media mentions, focusing on:</p>
+<ul>
+<li><p>Sentiment analysis</p></li>
+<li><p>Named entity recognition</p></li>
+</ul>
+<p>Similar works:</p>
+<ul>
+<li><p><a href="https://github.com/politiquices">https://github.com/politiquices</a></p></li>
+<li><p><a href="https://github.com/msramalho/desarquivo">https://github.com/msramalho/desarquivo</a></p></li>
+</ul>
+</section>
+<section id="libraries" class="slide level2">
+<h2>libraries</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href=""></a><span class="im">import</span> requests</span>
+<span id="cb1-3"><a href=""></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb1-4"><a href=""></a><span class="im">import</span> time</span>
+<span id="cb1-5"><a href=""></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb1-6"><a href=""></a><span class="im">import</span> re</span>
+<span id="cb1-7"><a href=""></a><span class="im">import</span> random</span>
+<span id="cb1-8"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-9"><a href=""></a><span class="co"># dtree related</span></span>
+<span id="cb1-10"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb1-11"><a href=""></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier, plot_tree</span>
+<span id="cb1-12"><a href=""></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-13"><a href=""></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, classification_report</span>
+<span id="cb1-14"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-15"><a href=""></a><span class="im">from</span> joblib <span class="im">import</span> dump, load</span>
+<span id="cb1-16"><a href=""></a><span class="co"># 90% duplicated</span></span>
+<span id="cb1-17"><a href=""></a><span class="im">from</span> fuzzywuzzy <span class="im">import</span> fuzz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="data-extraction-from-arquivo.pt" class="title-slide slide level1 center">
+<h1>Data Extraction from arquivo.pt</h1>
+
+</section>
+<section id="companies-and-news-sources" class="slide level2 justify">
+<h2>Companies and News Sources</h2>
+<!-- first i had to select which companies i would be analyzing and set their aliases (names that they are known for) from psi20 selected 5 more or less randomly ;; also i had to select which news sources i would be using -->
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a>companies <span class="op">=</span> {<span class="st">"Banco Comercial Português"</span>: [<span class="st">"Banco Comercial Português"</span>, <span class="st">"BCP"</span>],</span>
+<span id="cb2-2"><a href=""></a>             <span class="st">"Galp Energia"</span>: [<span class="st">"Galp Energia"</span>, <span class="st">"GALP"</span>],</span>
+<span id="cb2-3"><a href=""></a>             <span class="st">"EDP"</span>: [<span class="st">"EDP"</span>, <span class="st">"Energias de Portugal"</span>, <span class="st">"Electricidade de Portugal"</span>],</span>
+<span id="cb2-4"><a href=""></a>             <span class="st">"Sonae"</span>: [<span class="st">"Sonae"</span>, <span class="st">"SON"</span>],</span>
+<span id="cb2-5"><a href=""></a>             <span class="st">"Mota-Engil"</span>: [<span class="st">"Mota-Engil"</span>, <span class="st">"EGL"</span>]}</span>
+<span id="cb2-6"><a href=""></a>             </span>
+<span id="cb2-7"><a href=""></a>pd.read_csv(<span class="st">'noticias.csv'</span>)             </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                          0                             1
+0            www.publico.pt                       Público
+1                publico.pt                       Público
+2                 www.dn.pt            Diário de Notícias
+3                www.rtp.pt                           RTP
+4                    rpt.pt                           RTP
+5           www.cmjornal.pt              Correio da Manhã
+6                www.iol.pt                           IOL
+7          www.tvi24.iol.pt                           TVI
+8              tvi24.iol.pt                           TVI
+9          noticias.sapo.pt                          Sapo
+10            observador.pt                    Observador
+11              expresso.pt                      Expresso
+12          www.expresso.pt                      Expresso
+13              sol.sapo.pt                           SOL
+14  www.jornaldenegocios.pt            Jornal de Negócios
+15                www.jn.pt            Jornal de Notícias
+16                    jn.pt            Jornal de Notícias
+17               ionline.pt                      Jornal i
+18           sicnoticias.pt                           SIC
+19       www.sicnoticias.pt                           SIC
+20           www.lux.iol.pt                           Lux
+21           www.ionline.pt                      Jornal i
+22           news.google.pt                        Google
+23      www.dinheirovivo.pt                 Dinheiro Vivo
+24             www.aeiou.pt                         AEIOU
+25                 aeiou.pt                         AEIOU
+26               www.tsf.pt                           TSF
+27                   tsf.pt                           TSF
+28            www.sabado.pt                        Sábado
+29             dnoticias.pt  Diário de Notícias (Madeira)
+30         www.dnoticias.pt  Diário de Notícias (Madeira)
+31        economico.sapo.pt              Jornal Económico
+32       cnnportugal.iol.pt                  CNN Portugal</code></pre>
+</div>
+</div>
+</section>
+<section id="api-request-function" class="slide level2 justify">
+<h2>API Request Function</h2>
+<!-- then i created a function in order to make an api request based on the information/aliases i wanted to search and the dates and sources -->
+<!-- explain code .... -->
+<div class="sourceCode" id="cb4" data-code-line-numbers="1-8|9-20|21-25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="kw">def</span> api_request(search, websites, date):</span>
+<span id="cb4-2"><a href=""></a>    <span class="co">"""</span></span>
+<span id="cb4-3"><a href=""></a><span class="co">    search: expression/word (what to look for)</span></span>
+<span id="cb4-4"><a href=""></a><span class="co">    websites: comma separated websites (where to look for)</span></span>
+<span id="cb4-5"><a href=""></a><span class="co">    date: list such as [20030101, 20031231] (when to look for)</span></span>
+<span id="cb4-6"><a href=""></a><span class="co">    -</span></span>
+<span id="cb4-7"><a href=""></a><span class="co">    returns the response_items from arquivo.pt api</span></span>
+<span id="cb4-8"><a href=""></a><span class="co">    """</span></span>
+<span id="cb4-9"><a href=""></a>    search <span class="op">=</span> <span class="ss">f"q=%22</span><span class="sc">{</span>search<span class="sc">.</span>replace(<span class="st">' '</span>, <span class="st">'%20'</span>)<span class="sc">}</span><span class="ss">%22"</span></span>
+<span id="cb4-10"><a href=""></a>    websites <span class="op">=</span> <span class="ss">f"&amp;siteSearch=</span><span class="sc">{</span>websites<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb4-11"><a href=""></a>    date <span class="op">=</span> <span class="ss">f"&amp;from=</span><span class="sc">{</span>date[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">&amp;to=</span><span class="sc">{</span>date[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>    </span>
+<span id="cb4-12"><a href=""></a>    url <span class="op">=</span> (</span>
+<span id="cb4-13"><a href=""></a>        <span class="ss">f"https://arquivo.pt/textsearch?</span><span class="sc">{</span>search<span class="sc">}{</span>websites<span class="sc">}{</span>date<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb4-14"><a href=""></a>        <span class="st">"&amp;fields=linkToArchive,linkToExtractedText,tstamp"</span></span>
+<span id="cb4-15"><a href=""></a>        <span class="st">"&amp;maxItems=500"</span></span>
+<span id="cb4-16"><a href=""></a>        <span class="st">"&amp;dedupValue=25"</span></span>
+<span id="cb4-17"><a href=""></a>        <span class="st">"&amp;dedupField=url"</span></span>
+<span id="cb4-18"><a href=""></a>        <span class="st">"&amp;prettyPrint=false"</span></span>
+<span id="cb4-19"><a href=""></a>        <span class="st">"&amp;type=html"</span></span>
+<span id="cb4-20"><a href=""></a>        )</span>
+<span id="cb4-21"><a href=""></a>    json <span class="op">=</span> requests.get(url).json()</span>
+<span id="cb4-22"><a href=""></a>    data <span class="op">=</span> json[<span class="st">"response_items"</span>]</span>
+<span id="cb4-23"><a href=""></a>    <span class="cf">if</span> <span class="bu">len</span>(data) <span class="op">==</span> <span class="dv">500</span>:</span>
+<span id="cb4-24"><a href=""></a>        <span class="bu">print</span>(<span class="ss">f"You might have lost some data: </span><span class="sc">{</span>search<span class="sc">,</span> date<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-25"><a href=""></a>    <span class="cf">return</span> data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="api-request" class="slide level2 justify">
+<h2>API Request</h2>
+<!-- grupos de 3 para n ter mtas colunas e para todos as colunas terem dados
+torna mais facil analisar à mao celulas para encontrar problemas
+explicar codigo -->
+<div class="sourceCode" id="cb5" data-code-line-numbers="1-8|9-17|19-35|39-45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="kw">def</span> data01(companies):</span>
+<span id="cb5-2"><a href=""></a>    <span class="co">"""</span></span>
+<span id="cb5-3"><a href=""></a><span class="co">    Apply the API request for each company. Save the data into a Parquet file.</span></span>
+<span id="cb5-4"><a href=""></a><span class="co">    </span></span>
+<span id="cb5-5"><a href=""></a><span class="co">    - companies (dict): A dictionary of companies with their aliases.</span></span>
+<span id="cb5-6"><a href=""></a><span class="co">    - companies_Ex = {"Galp Energia": ["Galp Energia", "GALP"],</span></span>
+<span id="cb5-7"><a href=""></a><span class="co">                      "EDP": ["EDP", "Energias de Portugal"]}</span></span>
+<span id="cb5-8"><a href=""></a><span class="co">    """</span></span>
+<span id="cb5-9"><a href=""></a>    <span class="co"># CREATING DF WITH COMPANIES AND THEIR ALIASES</span></span>
+<span id="cb5-10"><a href=""></a>    companies_data <span class="op">=</span> {<span class="st">"companies"</span>: [], <span class="st">"aliases"</span>: []}</span>
+<span id="cb5-11"><a href=""></a>    <span class="cf">for</span> company <span class="kw">in</span> companies.keys():</span>
+<span id="cb5-12"><a href=""></a>        companies_data[<span class="st">"companies"</span>].append(company)</span>
+<span id="cb5-13"><a href=""></a>        companies_data[<span class="st">"aliases"</span>].append(companies[company])</span>
+<span id="cb5-14"><a href=""></a>    df <span class="op">=</span> pd.DataFrame(companies_data).set_index(<span class="st">"companies"</span>)</span>
+<span id="cb5-15"><a href=""></a></span>
+<span id="cb5-16"><a href=""></a>    <span class="co"># SITES OF WHERE TO LOOK FOR NEWS</span></span>
+<span id="cb5-17"><a href=""></a>    websites <span class="op">=</span> news()</span>
+<span id="cb5-18"><a href=""></a></span>
+<span id="cb5-19"><a href=""></a>    <span class="co"># INITIALIZAING API REQUESTS</span></span>
+<span id="cb5-20"><a href=""></a>    <span class="co"># groups of 3 years, from 2000 to 2020</span></span>
+<span id="cb5-21"><a href=""></a>    <span class="cf">for</span> cluster <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2000</span>, <span class="dv">2021</span>, <span class="dv">3</span>):</span>
+<span id="cb5-22"><a href=""></a>        api_cluster <span class="op">=</span> [] <span class="co">#reset api_cluster for each cluster (group of 3 year)</span></span>
+<span id="cb5-23"><a href=""></a>        <span class="bu">print</span>(<span class="ss">f"Processing cluster: </span><span class="sc">{</span>cluster<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-24"><a href=""></a>        <span class="bu">print</span>(<span class="st">"Processing company:"</span>, end<span class="op">=</span><span class="st">" "</span>)</span>
+<span id="cb5-25"><a href=""></a>        <span class="co"># iterate over each company</span></span>
+<span id="cb5-26"><a href=""></a>        <span class="cf">for</span> company_aliases <span class="kw">in</span> df[<span class="st">"aliases"</span>]:</span>
+<span id="cb5-27"><a href=""></a>            api_company <span class="op">=</span> [] <span class="co">#reset api_company for each company</span></span>
+<span id="cb5-28"><a href=""></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>company_aliases[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>, end <span class="op">=</span> <span class="st">"; "</span>)</span>
+<span id="cb5-29"><a href=""></a>            <span class="co"># iterate over each company's aliases</span></span>
+<span id="cb5-30"><a href=""></a>            <span class="cf">for</span> alias <span class="kw">in</span> company_aliases:</span>
+<span id="cb5-31"><a href=""></a>                <span class="co"># iterate over each cluter's year</span></span>
+<span id="cb5-32"><a href=""></a>                <span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(cluster, cluster <span class="op">+</span> <span class="dv">3</span>):                        </span>
+<span id="cb5-33"><a href=""></a>                    api_aliasS1 <span class="op">=</span> api_request(alias, websites, [<span class="bu">int</span>(<span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">0101"</span>), <span class="bu">int</span>(<span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">0630"</span>)])</span>
+<span id="cb5-34"><a href=""></a>                    api_aliasS2 <span class="op">=</span> api_request(alias, websites, [<span class="bu">int</span>(<span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">0701"</span>), <span class="bu">int</span>(<span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">1231"</span>)])</span>
+<span id="cb5-35"><a href=""></a>                    api_company <span class="op">+=</span> api_aliasS1 <span class="op">+</span> api_aliasS2</span>
+<span id="cb5-36"><a href=""></a>            <span class="co"># save company data</span></span>
+<span id="cb5-37"><a href=""></a>            api_cluster.append(api_company)</span>
+<span id="cb5-38"><a href=""></a></span>
+<span id="cb5-39"><a href=""></a>        <span class="co"># save cluster into df</span></span>
+<span id="cb5-40"><a href=""></a>        df[<span class="ss">f"api.</span><span class="sc">{</span>cluster<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> api_cluster</span>
+<span id="cb5-41"><a href=""></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>cluster<span class="sc">}</span><span class="ss"> OK."</span>)</span>
+<span id="cb5-42"><a href=""></a></span>
+<span id="cb5-43"><a href=""></a>    <span class="co"># save all data</span></span>
+<span id="cb5-44"><a href=""></a>    df.to_parquet(<span class="st">"data01.parquet"</span>)</span>
+<span id="cb5-45"><a href=""></a>    <span class="bu">print</span>(<span class="st">"Finished."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data01.parquet" class="slide level2 justify">
+<h2>data01.parquet</h2>
+<div class="center">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a>pd.read_parquet(<span class="st">"data01.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="dataframe caption-top" data-quarto-postprocess="true" style="border: 1px solid #ddd;">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">aliases</th>
+<th data-quarto-table-cell-role="th">api.2000</th>
+<th data-quarto-table-cell-role="th">api.2003</th>
+<th data-quarto-table-cell-role="th">api.2006</th>
+<th data-quarto-table-cell-role="th">api.2009</th>
+<th data-quarto-table-cell-role="th">api.2012</th>
+<th data-quarto-table-cell-role="th">api.2015</th>
+<th data-quarto-table-cell-role="th">api.2018</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">companies</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Banco Comercial Português</td>
+<td>[Banco Comercial Português, BCP]</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Galp Energia</td>
+<td>[Galp Energia, GALP]</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">EDP</td>
+<td>[EDP, Energias de Portu...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sonae</td>
+<td>[Sonae, SON]</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Mota-Engil</td>
+<td>[Mota-Engil, EGL]</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+<td>[{'linkToArchive': 'https://arquivo.pt/wayback...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="data01.parquet-1" class="slide level2 justify">
+<h2>data01.parquet</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a>pd.read_parquet(<span class="st">"data01.parquet"</span>).<span class="bu">map</span>(<span class="bu">len</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="dataframe caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">aliases</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2000</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2003</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2006</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2009</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2012</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2015</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2018</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">companies</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Banco Comercial Português</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">153</td>
+<td style="text-align: right;">241</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">561</td>
+<td style="text-align: right;">1074</td>
+<td style="text-align: right;">1430</td>
+<td style="text-align: right;">954</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Galp Energia</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">389</td>
+<td style="text-align: right;">272</td>
+<td style="text-align: right;">582</td>
+<td style="text-align: right;">1156</td>
+<td style="text-align: right;">1391</td>
+<td style="text-align: right;">968</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">EDP</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">133</td>
+<td style="text-align: right;">339</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">653</td>
+<td style="text-align: right;">1232</td>
+<td style="text-align: right;">1970</td>
+<td style="text-align: right;">1096</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sonae</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">435</td>
+<td style="text-align: right;">279</td>
+<td style="text-align: right;">502</td>
+<td style="text-align: right;">1215</td>
+<td style="text-align: right;">1705</td>
+<td style="text-align: right;">1196</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Mota-Engil</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">195</td>
+<td style="text-align: right;">538</td>
+<td style="text-align: right;">828</td>
+<td style="text-align: right;">560</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\ \)</span></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a>pd.read_parquet(<span class="st">"data01.parquet"</span>).iloc[<span class="dv">0</span>,<span class="dv">1</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>{
+    "linkToArchive": "https://arquivo.pt/wayback/20001213153700/http://www.publico.pt/publico/1999/09/28/Economia/E08.html",
+    "linkToExtractedText": "https://arquivo.pt/textextracted?m=http%3A%2F%2Fwww.publico.pt%2Fpublico%2F1999%2F09%2F28%2FEconomia%2FE08.html%2F20001213153700",
+    "tstamp": "20001213153700"
+}</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="text-extraction" class="title-slide slide level1 center">
+<h1>Text Extraction</h1>
+
+</section>
+<section id="problems-faced" class="slide level2 justify">
+<h2>Problems Faced</h2>
+<ul>
+<li><p>Duplicated texts due to <code>&amp;dedupValue=25&amp;dedupField=url</code></p></li>
+<li><p>Extracted text without any aliases</p></li>
+<li><p>API usage limit (250 requests/min, error 429)</p></li>
+<li><p>API error 404 for certain URLs</p></li>
+</ul>
+</section>
+<section id="text-extraction-function" class="slide level2 justify">
+<h2>Text Extraction Function</h2>
+<!-- in order to face some of those problems ... -->
+<div class="sourceCode" id="cb10" data-code-line-numbers="1-5|7-10|12-15|17-19|21-24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a><span class="kw">def</span> extracText(linkToExtractedText):</span>
+<span id="cb10-2"><a href=""></a>    <span class="co"># infinite loop to handle retries</span></span>
+<span id="cb10-3"><a href=""></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb10-4"><a href=""></a>        response <span class="op">=</span> requests.get(linkToExtractedText)</span>
+<span id="cb10-5"><a href=""></a>        status_code <span class="op">=</span> response.status_code</span>
+<span id="cb10-6"><a href=""></a>        </span>
+<span id="cb10-7"><a href=""></a>        <span class="co"># request is successful (200 OK)</span></span>
+<span id="cb10-8"><a href=""></a>        <span class="cf">if</span> status_code <span class="op">==</span> <span class="dv">200</span>:</span>
+<span id="cb10-9"><a href=""></a>            soup <span class="op">=</span> BeautifulSoup(response.content, <span class="st">"html.parser"</span>)</span>
+<span id="cb10-10"><a href=""></a>            <span class="cf">return</span> soup.get_text()</span>
+<span id="cb10-11"><a href=""></a>        </span>
+<span id="cb10-12"><a href=""></a>        <span class="co"># too many requests (429 WAIT)</span></span>
+<span id="cb10-13"><a href=""></a>        <span class="cf">elif</span> status_code <span class="op">==</span> <span class="dv">429</span>:</span>
+<span id="cb10-14"><a href=""></a>            <span class="bu">print</span>(<span class="st">" (...)"</span>, end <span class="op">=</span> <span class="st">""</span>)</span>
+<span id="cb10-15"><a href=""></a>            time.sleep(<span class="dv">60</span>)</span>
+<span id="cb10-16"><a href=""></a>        </span>
+<span id="cb10-17"><a href=""></a>        <span class="co"># no text to be found (404 PASS)</span></span>
+<span id="cb10-18"><a href=""></a>        <span class="cf">elif</span> status_code <span class="op">==</span> <span class="dv">404</span>:</span>
+<span id="cb10-19"><a href=""></a>            <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb10-20"><a href=""></a>        </span>
+<span id="cb10-21"><a href=""></a>        <span class="co"># something else (???)</span></span>
+<span id="cb10-22"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb10-23"><a href=""></a>            <span class="bu">print</span>(<span class="ss">f"Request failed: </span><span class="sc">{</span>status_code<span class="sc">}</span><span class="ss">; Link was </span><span class="sc">{</span>linkToExtractedText<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-24"><a href=""></a>            <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="applying-text-extraction" class="slide level2 justify">
+<h2>Applying Text Extraction</h2>
+<!-- because it takes a long to time to extract all the text (around 2h for me) i made a function to apply the extraticon to each column at a time so i could stop any minute or if i got an error dont need to do everything or if i only wanted to process a col to see how it comes out 
+
+select which cols to process and skip the ones already done
+-->
+<div class="sourceCode" id="cb11" data-code-line-numbers="1-7|8-10|12-27|29-30|33-36|37-44|46-59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a><span class="kw">def</span> filterColumn(column, aliases):</span>
+<span id="cb11-2"><a href=""></a>    <span class="co">"""</span></span>
+<span id="cb11-3"><a href=""></a><span class="co">    extract text for each cell in a column</span></span>
+<span id="cb11-4"><a href=""></a><span class="co">        - check for duplicated text</span></span>
+<span id="cb11-5"><a href=""></a><span class="co">        - check for api errors</span></span>
+<span id="cb11-6"><a href=""></a><span class="co">        - check for aliases in text</span></span>
+<span id="cb11-7"><a href=""></a><span class="co">    """</span></span>
+<span id="cb11-8"><a href=""></a>    filtered_column <span class="op">=</span> []</span>
+<span id="cb11-9"><a href=""></a>    <span class="cf">for</span> row <span class="kw">in</span> aliases.index:</span>
+<span id="cb11-10"><a href=""></a>        <span class="bu">print</span>(<span class="ss">f"; </span><span class="sc">{</span>row<span class="sc">}</span><span class="ss">"</span>, end <span class="op">=</span> <span class="st">""</span>)</span>
+<span id="cb11-11"><a href=""></a>        </span>
+<span id="cb11-12"><a href=""></a>        seen_text <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb11-13"><a href=""></a>        filtered_cell <span class="op">=</span> []</span>
+<span id="cb11-14"><a href=""></a>        <span class="cf">for</span> i <span class="kw">in</span> column.loc[row]:</span>
+<span id="cb11-15"><a href=""></a>            <span class="co"># extract text from linkToExtractedText</span></span>
+<span id="cb11-16"><a href=""></a>            text <span class="op">=</span> extracText(i[<span class="st">'linkToExtractedText'</span>])</span>
+<span id="cb11-17"><a href=""></a>            </span>
+<span id="cb11-18"><a href=""></a>            <span class="co"># skip duplicates or error 404</span></span>
+<span id="cb11-19"><a href=""></a>            <span class="cf">if</span> (text <span class="kw">in</span> seen_text) <span class="kw">or</span> (<span class="kw">not</span> text):</span>
+<span id="cb11-20"><a href=""></a>                <span class="cf">continue</span></span>
+<span id="cb11-21"><a href=""></a>              </span>
+<span id="cb11-22"><a href=""></a>            <span class="co"># check for aliases in text</span></span>
+<span id="cb11-23"><a href=""></a>            <span class="cf">elif</span> <span class="bu">any</span>(alias.lower() <span class="kw">in</span> text.lower() <span class="cf">for</span> alias <span class="kw">in</span> aliases.loc[row]):</span>
+<span id="cb11-24"><a href=""></a>                i[<span class="st">"ExtractedText"</span>] <span class="op">=</span> text</span>
+<span id="cb11-25"><a href=""></a>                i.pop(<span class="st">'linkToExtractedText'</span>, <span class="va">None</span>)</span>
+<span id="cb11-26"><a href=""></a>                filtered_cell.append(i) <span class="co"># save to cell</span></span>
+<span id="cb11-27"><a href=""></a>                seen_text.add(text) <span class="co"># mark as seen</span></span>
+<span id="cb11-28"><a href=""></a></span>
+<span id="cb11-29"><a href=""></a>        filtered_column.append(filtered_cell)</span>
+<span id="cb11-30"><a href=""></a>    <span class="cf">return</span> filtered_column</span>
+<span id="cb11-31"><a href=""></a></span>
+<span id="cb11-32"><a href=""></a></span>
+<span id="cb11-33"><a href=""></a><span class="kw">def</span> processColumns(cols2Process):</span>
+<span id="cb11-34"><a href=""></a>    <span class="co">"""</span></span>
+<span id="cb11-35"><a href=""></a><span class="co">    cols2Process = ["api.2000", "api.2003"]</span></span>
+<span id="cb11-36"><a href=""></a><span class="co">    """</span></span>
+<span id="cb11-37"><a href=""></a>    <span class="bu">print</span>(<span class="ss">f"Starting: </span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-38"><a href=""></a>    <span class="cf">try</span>:</span>
+<span id="cb11-39"><a href=""></a>        <span class="co"># try to access the started extraction</span></span>
+<span id="cb11-40"><a href=""></a>        df <span class="op">=</span> pd.read_parquet(<span class="st">"data02.parquet"</span>)</span>
+<span id="cb11-41"><a href=""></a>    <span class="cf">except</span>:</span>
+<span id="cb11-42"><a href=""></a>       <span class="co"># if fails, start a new one</span></span>
+<span id="cb11-43"><a href=""></a>       df <span class="op">=</span> pd.read_parquet(<span class="st">"data01.parquet"</span>).to_parquet(<span class="st">"data02.parquet"</span>)</span>
+<span id="cb11-44"><a href=""></a>       df <span class="op">=</span> pd.read_parquet(<span class="st">"data02.parquet"</span>)</span>
+<span id="cb11-45"><a href=""></a>       </span>
+<span id="cb11-46"><a href=""></a>    <span class="cf">for</span> column <span class="kw">in</span> cols2Process:</span>
+<span id="cb11-47"><a href=""></a>      </span>
+<span id="cb11-48"><a href=""></a>        <span class="co"># verify if the column has already been processed</span></span>
+<span id="cb11-49"><a href=""></a>        has_link <span class="op">=</span> <span class="st">"linkToExtractedText"</span> <span class="kw">in</span> df.iloc[<span class="op">-</span><span class="dv">1</span>][column][<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb11-50"><a href=""></a>        has_extracText <span class="op">=</span> <span class="st">"ExtractedText"</span> <span class="kw">in</span> df.iloc[<span class="op">-</span><span class="dv">1</span>][column][<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb11-51"><a href=""></a>        <span class="cf">if</span> <span class="kw">not</span> has_link <span class="kw">and</span> has_extracText:</span>
+<span id="cb11-52"><a href=""></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span>column<span class="sc">}</span><span class="ss"> already done. Skipping."</span>)</span>
+<span id="cb11-53"><a href=""></a>        </span>
+<span id="cb11-54"><a href=""></a>        <span class="co"># if not, process the column and save it</span></span>
+<span id="cb11-55"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb11-56"><a href=""></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Processing </span><span class="sc">{</span>column<span class="sc">}</span><span class="ss">"</span>, end <span class="op">=</span> <span class="st">": "</span>)</span>
+<span id="cb11-57"><a href=""></a>            df[column] <span class="op">=</span> filterColumn(df[column], df[<span class="st">"aliases"</span>])</span>
+<span id="cb11-58"><a href=""></a>            df.to_parquet(<span class="st">"data02.parquet"</span>)</span>
+<span id="cb11-59"><a href=""></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Ended: </span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">}</span><span class="ss">."</span>)</span>
+<span id="cb11-60"><a href=""></a></span>
+<span id="cb11-61"><a href=""></a>processColumns([<span class="st">"api.2000"</span>, <span class="st">"api.2003"</span>, <span class="st">"api.2006"</span>, <span class="st">"api.2009"</span>, <span class="st">"api.2012"</span>, <span class="st">"api.2015"</span>, <span class="st">"api.2018"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data02.parquet" class="slide level2 justify">
+<h2>data02.parquet</h2>
+<!--the only difference is the lists content (dicitionary) and the qty of news-->
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a>pd.read_parquet(<span class="st">"data02.parquet"</span>).<span class="bu">map</span>(<span class="bu">len</span>) <span class="op">-</span> pd.read_parquet(<span class="st">"data01.parquet"</span>).<span class="bu">map</span>(<span class="bu">len</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="dataframe caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">aliases</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2000</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2003</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2006</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2009</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2012</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2015</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2018</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">companies</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Banco Comercial Português</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-63</td>
+<td style="text-align: right;">-50</td>
+<td style="text-align: right;">-14</td>
+<td style="text-align: right;">-64</td>
+<td style="text-align: right;">-91</td>
+<td style="text-align: right;">-211</td>
+<td style="text-align: right;">-130</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Galp Energia</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-62</td>
+<td style="text-align: right;">-156</td>
+<td style="text-align: right;">-91</td>
+<td style="text-align: right;">-113</td>
+<td style="text-align: right;">-192</td>
+<td style="text-align: right;">-287</td>
+<td style="text-align: right;">-156</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">EDP</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-53</td>
+<td style="text-align: right;">-94</td>
+<td style="text-align: right;">-33</td>
+<td style="text-align: right;">-115</td>
+<td style="text-align: right;">-156</td>
+<td style="text-align: right;">-442</td>
+<td style="text-align: right;">-224</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sonae</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-62</td>
+<td style="text-align: right;">-117</td>
+<td style="text-align: right;">-40</td>
+<td style="text-align: right;">-43</td>
+<td style="text-align: right;">-106</td>
+<td style="text-align: right;">-305</td>
+<td style="text-align: right;">-170</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Mota-Engil</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-16</td>
+<td style="text-align: right;">-34</td>
+<td style="text-align: right;">-31</td>
+<td style="text-align: right;">-154</td>
+<td style="text-align: right;">-232</td>
+<td style="text-align: right;">-115</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\ \)</span></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href=""></a>pd.read_parquet(<span class="st">"data02.parquet"</span>).iloc[<span class="dv">0</span>,<span class="dv">1</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>{
+    "tstamp": "20001213153700",
+    "linkToArchive": "https://arquivo.pt/wayback/20001213153700/http://www.publico.pt/publico/1999/09/28/Economia/E08.html",
+    "ExtractedText": "POL | Economia | Processo de infraccao contra Portugal vai ate ao fim SECCOES 1a Pagina Destaque Editoriais A Semana Politica Internacional Espaco Publico Sociedade Cultura Desporto Economia Media Local Lisboa Local Porto Ultima Pagina Ficha Tecnica SO TEXTO   .   Alternativa ao acordo com o BSCH nao trava contencioso Processo de Infraccao Contra Portugal Vai Ate ao Fim Por ISABEL ARRIAGA E CUNHA, em Bruxelas Terca-feira, 28 de Setembro de 1999 A Comissao Europeia confirmou ontem que vai prosseguir o processo de contestacao da legalidade do veto portugues ao negocio entre Antonio Champalimaud e o Banco Santander Central Hispano (BSCH) mesmo se os termos da operacao se alterarem. Esta precisao resultou do cenario aberto pelo proprio Champalimaud no fim da semana passada quando admitiu a possibilidade de vender a sua participacao na Mundial Confianca ao Banco Comercial Portugues se Jardim Goncalves lhe oferecer \"uma pipa de massa\". \"As autoridades portugueses violaram, segundo a nossa interpretacao, as regras (comunitarias da concorrencia) com o seu veto, e mesmo se os termos da operacao mudarem, mesmo se o senhor Champalimaud vier a aceitar uma compra no interior de Portugal, o processo de infraccao tem de seguir o seu curso\", precisou um porta-voz do executivo europeu. A questao, explicou, e que \"ha outras partes interessadas\" e eventualmente lesadas, como o BSCH. O mesmo porta-voz confirmou assim que a Comissao pretende \"avancar rapidamente\" com a fase seguinte do processo de infraccao, neste momento ja liderado pelo comissario Mario Monti, e que consiste no envio a Portugal de um \"parecer fundamentado\", o instrumento juridico atraves do qual Bruxelas devera dar um prazo de tempo relativamente curto para o Governo suspender o veto em cumprimento decisao de 20 de Julho. Nessa altura, a Comissao pediu a suspensao do veto por considerar que Portugal violou o regulamento comunitario sobre concentracoes e aquisicoes de empresas por nao a ter notificado previamente da sua interdicao de se opor ao negocio. \"O processo de redaccao do parecer fundamentado vai comecar imediatamente e a Comissao vai tomar uma decisao muito brevemente\", precisou. Por razoes de calendario e da necessidade de cumprimento de prazos, o caso nao podera ser apreciado durante a reuniao semanal dos vinte comissarios de amanha, ficando assim adiada, possivelmente, para a proxima semana. O \"parecer fundamentado\" constitui a segunda e ultima etapa do processo de infraccao, antes da apresentacao do caso ao Tribunal de Justica da Uniao Europeia (UE) que devera clarificar quem, entre o Governo e a Comissao, e realmente competente para autorizar ou proibir uma concentracao de empresas de \"dimensao comunitaria\", como e o caso do negocio luso-espanhol. A nova etapa constitui a sequencia logica da resposta negativa enviada na passada sexta-feira pelo Ministerio das Financas ao pedido formal de explicacoes que lhe fora enviado pela Comissao a 10 de Setembro, sobre as razoes do nao acatamento da decisao de 20 de Julho. Segundo o mesmo porta-voz, a resposta e \"insatisfatoria\" e \"infelizmente nao envolve o levantamento do veto\". Isabel Arriaga e Cunha, em Bruxelas OUTROS TITULOS EM ECONOMIA Asia estragou a media O mundo e das multinacionais ICP anuncia novos precos de interligacao telefonica PT aprova PT Investimentos UE coesa para Ronda do Milenio Gescartao mobiliza procura e Pastor desdramatiza Ence Engil promete recuperar Atlantis com mais vendas e menos resultados Processo de infraccao contra Portugal vai ate ao fim    COMENTARIO DA BOLSA Champalimaud ao rubro    MERCADO DE CAMBIOS Notas    BREVES Breves  Copyright PUBLICO Comunicacao Social, SA Geral: publico@publico.pt , Seccao: economia@publico.pt , Webmaster: webmaster@publico.pt  "
+}</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="data-filtering" class="title-slide slide level1 center">
+<h1>Data Filtering</h1>
+
+</section>
+<section id="problems-faced-1" class="slide level2">
+<h2>Problems Faced</h2>
+<ul>
+<li><p>i already removes duplicates files but there are some that are like 90% ducplicated, i should remove them</p></li>
+<li><p>there are “news” that are actualy ads or not related to the company, like it just appears there for another reason, like to say its stock went down just like a bunch of psi20 companies</p></li>
+</ul>
+<p>due to the complexity of the first problem, if i remove part of the data by solving the second problem, it will be faster for the first</p>
+<p>note: i could have processed this already while extracting the text but…. it is what it is</p>
+</section>
+<section id="detecting-not-news" class="slide level2">
+<h2>detecting not news</h2>
+<p>i had to read a bunch of news (610) to create a dataset so i could train a model e and also choose a bunch of feautres, which gave me the following datasetp</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href=""></a>pd.read_csv(<span class="st">"dtree01.csv"</span>).info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Index: 610 entries, 0 to 609
+Data columns (total 16 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   news          610 non-null    bool   
+ 1   IstALIAS      610 non-null    int64  
+ 2   propAN        610 non-null    float64
+ 3   txtSZ         610 non-null    int64  
+ 4   countALI      610 non-null    int64  
+ 5   countCAPS     610 non-null    int64  
+ 6   countDTS      610 non-null    int64  
+ 7   countHOUR     610 non-null    int64  
+ 8   countHTTP     610 non-null    int64  
+ 9   DTS+Hours     610 non-null    int64  
+ 10  alias_in_url  610 non-null    bool   
+ 11  news_site     610 non-null    object 
+ 12  date          610 non-null    int64  
+ 13  timestamp     610 non-null    int64  
+ 14  url           610 non-null    object 
+ 15  txt           610 non-null    object 
+dtypes: bool(2), float64(1), int64(10), object(3)
+memory usage: 72.7+ KB</code></pre>
+</div>
+</div>
+</section>
+<section id="training-the-decision-tree" class="slide level2">
+<h2>training the decision tree</h2>
+<p>want to train a decision tree because “do not require linear relationships and can handle non-linear interactions between features. If there are complex, non-linear interactions in your data, a Decision Tree would likely perform better.”</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href=""></a>dataset <span class="op">=</span> pd.read_csv(<span class="st">"dtree01.csv"</span>)</span>
+<span id="cb17-2"><a href=""></a>X <span class="op">=</span> dataset[[<span class="st">'IstALIAS'</span>, <span class="st">'propAN'</span>, <span class="st">'txtSZ'</span>, <span class="st">'countALI'</span>, <span class="st">'countDTS'</span>, <span class="st">'countHOUR'</span>, <span class="st">'countCAPS'</span>]]</span>
+<span id="cb17-3"><a href=""></a>y <span class="op">=</span> dataset[<span class="st">'news'</span>] </span>
+<span id="cb17-4"><a href=""></a></span>
+<span id="cb17-5"><a href=""></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.15</span>, random_state<span class="op">=</span><span class="dv">21</span>)</span>
+<span id="cb17-6"><a href=""></a></span>
+<span id="cb17-7"><a href=""></a></span>
+<span id="cb17-8"><a href=""></a>clf <span class="op">=</span> DecisionTreeClassifier(random_state<span class="op">=</span><span class="dv">21</span>, max_depth<span class="op">=</span><span class="dv">5</span>, min_samples_split<span class="op">=</span><span class="dv">15</span>, min_samples_leaf<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb17-9"><a href=""></a>clf.fit(X_train, y_train)</span>
+<span id="cb17-10"><a href=""></a></span>
+<span id="cb17-11"><a href=""></a>y_pred <span class="op">=</span> clf.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="decision-tree" class="slide level2">
+<h2>Decision Tree</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy after tuning: 0.9130434782608695
+Classification Report: precision    recall  f1-score   support
+                    0       0.92      0.97      0.94        68
+                    1       0.90      0.75      0.82        24
+  
+             accuracy                           0.91        92
+            macro avg       0.91      0.86      0.88        92
+         weighted avg       0.91      0.91      0.91        92</code></pre>
+</div>
+</div>
+<figure style="text-align: center;">
+    <img style="margin-top: 25px;" src="dtree01.svg" alt="decisiton tree ramos">
+    <figcaption style="font-size: 0.45em; margin-top: -22px;">Fig. 1: Decision tree visualization.</figcaption>
+</figure>
+</section>
+<section id="dtree-percentagens-distribution" class="slide level2">
+<h2>dtree percentagens distribution</h2>
+<p>i ran the decision tree in all my data one time to check which would be the distribution, to see how many news i would be left with and found this, so ….</p>
+<ul>
+<li><p>if newsProb in [.0, .4[ - trash</p></li>
+<li><p>if newsProb in [.4, .6] - filter setences: keep only the ones with any alias</p></li>
+<li><p>if newsProb in ].6, 1.] - keep everything</p></li>
+</ul>
+<figure style="text-align: center;">
+    <img src="dtree01 (percentages).svg" alt="dtree percentagens distribution" style="width: 100%;">
+    <figcaption style="font-size: 0.45em; margin-top: -40px; margin-bottom: 25px;">Fig. 2: Percentage distribution of classification 1 in the decision tree model applied to the entire dataset.</figcaption>
+</figure>
+</section>
+<section id="applying-dtree-to-the-dataset" class="slide level2">
+<h2>applying dtree to the dataset</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href=""></a><span class="co"># FEATURES</span></span>
+<span id="cb19-2"><a href=""></a><span class="co"># added "aliases" to all func in order to run them all without worrying about the inputs</span></span>
+<span id="cb19-3"><a href=""></a><span class="kw">def</span> IstALIAS(text, aliases):</span>
+<span id="cb19-4"><a href=""></a>    <span class="co">"""where does the first alias appear, title?"""</span></span>
+<span id="cb19-5"><a href=""></a>    indexs <span class="op">=</span> []</span>
+<span id="cb19-6"><a href=""></a>    <span class="cf">for</span> alias <span class="kw">in</span> aliases:</span>
+<span id="cb19-7"><a href=""></a>        index <span class="op">=</span> text.lower().find(alias.lower())</span>
+<span id="cb19-8"><a href=""></a>        <span class="cf">if</span> index <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>:</span>
+<span id="cb19-9"><a href=""></a>            indexs.append(index)</span>
+<span id="cb19-10"><a href=""></a>    <span class="cf">return</span> text[:<span class="bu">min</span>(indexs)].count(<span class="st">' '</span>)</span>
+<span id="cb19-11"><a href=""></a></span>
+<span id="cb19-12"><a href=""></a><span class="kw">def</span> propAN(text, aliases):</span>
+<span id="cb19-13"><a href=""></a>    <span class="co">"""proportion of alphanumeric chars in the text"""</span></span>
+<span id="cb19-14"><a href=""></a>    alphanumeric_chars <span class="op">=</span> <span class="bu">sum</span>(char.isalnum() <span class="cf">for</span> char <span class="kw">in</span> text)</span>
+<span id="cb19-15"><a href=""></a>    proportion <span class="op">=</span> alphanumeric_chars <span class="op">/</span> <span class="bu">len</span>(text)</span>
+<span id="cb19-16"><a href=""></a>    <span class="cf">return</span> proportion</span>
+<span id="cb19-17"><a href=""></a></span>
+<span id="cb19-18"><a href=""></a><span class="kw">def</span> txtSZ(text, aliases):</span>
+<span id="cb19-19"><a href=""></a>    <span class="co">"""text size"""</span></span>
+<span id="cb19-20"><a href=""></a>    <span class="cf">return</span> <span class="bu">len</span>(text)</span>
+<span id="cb19-21"><a href=""></a></span>
+<span id="cb19-22"><a href=""></a><span class="kw">def</span> countALI(text, aliases):</span>
+<span id="cb19-23"><a href=""></a>    <span class="co">"""count how many aliases appear in the text"""</span></span>
+<span id="cb19-24"><a href=""></a>    alias_count <span class="op">=</span> {expression: <span class="dv">0</span> <span class="cf">for</span> expression <span class="kw">in</span> aliases}</span>
+<span id="cb19-25"><a href=""></a>    <span class="cf">for</span> alias <span class="kw">in</span> aliases:</span>
+<span id="cb19-26"><a href=""></a>        <span class="co"># Use re.escape to handle any special characters in the expression</span></span>
+<span id="cb19-27"><a href=""></a>        pattern <span class="op">=</span> re.escape(alias.lower())</span>
+<span id="cb19-28"><a href=""></a>        matches <span class="op">=</span> re.findall(alias, text.lower())</span>
+<span id="cb19-29"><a href=""></a>        alias_count[alias] <span class="op">=</span> <span class="bu">len</span>(matches)</span>
+<span id="cb19-30"><a href=""></a>    <span class="cf">return</span> <span class="bu">sum</span>(alias_count.values())</span>
+<span id="cb19-31"><a href=""></a></span>
+<span id="cb19-32"><a href=""></a><span class="kw">def</span> countDTS(text, aliases):</span>
+<span id="cb19-33"><a href=""></a>    <span class="co">"""count how many dates appear in the text"""</span></span>
+<span id="cb19-34"><a href=""></a>    date_pattern <span class="op">=</span> <span class="vs">r'\b(\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d</span><span class="sc">{4}</span><span class="vs">[-/]\d{1,2}[-/]\d{1,2})\b'</span></span>
+<span id="cb19-35"><a href=""></a>    <span class="co"># 10/11/2024', '10/10/2024', '12-25-1990', '2024-11-05', '01/10/2024'</span></span>
+<span id="cb19-36"><a href=""></a>    dates <span class="op">=</span> re.findall(date_pattern, text)</span>
+<span id="cb19-37"><a href=""></a>    date_count <span class="op">=</span> <span class="bu">len</span>(dates)</span>
+<span id="cb19-38"><a href=""></a>    <span class="cf">return</span> date_count</span>
+<span id="cb19-39"><a href=""></a></span>
+<span id="cb19-40"><a href=""></a><span class="kw">def</span> countHOUR(text, aliases):</span>
+<span id="cb19-41"><a href=""></a>    <span class="co">"""count how many hours (ex.: hh:mm) appear in the text"""</span></span>
+<span id="cb19-42"><a href=""></a>    time_pattern <span class="op">=</span> <span class="vs">r'\b([01]?[0-9]|2[0-3]):[0-5][0-9]\b'</span>   </span>
+<span id="cb19-43"><a href=""></a>    occurrences <span class="op">=</span> re.findall(time_pattern, text)</span>
+<span id="cb19-44"><a href=""></a>    <span class="cf">return</span> <span class="bu">len</span>(occurrences)</span>
+<span id="cb19-45"><a href=""></a></span>
+<span id="cb19-46"><a href=""></a><span class="kw">def</span> countCAPS(text, aliases):</span>
+<span id="cb19-47"><a href=""></a>    <span class="co">"""count how many WORDS are upper"""</span></span>
+<span id="cb19-48"><a href=""></a>    words <span class="op">=</span> text.split()</span>
+<span id="cb19-49"><a href=""></a>    uppercase_word_count <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> word <span class="kw">in</span> words <span class="cf">if</span> word.isupper())</span>
+<span id="cb19-50"><a href=""></a>    <span class="cf">return</span> uppercase_word_count</span>
+<span id="cb19-51"><a href=""></a></span>
+<span id="cb19-52"><a href=""></a><span class="co"># 0.4 to 0.6 setences filter</span></span>
+<span id="cb19-53"><a href=""></a><span class="kw">def</span> filter_sentences_by_keywords(text, aliases):</span>
+<span id="cb19-54"><a href=""></a>    <span class="co"># Split the text by punctuation and also by multiple spaces or newlines</span></span>
+<span id="cb19-55"><a href=""></a>    sentences <span class="op">=</span> re.split(<span class="vs">r'(?&lt;=[.!?]) +|\s{2,}|\n+'</span>, text)</span>
+<span id="cb19-56"><a href=""></a>    <span class="co"># Filter sentences that contain any of the aliases</span></span>
+<span id="cb19-57"><a href=""></a>    filtered_sentences <span class="op">=</span> [sentence <span class="cf">for</span> sentence <span class="kw">in</span> sentences <span class="cf">if</span> <span class="bu">any</span>(keyword.lower() <span class="kw">in</span> sentence.lower() <span class="cf">for</span> keyword <span class="kw">in</span> aliases)]</span>
+<span id="cb19-58"><a href=""></a>    <span class="co"># Join the filtered sentences back into a single string</span></span>
+<span id="cb19-59"><a href=""></a>    filtered_text <span class="op">=</span> <span class="st">' '</span>.join(filtered_sentences)</span>
+<span id="cb19-60"><a href=""></a>    <span class="cf">return</span> filtered_text</span>
+<span id="cb19-61"><a href=""></a></span>
+<span id="cb19-62"><a href=""></a><span class="co"># Load the dtree01 model and set everything up</span></span>
+<span id="cb19-63"><a href=""></a>clf <span class="op">=</span> load(<span class="st">'dtree01.joblib'</span>)</span>
+<span id="cb19-64"><a href=""></a>data <span class="op">=</span> pd.read_parquet(<span class="st">"data02.parquet"</span>)</span>
+<span id="cb19-65"><a href=""></a>features <span class="op">=</span> [<span class="st">'IstALIAS'</span>, <span class="st">'propAN'</span>, <span class="st">'txtSZ'</span>, <span class="st">'countALI'</span>, <span class="st">'countDTS'</span>, <span class="st">'countHOUR'</span>, <span class="st">'countCAPS'</span>]</span>
+<span id="cb19-66"><a href=""></a></span>
+<span id="cb19-67"><a href=""></a><span class="co"># Applying the model</span></span>
+<span id="cb19-68"><a href=""></a><span class="cf">for</span> row <span class="kw">in</span> data.index:</span>
+<span id="cb19-69"><a href=""></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>row<span class="sc">}</span><span class="ss">"</span>, end <span class="op">=</span> <span class="st">": "</span>)</span>
+<span id="cb19-70"><a href=""></a>    aliases <span class="op">=</span> data.loc[row, <span class="st">"aliases"</span>]</span>
+<span id="cb19-71"><a href=""></a>    <span class="cf">for</span> column <span class="kw">in</span> data.columns[<span class="dv">1</span>:]:</span>
+<span id="cb19-72"><a href=""></a>        <span class="bu">print</span>(column, end <span class="op">=</span> <span class="st">" | "</span>)</span>
+<span id="cb19-73"><a href=""></a>        validation <span class="op">=</span> []</span>
+<span id="cb19-74"><a href=""></a>        <span class="cf">for</span> req <span class="kw">in</span> data.loc[row, column]:</span>
+<span id="cb19-75"><a href=""></a>            text <span class="op">=</span> req[<span class="st">"ExtractedText"</span>]</span>
+<span id="cb19-76"><a href=""></a>            df <span class="op">=</span> {}</span>
+<span id="cb19-77"><a href=""></a>            <span class="cf">for</span> feature <span class="kw">in</span> features:</span>
+<span id="cb19-78"><a href=""></a>                df[feature] <span class="op">=</span> [<span class="bu">globals</span>()[feature](text, aliases)]</span>
+<span id="cb19-79"><a href=""></a>            probability <span class="op">=</span> clf.predict_proba(pd.DataFrame(df))[<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb19-80"><a href=""></a>            <span class="cf">if</span> probability <span class="op">&lt;</span> <span class="fl">0.4</span>:</span>
+<span id="cb19-81"><a href=""></a>                <span class="cf">pass</span></span>
+<span id="cb19-82"><a href=""></a>            <span class="cf">elif</span> probability <span class="op">&gt;=</span> <span class="fl">0.4</span> <span class="kw">and</span> probability <span class="op">&lt;=</span> <span class="fl">0.6</span>:</span>
+<span id="cb19-83"><a href=""></a>                req[<span class="st">"newsProbability"</span>] <span class="op">=</span> <span class="bu">round</span>(probability, <span class="dv">3</span>)</span>
+<span id="cb19-84"><a href=""></a>                req[<span class="st">"ExtractedText"</span>] <span class="op">=</span> filter_sentences_by_keywords(text, aliases)</span>
+<span id="cb19-85"><a href=""></a>                validation.append(req)</span>
+<span id="cb19-86"><a href=""></a>            <span class="cf">elif</span> probability <span class="op">&gt;</span> <span class="fl">0.6</span>:</span>
+<span id="cb19-87"><a href=""></a>                req[<span class="st">"newsProbability"</span>] <span class="op">=</span> <span class="bu">round</span>(probability, <span class="dv">3</span>)</span>
+<span id="cb19-88"><a href=""></a>                validation.append(req)</span>
+<span id="cb19-89"><a href=""></a>        data.loc[row, column] <span class="op">=</span> validation</span>
+<span id="cb19-90"><a href=""></a></span>
+<span id="cb19-91"><a href=""></a><span class="co"># Sava the results</span></span>
+<span id="cb19-92"><a href=""></a>data.to_parquet(<span class="st">"data03.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data03.parquet" class="slide level2">
+<h2>data03.parquet</h2>
+<p>the only difference is the lists content (dicitionary) and the qty of news</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href=""></a>pd.read_parquet(<span class="st">"data03.parquet"</span>).<span class="bu">map</span>(<span class="bu">len</span>) <span class="op">-</span> pd.read_parquet(<span class="st">"data02.parquet"</span>).<span class="bu">map</span>(<span class="bu">len</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="dataframe caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">aliases</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2000</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2003</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2006</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2009</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2012</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2015</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">api.2018</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">companies</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Banco Comercial Português</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-77</td>
+<td style="text-align: right;">-157</td>
+<td style="text-align: right;">-155</td>
+<td style="text-align: right;">-350</td>
+<td style="text-align: right;">-677</td>
+<td style="text-align: right;">-832</td>
+<td style="text-align: right;">-441</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Galp Energia</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-61</td>
+<td style="text-align: right;">-190</td>
+<td style="text-align: right;">-172</td>
+<td style="text-align: right;">-321</td>
+<td style="text-align: right;">-629</td>
+<td style="text-align: right;">-681</td>
+<td style="text-align: right;">-437</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">EDP</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-69</td>
+<td style="text-align: right;">-195</td>
+<td style="text-align: right;">-122</td>
+<td style="text-align: right;">-362</td>
+<td style="text-align: right;">-779</td>
+<td style="text-align: right;">-1064</td>
+<td style="text-align: right;">-432</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sonae</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-122</td>
+<td style="text-align: right;">-297</td>
+<td style="text-align: right;">-230</td>
+<td style="text-align: right;">-369</td>
+<td style="text-align: right;">-968</td>
+<td style="text-align: right;">-1071</td>
+<td style="text-align: right;">-725</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Mota-Engil</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-3</td>
+<td style="text-align: right;">-63</td>
+<td style="text-align: right;">-23</td>
+<td style="text-align: right;">-117</td>
+<td style="text-align: right;">-285</td>
+<td style="text-align: right;">-470</td>
+<td style="text-align: right;">-265</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href=""></a>pd.read_parquet(<span class="st">"data03.parquet"</span>).iloc[<span class="dv">0</span>,<span class="dv">1</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'ExtractedText': 'DN \xa0 13 de Setembro de 2001 Intalações do BCP servem de refúgio As instalações do Banco Comercial Português, em Wall Street, foram utilizadas como refúgio por dezenas de pessoas depois dos atentados ao World Trade Center. Nenhum dos 48 funcionários daquela sucursal bancário ficou ferido e os dois trabalhadores que ainda não tinham comunicado com empresa fizeram-no na madrugada de ontem. Voo TAP para Newark chega hoje O voo 1331 da TAP que partiu terça-feira de Lisboa para Newark, nos Estados Unidos, deve chegar hoje ao seu destino. Segundo anunciou a porta-voz da companhia aérea, o avião foi direccionado para a cidade de Halifax, no Canadá, quando os EUA encerraram todos os seus aeroportos a vôos comerciais que se dirigissem para o território. EUA agradecem apoio português O representante diplomático dos EUA em Portugal, William McGlynn, agradeceu a solidariedade com que o Governo e o povo têm acompanhado a tragédia. "Rezamos para que não existam vítimas portuguesas nos ataques que não fizeram distinção de nacionalidade", disse o diplomata, recebido ontem por Jorge Sampaio. Governo sueco adia cimeira O primeiro-ministro da Suécia, Goran Person, adiou a terceira cimeira da esquerda liberal, inicialmente agendada para decorrer amanhã e depois, em Estocolmo. O encontro iria reunir chefes de Estado e de Governo de vários países, entre os quais o primeiro-ministro português, António Guterres. Portugueses de volta ao trabalho O consulado português em Nova Iorque retomou ontem funções nas instalações do ICEP, na 5.ª Avenida, onde ficará temporariamente alojado por questões de segurança. Também os portugueses que trabalham em Manhattan voltaram ao serviço, apesar de a cidade viver o rescaldo dos atentados e estar quase "deserta". Maçonaria condena atentados Contrariando a discrição que o caracteriza, o Grande Oriente Lusitano (GOL) divulgou ontem um comunicado assinado pelo grão-mestre, Eugénio de Oliveira, lamentando os ataques terroristas de terça-feira e dirigindo um apelo "à necessidade de luta contra os fanatismos que levam à destruição de vidas humanas". PCTP/MRPP contra imperialismo "O imperialismo é um gigante com pés de barro e é o povo norte-americano a primeira vítima dos desmandos cometidos pela classe dominante do seu país." Foi esta a reacção do PCTP/MRPP, que diz recear que o "imperialismo" dos EUA descambe numa retaliação sem limites contra os alvos que considerar inimigos. Comunistas retomam linha dura O PCP endureceu ontem a sua posição face aos atentados nos EUA. Em comunicado, a Comissão Política do Comité Central lembrou o "rol de crimes e agressões" cometidos pelos Estados Unidos e países aliados, e diz esperar que os ataques de terça-feira não sirvam "de pretexto para retirar apoio a justas lutas dos povos". Falso alarme nas Amoreiras As mil pessoas que trabalham na torre três das Amoreiras, em Lisboa, tiveram ontem de abandonar o edifício entre as 15 e as 16 horas, enquanto os agentes da Brigada de Inactivação de Agentes Explosivos da PSP vistoriaram o edifíco devido a uma ameaça de bomba. Mas "nada de anormal foi encontrado", disse a PSP. Protecção Civil apoia EUA O Serviço Nacional de Protecção Civil tem 58 elementos preparados para seguir para os EUA, em quatro equipas: uma de assistência psicológica, uma de assistência médica, uma de resgate e outra de identificação. Lisboa associa-se assim à disponibilidade da UE para prestar assistência técnica e sanitária aos EUA. National Geographic de luto Dois colaboradores da National Geographic morreram nos atentados, levando a sua representação portuguesa a adiar uma conferência científica marcada para amanhã, na Sociedade de Geografia. Os conferencistas Nick Nichols e Michael Fay, que se encontram na Alemanha, querem regressar de imediato a casa. Jornais não chegam às ilhas As edições da imprensa nacional e internacional de ontem não chegaram às regiões autónomas, devido às medidas de restrição da carga aérea tomadas pela TAP por razões de segurança. Uma situação que poderá repetir-se hoje, caso não seja possível levantar o embargo aos jornais destinados às Ilhas. A "ajuda" dos simuladores É provável que alguns dos terroristas que desviaram os aviões envolvidos no ataque tivessem experiência de pilotagem, mas, segundo os especialistas, isso nem seria sequer imprescindível. Um simulador de voo pode proporcionar conhecimentos suficientes para "pilotar" um aparelho, pelo menos naquelas circunstâncias. NASA aperta a segurança A agência espacial americana deu ontem aos funcionários a possibilidade de não comparecerem no local de trabalho, caso se sentissem afectados pelo ataque terrorista. O Kennedy Space Center, na Florida, que alberga a frota espacial, esteve em alerta máximo. Na sede, em Washington, todos os carros foram revistados. Reunião do FMI pode ser anulada A assembleia anual do FMI, prevista para finais de Setembro em Washington, poderá ser anulada, em virtude dos ataques terroristas aos EUA, admitiu o ministro das Finanças alemão, Hans Eichel. A discussão sobre o cancelamento ou não da reunião conjunta do FMI e do Banco Mundial está, no entanto, ainda em aberto. BCE está a construir "bunker" O Banco Central Europeu tem praticamente concluído, em Frankfurt, um "bunker" que servirá de refúgio em caso de catástrofe, revelou ontem Wim Duisenberg, presidente da instituição. As instalações permitirão ao BCE manter a sua actividade perante atentados do tipo dos que atingiram Nova Iorque. "Site" do DN lidera top O site do Diário de Notícias liderou nos últimos dois dias, na sequência das notícias sobre os atentados nos EUA, o top do portal Sapo, que mede o número de consultas a páginas na Net feitas a partir daquele portal, batendo inclusive os diários desportivos. Ontem à noite, o top era comandado pelo DN, seguido por "A Bola". Morreu produtor de "Frasier" David Angell, 54 anos, produtor da série televisiva Frasier , está entre as vítimas dos atentados de terça-feira nos EUA. Ele a sua mulher Lynn viajavam a bordo de um dos aviões que se despenharam. Ao longo da sua carreira, Angell venceu alguns prémios Emmy e escreveu vários episódios para séries como Cheers . Copyright © 1995,2001 Diário de Notícias, SA Todos os direitos reservados webmaster@DnOnline', 'linkToArchive': 'https://arquivo.pt/wayback/20010913052557/http://www.dn.pt/int/13p4x.htm', 'newsProbability': 0.933, 'tstamp': '20010913052557'}</code></pre>
+</div>
+</div>
+</section>
+<section id="second-problem-90-duplicate" class="slide level2">
+<h2>second problem (90% duplicate)</h2>
+<p>i need to compare all texs with each other to know which are more than 90% look a like</p>
+<p>also i will be merging all years into one col since the data is know less (so i can compare easily the texts of all years)</p>
+<p>add news source into the dicitionary</p>
+<p>and convert timestamp to only YYYYMM because its the timesatmp of the snapshot and not of the new, and this way i can get a better idea when the new was publish</p>
+</section>
+<section id="merging-cols-timestamp-and-source" class="slide level2">
+<h2>merging cols, timestamp and source</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href=""></a>df <span class="op">=</span> pd.read_parquet(<span class="st">"data03.parquet"</span>).<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="bu">list</span>(x))</span>
+<span id="cb23-2"><a href=""></a>df[<span class="st">'news'</span>] <span class="op">=</span> df.iloc[:, <span class="dv">1</span>:].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb23-3"><a href=""></a>df_filtered <span class="op">=</span> df.iloc[:, [<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]]</span>
+<span id="cb23-4"><a href=""></a>df_filtered</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href=""></a><span class="kw">def</span> tstampANDsource(lista):</span>
+<span id="cb24-2"><a href=""></a>    new_list <span class="op">=</span> []</span>
+<span id="cb24-3"><a href=""></a>    noticias <span class="op">=</span> pd.read_csv(<span class="st">"noticias.csv"</span>)</span>
+<span id="cb24-4"><a href=""></a>    <span class="cf">for</span> req <span class="kw">in</span> lista:</span>
+<span id="cb24-5"><a href=""></a>        <span class="co"># news source</span></span>
+<span id="cb24-6"><a href=""></a>        linkToArchive <span class="op">=</span> req[<span class="st">"linkToArchive"</span>]</span>
+<span id="cb24-7"><a href=""></a>        foundSource <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb24-8"><a href=""></a>        <span class="cf">for</span> index, row <span class="kw">in</span> noticias.iterrows():</span>
+<span id="cb24-9"><a href=""></a>            <span class="cf">if</span> row.iloc[<span class="dv">0</span>] <span class="kw">in</span> linkToArchive:</span>
+<span id="cb24-10"><a href=""></a>                req[<span class="st">"newsSource"</span>] <span class="op">=</span> row.iloc[<span class="dv">1</span>]</span>
+<span id="cb24-11"><a href=""></a>                foundSource <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb24-12"><a href=""></a>                <span class="cf">break</span></span>
+<span id="cb24-13"><a href=""></a>            <span class="cf">else</span>:</span>
+<span id="cb24-14"><a href=""></a>                <span class="cf">pass</span></span>
+<span id="cb24-15"><a href=""></a>        <span class="cf">if</span> <span class="kw">not</span> foundSource:</span>
+<span id="cb24-16"><a href=""></a>            req[<span class="st">"newsSource"</span>] <span class="op">=</span> <span class="st">"unknown"</span></span>
+<span id="cb24-17"><a href=""></a>        <span class="co"># timestamp</span></span>
+<span id="cb24-18"><a href=""></a>        req[<span class="st">"tstamp"</span>] <span class="op">=</span> req[<span class="st">"tstamp"</span>][:<span class="dv">6</span>]</span>
+<span id="cb24-19"><a href=""></a>        <span class="co"># SAVE</span></span>
+<span id="cb24-20"><a href=""></a>        new_list.append(req)</span>
+<span id="cb24-21"><a href=""></a>    <span class="cf">return</span> new_list</span>
+<span id="cb24-22"><a href=""></a></span>
+<span id="cb24-23"><a href=""></a>df_filtered.loc[:, <span class="st">"news"</span>] <span class="op">=</span> df_filtered[<span class="st">"news"</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: tstampANDsource(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="duplicate-function" class="slide level2">
+<h2>90% duplicate function</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href=""></a><span class="kw">def</span> nearDuplicates(lista, threshold<span class="op">=</span><span class="dv">90</span>):</span>
+<span id="cb25-2"><a href=""></a>    total_data <span class="op">=</span> <span class="bu">len</span>(lista) <span class="co"># status</span></span>
+<span id="cb25-3"><a href=""></a>    curr_data <span class="op">=</span> <span class="dv">0</span> <span class="co"># status</span></span>
+<span id="cb25-4"><a href=""></a>    new_list <span class="op">=</span> [lista[<span class="dv">0</span>]]</span>
+<span id="cb25-5"><a href=""></a>    texts <span class="op">=</span> [lista[<span class="dv">0</span>][<span class="st">"ExtractedText"</span>]]</span>
+<span id="cb25-6"><a href=""></a>    <span class="cf">for</span> req <span class="kw">in</span> lista[<span class="dv">1</span>:]:</span>
+<span id="cb25-7"><a href=""></a>        curr_data <span class="op">+=</span> <span class="dv">1</span> <span class="co"># status</span></span>
+<span id="cb25-8"><a href=""></a>        ExtractedText <span class="op">=</span> req[<span class="st">"ExtractedText"</span>]</span>
+<span id="cb25-9"><a href=""></a>        similarity <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb25-10"><a href=""></a>        <span class="cf">for</span> txt <span class="kw">in</span> texts:</span>
+<span id="cb25-11"><a href=""></a>            similarity <span class="op">=</span> <span class="bu">max</span>(similarity, fuzz.ratio(txt, ExtractedText))</span>
+<span id="cb25-12"><a href=""></a>            <span class="cf">if</span> similarity <span class="op">&gt;</span> threshold:</span>
+<span id="cb25-13"><a href=""></a>                <span class="cf">break</span></span>
+<span id="cb25-14"><a href=""></a>        <span class="cf">if</span> similarity <span class="op">&lt;=</span> threshold:</span>
+<span id="cb25-15"><a href=""></a>            new_list.append(req)</span>
+<span id="cb25-16"><a href=""></a>            texts.append(ExtractedText)</span>
+<span id="cb25-17"><a href=""></a>        <span class="cf">if</span> random.uniform(<span class="dv">0</span>, <span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>: <span class="co"># status</span></span>
+<span id="cb25-18"><a href=""></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>curr_data<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span>total_data<span class="sc">}</span><span class="ss">"</span>, end <span class="op">=</span> <span class="st">" | "</span>) <span class="co"># status</span></span>
+<span id="cb25-19"><a href=""></a>    <span class="bu">print</span>(<span class="st">""</span>) <span class="co"># status</span></span>
+<span id="cb25-20"><a href=""></a>    <span class="cf">return</span> new_list</span>
+<span id="cb25-21"><a href=""></a></span>
+<span id="cb25-22"><a href=""></a>df_filtered.loc[:, <span class="st">"news"</span>] <span class="op">=</span> df_filtered[<span class="st">"news"</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: nearDuplicates(x))</span>
+<span id="cb25-23"><a href=""></a>df_filtered.to_parquet(<span class="st">"data04.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data04.parquet" class="slide level2">
+<h2>data04.parquet</h2>
+<table class="dataframe caption-top" data-quarto-postprocess="true" style="border: 1px solid #ddd;">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">aliases</th>
+<th data-quarto-table-cell-role="th">news</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">companies</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Banco Comercial Português</td>
+<td>[Banco Comercial Português, BCP]</td>
+<td>[{'ExtractedText': 'DN &nbsp; 13 de Setembro de 200...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Galp Energia</td>
+<td>[Galp Energia, GALP]</td>
+<td>[{'ExtractedText': 'RTP Galp reforça posição n...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">EDP</td>
+<td>[EDP, Energias de Portugal, Electricidade de P...</td>
+<td>[{'ExtractedText': 'DN-Sinteses Negocios 9 de ...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sonae</td>
+<td>[Sonae, SON]</td>
+<td>[{'ExtractedText': 'DN-Sinteses 5 de Março de ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Mota-Engil</td>
+<td>[Mota-Engil, EGL]</td>
+<td>[{'ExtractedText': 'RTP Lucro da Mota-Engil so...</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href=""></a>pd.read_parquet(<span class="st">"data04.parquet"</span>).iloc[<span class="dv">0</span>,<span class="dv">1</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'ExtractedText': 'DN \xa0 13 de Setembro de 2001 Intalações do BCP servem de refúgio As instalações do Banco Comercial Português, em Wall Street, foram utilizadas como refúgio por dezenas de pessoas depois dos atentados ao World Trade Center. Nenhum dos 48 funcionários daquela sucursal bancário ficou ferido e os dois trabalhadores que ainda não tinham comunicado com empresa fizeram-no na madrugada de ontem. Voo TAP para Newark chega hoje O voo 1331 da TAP que partiu terça-feira de Lisboa para Newark, nos Estados Unidos, deve chegar hoje ao seu destino. Segundo anunciou a porta-voz da companhia aérea, o avião foi direccionado para a cidade de Halifax, no Canadá, quando os EUA encerraram todos os seus aeroportos a vôos comerciais que se dirigissem para o território. EUA agradecem apoio português O representante diplomático dos EUA em Portugal, William McGlynn, agradeceu a solidariedade com que o Governo e o povo têm acompanhado a tragédia. "Rezamos para que não existam vítimas portuguesas nos ataques que não fizeram distinção de nacionalidade", disse o diplomata, recebido ontem por Jorge Sampaio. Governo sueco adia cimeira O primeiro-ministro da Suécia, Goran Person, adiou a terceira cimeira da esquerda liberal, inicialmente agendada para decorrer amanhã e depois, em Estocolmo. O encontro iria reunir chefes de Estado e de Governo de vários países, entre os quais o primeiro-ministro português, António Guterres. Portugueses de volta ao trabalho O consulado português em Nova Iorque retomou ontem funções nas instalações do ICEP, na 5.ª Avenida, onde ficará temporariamente alojado por questões de segurança. Também os portugueses que trabalham em Manhattan voltaram ao serviço, apesar de a cidade viver o rescaldo dos atentados e estar quase "deserta". Maçonaria condena atentados Contrariando a discrição que o caracteriza, o Grande Oriente Lusitano (GOL) divulgou ontem um comunicado assinado pelo grão-mestre, Eugénio de Oliveira, lamentando os ataques terroristas de terça-feira e dirigindo um apelo "à necessidade de luta contra os fanatismos que levam à destruição de vidas humanas". PCTP/MRPP contra imperialismo "O imperialismo é um gigante com pés de barro e é o povo norte-americano a primeira vítima dos desmandos cometidos pela classe dominante do seu país." Foi esta a reacção do PCTP/MRPP, que diz recear que o "imperialismo" dos EUA descambe numa retaliação sem limites contra os alvos que considerar inimigos. Comunistas retomam linha dura O PCP endureceu ontem a sua posição face aos atentados nos EUA. Em comunicado, a Comissão Política do Comité Central lembrou o "rol de crimes e agressões" cometidos pelos Estados Unidos e países aliados, e diz esperar que os ataques de terça-feira não sirvam "de pretexto para retirar apoio a justas lutas dos povos". Falso alarme nas Amoreiras As mil pessoas que trabalham na torre três das Amoreiras, em Lisboa, tiveram ontem de abandonar o edifício entre as 15 e as 16 horas, enquanto os agentes da Brigada de Inactivação de Agentes Explosivos da PSP vistoriaram o edifíco devido a uma ameaça de bomba. Mas "nada de anormal foi encontrado", disse a PSP. Protecção Civil apoia EUA O Serviço Nacional de Protecção Civil tem 58 elementos preparados para seguir para os EUA, em quatro equipas: uma de assistência psicológica, uma de assistência médica, uma de resgate e outra de identificação. Lisboa associa-se assim à disponibilidade da UE para prestar assistência técnica e sanitária aos EUA. National Geographic de luto Dois colaboradores da National Geographic morreram nos atentados, levando a sua representação portuguesa a adiar uma conferência científica marcada para amanhã, na Sociedade de Geografia. Os conferencistas Nick Nichols e Michael Fay, que se encontram na Alemanha, querem regressar de imediato a casa. Jornais não chegam às ilhas As edições da imprensa nacional e internacional de ontem não chegaram às regiões autónomas, devido às medidas de restrição da carga aérea tomadas pela TAP por razões de segurança. Uma situação que poderá repetir-se hoje, caso não seja possível levantar o embargo aos jornais destinados às Ilhas. A "ajuda" dos simuladores É provável que alguns dos terroristas que desviaram os aviões envolvidos no ataque tivessem experiência de pilotagem, mas, segundo os especialistas, isso nem seria sequer imprescindível. Um simulador de voo pode proporcionar conhecimentos suficientes para "pilotar" um aparelho, pelo menos naquelas circunstâncias. NASA aperta a segurança A agência espacial americana deu ontem aos funcionários a possibilidade de não comparecerem no local de trabalho, caso se sentissem afectados pelo ataque terrorista. O Kennedy Space Center, na Florida, que alberga a frota espacial, esteve em alerta máximo. Na sede, em Washington, todos os carros foram revistados. Reunião do FMI pode ser anulada A assembleia anual do FMI, prevista para finais de Setembro em Washington, poderá ser anulada, em virtude dos ataques terroristas aos EUA, admitiu o ministro das Finanças alemão, Hans Eichel. A discussão sobre o cancelamento ou não da reunião conjunta do FMI e do Banco Mundial está, no entanto, ainda em aberto. BCE está a construir "bunker" O Banco Central Europeu tem praticamente concluído, em Frankfurt, um "bunker" que servirá de refúgio em caso de catástrofe, revelou ontem Wim Duisenberg, presidente da instituição. As instalações permitirão ao BCE manter a sua actividade perante atentados do tipo dos que atingiram Nova Iorque. "Site" do DN lidera top O site do Diário de Notícias liderou nos últimos dois dias, na sequência das notícias sobre os atentados nos EUA, o top do portal Sapo, que mede o número de consultas a páginas na Net feitas a partir daquele portal, batendo inclusive os diários desportivos. Ontem à noite, o top era comandado pelo DN, seguido por "A Bola". Morreu produtor de "Frasier" David Angell, 54 anos, produtor da série televisiva Frasier , está entre as vítimas dos atentados de terça-feira nos EUA. Ele a sua mulher Lynn viajavam a bordo de um dos aviões que se despenharam. Ao longo da sua carreira, Angell venceu alguns prémios Emmy e escreveu vários episódios para séries como Cheers . Copyright © 1995,2001 Diário de Notícias, SA Todos os direitos reservados webmaster@DnOnline', 'linkToArchive': 'https://arquivo.pt/wayback/20010913052557/http://www.dn.pt/int/13p4x.htm', 'newsProbability': 0.933, 'newsSource': 'Diário de Notícias', 'tstamp': '200109'}</code></pre>
+</div>
+</div>
+</section>
+<section id="data04.parquet-1" class="slide level2 justify">
+<h2>data04.parquet</h2>
+<figure style="text-align: center;">
+    <img src="lostNews.svg" alt="coemcamos com 100% de news e agora" style="width: 100%;">
+    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. 3: Remaining news after filtering.</figcaption>
+</figure>
+<div style="text-align: center;">
+<p>Banco Comercial Português <span class="math inline">\(4596 \rightarrow 807\)</span> | Galp Energia <span class="math inline">\(4886 \rightarrow 809\)</span></p>
+<p>EDP <span class="math inline">\(5596 \rightarrow 954\)</span> | Sonae <span class="math inline">\(5524 \rightarrow 520\)</span> | Mota-Engil <span class="math inline">\(2268 \rightarrow 296\)</span></p>
+</div>
+</section></section>
+<section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>conclusion</h1>
+
+</section>
+<section id="how-many-data-did-i-clean" class="slide level2">
+<h2>how many data did i clean</h2>
+<p>…</p>
+</section>
+<section id="disclaimer" class="slide level2">
+<h2>disclaimer</h2>
+<p>ofc i could have all this datasets and filtering in one go and by only using one parquet file, but now that i have the strucutre i can easily implement a way so that any given company and aliases returns me the cleaned and filtered news</p>
+<p>all the source code can be found in github</p>
+<div class="quarto-auto-generated-content">
+<p><img src="ua.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":false},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
