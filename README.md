@@ -5,7 +5,7 @@
 # structure: folders and files
 
 ```
-project
+│
 │   README.md
 │   data04.parquet                  [via 03_data_filtering.ipynb]
 │   dtree01.joblib                  [via dtree01.ipynb] trained model to filter news 
