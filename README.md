@@ -33,6 +33,11 @@
 │   │   03_data_filtering.ipynb     applies dtree01.joblib, removes 90% duplicates, and some minor tweaks
 │   │   dtree01.ipynb               decision tree model training/creation to filter news (ignore ads and news websites first pages)
 │
+└───slides01
+│   │   index.qmd
+│   │   index.html
+│   │   ...
+│
 └───tests
 │   │   newsLost v01.ipynb
 │   │   newsVSstock v01.ipynb
