@@ -1,46 +1,61 @@
 # idea
 
-# structure
-
-## folders and files
-
-- assets/
-
-- data/
-
-- notebooks/
-
-- tests/
-
-- zextra/
-
-- data04.parquet
-
-- dtree01.joblib
-
-- main.py
-
-- noticias.csv
-
+# structure: folders and files
 
 ```
 project
 │   README.md
-│   file001.txt    
+│   data04.parquet
+│   dtree01.joblib
+│   main.py
+│   noticias.csv
 │
-└───folder1
+└───assets
 │   │   file011.txt
 │   │   file012.txt
-│   │
-│   └───subfolder1
-│       │   file111.txt
-│       │   file112.txt
-│       │   ...
-│   
-└───folder2
-    │   file021.txt
-    │   file022.txt
+│
+└───data/
+│   │   file011.txt
+│   │   file012.txt
+│
+└───notebooks
+│   │   file011.txt ```dasdad```
+│   │   file012.txt
+│
+└───tests
+│   │   file011.txt - $sadsd$
+│   │   file012.txt
+│
+└───zextra
+│   │   file011.txt: bla bla
+│   │   file012.txt - bla bla
 ```
+
+
+## File Descriptions
+
+| File Name          | Description                                       |
+|--------------------|---------------------------------------------------|
+| **README.md**      | Documentation for the project, including setup and usage instructions. |
+| **data04.parquet** | Primary dataset used for analysis.                |
+| **dtree01.joblib** | Serialized decision tree model for predictions.   |
+| **main.py**        | Main script to run the analysis and model.       |
+| **noticias.csv**   | CSV file containing news articles or data.       |
+| **assets/**        | Folder containing additional files related to the project. |
+| **assets/file011.txt** | Text file used for supplementary data.         |
+| **assets/file012.txt** | Another text file for additional information.  |
+| **data/**          | Directory containing raw data files.              |
+| **data/file011.txt** | Raw data file for processing.                   |
+| **data/file012.txt** | Another raw data file.                           |
+| **notebooks/**     | Directory containing Jupyter notebooks for analysis. |
+| **notebooks/file011.txt** | Jupyter notebook for exploratory data analysis. |
+| **notebooks/file012.txt** | Jupyter notebook for modeling.                |
+| **tests/**         | Directory containing test files.                  |
+| **tests/file011.txt** | Test case for validating data processing.        |
+| **tests/file012.txt** | Test case for validating model predictions.      |
+| **zextra/**        | Directory for extra files and datasets.           |
+| **zextra/file011.txt** | Additional dataset or supplementary file.       |
+| **zextra/file012.txt** | Another supplementary file.                     |
 
 
 ## DATA
