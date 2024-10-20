@@ -1,6 +1,46 @@
-# STRUCTURE
+# idea
 
-## IDEAS
+# structure
+
+## folders and files
+
+- assets/
+
+- data/
+
+- notebooks/
+
+- tests/
+
+- zextra/
+
+- data04.parquet
+
+- dtree01.joblib
+
+- main.py
+
+- noticias.csv
+
+
+```
+project
+│   README.md
+│   file001.txt    
+│
+└───folder1
+│   │   file011.txt
+│   │   file012.txt
+│   │
+│   └───subfolder1
+│       │   file111.txt
+│       │   file112.txt
+│       │   ...
+│   
+└───folder2
+    │   file021.txt
+    │   file022.txt
+```
 
 
 ## DATA
