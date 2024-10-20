@@ -6,12 +6,12 @@
 project
 │   README.md
 │   data04.parquet
-│   dtree01.joblib
+│   dtree01.joblib      afdsdasdad
 │   main.py
-│   noticias.csv
+│   noticias.csv        dsadad
 │
 └───assets
-│   │   file011.txt
+│   │   file011.txt     sdasdsad
 │   │   file012.txt
 │
 └───data/
@@ -19,43 +19,17 @@ project
 │   │   file012.txt
 │
 └───notebooks
-│   │   file011.txt ```dasdad```
+│   │   file011.txt 
 │   │   file012.txt
 │
 └───tests
-│   │   file011.txt - $sadsd$
+│   │   file011.txt 
 │   │   file012.txt
 │
 └───zextra
-│   │   file011.txt: bla bla
+│   │   file011.txt
 │   │   file012.txt - bla bla
 ```
-
-
-## File Descriptions
-
-| File Name          | Description                                       |
-|--------------------|---------------------------------------------------|
-| **README.md**      | Documentation for the project, including setup and usage instructions. |
-| **data04.parquet** | Primary dataset used for analysis.                |
-| **dtree01.joblib** | Serialized decision tree model for predictions.   |
-| **main.py**        | Main script to run the analysis and model.       |
-| **noticias.csv**   | CSV file containing news articles or data.       |
-| **assets/**        | Folder containing additional files related to the project. |
-| **assets/file011.txt** | Text file used for supplementary data.         |
-| **assets/file012.txt** | Another text file for additional information.  |
-| **data/**          | Directory containing raw data files.              |
-| **data/file011.txt** | Raw data file for processing.                   |
-| **data/file012.txt** | Another raw data file.                           |
-| **notebooks/**     | Directory containing Jupyter notebooks for analysis. |
-| **notebooks/file011.txt** | Jupyter notebook for exploratory data analysis. |
-| **notebooks/file012.txt** | Jupyter notebook for modeling.                |
-| **tests/**         | Directory containing test files.                  |
-| **tests/file011.txt** | Test case for validating data processing.        |
-| **tests/file012.txt** | Test case for validating model predictions.      |
-| **zextra/**        | Directory for extra files and datasets.           |
-| **zextra/file011.txt** | Additional dataset or supplementary file.       |
-| **zextra/file012.txt** | Another supplementary file.                     |
 
 
 ## DATA
