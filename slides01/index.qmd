@@ -33,9 +33,7 @@ import time
 from datetime import datetime
 ```
 
-
-
-# Context and Objective
+## Objective & Methodology {.justify}
 
 ```{=html}
 <style>
@@ -74,14 +72,6 @@ tbody td:first-child {
 </style>
 ```
 
-## . 
-
-- intro qq
-
-Fonte de Dados: arquivo.pt (https://github.com/arquivo/pwa-technologies/wiki/Arquivo.pt-API)
-
-## Objective {.justify}
-
 Discover insights about specific companies, traded on the PSI-20 index, by analyzing media mentions, focusing on:
 
 - Sentiment analysis
@@ -94,28 +84,7 @@ Similar works:
 
 - [https://github.com/msramalho/desarquivo](https://github.com/msramalho/desarquivo)
 
-## libraries
-
-```{.python}
-import pandas as pd
-import requests
-from bs4 import BeautifulSoup
-import time
-from datetime import datetime
-import re
-import random
-import numpy as np
-# dtree related
-import os
-from sklearn.tree import DecisionTreeClassifier, plot_tree
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
-import matplotlib.pyplot as plt
-from joblib import dump, load
-# 90% duplicated
-from fuzzywuzzy import fuzz
-```
-
+Data Source: [Arquivo.pt web archive](https://arquivo.pt)
 
 # Data Extraction from arquivo.pt
 
@@ -684,15 +653,18 @@ print(pretty_json_string)
 
 # Data Filtering
 
-## Problems Faced
+## Problems Faced {.justify}
 
-- i already removes duplicates files but there are some that are like 90% ducplicated, i should remove them
 
-- there are "news" that are actualy ads or not related to the company, like it just appears there for another reason, like to say its stock went down just like a bunch of psi20 companies
+- I've already removed exact duplicate files, but some files remain that are about 90% similar. These should also be removed.
 
-due to the complexity of the first problem, if i remove part of the data by solving the second problem, it will be faster for the first
+- There are also "news" items that aren't actually relevant to the company: they might be ads, irrelevant financial reports, or other unrelated content. These could be filtered out as well.
 
-note: i could have processed this already while extracting the text but.... it is what it is
+Since the first problem is more complex ($O(n^2)$), removing irrelevant news will reduce the dataset and make solving the first problem faster.
+
+$\ $
+
+Note: it would have been ideal to filter these out during text extraction.
 
 ## detecting not news
 
@@ -1104,9 +1076,32 @@ EDP $5596 \rightarrow 954$ | Sonae $5524 \rightarrow 520$ | Mota-Engil $2268 \ri
 
 # conclusion
 
-## how many data did i clean
+## ...
 
 ...
+
+## libraries
+
+```{.python}
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import time
+from datetime import datetime
+import re
+import random
+import numpy as np
+# dtree related
+import os
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+import matplotlib.pyplot as plt
+from joblib import dump, load
+# 90% duplicated
+from fuzzywuzzy import fuzz
+```
+
 
 ## disclaimer
 
