@@ -666,9 +666,9 @@ $\ $
 
 Note: it would have been ideal to filter these out during text extraction.
 
-## detecting not news
+## Dataset for News Detection Model {.justify}
 
-i had to read a bunch of news (610) to create a dataset so i could train a model e and also choose a bunch of feautres, which gave me the following datasetp
+To address the 'Not News' problem, I created a small dataset with several features to train and test a model for detecting non-news content.
 
 ```{.python}
 pd.read_csv("dtree01.csv").info()
@@ -680,25 +680,31 @@ df["news"] = [bool(x) for x in df["news"]]
 df.info()
 ```
 
-## training the decision tree
+## Choosing and Training the Model {.justify}
 
-want to train a decision tree because "do not require linear relationships and can handle non-linear interactions between features. If there are complex, non-linear interactions in your data, a Decision Tree would likely perform better." 
+<!-- decision tree is better for modelibng ccomplex relations between feautres or in the data, something like that -->
+
+After experimenting with various models and combinations of features, I discovered that a decision tree utilizing the following features and parameters provided the best fit for the data.
 
 ```{.python}
 dataset = pd.read_csv("dtree01.csv")
-X = dataset[['IstALIAS', 'propAN', 'txtSZ', 'countALI', 'countDTS', 'countHOUR', 'countCAPS']]
+X = dataset[['IstALIAS', 'propAN', 'txtSZ', 'countALI', 
+              'countDTS', 'countHOUR', 'countCAPS']]
 y = dataset['news'] 
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.15, random_state=21)
+X_train, X_test, y_train, y_test = train_test_split(X, y, 
+    test_size=0.15, random_state=21)
 
-
-clf = DecisionTreeClassifier(random_state=21, max_depth=5, min_samples_split=15, min_samples_leaf=10)
+clf = DecisionTreeClassifier(random_state=21, max_depth=5, 
+    min_samples_split=15, min_samples_leaf=10)
 clf.fit(X_train, y_train)
 
 y_pred = clf.predict(X_test)
 ```
 
-## Decision Tree
+## Decision Tree Model {.justify}
+
+<!-- there are more branches that lead to 0, which is not news -->
 
 ```{python, echo=FALSE}
 print("""Accuracy after tuning: 0.9130434782608695
@@ -737,9 +743,9 @@ i ran the decision tree in all my data one time to check which would be the dist
 
 ## applying dtree to the dataset
 
-```{.python}
+```{.python code-line-numbers="1-10|12-20|22-37|39-49|51-59|61-64|72-88|91"}
 # FEATURES
-# added "aliases" to all func in order to run them all without worrying about the inputs
+# added "aliases" to all func in order to run all together
 def IstALIAS(text, aliases):
     """where does the first alias appear, title?"""
     indexs = []
@@ -763,7 +769,6 @@ def countALI(text, aliases):
     """count how many aliases appear in the text"""
     alias_count = {expression: 0 for expression in aliases}
     for alias in aliases:
-        # Use re.escape to handle any special characters in the expression
         pattern = re.escape(alias.lower())
         matches = re.findall(alias, text.lower())
         alias_count[alias] = len(matches)
@@ -791,20 +796,20 @@ def countCAPS(text, aliases):
 
 # 0.4 to 0.6 setences filter
 def filter_sentences_by_keywords(text, aliases):
-    # Split the text by punctuation and also by multiple spaces or newlines
+    # split the text by punctuation, multiple spaces or newlines
     sentences = re.split(r'(?<=[.!?]) +|\s{2,}|\n+', text)
-    # Filter sentences that contain any of the aliases
+    # filter sentences with any of the aliases
     filtered_sentences = [sentence for sentence in sentences if any(keyword.lower() in sentence.lower() for keyword in aliases)]
-    # Join the filtered sentences back into a single string
+    # join the filtered sentences into a single string
     filtered_text = ' '.join(filtered_sentences)
     return filtered_text
 
-# Load the dtree01 model and set everything up
+# load dtree01 model and set everything
 clf = load('dtree01.joblib')
 data = pd.read_parquet("data02.parquet")
 features = ['IstALIAS', 'propAN', 'txtSZ', 'countALI', 'countDTS', 'countHOUR', 'countCAPS']
 
-# Applying the model
+# apply the model
 for row in data.index:
     print(f"\n {row}", end = ": ")
     aliases = data.loc[row, "aliases"]
@@ -828,13 +833,11 @@ for row in data.index:
                 validation.append(req)
         data.loc[row, column] = validation
 
-# Sava the results
+# save the results
 data.to_parquet("data03.parquet")
 ```
 
 ## data03.parquet
-
-the only difference is the lists content (dicitionary) and the qty of news
 
 ```{.python}
 pd.read_parquet("data03.parquet").map(len) - pd.read_parquet("data02.parquet").map(len)
@@ -926,8 +929,40 @@ pd.read_parquet("data03.parquet").map(len) - pd.read_parquet("data02.parquet").m
 </table>
 ```
 
-```{python}
+$\ $
+
+```{.python}
 pd.read_parquet("data03.parquet").iloc[0,1][0]
+```
+
+```{python, echo=FALSE}
+
+import json
+
+import unicodedata
+
+def normalize_text(text):
+    # Normalize to NFKD and then encode to ASCII ignoring errors
+    normalized = unicodedata.normalize('NFKD', text)
+    return normalized.encode('ASCII', 'ignore').decode('utf-8')
+
+# Your original dictionary
+dict = pd.read_parquet("data03.parquet").iloc[0,1][1]
+
+#print(dict.keys())
+
+data = {"newsProbability": dict["newsProbability"],"tstamp": dict["tstamp"],
+            "linkToArchive": dict["linkToArchive"],
+            "ExtractedText": normalize_text(dict["ExtractedText"])}
+
+# Convert to JSON string with separators
+pretty_json_string = json.dumps(data, indent=4)
+
+
+# Print the JSON string
+print(pretty_json_string)
+
+
 ```
 
 ## second problem (90% duplicate)
