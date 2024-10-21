@@ -1075,110 +1075,62 @@ Classification Report: precision    recall  f1-score   support
 </section>
 <section id="dtree-percentagens-distribution" class="slide level2">
 <h2>dtree percentagens distribution</h2>
-<p>i ran the decision tree in all my data one time to check which would be the distribution, to see how many news i would be left with and found this, so ….</p>
-<ul>
-<li><p>if newsProb in [.0, .4[ - trash</p></li>
-<li><p>if newsProb in [.4, .6] - filter setences: keep only the ones with any alias</p></li>
-<li><p>if newsProb in ].6, 1.] - keep everything</p></li>
-</ul>
-<figure style="text-align: center;">
+<!--
+
+before definive filter all data, i wanted to check how many data would i possible lost
+
+- if newsProb in [.0, .4[ - trash
+
+- if newsProb in [.4, .6] - filter setences: keep only the ones with any alias
+
+- if newsProb in ].6, 1.] - keep everything
+-->
+<figure style="text-align: center; margin-top: -45px;">
     <img src="dtree01 (percentages).svg" alt="dtree percentagens distribution" style="width: 100%;">
     <figcaption style="font-size: 0.45em; margin-top: -40px; margin-bottom: 25px;">Fig. 2: Percentage distribution of classification 1 in the decision tree model applied to the entire dataset.</figcaption>
 </figure>
 </section>
 <section id="applying-dtree-to-the-dataset" class="slide level2">
 <h2>applying dtree to the dataset</h2>
-<div class="sourceCode" id="cb18" data-code-line-numbers="1-10|12-20|22-37|39-49|51-59|61-64|72-88|91"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href=""></a><span class="co"># FEATURES</span></span>
-<span id="cb18-2"><a href=""></a><span class="co"># added "aliases" to all func in order to run all together</span></span>
-<span id="cb18-3"><a href=""></a><span class="kw">def</span> IstALIAS(text, aliases):</span>
-<span id="cb18-4"><a href=""></a>    <span class="co">"""where does the first alias appear, title?"""</span></span>
-<span id="cb18-5"><a href=""></a>    indexs <span class="op">=</span> []</span>
-<span id="cb18-6"><a href=""></a>    <span class="cf">for</span> alias <span class="kw">in</span> aliases:</span>
-<span id="cb18-7"><a href=""></a>        index <span class="op">=</span> text.lower().find(alias.lower())</span>
-<span id="cb18-8"><a href=""></a>        <span class="cf">if</span> index <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>:</span>
-<span id="cb18-9"><a href=""></a>            indexs.append(index)</span>
-<span id="cb18-10"><a href=""></a>    <span class="cf">return</span> text[:<span class="bu">min</span>(indexs)].count(<span class="st">' '</span>)</span>
-<span id="cb18-11"><a href=""></a></span>
-<span id="cb18-12"><a href=""></a><span class="kw">def</span> propAN(text, aliases):</span>
-<span id="cb18-13"><a href=""></a>    <span class="co">"""proportion of alphanumeric chars in the text"""</span></span>
-<span id="cb18-14"><a href=""></a>    alphanumeric_chars <span class="op">=</span> <span class="bu">sum</span>(char.isalnum() <span class="cf">for</span> char <span class="kw">in</span> text)</span>
-<span id="cb18-15"><a href=""></a>    proportion <span class="op">=</span> alphanumeric_chars <span class="op">/</span> <span class="bu">len</span>(text)</span>
-<span id="cb18-16"><a href=""></a>    <span class="cf">return</span> proportion</span>
-<span id="cb18-17"><a href=""></a></span>
-<span id="cb18-18"><a href=""></a><span class="kw">def</span> txtSZ(text, aliases):</span>
-<span id="cb18-19"><a href=""></a>    <span class="co">"""text size"""</span></span>
-<span id="cb18-20"><a href=""></a>    <span class="cf">return</span> <span class="bu">len</span>(text)</span>
-<span id="cb18-21"><a href=""></a></span>
-<span id="cb18-22"><a href=""></a><span class="kw">def</span> countALI(text, aliases):</span>
-<span id="cb18-23"><a href=""></a>    <span class="co">"""count how many aliases appear in the text"""</span></span>
-<span id="cb18-24"><a href=""></a>    alias_count <span class="op">=</span> {expression: <span class="dv">0</span> <span class="cf">for</span> expression <span class="kw">in</span> aliases}</span>
-<span id="cb18-25"><a href=""></a>    <span class="cf">for</span> alias <span class="kw">in</span> aliases:</span>
-<span id="cb18-26"><a href=""></a>        pattern <span class="op">=</span> re.escape(alias.lower())</span>
-<span id="cb18-27"><a href=""></a>        matches <span class="op">=</span> re.findall(alias, text.lower())</span>
-<span id="cb18-28"><a href=""></a>        alias_count[alias] <span class="op">=</span> <span class="bu">len</span>(matches)</span>
-<span id="cb18-29"><a href=""></a>    <span class="cf">return</span> <span class="bu">sum</span>(alias_count.values())</span>
-<span id="cb18-30"><a href=""></a></span>
-<span id="cb18-31"><a href=""></a><span class="kw">def</span> countDTS(text, aliases):</span>
-<span id="cb18-32"><a href=""></a>    <span class="co">"""count how many dates appear in the text"""</span></span>
-<span id="cb18-33"><a href=""></a>    date_pattern <span class="op">=</span> <span class="vs">r'\b(\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d</span><span class="sc">{4}</span><span class="vs">[-/]\d{1,2}[-/]\d{1,2})\b'</span></span>
-<span id="cb18-34"><a href=""></a>    <span class="co"># 10/11/2024', '10/10/2024', '12-25-1990', '2024-11-05', '01/10/2024'</span></span>
-<span id="cb18-35"><a href=""></a>    dates <span class="op">=</span> re.findall(date_pattern, text)</span>
-<span id="cb18-36"><a href=""></a>    date_count <span class="op">=</span> <span class="bu">len</span>(dates)</span>
-<span id="cb18-37"><a href=""></a>    <span class="cf">return</span> date_count</span>
-<span id="cb18-38"><a href=""></a></span>
-<span id="cb18-39"><a href=""></a><span class="kw">def</span> countHOUR(text, aliases):</span>
-<span id="cb18-40"><a href=""></a>    <span class="co">"""count how many hours (ex.: hh:mm) appear in the text"""</span></span>
-<span id="cb18-41"><a href=""></a>    time_pattern <span class="op">=</span> <span class="vs">r'\b([01]?[0-9]|2[0-3]):[0-5][0-9]\b'</span>   </span>
-<span id="cb18-42"><a href=""></a>    occurrences <span class="op">=</span> re.findall(time_pattern, text)</span>
-<span id="cb18-43"><a href=""></a>    <span class="cf">return</span> <span class="bu">len</span>(occurrences)</span>
-<span id="cb18-44"><a href=""></a></span>
-<span id="cb18-45"><a href=""></a><span class="kw">def</span> countCAPS(text, aliases):</span>
-<span id="cb18-46"><a href=""></a>    <span class="co">"""count how many WORDS are upper"""</span></span>
-<span id="cb18-47"><a href=""></a>    words <span class="op">=</span> text.split()</span>
-<span id="cb18-48"><a href=""></a>    uppercase_word_count <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> word <span class="kw">in</span> words <span class="cf">if</span> word.isupper())</span>
-<span id="cb18-49"><a href=""></a>    <span class="cf">return</span> uppercase_word_count</span>
-<span id="cb18-50"><a href=""></a></span>
-<span id="cb18-51"><a href=""></a><span class="co"># 0.4 to 0.6 setences filter</span></span>
-<span id="cb18-52"><a href=""></a><span class="kw">def</span> filter_sentences_by_keywords(text, aliases):</span>
-<span id="cb18-53"><a href=""></a>    <span class="co"># split the text by punctuation, multiple spaces or newlines</span></span>
-<span id="cb18-54"><a href=""></a>    sentences <span class="op">=</span> re.split(<span class="vs">r'(?&lt;=[.!?]) +|\s{2,}|\n+'</span>, text)</span>
-<span id="cb18-55"><a href=""></a>    <span class="co"># filter sentences with any of the aliases</span></span>
-<span id="cb18-56"><a href=""></a>    filtered_sentences <span class="op">=</span> [sentence <span class="cf">for</span> sentence <span class="kw">in</span> sentences <span class="cf">if</span> <span class="bu">any</span>(keyword.lower() <span class="kw">in</span> sentence.lower() <span class="cf">for</span> keyword <span class="kw">in</span> aliases)]</span>
-<span id="cb18-57"><a href=""></a>    <span class="co"># join the filtered sentences into a single string</span></span>
-<span id="cb18-58"><a href=""></a>    filtered_text <span class="op">=</span> <span class="st">' '</span>.join(filtered_sentences)</span>
-<span id="cb18-59"><a href=""></a>    <span class="cf">return</span> filtered_text</span>
-<span id="cb18-60"><a href=""></a></span>
-<span id="cb18-61"><a href=""></a><span class="co"># load dtree01 model and set everything</span></span>
-<span id="cb18-62"><a href=""></a>clf <span class="op">=</span> load(<span class="st">'dtree01.joblib'</span>)</span>
-<span id="cb18-63"><a href=""></a>data <span class="op">=</span> pd.read_parquet(<span class="st">"data02.parquet"</span>)</span>
-<span id="cb18-64"><a href=""></a>features <span class="op">=</span> [<span class="st">'IstALIAS'</span>, <span class="st">'propAN'</span>, <span class="st">'txtSZ'</span>, <span class="st">'countALI'</span>, <span class="st">'countDTS'</span>, <span class="st">'countHOUR'</span>, <span class="st">'countCAPS'</span>]</span>
-<span id="cb18-65"><a href=""></a></span>
-<span id="cb18-66"><a href=""></a><span class="co"># apply the model</span></span>
-<span id="cb18-67"><a href=""></a><span class="cf">for</span> row <span class="kw">in</span> data.index:</span>
-<span id="cb18-68"><a href=""></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>row<span class="sc">}</span><span class="ss">"</span>, end <span class="op">=</span> <span class="st">": "</span>)</span>
-<span id="cb18-69"><a href=""></a>    aliases <span class="op">=</span> data.loc[row, <span class="st">"aliases"</span>]</span>
-<span id="cb18-70"><a href=""></a>    <span class="cf">for</span> column <span class="kw">in</span> data.columns[<span class="dv">1</span>:]:</span>
-<span id="cb18-71"><a href=""></a>        <span class="bu">print</span>(column, end <span class="op">=</span> <span class="st">" | "</span>)</span>
-<span id="cb18-72"><a href=""></a>        validation <span class="op">=</span> []</span>
-<span id="cb18-73"><a href=""></a>        <span class="cf">for</span> req <span class="kw">in</span> data.loc[row, column]:</span>
-<span id="cb18-74"><a href=""></a>            text <span class="op">=</span> req[<span class="st">"ExtractedText"</span>]</span>
-<span id="cb18-75"><a href=""></a>            df <span class="op">=</span> {}</span>
-<span id="cb18-76"><a href=""></a>            <span class="cf">for</span> feature <span class="kw">in</span> features:</span>
-<span id="cb18-77"><a href=""></a>                df[feature] <span class="op">=</span> [<span class="bu">globals</span>()[feature](text, aliases)]</span>
-<span id="cb18-78"><a href=""></a>            probability <span class="op">=</span> clf.predict_proba(pd.DataFrame(df))[<span class="dv">0</span>, <span class="dv">1</span>]</span>
-<span id="cb18-79"><a href=""></a>            <span class="cf">if</span> probability <span class="op">&lt;</span> <span class="fl">0.4</span>:</span>
-<span id="cb18-80"><a href=""></a>                <span class="cf">pass</span></span>
-<span id="cb18-81"><a href=""></a>            <span class="cf">elif</span> probability <span class="op">&gt;=</span> <span class="fl">0.4</span> <span class="kw">and</span> probability <span class="op">&lt;=</span> <span class="fl">0.6</span>:</span>
-<span id="cb18-82"><a href=""></a>                req[<span class="st">"newsProbability"</span>] <span class="op">=</span> <span class="bu">round</span>(probability, <span class="dv">3</span>)</span>
-<span id="cb18-83"><a href=""></a>                req[<span class="st">"ExtractedText"</span>] <span class="op">=</span> filter_sentences_by_keywords(text, aliases)</span>
-<span id="cb18-84"><a href=""></a>                validation.append(req)</span>
-<span id="cb18-85"><a href=""></a>            <span class="cf">elif</span> probability <span class="op">&gt;</span> <span class="fl">0.6</span>:</span>
-<span id="cb18-86"><a href=""></a>                req[<span class="st">"newsProbability"</span>] <span class="op">=</span> <span class="bu">round</span>(probability, <span class="dv">3</span>)</span>
-<span id="cb18-87"><a href=""></a>                validation.append(req)</span>
-<span id="cb18-88"><a href=""></a>        data.loc[row, column] <span class="op">=</span> validation</span>
-<span id="cb18-89"><a href=""></a></span>
-<span id="cb18-90"><a href=""></a><span class="co"># save the results</span></span>
-<span id="cb18-91"><a href=""></a>data.to_parquet(<span class="st">"data03.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18" data-code-line-numbers="1-6|8-11|13-18|19-36|38-39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href=""></a><span class="co"># 0.4 to 0.6 setences filter</span></span>
+<span id="cb18-2"><a href=""></a><span class="kw">def</span> filter_sentences_by_keywords(text, aliases):</span>
+<span id="cb18-3"><a href=""></a>    <span class="co"># split the text by punctuation, multiple spaces or newlines</span></span>
+<span id="cb18-4"><a href=""></a>    sentences <span class="op">=</span> re.split(<span class="vs">r'(?&lt;=[.!?]) +|\s{2,}|\n+'</span>, text)</span>
+<span id="cb18-5"><a href=""></a>    filtered_sentences <span class="op">=</span> [sentence <span class="cf">for</span> sentence <span class="kw">in</span> sentences <span class="cf">if</span> <span class="bu">any</span>(keyword.lower() <span class="kw">in</span> sentence.lower() <span class="cf">for</span> keyword <span class="kw">in</span> aliases)]</span>
+<span id="cb18-6"><a href=""></a>    <span class="cf">return</span> <span class="st">' '</span>.join(filtered_sentences)</span>
+<span id="cb18-7"><a href=""></a></span>
+<span id="cb18-8"><a href=""></a><span class="co"># load dtree01 model and set everything</span></span>
+<span id="cb18-9"><a href=""></a>clf <span class="op">=</span> load(<span class="st">'dtree01.joblib'</span>)</span>
+<span id="cb18-10"><a href=""></a>data <span class="op">=</span> pd.read_parquet(<span class="st">"data02.parquet"</span>)</span>
+<span id="cb18-11"><a href=""></a>features <span class="op">=</span> [<span class="st">'IstALIAS'</span>, <span class="st">'propAN'</span>, <span class="st">'txtSZ'</span>, <span class="st">'countALI'</span>, <span class="st">'countDTS'</span>, <span class="st">'countHOUR'</span>, <span class="st">'countCAPS'</span>]</span>
+<span id="cb18-12"><a href=""></a></span>
+<span id="cb18-13"><a href=""></a><span class="co"># apply the model</span></span>
+<span id="cb18-14"><a href=""></a><span class="cf">for</span> row <span class="kw">in</span> data.index:</span>
+<span id="cb18-15"><a href=""></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>row<span class="sc">}</span><span class="ss">"</span>, end <span class="op">=</span> <span class="st">": "</span>)</span>
+<span id="cb18-16"><a href=""></a>    aliases <span class="op">=</span> data.loc[row, <span class="st">"aliases"</span>]</span>
+<span id="cb18-17"><a href=""></a>    <span class="cf">for</span> column <span class="kw">in</span> data.columns[<span class="dv">1</span>:]:</span>
+<span id="cb18-18"><a href=""></a>        <span class="bu">print</span>(column, end <span class="op">=</span> <span class="st">" | "</span>)</span>
+<span id="cb18-19"><a href=""></a>        validation <span class="op">=</span> []</span>
+<span id="cb18-20"><a href=""></a>        <span class="cf">for</span> req <span class="kw">in</span> data.loc[row, column]:</span>
+<span id="cb18-21"><a href=""></a>            text <span class="op">=</span> req[<span class="st">"ExtractedText"</span>]</span>
+<span id="cb18-22"><a href=""></a>            df <span class="op">=</span> {}</span>
+<span id="cb18-23"><a href=""></a>            <span class="cf">for</span> feature <span class="kw">in</span> features:</span>
+<span id="cb18-24"><a href=""></a>                <span class="co"># calls the function of each feature</span></span>
+<span id="cb18-25"><a href=""></a>                df[feature] <span class="op">=</span> [<span class="bu">globals</span>()[feature](text, aliases)]</span>
+<span id="cb18-26"><a href=""></a>            probability <span class="op">=</span> clf.predict_proba(pd.DataFrame(df))[<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb18-27"><a href=""></a>            <span class="cf">if</span> probability <span class="op">&lt;</span> <span class="fl">0.4</span>:</span>
+<span id="cb18-28"><a href=""></a>                <span class="cf">pass</span></span>
+<span id="cb18-29"><a href=""></a>            <span class="cf">elif</span> probability <span class="op">&gt;=</span> <span class="fl">0.4</span> <span class="kw">and</span> probability <span class="op">&lt;=</span> <span class="fl">0.6</span>:</span>
+<span id="cb18-30"><a href=""></a>                req[<span class="st">"newsProbability"</span>] <span class="op">=</span> <span class="bu">round</span>(probability, <span class="dv">3</span>)</span>
+<span id="cb18-31"><a href=""></a>                req[<span class="st">"ExtractedText"</span>] <span class="op">=</span> filter_sentences_by_keywords(text, aliases)</span>
+<span id="cb18-32"><a href=""></a>                validation.append(req)</span>
+<span id="cb18-33"><a href=""></a>            <span class="cf">elif</span> probability <span class="op">&gt;</span> <span class="fl">0.6</span>:</span>
+<span id="cb18-34"><a href=""></a>                req[<span class="st">"newsProbability"</span>] <span class="op">=</span> <span class="bu">round</span>(probability, <span class="dv">3</span>)</span>
+<span id="cb18-35"><a href=""></a>                validation.append(req)</span>
+<span id="cb18-36"><a href=""></a>        data.loc[row, column] <span class="op">=</span> validation</span>
+<span id="cb18-37"><a href=""></a></span>
+<span id="cb18-38"><a href=""></a><span class="co"># save the results</span></span>
+<span id="cb18-39"><a href=""></a>data.to_parquet(<span class="st">"data03.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="data03.parquet" class="slide level2">
 <h2>data03.parquet</h2>
@@ -1288,59 +1240,59 @@ Classification Report: precision    recall  f1-score   support
 </section>
 <section id="merging-cols-timestamp-and-source" class="slide level2">
 <h2>merging cols, timestamp and source</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href=""></a>df <span class="op">=</span> pd.read_parquet(<span class="st">"data03.parquet"</span>).<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="bu">list</span>(x))</span>
-<span id="cb22-2"><a href=""></a>df[<span class="st">'news'</span>] <span class="op">=</span> df.iloc[:, <span class="dv">1</span>:].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb22-3"><a href=""></a>df_filtered <span class="op">=</span> df.iloc[:, [<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]]</span>
-<span id="cb22-4"><a href=""></a>df_filtered</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href=""></a><span class="kw">def</span> tstampANDsource(lista):</span>
-<span id="cb23-2"><a href=""></a>    new_list <span class="op">=</span> []</span>
-<span id="cb23-3"><a href=""></a>    noticias <span class="op">=</span> pd.read_csv(<span class="st">"noticias.csv"</span>)</span>
-<span id="cb23-4"><a href=""></a>    <span class="cf">for</span> req <span class="kw">in</span> lista:</span>
-<span id="cb23-5"><a href=""></a>        <span class="co"># news source</span></span>
-<span id="cb23-6"><a href=""></a>        linkToArchive <span class="op">=</span> req[<span class="st">"linkToArchive"</span>]</span>
-<span id="cb23-7"><a href=""></a>        foundSource <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb23-8"><a href=""></a>        <span class="cf">for</span> index, row <span class="kw">in</span> noticias.iterrows():</span>
-<span id="cb23-9"><a href=""></a>            <span class="cf">if</span> row.iloc[<span class="dv">0</span>] <span class="kw">in</span> linkToArchive:</span>
-<span id="cb23-10"><a href=""></a>                req[<span class="st">"newsSource"</span>] <span class="op">=</span> row.iloc[<span class="dv">1</span>]</span>
-<span id="cb23-11"><a href=""></a>                foundSource <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb23-12"><a href=""></a>                <span class="cf">break</span></span>
-<span id="cb23-13"><a href=""></a>            <span class="cf">else</span>:</span>
-<span id="cb23-14"><a href=""></a>                <span class="cf">pass</span></span>
-<span id="cb23-15"><a href=""></a>        <span class="cf">if</span> <span class="kw">not</span> foundSource:</span>
-<span id="cb23-16"><a href=""></a>            req[<span class="st">"newsSource"</span>] <span class="op">=</span> <span class="st">"unknown"</span></span>
-<span id="cb23-17"><a href=""></a>        <span class="co"># timestamp</span></span>
-<span id="cb23-18"><a href=""></a>        req[<span class="st">"tstamp"</span>] <span class="op">=</span> req[<span class="st">"tstamp"</span>][:<span class="dv">6</span>]</span>
-<span id="cb23-19"><a href=""></a>        <span class="co"># SAVE</span></span>
-<span id="cb23-20"><a href=""></a>        new_list.append(req)</span>
-<span id="cb23-21"><a href=""></a>    <span class="cf">return</span> new_list</span>
-<span id="cb23-22"><a href=""></a></span>
-<span id="cb23-23"><a href=""></a>df_filtered.loc[:, <span class="st">"news"</span>] <span class="op">=</span> df_filtered[<span class="st">"news"</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: tstampANDsource(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22" data-code-line-numbers="1-3|4-20|23-25|27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href=""></a><span class="kw">def</span> tstampANDsource(lista):</span>
+<span id="cb22-2"><a href=""></a>    new_list <span class="op">=</span> []</span>
+<span id="cb22-3"><a href=""></a>    noticias <span class="op">=</span> pd.read_csv(<span class="st">"noticias.csv"</span>)</span>
+<span id="cb22-4"><a href=""></a>    <span class="cf">for</span> req <span class="kw">in</span> lista:</span>
+<span id="cb22-5"><a href=""></a>        <span class="co"># news source</span></span>
+<span id="cb22-6"><a href=""></a>        linkToArchive <span class="op">=</span> req[<span class="st">"linkToArchive"</span>]</span>
+<span id="cb22-7"><a href=""></a>        foundSource <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb22-8"><a href=""></a>        <span class="cf">for</span> index, row <span class="kw">in</span> noticias.iterrows():</span>
+<span id="cb22-9"><a href=""></a>            <span class="cf">if</span> row.iloc[<span class="dv">0</span>] <span class="kw">in</span> linkToArchive:</span>
+<span id="cb22-10"><a href=""></a>                req[<span class="st">"newsSource"</span>] <span class="op">=</span> row.iloc[<span class="dv">1</span>]</span>
+<span id="cb22-11"><a href=""></a>                foundSource <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb22-12"><a href=""></a>                <span class="cf">break</span></span>
+<span id="cb22-13"><a href=""></a>            <span class="cf">else</span>:</span>
+<span id="cb22-14"><a href=""></a>                <span class="cf">pass</span></span>
+<span id="cb22-15"><a href=""></a>        <span class="cf">if</span> <span class="kw">not</span> foundSource:</span>
+<span id="cb22-16"><a href=""></a>            req[<span class="st">"newsSource"</span>] <span class="op">=</span> <span class="st">"unknown"</span></span>
+<span id="cb22-17"><a href=""></a>        <span class="co"># timestamp</span></span>
+<span id="cb22-18"><a href=""></a>        req[<span class="st">"tstamp"</span>] <span class="op">=</span> req[<span class="st">"tstamp"</span>][:<span class="dv">6</span>]</span>
+<span id="cb22-19"><a href=""></a>        <span class="co"># SAVE</span></span>
+<span id="cb22-20"><a href=""></a>        new_list.append(req)</span>
+<span id="cb22-21"><a href=""></a>    <span class="cf">return</span> new_list</span>
+<span id="cb22-22"><a href=""></a>    </span>
+<span id="cb22-23"><a href=""></a>df <span class="op">=</span> pd.read_parquet(<span class="st">"data03.parquet"</span>).<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="bu">list</span>(x))</span>
+<span id="cb22-24"><a href=""></a>df[<span class="st">'news'</span>] <span class="op">=</span> df.iloc[:, <span class="dv">1</span>:].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb22-25"><a href=""></a>df_filtered <span class="op">=</span> df.iloc[:, [<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]]</span>
+<span id="cb22-26"><a href=""></a></span>
+<span id="cb22-27"><a href=""></a>df_filtered.loc[:, <span class="st">"news"</span>] <span class="op">=</span> df_filtered[<span class="st">"news"</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: tstampANDsource(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="duplicate-function" class="slide level2">
 <h2>90% duplicate function</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href=""></a><span class="kw">def</span> nearDuplicates(lista, threshold<span class="op">=</span><span class="dv">90</span>):</span>
-<span id="cb24-2"><a href=""></a>    total_data <span class="op">=</span> <span class="bu">len</span>(lista) <span class="co"># status</span></span>
-<span id="cb24-3"><a href=""></a>    curr_data <span class="op">=</span> <span class="dv">0</span> <span class="co"># status</span></span>
-<span id="cb24-4"><a href=""></a>    new_list <span class="op">=</span> [lista[<span class="dv">0</span>]]</span>
-<span id="cb24-5"><a href=""></a>    texts <span class="op">=</span> [lista[<span class="dv">0</span>][<span class="st">"ExtractedText"</span>]]</span>
-<span id="cb24-6"><a href=""></a>    <span class="cf">for</span> req <span class="kw">in</span> lista[<span class="dv">1</span>:]:</span>
-<span id="cb24-7"><a href=""></a>        curr_data <span class="op">+=</span> <span class="dv">1</span> <span class="co"># status</span></span>
-<span id="cb24-8"><a href=""></a>        ExtractedText <span class="op">=</span> req[<span class="st">"ExtractedText"</span>]</span>
-<span id="cb24-9"><a href=""></a>        similarity <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb24-10"><a href=""></a>        <span class="cf">for</span> txt <span class="kw">in</span> texts:</span>
-<span id="cb24-11"><a href=""></a>            similarity <span class="op">=</span> <span class="bu">max</span>(similarity, fuzz.ratio(txt, ExtractedText))</span>
-<span id="cb24-12"><a href=""></a>            <span class="cf">if</span> similarity <span class="op">&gt;</span> threshold:</span>
-<span id="cb24-13"><a href=""></a>                <span class="cf">break</span></span>
-<span id="cb24-14"><a href=""></a>        <span class="cf">if</span> similarity <span class="op">&lt;=</span> threshold:</span>
-<span id="cb24-15"><a href=""></a>            new_list.append(req)</span>
-<span id="cb24-16"><a href=""></a>            texts.append(ExtractedText)</span>
-<span id="cb24-17"><a href=""></a>        <span class="cf">if</span> random.uniform(<span class="dv">0</span>, <span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>: <span class="co"># status</span></span>
-<span id="cb24-18"><a href=""></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>curr_data<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span>total_data<span class="sc">}</span><span class="ss">"</span>, end <span class="op">=</span> <span class="st">" | "</span>) <span class="co"># status</span></span>
-<span id="cb24-19"><a href=""></a>    <span class="bu">print</span>(<span class="st">""</span>) <span class="co"># status</span></span>
-<span id="cb24-20"><a href=""></a>    <span class="cf">return</span> new_list</span>
-<span id="cb24-21"><a href=""></a></span>
-<span id="cb24-22"><a href=""></a>df_filtered.loc[:, <span class="st">"news"</span>] <span class="op">=</span> df_filtered[<span class="st">"news"</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: nearDuplicates(x))</span>
-<span id="cb24-23"><a href=""></a>df_filtered.to_parquet(<span class="st">"data04.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href=""></a><span class="kw">def</span> nearDuplicates(lista, threshold<span class="op">=</span><span class="dv">90</span>):</span>
+<span id="cb23-2"><a href=""></a>    total_data <span class="op">=</span> <span class="bu">len</span>(lista) <span class="co"># status</span></span>
+<span id="cb23-3"><a href=""></a>    curr_data <span class="op">=</span> <span class="dv">0</span> <span class="co"># status</span></span>
+<span id="cb23-4"><a href=""></a>    new_list <span class="op">=</span> [lista[<span class="dv">0</span>]]</span>
+<span id="cb23-5"><a href=""></a>    texts <span class="op">=</span> [lista[<span class="dv">0</span>][<span class="st">"ExtractedText"</span>]]</span>
+<span id="cb23-6"><a href=""></a>    <span class="cf">for</span> req <span class="kw">in</span> lista[<span class="dv">1</span>:]:</span>
+<span id="cb23-7"><a href=""></a>        curr_data <span class="op">+=</span> <span class="dv">1</span> <span class="co"># status</span></span>
+<span id="cb23-8"><a href=""></a>        ExtractedText <span class="op">=</span> req[<span class="st">"ExtractedText"</span>]</span>
+<span id="cb23-9"><a href=""></a>        similarity <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb23-10"><a href=""></a>        <span class="cf">for</span> txt <span class="kw">in</span> texts:</span>
+<span id="cb23-11"><a href=""></a>            similarity <span class="op">=</span> <span class="bu">max</span>(similarity, fuzz.ratio(txt, ExtractedText))</span>
+<span id="cb23-12"><a href=""></a>            <span class="cf">if</span> similarity <span class="op">&gt;</span> threshold:</span>
+<span id="cb23-13"><a href=""></a>                <span class="cf">break</span></span>
+<span id="cb23-14"><a href=""></a>        <span class="cf">if</span> similarity <span class="op">&lt;=</span> threshold:</span>
+<span id="cb23-15"><a href=""></a>            new_list.append(req)</span>
+<span id="cb23-16"><a href=""></a>            texts.append(ExtractedText)</span>
+<span id="cb23-17"><a href=""></a>        <span class="cf">if</span> random.uniform(<span class="dv">0</span>, <span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>: <span class="co"># status</span></span>
+<span id="cb23-18"><a href=""></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>curr_data<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span>total_data<span class="sc">}</span><span class="ss">"</span>, end <span class="op">=</span> <span class="st">" | "</span>) <span class="co"># status</span></span>
+<span id="cb23-19"><a href=""></a>    <span class="bu">print</span>(<span class="st">""</span>) <span class="co"># status</span></span>
+<span id="cb23-20"><a href=""></a>    <span class="cf">return</span> new_list</span>
+<span id="cb23-21"><a href=""></a></span>
+<span id="cb23-22"><a href=""></a>df_filtered.loc[:, <span class="st">"news"</span>] <span class="op">=</span> df_filtered[<span class="st">"news"</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: nearDuplicates(x))</span>
+<span id="cb23-23"><a href=""></a>df_filtered.to_parquet(<span class="st">"data04.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="data04.parquet" class="slide level2">
 <h2>data04.parquet</h2>
@@ -1386,7 +1338,7 @@ Classification Report: precision    recall  f1-score   support
 </tbody>
 </table>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href=""></a>pd.read_parquet(<span class="st">"data04.parquet"</span>).iloc[<span class="dv">0</span>,<span class="dv">1</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href=""></a>pd.read_parquet(<span class="st">"data04.parquet"</span>).iloc[<span class="dv">0</span>,<span class="dv">1</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'ExtractedText': 'DN \xa0 13 de Setembro de 2001 Intalações do BCP servem de refúgio As instalações do Banco Comercial Português, em Wall Street, foram utilizadas como refúgio por dezenas de pessoas depois dos atentados ao World Trade Center. Nenhum dos 48 funcionários daquela sucursal bancário ficou ferido e os dois trabalhadores que ainda não tinham comunicado com empresa fizeram-no na madrugada de ontem. Voo TAP para Newark chega hoje O voo 1331 da TAP que partiu terça-feira de Lisboa para Newark, nos Estados Unidos, deve chegar hoje ao seu destino. Segundo anunciou a porta-voz da companhia aérea, o avião foi direccionado para a cidade de Halifax, no Canadá, quando os EUA encerraram todos os seus aeroportos a vôos comerciais que se dirigissem para o território. EUA agradecem apoio português O representante diplomático dos EUA em Portugal, William McGlynn, agradeceu a solidariedade com que o Governo e o povo têm acompanhado a tragédia. "Rezamos para que não existam vítimas portuguesas nos ataques que não fizeram distinção de nacionalidade", disse o diplomata, recebido ontem por Jorge Sampaio. Governo sueco adia cimeira O primeiro-ministro da Suécia, Goran Person, adiou a terceira cimeira da esquerda liberal, inicialmente agendada para decorrer amanhã e depois, em Estocolmo. O encontro iria reunir chefes de Estado e de Governo de vários países, entre os quais o primeiro-ministro português, António Guterres. Portugueses de volta ao trabalho O consulado português em Nova Iorque retomou ontem funções nas instalações do ICEP, na 5.ª Avenida, onde ficará temporariamente alojado por questões de segurança. Também os portugueses que trabalham em Manhattan voltaram ao serviço, apesar de a cidade viver o rescaldo dos atentados e estar quase "deserta". Maçonaria condena atentados Contrariando a discrição que o caracteriza, o Grande Oriente Lusitano (GOL) divulgou ontem um comunicado assinado pelo grão-mestre, Eugénio de Oliveira, lamentando os ataques terroristas de terça-feira e dirigindo um apelo "à necessidade de luta contra os fanatismos que levam à destruição de vidas humanas". PCTP/MRPP contra imperialismo "O imperialismo é um gigante com pés de barro e é o povo norte-americano a primeira vítima dos desmandos cometidos pela classe dominante do seu país." Foi esta a reacção do PCTP/MRPP, que diz recear que o "imperialismo" dos EUA descambe numa retaliação sem limites contra os alvos que considerar inimigos. Comunistas retomam linha dura O PCP endureceu ontem a sua posição face aos atentados nos EUA. Em comunicado, a Comissão Política do Comité Central lembrou o "rol de crimes e agressões" cometidos pelos Estados Unidos e países aliados, e diz esperar que os ataques de terça-feira não sirvam "de pretexto para retirar apoio a justas lutas dos povos". Falso alarme nas Amoreiras As mil pessoas que trabalham na torre três das Amoreiras, em Lisboa, tiveram ontem de abandonar o edifício entre as 15 e as 16 horas, enquanto os agentes da Brigada de Inactivação de Agentes Explosivos da PSP vistoriaram o edifíco devido a uma ameaça de bomba. Mas "nada de anormal foi encontrado", disse a PSP. Protecção Civil apoia EUA O Serviço Nacional de Protecção Civil tem 58 elementos preparados para seguir para os EUA, em quatro equipas: uma de assistência psicológica, uma de assistência médica, uma de resgate e outra de identificação. Lisboa associa-se assim à disponibilidade da UE para prestar assistência técnica e sanitária aos EUA. National Geographic de luto Dois colaboradores da National Geographic morreram nos atentados, levando a sua representação portuguesa a adiar uma conferência científica marcada para amanhã, na Sociedade de Geografia. Os conferencistas Nick Nichols e Michael Fay, que se encontram na Alemanha, querem regressar de imediato a casa. Jornais não chegam às ilhas As edições da imprensa nacional e internacional de ontem não chegaram às regiões autónomas, devido às medidas de restrição da carga aérea tomadas pela TAP por razões de segurança. Uma situação que poderá repetir-se hoje, caso não seja possível levantar o embargo aos jornais destinados às Ilhas. A "ajuda" dos simuladores É provável que alguns dos terroristas que desviaram os aviões envolvidos no ataque tivessem experiência de pilotagem, mas, segundo os especialistas, isso nem seria sequer imprescindível. Um simulador de voo pode proporcionar conhecimentos suficientes para "pilotar" um aparelho, pelo menos naquelas circunstâncias. NASA aperta a segurança A agência espacial americana deu ontem aos funcionários a possibilidade de não comparecerem no local de trabalho, caso se sentissem afectados pelo ataque terrorista. O Kennedy Space Center, na Florida, que alberga a frota espacial, esteve em alerta máximo. Na sede, em Washington, todos os carros foram revistados. Reunião do FMI pode ser anulada A assembleia anual do FMI, prevista para finais de Setembro em Washington, poderá ser anulada, em virtude dos ataques terroristas aos EUA, admitiu o ministro das Finanças alemão, Hans Eichel. A discussão sobre o cancelamento ou não da reunião conjunta do FMI e do Banco Mundial está, no entanto, ainda em aberto. BCE está a construir "bunker" O Banco Central Europeu tem praticamente concluído, em Frankfurt, um "bunker" que servirá de refúgio em caso de catástrofe, revelou ontem Wim Duisenberg, presidente da instituição. As instalações permitirão ao BCE manter a sua actividade perante atentados do tipo dos que atingiram Nova Iorque. "Site" do DN lidera top O site do Diário de Notícias liderou nos últimos dois dias, na sequência das notícias sobre os atentados nos EUA, o top do portal Sapo, que mede o número de consultas a páginas na Net feitas a partir daquele portal, batendo inclusive os diários desportivos. Ontem à noite, o top era comandado pelo DN, seguido por "A Bola". Morreu produtor de "Frasier" David Angell, 54 anos, produtor da série televisiva Frasier , está entre as vítimas dos atentados de terça-feira nos EUA. Ele a sua mulher Lynn viajavam a bordo de um dos aviões que se despenharam. Ao longo da sua carreira, Angell venceu alguns prémios Emmy e escreveu vários episódios para séries como Cheers . Copyright © 1995,2001 Diário de Notícias, SA Todos os direitos reservados webmaster@DnOnline', 'linkToArchive': 'https://arquivo.pt/wayback/20010913052557/http://www.dn.pt/int/13p4x.htm', 'newsProbability': 0.933, 'newsSource': 'Diário de Notícias', 'tstamp': '200109'}</code></pre>
 </div>
@@ -1414,23 +1366,23 @@ Classification Report: precision    recall  f1-score   support
 </section>
 <section id="libraries" class="slide level2">
 <h2>libraries</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb27-2"><a href=""></a><span class="im">import</span> requests</span>
-<span id="cb27-3"><a href=""></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
-<span id="cb27-4"><a href=""></a><span class="im">import</span> time</span>
-<span id="cb27-5"><a href=""></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
-<span id="cb27-6"><a href=""></a><span class="im">import</span> re</span>
-<span id="cb27-7"><a href=""></a><span class="im">import</span> random</span>
-<span id="cb27-8"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb27-9"><a href=""></a><span class="co"># dtree related</span></span>
-<span id="cb27-10"><a href=""></a><span class="im">import</span> os</span>
-<span id="cb27-11"><a href=""></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier, plot_tree</span>
-<span id="cb27-12"><a href=""></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb27-13"><a href=""></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, classification_report</span>
-<span id="cb27-14"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb27-15"><a href=""></a><span class="im">from</span> joblib <span class="im">import</span> dump, load</span>
-<span id="cb27-16"><a href=""></a><span class="co"># 90% duplicated</span></span>
-<span id="cb27-17"><a href=""></a><span class="im">from</span> fuzzywuzzy <span class="im">import</span> fuzz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb26-2"><a href=""></a><span class="im">import</span> requests</span>
+<span id="cb26-3"><a href=""></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb26-4"><a href=""></a><span class="im">import</span> time</span>
+<span id="cb26-5"><a href=""></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb26-6"><a href=""></a><span class="im">import</span> re</span>
+<span id="cb26-7"><a href=""></a><span class="im">import</span> random</span>
+<span id="cb26-8"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb26-9"><a href=""></a><span class="co"># dtree related</span></span>
+<span id="cb26-10"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb26-11"><a href=""></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier, plot_tree</span>
+<span id="cb26-12"><a href=""></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb26-13"><a href=""></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, classification_report</span>
+<span id="cb26-14"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb26-15"><a href=""></a><span class="im">from</span> joblib <span class="im">import</span> dump, load</span>
+<span id="cb26-16"><a href=""></a><span class="co"># 90% duplicated</span></span>
+<span id="cb26-17"><a href=""></a><span class="im">from</span> fuzzywuzzy <span class="im">import</span> fuzz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="disclaimer" class="slide level2">
 <h2>disclaimer</h2>
