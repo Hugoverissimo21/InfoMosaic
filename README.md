@@ -1,8 +1,10 @@
-# idea
+# Media Analysis of PSI-20 Companies
 
-...
+## slides
 
-# structure: folders and files
+[slides01](https://hugoverissimo21.github.io/FCD-project/slides01)
+
+## structure: folders and files
 
 ```
 │
@@ -28,7 +30,7 @@
 │   │   parquet.ipynb               makes reading parquet files easier
 │
 └───notebooks
-│   │   01_api_request.ipynb        python scripts to do arquivo.pt api requests given a dictionary of companies
+│   │   01_api_request.ipynb        python scripts to do arquivo.pt api requests/extraction given a dictionary of companies
 │   │   02_extract_text.ipynb       python script to extract text from arquivo.pt given linkToExtractedText urls
 │   │   03_data_filtering.ipynb     applies dtree01.joblib, removes 90% duplicates, and some minor tweaks
 │   │   dtree01.ipynb               decision tree model training/creation to filter news (ignore ads and news websites first pages)
@@ -45,9 +47,3 @@
 └───zextra
 │   │   ...
 ```
-
-data01.parquet - companies | aliases + everything from api requests
-
-data02.parquet - companies | aliases + removed 100% duplicates + removed text without any alias
-
-data03.parquet - companies | aliases + applied decision tree
