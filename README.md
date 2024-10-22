@@ -1,8 +1,6 @@
 # Media Analysis of PSI-20 Companies
 
-## slides
-
-[slides01](https://hugoverissimo21.github.io/FCD-project/slides01)
+- [Slides 01](https://hugoverissimo21.github.io/FCD-project/slides01)
 
 ## structure: folders and files
 
