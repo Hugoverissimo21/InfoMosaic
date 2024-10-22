@@ -84,7 +84,7 @@ Similar works:
 
 - [https://github.com/msramalho/desarquivo](https://github.com/msramalho/desarquivo)
 
-Data Source: [Arquivo.pt web archive](https://arquivo.pt)
+Source code: [https://github.com/Hugoverissimo21/FCD-project](https://github.com/Hugoverissimo21/FCD-project)
 
 # Data Extraction from arquivo.pt
 
@@ -639,8 +639,8 @@ dict = pd.read_parquet("data02.parquet").iloc[0,1][0]
 
 
 data = {"tstamp": dict["tstamp"],
-            "linkToArchive": dict["linkToArchive"],
-            "ExtractedText": normalize_text(dict["ExtractedText"])}
+            "linkToArchive": dict["linkToArchive"][:50] + "...",
+            "ExtractedText": normalize_text(dict["ExtractedText"])[:350] + "..."}
 
 # Convert to JSON string with separators
 pretty_json_string = json.dumps(data, indent=4)
@@ -724,7 +724,7 @@ Classification Report: precision    recall  f1-score   support
 </figure>
 ```
 
-## dtree percentagens distribution
+## Decision Tree Model Application {.justify}
 
 
 <!--
@@ -745,7 +745,7 @@ before definive filter all data, i wanted to check how many data would i possibl
 </figure>
 ```
 
-## applying dtree to the dataset
+## Decision Tree Model Application {.justify}
 
 ```{.python code-line-numbers="1-6|8-11|13-18|19-36|38-39"}
 # 0.4 to 0.6 setences filter
@@ -789,7 +789,7 @@ for row in data.index:
 data.to_parquet("data03.parquet")
 ```
 
-## data03.parquet
+## data03.parquet {.justify}
 
 ```{.python}
 pd.read_parquet("data03.parquet").map(len) - pd.read_parquet("data02.parquet").map(len)
@@ -899,13 +899,13 @@ def normalize_text(text):
     return normalized.encode('ASCII', 'ignore').decode('utf-8')
 
 # Your original dictionary
-dict = pd.read_parquet("data03.parquet").iloc[0,1][1]
+dict = pd.read_parquet("data03.parquet").iloc[0,1][0]
 
 #print(dict.keys())
 
 data = {"newsProbability": dict["newsProbability"],"tstamp": dict["tstamp"],
-            "linkToArchive": dict["linkToArchive"],
-            "ExtractedText": normalize_text(dict["ExtractedText"])}
+            "linkToArchive": dict["linkToArchive"][:50] + "...",
+            "ExtractedText": normalize_text(dict["ExtractedText"])[:270] + "..."}
 
 # Convert to JSON string with separators
 pretty_json_string = json.dumps(data, indent=4)
@@ -917,20 +917,51 @@ print(pretty_json_string)
 
 ```
 
-## second problem (90% duplicate)
 
+
+## Filtering Out Similar Texts {.justify}
+
+<!--
 i need to compare all texs with each other to know which are more than 90% look a like
 
 also i will be merging all years into one col since the data is know less (so i can compare easily the texts of all years)
 
-add news source into the dicitionary
-
 and convert timestamp to only YYYYMM because its the timesatmp of the snapshot and not of the new, and this way i can get a better idea when the new was publish
+-->
 
-## merging cols, timestamp and source
+```{.python code-line-numbers="1-11|14-20|22-28|31-34|35-52|54-56"}
+def nearDuplicates(lista, threshold=90):
+    total_data = len(lista) # status
+    curr_data = 0 # status
+    new_list = [lista[0]]
+    texts = [lista[0]["ExtractedText"]]
+    for req in lista[1:]:
+        curr_data += 1 # status
+        ExtractedText = req["ExtractedText"]
+        similarity = 0
+        for txt in texts:
+            similarity = max(similarity, fuzz.ratio(txt, ExtractedText))
+            if similarity > threshold:
+                break
+        if similarity <= threshold:
+            new_list.append(req)
+            texts.append(ExtractedText)
+        if random.uniform(0, 1) < 0.01: # status
+            print(f"{curr_data} of {total_data}", end = " | ") # status
+    print("") # status
+    return new_list
+    
+df = pd.read_parquet("data03.parquet").map(lambda x: list(x))
+# group all api.YYYY columns
+df['news'] = df.iloc[:, 1:].sum(axis=1)
+# keep only 'aliases' and 'news' columns
+df_filtered = df.iloc[:, [0, -1]]
+# apply nearDuplicates function
+df_filtered.loc[:, "news"] = df_filtered["news"].map(lambda x: nearDuplicates(x))
 
-```{.python code-line-numbers="1-3|4-20|23-25|27"}
+
 def tstampANDsource(lista):
+    """formatting timestamp and extract source"""
     new_list = []
     noticias = pd.read_csv("noticias.csv")
     for req in lista:
@@ -952,45 +983,12 @@ def tstampANDsource(lista):
         new_list.append(req)
     return new_list
     
-df = pd.read_parquet("data03.parquet").map(lambda x: list(x))
-df['news'] = df.iloc[:, 1:].sum(axis=1)
-df_filtered = df.iloc[:, [0, -1]]
-
 df_filtered.loc[:, "news"] = df_filtered["news"].map(lambda x: tstampANDsource(x))
-```
-
-## 90% duplicate function
-
-```{.python}
-def nearDuplicates(lista, threshold=90):
-    total_data = len(lista) # status
-    curr_data = 0 # status
-    new_list = [lista[0]]
-    texts = [lista[0]["ExtractedText"]]
-    for req in lista[1:]:
-        curr_data += 1 # status
-        ExtractedText = req["ExtractedText"]
-        similarity = 0
-        for txt in texts:
-            similarity = max(similarity, fuzz.ratio(txt, ExtractedText))
-            if similarity > threshold:
-                break
-        if similarity <= threshold:
-            new_list.append(req)
-            texts.append(ExtractedText)
-        if random.uniform(0, 1) < 0.01: # status
-            print(f"{curr_data} of {total_data}", end = " | ") # status
-    print("") # status
-    return new_list
-
-df_filtered.loc[:, "news"] = df_filtered["news"].map(lambda x: nearDuplicates(x))
+# save
 df_filtered.to_parquet("data04.parquet")
 ```
 
-
-
-
-## data04.parquet
+## data04.parquet {.justify}
 
 ```{=html}
 <table style="border: 1px solid #ddd;" class="dataframe">
@@ -1036,10 +1034,38 @@ df_filtered.to_parquet("data04.parquet")
 </table>
 ```
 
-```{python}
+$\ $
+
+```{.python}
 pd.read_parquet("data04.parquet").iloc[0,1][0]
 ```
 
+```{python, echo=FALSE}
+import json
+
+import unicodedata
+
+def normalize_text(text):
+    # Normalize to NFKD and then encode to ASCII ignoring errors
+    normalized = unicodedata.normalize('NFKD', text)
+    return normalized.encode('ASCII', 'ignore').decode('utf-8')
+
+# Your original dictionary
+dict = pd.read_parquet("data04.parquet").iloc[0,1][0]
+
+
+data = {"tstamp": dict["tstamp"], "newsProbability": dict["newsProbability"],
+            'newsSource': normalize_text(dict['newsSource']),
+            "linkToArchive": dict["linkToArchive"][:50] + "...",
+            "ExtractedText": normalize_text(dict["ExtractedText"])[:130] + "..."}
+
+# Convert to JSON string with separators
+pretty_json_string = json.dumps(data, indent=4)
+
+
+# Print the JSON string
+print(pretty_json_string)
+```
 
 ## data04.parquet {.justify}
 
@@ -1058,37 +1084,25 @@ EDP $5596 \rightarrow 954$ | Sonae $5524 \rightarrow 520$ | Mota-Engil $2268 \ri
 :::
 
 
-# conclusion
-
-## ...
-
-...
-
+<!--
 ## libraries
 
 ```{.python}
-import pandas as pd
 import requests
+import pandas as pd
 from bs4 import BeautifulSoup
-import time
 from datetime import datetime
+import matplotlib.pyplot as plt
 import re
-import random
-import numpy as np
-# dtree related
+# not news model:
 import os
+import numpy as np
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
-import matplotlib.pyplot as plt
 from joblib import dump, load
-# 90% duplicated
+# similar texts:
 from fuzzywuzzy import fuzz
+import random
 ```
-
-
-## disclaimer
-
-ofc i could have all this datasets and filtering in one go and by only using one parquet file, but now that i have the strucutre i can easily implement a way so that any given company and aliases returns me the cleaned and filtered news
-
-all the source code can be found in github
+-->

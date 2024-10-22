@@ -455,7 +455,7 @@ tbody td:first-child {
 <li><p><a href="https://github.com/politiquices">https://github.com/politiquices</a></p></li>
 <li><p><a href="https://github.com/msramalho/desarquivo">https://github.com/msramalho/desarquivo</a></p></li>
 </ul>
-<p>Data Source: <a href="https://arquivo.pt">Arquivo.pt web archive</a></p>
+<p>Source code: <a href="https://github.com/Hugoverissimo21/FCD-project">https://github.com/Hugoverissimo21/FCD-project</a></p>
 </section>
 <section>
 <section id="data-extraction-from-arquivo.pt" class="title-slide slide level1 center">
@@ -982,8 +982,8 @@ select which cols to process and skip the ones already done
 <div class="cell-output cell-output-stdout">
 <pre><code>{
     "tstamp": "20001213153700",
-    "linkToArchive": "https://arquivo.pt/wayback/20001213153700/http://www.publico.pt/publico/1999/09/28/Economia/E08.html",
-    "ExtractedText": "POL | Economia | Processo de infraccao contra Portugal vai ate ao fim SECCOES 1a Pagina Destaque Editoriais A Semana Politica Internacional Espaco Publico Sociedade Cultura Desporto Economia Media Local Lisboa Local Porto Ultima Pagina Ficha Tecnica SO TEXTO   .   Alternativa ao acordo com o BSCH nao trava contencioso Processo de Infraccao Contra Portugal Vai Ate ao Fim Por ISABEL ARRIAGA E CUNHA, em Bruxelas Terca-feira, 28 de Setembro de 1999 A Comissao Europeia confirmou ontem que vai prosseguir o processo de contestacao da legalidade do veto portugues ao negocio entre Antonio Champalimaud e o Banco Santander Central Hispano (BSCH) mesmo se os termos da operacao se alterarem. Esta precisao resultou do cenario aberto pelo proprio Champalimaud no fim da semana passada quando admitiu a possibilidade de vender a sua participacao na Mundial Confianca ao Banco Comercial Portugues se Jardim Goncalves lhe oferecer \"uma pipa de massa\". \"As autoridades portugueses violaram, segundo a nossa interpretacao, as regras (comunitarias da concorrencia) com o seu veto, e mesmo se os termos da operacao mudarem, mesmo se o senhor Champalimaud vier a aceitar uma compra no interior de Portugal, o processo de infraccao tem de seguir o seu curso\", precisou um porta-voz do executivo europeu. A questao, explicou, e que \"ha outras partes interessadas\" e eventualmente lesadas, como o BSCH. O mesmo porta-voz confirmou assim que a Comissao pretende \"avancar rapidamente\" com a fase seguinte do processo de infraccao, neste momento ja liderado pelo comissario Mario Monti, e que consiste no envio a Portugal de um \"parecer fundamentado\", o instrumento juridico atraves do qual Bruxelas devera dar um prazo de tempo relativamente curto para o Governo suspender o veto em cumprimento decisao de 20 de Julho. Nessa altura, a Comissao pediu a suspensao do veto por considerar que Portugal violou o regulamento comunitario sobre concentracoes e aquisicoes de empresas por nao a ter notificado previamente da sua interdicao de se opor ao negocio. \"O processo de redaccao do parecer fundamentado vai comecar imediatamente e a Comissao vai tomar uma decisao muito brevemente\", precisou. Por razoes de calendario e da necessidade de cumprimento de prazos, o caso nao podera ser apreciado durante a reuniao semanal dos vinte comissarios de amanha, ficando assim adiada, possivelmente, para a proxima semana. O \"parecer fundamentado\" constitui a segunda e ultima etapa do processo de infraccao, antes da apresentacao do caso ao Tribunal de Justica da Uniao Europeia (UE) que devera clarificar quem, entre o Governo e a Comissao, e realmente competente para autorizar ou proibir uma concentracao de empresas de \"dimensao comunitaria\", como e o caso do negocio luso-espanhol. A nova etapa constitui a sequencia logica da resposta negativa enviada na passada sexta-feira pelo Ministerio das Financas ao pedido formal de explicacoes que lhe fora enviado pela Comissao a 10 de Setembro, sobre as razoes do nao acatamento da decisao de 20 de Julho. Segundo o mesmo porta-voz, a resposta e \"insatisfatoria\" e \"infelizmente nao envolve o levantamento do veto\". Isabel Arriaga e Cunha, em Bruxelas OUTROS TITULOS EM ECONOMIA Asia estragou a media O mundo e das multinacionais ICP anuncia novos precos de interligacao telefonica PT aprova PT Investimentos UE coesa para Ronda do Milenio Gescartao mobiliza procura e Pastor desdramatiza Ence Engil promete recuperar Atlantis com mais vendas e menos resultados Processo de infraccao contra Portugal vai ate ao fim    COMENTARIO DA BOLSA Champalimaud ao rubro    MERCADO DE CAMBIOS Notas    BREVES Breves  Copyright PUBLICO Comunicacao Social, SA Geral: publico@publico.pt , Seccao: economia@publico.pt , Webmaster: webmaster@publico.pt  "
+    "linkToArchive": "https://arquivo.pt/wayback/20001213153700/http://w...",
+    "ExtractedText": "POL | Economia | Processo de infraccao contra Portugal vai ate ao fim SECCOES 1a Pagina Destaque Editoriais A Semana Politica Internacional Espaco Publico Sociedade Cultura Desporto Economia Media Local Lisboa Local Porto Ultima Pagina Ficha Tecnica SO TEXTO   .   Alternativa ao acordo com o BSCH nao trava contencioso Processo de Infraccao Contra P..."
 }</code></pre>
 </div>
 </div>
@@ -1073,8 +1073,8 @@ Classification Report: precision    recall  f1-score   support
     <figcaption style="font-size: 0.45em; margin-top: -22px;">Fig. 1: Decision tree visualization.</figcaption>
 </figure>
 </section>
-<section id="dtree-percentagens-distribution" class="slide level2">
-<h2>dtree percentagens distribution</h2>
+<section id="decision-tree-model-application" class="slide level2 justify">
+<h2>Decision Tree Model Application</h2>
 <!--
 
 before definive filter all data, i wanted to check how many data would i possible lost
@@ -1090,8 +1090,8 @@ before definive filter all data, i wanted to check how many data would i possibl
     <figcaption style="font-size: 0.45em; margin-top: -40px; margin-bottom: 25px;">Fig. 2: Percentage distribution of classification 1 in the decision tree model applied to the entire dataset.</figcaption>
 </figure>
 </section>
-<section id="applying-dtree-to-the-dataset" class="slide level2">
-<h2>applying dtree to the dataset</h2>
+<section id="decision-tree-model-application-1" class="slide level2 justify">
+<h2>Decision Tree Model Application</h2>
 <div class="sourceCode" id="cb18" data-code-line-numbers="1-6|8-11|13-18|19-36|38-39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href=""></a><span class="co"># 0.4 to 0.6 setences filter</span></span>
 <span id="cb18-2"><a href=""></a><span class="kw">def</span> filter_sentences_by_keywords(text, aliases):</span>
 <span id="cb18-3"><a href=""></a>    <span class="co"># split the text by punctuation, multiple spaces or newlines</span></span>
@@ -1132,7 +1132,7 @@ before definive filter all data, i wanted to check how many data would i possibl
 <span id="cb18-38"><a href=""></a><span class="co"># save the results</span></span>
 <span id="cb18-39"><a href=""></a>data.to_parquet(<span class="st">"data03.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="data03.parquet" class="slide level2">
+<section id="data03.parquet" class="slide level2 justify">
 <h2>data03.parquet</h2>
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href=""></a>pd.read_parquet(<span class="st">"data03.parquet"</span>).<span class="bu">map</span>(<span class="bu">len</span>) <span class="op">-</span> pd.read_parquet(<span class="st">"data02.parquet"</span>).<span class="bu">map</span>(<span class="bu">len</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="dataframe caption-top" data-quarto-postprocess="true">
@@ -1223,78 +1223,81 @@ before definive filter all data, i wanted to check how many data would i possibl
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>{
-    "newsProbability": 1.0,
-    "tstamp": "20011005141529",
-    "linkToArchive": "https://arquivo.pt/wayback/20011005141529/http://www.dn.pt/neg/inf/24s18b.htm",
-    "ExtractedText": "DN-Suplementos Negocios 24 de Setembro de 2001 BCP aconselha sobre impostos na Internet O ActivoBank7 (Banco Comercial Portugues) passou a contar com um \"Tax Centre\", que disponibiliza informacoes genericas sobre o sistema tributario portugues e faculta aos clientes deste banco assessoria fiscal personalizada, dando resposta a questoes acerca do impacto fiscal dos produtos financeiros, disponibilizados pela instituicao, na bolsa do cliente. Este \"Tax Centre\" resulta de uma parceria entre o BCP e a Ernest &amp; Young, empresa responsavel pela informacao veiculada neste servico. Fontes oficiais do BCP apontam que a aposta neste tipo de servicos se deve ao facto de a area da assessoria fiscal ainda estar pouco desenvolvida no mercado portugues, vendo esta iniciativa como uma oportunidade para conseguir alguma diferenciacao em relacao a concorrencia. Ate agora, as questoes mais colocadas tem a ver com produtos financeiros complexos. Copyright  1995,2001 Diario de Noticias, SA Todos os direitos reservados webmaster@DnOnline"
+    "newsProbability": 0.933,
+    "tstamp": "20010913052557",
+    "linkToArchive": "https://arquivo.pt/wayback/20010913052557/http://w...",
+    "ExtractedText": "DN   13 de Setembro de 2001 Intalacoes do BCP servem de refugio As instalacoes do Banco Comercial Portugues, em Wall Street, foram utilizadas como refugio por dezenas de pessoas depois dos atentados ao World Trade Center. Nenhum dos 48 funcionarios daquela sucursal banc..."
 }</code></pre>
 </div>
 </div>
 </section>
-<section id="second-problem-90-duplicate" class="slide level2">
-<h2>second problem (90% duplicate)</h2>
-<p>i need to compare all texs with each other to know which are more than 90% look a like</p>
-<p>also i will be merging all years into one col since the data is know less (so i can compare easily the texts of all years)</p>
-<p>add news source into the dicitionary</p>
-<p>and convert timestamp to only YYYYMM because its the timesatmp of the snapshot and not of the new, and this way i can get a better idea when the new was publish</p>
-</section>
-<section id="merging-cols-timestamp-and-source" class="slide level2">
-<h2>merging cols, timestamp and source</h2>
-<div class="sourceCode" id="cb22" data-code-line-numbers="1-3|4-20|23-25|27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href=""></a><span class="kw">def</span> tstampANDsource(lista):</span>
-<span id="cb22-2"><a href=""></a>    new_list <span class="op">=</span> []</span>
-<span id="cb22-3"><a href=""></a>    noticias <span class="op">=</span> pd.read_csv(<span class="st">"noticias.csv"</span>)</span>
-<span id="cb22-4"><a href=""></a>    <span class="cf">for</span> req <span class="kw">in</span> lista:</span>
-<span id="cb22-5"><a href=""></a>        <span class="co"># news source</span></span>
-<span id="cb22-6"><a href=""></a>        linkToArchive <span class="op">=</span> req[<span class="st">"linkToArchive"</span>]</span>
-<span id="cb22-7"><a href=""></a>        foundSource <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb22-8"><a href=""></a>        <span class="cf">for</span> index, row <span class="kw">in</span> noticias.iterrows():</span>
-<span id="cb22-9"><a href=""></a>            <span class="cf">if</span> row.iloc[<span class="dv">0</span>] <span class="kw">in</span> linkToArchive:</span>
-<span id="cb22-10"><a href=""></a>                req[<span class="st">"newsSource"</span>] <span class="op">=</span> row.iloc[<span class="dv">1</span>]</span>
-<span id="cb22-11"><a href=""></a>                foundSource <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb22-12"><a href=""></a>                <span class="cf">break</span></span>
-<span id="cb22-13"><a href=""></a>            <span class="cf">else</span>:</span>
-<span id="cb22-14"><a href=""></a>                <span class="cf">pass</span></span>
-<span id="cb22-15"><a href=""></a>        <span class="cf">if</span> <span class="kw">not</span> foundSource:</span>
-<span id="cb22-16"><a href=""></a>            req[<span class="st">"newsSource"</span>] <span class="op">=</span> <span class="st">"unknown"</span></span>
-<span id="cb22-17"><a href=""></a>        <span class="co"># timestamp</span></span>
-<span id="cb22-18"><a href=""></a>        req[<span class="st">"tstamp"</span>] <span class="op">=</span> req[<span class="st">"tstamp"</span>][:<span class="dv">6</span>]</span>
-<span id="cb22-19"><a href=""></a>        <span class="co"># SAVE</span></span>
-<span id="cb22-20"><a href=""></a>        new_list.append(req)</span>
-<span id="cb22-21"><a href=""></a>    <span class="cf">return</span> new_list</span>
-<span id="cb22-22"><a href=""></a>    </span>
-<span id="cb22-23"><a href=""></a>df <span class="op">=</span> pd.read_parquet(<span class="st">"data03.parquet"</span>).<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="bu">list</span>(x))</span>
+<section id="filtering-out-similar-texts" class="slide level2 justify">
+<h2>Filtering Out Similar Texts</h2>
+<!--
+i need to compare all texs with each other to know which are more than 90% look a like
+
+also i will be merging all years into one col since the data is know less (so i can compare easily the texts of all years)
+
+and convert timestamp to only YYYYMM because its the timesatmp of the snapshot and not of the new, and this way i can get a better idea when the new was publish
+-->
+<div class="sourceCode" id="cb22" data-code-line-numbers="1-11|14-20|22-28|31-34|35-52|54-56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href=""></a><span class="kw">def</span> nearDuplicates(lista, threshold<span class="op">=</span><span class="dv">90</span>):</span>
+<span id="cb22-2"><a href=""></a>    total_data <span class="op">=</span> <span class="bu">len</span>(lista) <span class="co"># status</span></span>
+<span id="cb22-3"><a href=""></a>    curr_data <span class="op">=</span> <span class="dv">0</span> <span class="co"># status</span></span>
+<span id="cb22-4"><a href=""></a>    new_list <span class="op">=</span> [lista[<span class="dv">0</span>]]</span>
+<span id="cb22-5"><a href=""></a>    texts <span class="op">=</span> [lista[<span class="dv">0</span>][<span class="st">"ExtractedText"</span>]]</span>
+<span id="cb22-6"><a href=""></a>    <span class="cf">for</span> req <span class="kw">in</span> lista[<span class="dv">1</span>:]:</span>
+<span id="cb22-7"><a href=""></a>        curr_data <span class="op">+=</span> <span class="dv">1</span> <span class="co"># status</span></span>
+<span id="cb22-8"><a href=""></a>        ExtractedText <span class="op">=</span> req[<span class="st">"ExtractedText"</span>]</span>
+<span id="cb22-9"><a href=""></a>        similarity <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb22-10"><a href=""></a>        <span class="cf">for</span> txt <span class="kw">in</span> texts:</span>
+<span id="cb22-11"><a href=""></a>            similarity <span class="op">=</span> <span class="bu">max</span>(similarity, fuzz.ratio(txt, ExtractedText))</span>
+<span id="cb22-12"><a href=""></a>            <span class="cf">if</span> similarity <span class="op">&gt;</span> threshold:</span>
+<span id="cb22-13"><a href=""></a>                <span class="cf">break</span></span>
+<span id="cb22-14"><a href=""></a>        <span class="cf">if</span> similarity <span class="op">&lt;=</span> threshold:</span>
+<span id="cb22-15"><a href=""></a>            new_list.append(req)</span>
+<span id="cb22-16"><a href=""></a>            texts.append(ExtractedText)</span>
+<span id="cb22-17"><a href=""></a>        <span class="cf">if</span> random.uniform(<span class="dv">0</span>, <span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>: <span class="co"># status</span></span>
+<span id="cb22-18"><a href=""></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>curr_data<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span>total_data<span class="sc">}</span><span class="ss">"</span>, end <span class="op">=</span> <span class="st">" | "</span>) <span class="co"># status</span></span>
+<span id="cb22-19"><a href=""></a>    <span class="bu">print</span>(<span class="st">""</span>) <span class="co"># status</span></span>
+<span id="cb22-20"><a href=""></a>    <span class="cf">return</span> new_list</span>
+<span id="cb22-21"><a href=""></a>    </span>
+<span id="cb22-22"><a href=""></a>df <span class="op">=</span> pd.read_parquet(<span class="st">"data03.parquet"</span>).<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="bu">list</span>(x))</span>
+<span id="cb22-23"><a href=""></a><span class="co"># group all api.YYYY columns</span></span>
 <span id="cb22-24"><a href=""></a>df[<span class="st">'news'</span>] <span class="op">=</span> df.iloc[:, <span class="dv">1</span>:].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb22-25"><a href=""></a>df_filtered <span class="op">=</span> df.iloc[:, [<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]]</span>
-<span id="cb22-26"><a href=""></a></span>
-<span id="cb22-27"><a href=""></a>df_filtered.loc[:, <span class="st">"news"</span>] <span class="op">=</span> df_filtered[<span class="st">"news"</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: tstampANDsource(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-25"><a href=""></a><span class="co"># keep only 'aliases' and 'news' columns</span></span>
+<span id="cb22-26"><a href=""></a>df_filtered <span class="op">=</span> df.iloc[:, [<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]]</span>
+<span id="cb22-27"><a href=""></a><span class="co"># apply nearDuplicates function</span></span>
+<span id="cb22-28"><a href=""></a>df_filtered.loc[:, <span class="st">"news"</span>] <span class="op">=</span> df_filtered[<span class="st">"news"</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: nearDuplicates(x))</span>
+<span id="cb22-29"><a href=""></a></span>
+<span id="cb22-30"><a href=""></a></span>
+<span id="cb22-31"><a href=""></a><span class="kw">def</span> tstampANDsource(lista):</span>
+<span id="cb22-32"><a href=""></a>    <span class="co">"""formatting timestamp and extract source"""</span></span>
+<span id="cb22-33"><a href=""></a>    new_list <span class="op">=</span> []</span>
+<span id="cb22-34"><a href=""></a>    noticias <span class="op">=</span> pd.read_csv(<span class="st">"noticias.csv"</span>)</span>
+<span id="cb22-35"><a href=""></a>    <span class="cf">for</span> req <span class="kw">in</span> lista:</span>
+<span id="cb22-36"><a href=""></a>        <span class="co"># news source</span></span>
+<span id="cb22-37"><a href=""></a>        linkToArchive <span class="op">=</span> req[<span class="st">"linkToArchive"</span>]</span>
+<span id="cb22-38"><a href=""></a>        foundSource <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb22-39"><a href=""></a>        <span class="cf">for</span> index, row <span class="kw">in</span> noticias.iterrows():</span>
+<span id="cb22-40"><a href=""></a>            <span class="cf">if</span> row.iloc[<span class="dv">0</span>] <span class="kw">in</span> linkToArchive:</span>
+<span id="cb22-41"><a href=""></a>                req[<span class="st">"newsSource"</span>] <span class="op">=</span> row.iloc[<span class="dv">1</span>]</span>
+<span id="cb22-42"><a href=""></a>                foundSource <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb22-43"><a href=""></a>                <span class="cf">break</span></span>
+<span id="cb22-44"><a href=""></a>            <span class="cf">else</span>:</span>
+<span id="cb22-45"><a href=""></a>                <span class="cf">pass</span></span>
+<span id="cb22-46"><a href=""></a>        <span class="cf">if</span> <span class="kw">not</span> foundSource:</span>
+<span id="cb22-47"><a href=""></a>            req[<span class="st">"newsSource"</span>] <span class="op">=</span> <span class="st">"unknown"</span></span>
+<span id="cb22-48"><a href=""></a>        <span class="co"># timestamp</span></span>
+<span id="cb22-49"><a href=""></a>        req[<span class="st">"tstamp"</span>] <span class="op">=</span> req[<span class="st">"tstamp"</span>][:<span class="dv">6</span>]</span>
+<span id="cb22-50"><a href=""></a>        <span class="co"># SAVE</span></span>
+<span id="cb22-51"><a href=""></a>        new_list.append(req)</span>
+<span id="cb22-52"><a href=""></a>    <span class="cf">return</span> new_list</span>
+<span id="cb22-53"><a href=""></a>    </span>
+<span id="cb22-54"><a href=""></a>df_filtered.loc[:, <span class="st">"news"</span>] <span class="op">=</span> df_filtered[<span class="st">"news"</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: tstampANDsource(x))</span>
+<span id="cb22-55"><a href=""></a><span class="co"># save</span></span>
+<span id="cb22-56"><a href=""></a>df_filtered.to_parquet(<span class="st">"data04.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="duplicate-function" class="slide level2">
-<h2>90% duplicate function</h2>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href=""></a><span class="kw">def</span> nearDuplicates(lista, threshold<span class="op">=</span><span class="dv">90</span>):</span>
-<span id="cb23-2"><a href=""></a>    total_data <span class="op">=</span> <span class="bu">len</span>(lista) <span class="co"># status</span></span>
-<span id="cb23-3"><a href=""></a>    curr_data <span class="op">=</span> <span class="dv">0</span> <span class="co"># status</span></span>
-<span id="cb23-4"><a href=""></a>    new_list <span class="op">=</span> [lista[<span class="dv">0</span>]]</span>
-<span id="cb23-5"><a href=""></a>    texts <span class="op">=</span> [lista[<span class="dv">0</span>][<span class="st">"ExtractedText"</span>]]</span>
-<span id="cb23-6"><a href=""></a>    <span class="cf">for</span> req <span class="kw">in</span> lista[<span class="dv">1</span>:]:</span>
-<span id="cb23-7"><a href=""></a>        curr_data <span class="op">+=</span> <span class="dv">1</span> <span class="co"># status</span></span>
-<span id="cb23-8"><a href=""></a>        ExtractedText <span class="op">=</span> req[<span class="st">"ExtractedText"</span>]</span>
-<span id="cb23-9"><a href=""></a>        similarity <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb23-10"><a href=""></a>        <span class="cf">for</span> txt <span class="kw">in</span> texts:</span>
-<span id="cb23-11"><a href=""></a>            similarity <span class="op">=</span> <span class="bu">max</span>(similarity, fuzz.ratio(txt, ExtractedText))</span>
-<span id="cb23-12"><a href=""></a>            <span class="cf">if</span> similarity <span class="op">&gt;</span> threshold:</span>
-<span id="cb23-13"><a href=""></a>                <span class="cf">break</span></span>
-<span id="cb23-14"><a href=""></a>        <span class="cf">if</span> similarity <span class="op">&lt;=</span> threshold:</span>
-<span id="cb23-15"><a href=""></a>            new_list.append(req)</span>
-<span id="cb23-16"><a href=""></a>            texts.append(ExtractedText)</span>
-<span id="cb23-17"><a href=""></a>        <span class="cf">if</span> random.uniform(<span class="dv">0</span>, <span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">0.01</span>: <span class="co"># status</span></span>
-<span id="cb23-18"><a href=""></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>curr_data<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span>total_data<span class="sc">}</span><span class="ss">"</span>, end <span class="op">=</span> <span class="st">" | "</span>) <span class="co"># status</span></span>
-<span id="cb23-19"><a href=""></a>    <span class="bu">print</span>(<span class="st">""</span>) <span class="co"># status</span></span>
-<span id="cb23-20"><a href=""></a>    <span class="cf">return</span> new_list</span>
-<span id="cb23-21"><a href=""></a></span>
-<span id="cb23-22"><a href=""></a>df_filtered.loc[:, <span class="st">"news"</span>] <span class="op">=</span> df_filtered[<span class="st">"news"</span>].<span class="bu">map</span>(<span class="kw">lambda</span> x: nearDuplicates(x))</span>
-<span id="cb23-23"><a href=""></a>df_filtered.to_parquet(<span class="st">"data04.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="data04.parquet" class="slide level2">
+<section id="data04.parquet" class="slide level2 justify">
 <h2>data04.parquet</h2>
 <table class="dataframe caption-top" data-quarto-postprocess="true" style="border: 1px solid #ddd;">
 <thead>
@@ -1337,10 +1340,17 @@ before definive filter all data, i wanted to check how many data would i possibl
 </tr>
 </tbody>
 </table>
+<p><span class="math inline">\(\ \)</span></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href=""></a>pd.read_parquet(<span class="st">"data04.parquet"</span>).iloc[<span class="dv">0</span>,<span class="dv">1</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href=""></a>pd.read_parquet(<span class="st">"data04.parquet"</span>).iloc[<span class="dv">0</span>,<span class="dv">1</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'ExtractedText': 'DN \xa0 13 de Setembro de 2001 Intalações do BCP servem de refúgio As instalações do Banco Comercial Português, em Wall Street, foram utilizadas como refúgio por dezenas de pessoas depois dos atentados ao World Trade Center. Nenhum dos 48 funcionários daquela sucursal bancário ficou ferido e os dois trabalhadores que ainda não tinham comunicado com empresa fizeram-no na madrugada de ontem. Voo TAP para Newark chega hoje O voo 1331 da TAP que partiu terça-feira de Lisboa para Newark, nos Estados Unidos, deve chegar hoje ao seu destino. Segundo anunciou a porta-voz da companhia aérea, o avião foi direccionado para a cidade de Halifax, no Canadá, quando os EUA encerraram todos os seus aeroportos a vôos comerciais que se dirigissem para o território. EUA agradecem apoio português O representante diplomático dos EUA em Portugal, William McGlynn, agradeceu a solidariedade com que o Governo e o povo têm acompanhado a tragédia. "Rezamos para que não existam vítimas portuguesas nos ataques que não fizeram distinção de nacionalidade", disse o diplomata, recebido ontem por Jorge Sampaio. Governo sueco adia cimeira O primeiro-ministro da Suécia, Goran Person, adiou a terceira cimeira da esquerda liberal, inicialmente agendada para decorrer amanhã e depois, em Estocolmo. O encontro iria reunir chefes de Estado e de Governo de vários países, entre os quais o primeiro-ministro português, António Guterres. Portugueses de volta ao trabalho O consulado português em Nova Iorque retomou ontem funções nas instalações do ICEP, na 5.ª Avenida, onde ficará temporariamente alojado por questões de segurança. Também os portugueses que trabalham em Manhattan voltaram ao serviço, apesar de a cidade viver o rescaldo dos atentados e estar quase "deserta". Maçonaria condena atentados Contrariando a discrição que o caracteriza, o Grande Oriente Lusitano (GOL) divulgou ontem um comunicado assinado pelo grão-mestre, Eugénio de Oliveira, lamentando os ataques terroristas de terça-feira e dirigindo um apelo "à necessidade de luta contra os fanatismos que levam à destruição de vidas humanas". PCTP/MRPP contra imperialismo "O imperialismo é um gigante com pés de barro e é o povo norte-americano a primeira vítima dos desmandos cometidos pela classe dominante do seu país." Foi esta a reacção do PCTP/MRPP, que diz recear que o "imperialismo" dos EUA descambe numa retaliação sem limites contra os alvos que considerar inimigos. Comunistas retomam linha dura O PCP endureceu ontem a sua posição face aos atentados nos EUA. Em comunicado, a Comissão Política do Comité Central lembrou o "rol de crimes e agressões" cometidos pelos Estados Unidos e países aliados, e diz esperar que os ataques de terça-feira não sirvam "de pretexto para retirar apoio a justas lutas dos povos". Falso alarme nas Amoreiras As mil pessoas que trabalham na torre três das Amoreiras, em Lisboa, tiveram ontem de abandonar o edifício entre as 15 e as 16 horas, enquanto os agentes da Brigada de Inactivação de Agentes Explosivos da PSP vistoriaram o edifíco devido a uma ameaça de bomba. Mas "nada de anormal foi encontrado", disse a PSP. Protecção Civil apoia EUA O Serviço Nacional de Protecção Civil tem 58 elementos preparados para seguir para os EUA, em quatro equipas: uma de assistência psicológica, uma de assistência médica, uma de resgate e outra de identificação. Lisboa associa-se assim à disponibilidade da UE para prestar assistência técnica e sanitária aos EUA. National Geographic de luto Dois colaboradores da National Geographic morreram nos atentados, levando a sua representação portuguesa a adiar uma conferência científica marcada para amanhã, na Sociedade de Geografia. Os conferencistas Nick Nichols e Michael Fay, que se encontram na Alemanha, querem regressar de imediato a casa. Jornais não chegam às ilhas As edições da imprensa nacional e internacional de ontem não chegaram às regiões autónomas, devido às medidas de restrição da carga aérea tomadas pela TAP por razões de segurança. Uma situação que poderá repetir-se hoje, caso não seja possível levantar o embargo aos jornais destinados às Ilhas. A "ajuda" dos simuladores É provável que alguns dos terroristas que desviaram os aviões envolvidos no ataque tivessem experiência de pilotagem, mas, segundo os especialistas, isso nem seria sequer imprescindível. Um simulador de voo pode proporcionar conhecimentos suficientes para "pilotar" um aparelho, pelo menos naquelas circunstâncias. NASA aperta a segurança A agência espacial americana deu ontem aos funcionários a possibilidade de não comparecerem no local de trabalho, caso se sentissem afectados pelo ataque terrorista. O Kennedy Space Center, na Florida, que alberga a frota espacial, esteve em alerta máximo. Na sede, em Washington, todos os carros foram revistados. Reunião do FMI pode ser anulada A assembleia anual do FMI, prevista para finais de Setembro em Washington, poderá ser anulada, em virtude dos ataques terroristas aos EUA, admitiu o ministro das Finanças alemão, Hans Eichel. A discussão sobre o cancelamento ou não da reunião conjunta do FMI e do Banco Mundial está, no entanto, ainda em aberto. BCE está a construir "bunker" O Banco Central Europeu tem praticamente concluído, em Frankfurt, um "bunker" que servirá de refúgio em caso de catástrofe, revelou ontem Wim Duisenberg, presidente da instituição. As instalações permitirão ao BCE manter a sua actividade perante atentados do tipo dos que atingiram Nova Iorque. "Site" do DN lidera top O site do Diário de Notícias liderou nos últimos dois dias, na sequência das notícias sobre os atentados nos EUA, o top do portal Sapo, que mede o número de consultas a páginas na Net feitas a partir daquele portal, batendo inclusive os diários desportivos. Ontem à noite, o top era comandado pelo DN, seguido por "A Bola". Morreu produtor de "Frasier" David Angell, 54 anos, produtor da série televisiva Frasier , está entre as vítimas dos atentados de terça-feira nos EUA. Ele a sua mulher Lynn viajavam a bordo de um dos aviões que se despenharam. Ao longo da sua carreira, Angell venceu alguns prémios Emmy e escreveu vários episódios para séries como Cheers . Copyright © 1995,2001 Diário de Notícias, SA Todos os direitos reservados webmaster@DnOnline', 'linkToArchive': 'https://arquivo.pt/wayback/20010913052557/http://www.dn.pt/int/13p4x.htm', 'newsProbability': 0.933, 'newsSource': 'Diário de Notícias', 'tstamp': '200109'}</code></pre>
+<pre><code>{
+    "tstamp": "200109",
+    "newsProbability": 0.933,
+    "newsSource": "Diario de Noticias",
+    "linkToArchive": "https://arquivo.pt/wayback/20010913052557/http://w...",
+    "ExtractedText": "DN   13 de Setembro de 2001 Intalacoes do BCP servem de refugio As instalacoes do Banco Comercial Portugues, em Wall Street, foram..."
+}</code></pre>
 </div>
 </div>
 </section>
@@ -1354,40 +1364,28 @@ before definive filter all data, i wanted to check how many data would i possibl
 <p>Banco Comercial Português <span class="math inline">\(4596 \rightarrow 807\)</span> | Galp Energia <span class="math inline">\(4886 \rightarrow 809\)</span></p>
 <p>EDP <span class="math inline">\(5596 \rightarrow 954\)</span> | Sonae <span class="math inline">\(5524 \rightarrow 520\)</span> | Mota-Engil <span class="math inline">\(2268 \rightarrow 296\)</span></p>
 </div>
-</section></section>
-<section>
-<section id="conclusion" class="title-slide slide level1 center">
-<h1>conclusion</h1>
+<!--
+## libraries
 
-</section>
-<section id="section" class="slide level2">
-<h2>…</h2>
-<p>…</p>
-</section>
-<section id="libraries" class="slide level2">
-<h2>libraries</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb26-2"><a href=""></a><span class="im">import</span> requests</span>
-<span id="cb26-3"><a href=""></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
-<span id="cb26-4"><a href=""></a><span class="im">import</span> time</span>
-<span id="cb26-5"><a href=""></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
-<span id="cb26-6"><a href=""></a><span class="im">import</span> re</span>
-<span id="cb26-7"><a href=""></a><span class="im">import</span> random</span>
-<span id="cb26-8"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb26-9"><a href=""></a><span class="co"># dtree related</span></span>
-<span id="cb26-10"><a href=""></a><span class="im">import</span> os</span>
-<span id="cb26-11"><a href=""></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier, plot_tree</span>
-<span id="cb26-12"><a href=""></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb26-13"><a href=""></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, classification_report</span>
-<span id="cb26-14"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb26-15"><a href=""></a><span class="im">from</span> joblib <span class="im">import</span> dump, load</span>
-<span id="cb26-16"><a href=""></a><span class="co"># 90% duplicated</span></span>
-<span id="cb26-17"><a href=""></a><span class="im">from</span> fuzzywuzzy <span class="im">import</span> fuzz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="disclaimer" class="slide level2">
-<h2>disclaimer</h2>
-<p>ofc i could have all this datasets and filtering in one go and by only using one parquet file, but now that i have the strucutre i can easily implement a way so that any given company and aliases returns me the cleaned and filtered news</p>
-<p>all the source code can be found in github</p>
+```{.python}
+import requests
+import pandas as pd
+from bs4 import BeautifulSoup
+from datetime import datetime
+import matplotlib.pyplot as plt
+import re
+# not news model:
+import os
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+from joblib import dump, load
+# similar texts:
+from fuzzywuzzy import fuzz
+import random
+```
+-->
 <div class="quarto-auto-generated-content">
 <p><img src="ua.png" class="slide-logo"></p>
 <div class="footer footer-default">
