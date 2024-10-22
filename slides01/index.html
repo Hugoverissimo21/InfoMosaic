@@ -996,16 +996,16 @@ select which cols to process and skip the ones already done
 <section id="problems-faced-1" class="slide level2 justify">
 <h2>Problems Faced</h2>
 <ul>
-<li><p>I’ve already removed exact duplicate files, but some files remain that are about 90% similar. These should also be removed.</p></li>
+<li><p>Some extracted texts are very similar, though not identical. They should be removed based on a certain similarity criterion.</p></li>
 <li><p>There are also “news” items that aren’t actually relevant to the company: they might be ads, irrelevant financial reports, or other unrelated content. These could be filtered out as well.</p></li>
 </ul>
-<p>Since the first problem is more complex (<span class="math inline">\(O(n^2)\)</span>), removing irrelevant news will reduce the dataset and make solving the first problem faster.</p>
+<p>Since the first problem has a higher complexity (<span class="math inline">\(O(n^2)\)</span>), removing irrelevant news will reduce the dataset and speed up solving the first problem.</p>
 <p><span class="math inline">\(\ \)</span></p>
 <p>Note: it would have been ideal to filter these out during text extraction.</p>
 </section>
 <section id="dataset-for-news-detection-model" class="slide level2 justify">
 <h2>Dataset for News Detection Model</h2>
-<p>To address the ‘Not News’ problem, I created a small dataset with several features to train and test a model for detecting non-news content.</p>
+<p>To address the ‘Not News’ problem, a small dataset with several features was created to train and test a model for detecting non-news content.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a>pd.read_csv(<span class="st">"dtree01.csv"</span>).info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -1038,7 +1038,7 @@ memory usage: 72.7+ KB</code></pre>
 <section id="choosing-and-training-the-model" class="slide level2 justify">
 <h2>Choosing and Training the Model</h2>
 <!-- decision tree is better for modelibng ccomplex relations between feautres or in the data, something like that -->
-<p>After experimenting with various models and combinations of features, I discovered that a decision tree utilizing the following features and parameters provided the best fit for the data.</p>
+<p>After experimenting with several models and feature combinations, it was discovered that a decision tree utilizing the following features and parameters provided the best fit for the data.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href=""></a>dataset <span class="op">=</span> pd.read_csv(<span class="st">"dtree01.csv"</span>)</span>
 <span id="cb16-2"><a href=""></a>X <span class="op">=</span> dataset[[<span class="st">'IstALIAS'</span>, <span class="st">'propAN'</span>, <span class="st">'txtSZ'</span>, <span class="st">'countALI'</span>, </span>
 <span id="cb16-3"><a href=""></a>              <span class="st">'countDTS'</span>, <span class="st">'countHOUR'</span>, <span class="st">'countCAPS'</span>]]</span>

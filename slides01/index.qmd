@@ -656,11 +656,11 @@ print(pretty_json_string)
 ## Problems Faced {.justify}
 
 
-- I've already removed exact duplicate files, but some files remain that are about 90% similar. These should also be removed.
+- Some extracted texts are very similar, though not identical. They should be removed based on a certain similarity criterion.
 
 - There are also "news" items that aren't actually relevant to the company: they might be ads, irrelevant financial reports, or other unrelated content. These could be filtered out as well.
 
-Since the first problem is more complex ($O(n^2)$), removing irrelevant news will reduce the dataset and make solving the first problem faster.
+Since the first problem has a higher complexity ($O(n^2)$), removing irrelevant news will reduce the dataset and speed up solving the first problem.
 
 $\ $
 
@@ -668,7 +668,7 @@ Note: it would have been ideal to filter these out during text extraction.
 
 ## Dataset for News Detection Model {.justify}
 
-To address the 'Not News' problem, I created a small dataset with several features to train and test a model for detecting non-news content.
+To address the 'Not News' problem, a small dataset with several features was created to train and test a model for detecting non-news content.
 
 ```{.python}
 pd.read_csv("dtree01.csv").info()
@@ -684,7 +684,7 @@ df.info()
 
 <!-- decision tree is better for modelibng ccomplex relations between feautres or in the data, something like that -->
 
-After experimenting with various models and combinations of features, I discovered that a decision tree utilizing the following features and parameters provided the best fit for the data.
+After experimenting with several models and feature combinations, it was discovered that a decision tree utilizing the following features and parameters provided the best fit for the data.
 
 ```{.python}
 dataset = pd.read_csv("dtree01.csv")
