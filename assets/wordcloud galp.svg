@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400">
+<style>@font-face{font-family:'Droid Sans Mono';font-weight:normal;font-style:normal;src:url("data:application/font-woff;charset=utf-8;base64,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")format("woff");}</style>
+<style>text{font-family:'Droid Sans Mono';font-weight:normal;font-style:normal;}</style>
+<text transform="translate(181,329)" font-size="246" style="fill:#ff7400">Galp</text>
+<text transform="translate(206,138)" font-size="161" style="fill:#ff7400">euros</text>
+<text transform="translate(40,382)" font-size="67" style="fill:#ffc100">Galp Energia</text>
+<text transform="translate(55,47)" font-size="64" style="fill:#ff4d00">PT</text>
+<text transform="translate(178,310) rotate(-90)" font-size="63" style="fill:#ff9a00">Portugal</text>
+<text transform="translate(57,310) rotate(-90)" font-size="62" style="fill:#ffc100">Sócrates</text>
+<text transform="translate(123,268) rotate(-90)" font-size="60" style="fill:#ff9a00">Estado</text>
+<text transform="translate(535,396)" font-size="58" style="fill:#ffc100">PSD</text>
+<text transform="translate(328,34)" font-size="57" style="fill:#ff7400">empresa</text>
+<text transform="translate(565,181)" font-size="49" style="fill:#ff4d00">petróleo</text>
+<text transform="translate(587,43)" font-size="48" style="fill:#ff9a00">Governo</text>
+<text transform="translate(495,326) rotate(-90)" font-size="46" style="fill:#ff4d00">Escutas</text>
+<text transform="translate(217,34)" font-size="43" style="fill:#ffc100">PGR</text>
+<text transform="translate(313,184)" font-size="37" style="fill:#ff9a00">negócio</text>
+<text transform="translate(666,364)" font-size="37" style="fill:#ffc100">Brasil</text>
+<text transform="translate(57,322)" font-size="31" style="fill:#ff9a00">empresas</text>
+<text transform="translate(527,303) rotate(-90)" font-size="30" style="fill:#ff4d00">produção</text>
+<text transform="translate(732,132) rotate(-90)" font-size="29" style="fill:#ff7400">anos</text>
+<text transform="translate(666,391)" font-size="20" style="fill:#ff9a00">petrolífera</text>
+<text transform="translate(574,268)" font-size="20" style="fill:#ff4d00">Figo</text>
+<text transform="translate(556,352)" font-size="20" style="fill:#ff9a00">Godinho</text>
+<text transform="translate(207,398)" font-size="20" style="fill:#ffc100">Rui Pedro Soares</text>
+<text transform="translate(209,170) rotate(-90)" font-size="20" style="fill:#ff9a00">presidente</text>
+<text transform="translate(269,212) rotate(-90)" font-size="19" style="fill:#ff4d00">EDP</text>
+<text transform="translate(270,225)" font-size="19" style="fill:#ff9a00">mercado</text>
+<text transform="translate(192,223) rotate(-90)" font-size="18" style="fill:#ff9a00">Vara</text>
+<text transform="translate(323,245)" font-size="18" style="fill:#ffc100">comissão</text>
+<text transform="translate(241,48)" font-size="17" style="fill:#ffc100">Lisboa</text>
+<text transform="translate(787,310) rotate(-90)" font-size="17" style="fill:#ff9a00">inquérito</text>
+<text transform="translate(690,59)" font-size="17" style="fill:#ff9a00">Moçambique</text>
+<text transform="translate(627,14)" font-size="17" style="fill:#ff9a00">trimestre</text>
+<text transform="translate(408,154)" font-size="17" style="fill:#ff9a00">Sines</text>
+<text transform="translate(579,195)" font-size="17" style="fill:#ff7400">acordo</text>
+<text transform="translate(675,251)" font-size="17" style="fill:#ff7400">conta</text>
+<text transform="translate(750,153) rotate(-90)" font-size="17" style="fill:#ff9a00">navegação</text>
+<text transform="translate(736,190)" font-size="17" style="fill:#ff9a00">caso</text>
+<text transform="translate(73,278) rotate(-90)" font-size="17" style="fill:#ff9a00">administração</text>
+<text transform="translate(243,115)" font-size="17" style="fill:#ff9a00">viagens</text>
+<text transform="translate(36,128)" font-size="17" style="fill:#ff4d00">semana</text>
+<text transform="translate(684,268)" font-size="17" style="fill:#ff7400">PS</text>
+<text transform="translate(669,93)" font-size="17" style="fill:#ffc100">país</text>
+<text transform="translate(330,149)" font-size="17" style="fill:#ff7400">acesso</text>
+<text transform="translate(59,294)" font-size="17" style="fill:#ff4d00">mundo</text>
+<text transform="translate(144,338)" font-size="17" style="fill:#ff9a00">pagamento</text>
+<text transform="translate(586,229)" font-size="17" style="fill:#ff9a00">Juiz</text>
+<text transform="translate(406,48)" font-size="17" style="fill:#ff7400">Parlamento</text>
+<text transform="translate(563,287)" font-size="17" style="fill:#ffc100">energia</text>
+<text transform="translate(30,398)" font-size="17" style="fill:#ff7400">investimento</text>
+<text transform="translate(603,136) rotate(-90)" font-size="17" style="fill:#ff7400">Taguspark</text>
+<text transform="translate(331,337) rotate(-90)" font-size="17" style="fill:#ffc100">suspensão</text>
+<text transform="translate(272,198)" font-size="17" style="fill:#ff7400">processo</text>
+<text transform="translate(569,210)" font-size="17" style="fill:#ffc100">Angola</text>
+<text transform="translate(140,137) rotate(-90)" font-size="17" style="fill:#ff7400">dias</text>
+<text transform="translate(17,238) rotate(-90)" font-size="17" style="fill:#ff7400">participação</text>
+<text transform="translate(437,125)" font-size="17" style="fill:#ff7400">compra</text>
+<text transform="translate(571,244)" font-size="17" style="fill:#ff4d00">Espanha</text>
+<text transform="translate(772,320) rotate(-90)" font-size="17" style="fill:#ff7400">combustíveis</text>
+<text transform="translate(339,342)" font-size="14" style="fill:#ff9a00">Ferreira Leite</text>
+<text transform="translate(349,114) rotate(-90)" font-size="14" style="fill:#ff4d00">Ana Brito</text>
+<text transform="translate(568,304)" font-size="14" style="fill:#ff4d00">direitos</text>
+<text transform="translate(487,343)" font-size="14" style="fill:#ff9a00">direito</text>
+<text transform="translate(89,275)" font-size="14" style="fill:#ffc100">fonte</text>
+<text transform="translate(731,14)" font-size="14" style="fill:#ff7400">decisão</text>
+<text transform="translate(456,395)" font-size="14" style="fill:#ffc100">exploração</text>
+<text transform="translate(13,116) rotate(-90)" font-size="14" style="fill:#ff7400">trabalhadores</text>
+<text transform="translate(517,46)" font-size="14" style="fill:#ff4d00">Economia</text>
+<text transform="translate(564,151)" font-size="14" style="fill:#ffc100">clientes</text>
+<text transform="translate(772,152) rotate(-90)" font-size="14" style="fill:#ff4d00">despachos</text>
+<text transform="translate(150,202)" font-size="14" style="fill:#ff7400">Eni</text>
+<text transform="translate(15,317)" font-size="14" style="fill:#ff4d00">venda</text>
+<text transform="translate(671,373)" font-size="10" style="fill:#ffc100">Carlos Gomes da Silva</text>
+<text transform="translate(746,197)" font-size="10" style="fill:#ff4d00">contrato</text>
+<text transform="translate(229,270)" font-size="10" style="fill:#ffc100">resposta</text>
+<text transform="translate(789,150) rotate(-90)" font-size="10" style="fill:#ff9a00">consórcio</text>
+<text transform="translate(523,98)" font-size="10" style="fill:#ff9a00">dados</text>
+<text transform="translate(311,90) rotate(-90)" font-size="10" style="fill:#ffc100">concorrência</text>
+<text transform="translate(462,98)" font-size="10" style="fill:#ff9a00">aumento</text>
+<text transform="translate(133,162)" font-size="10" style="fill:#ff4d00">secretário</text>
+<text transform="translate(447,84)" font-size="10" style="fill:#ff7400">contratos</text>
+<text transform="translate(727,333)" font-size="10" style="fill:#ff7400">refinaria</text>
+<text transform="translate(691,294)" font-size="10" style="fill:#ff7400">costa</text>
+<text transform="translate(376,293)" font-size="10" style="fill:#ff4d00">Europa</text>
+<text transform="translate(234,232)" font-size="10" style="fill:#ffc100">Matosinhos</text>
+<text transform="translate(636,76)" font-size="10" style="fill:#ff7400">Em Portugal</text>
+<text transform="translate(195,352)" font-size="10" style="fill:#ff7400">preço</text>
+<text transform="translate(94,52)" font-size="10" style="fill:#ffc100">casos</text>
+<text transform="translate(440,112)" font-size="10" style="fill:#ff4d00">tópicos</text>
+<text transform="translate(123,253)" font-size="10" style="fill:#ffc100">MP</text>
+<text transform="translate(432,195)" font-size="10" style="fill:#ff9a00">líder</text>
+<text transform="translate(609,117)" font-size="10" style="fill:#ff7400">período</text>
+<text transform="translate(81,334)" font-size="10" style="fill:#ff7400">greve</text>
+<text transform="translate(655,188)" font-size="10" style="fill:#ff9a00">resultados</text>
+<text transform="translate(644,151)" font-size="10" style="fill:#ff7400">capital</text>
+<text transform="translate(585,311)" font-size="10" style="fill:#ff7400">recurso</text>
+<text transform="translate(179,43)" font-size="10" style="fill:#ffc100">arguidos</text>
+<text transform="translate(671,398)" font-size="10" style="fill:#ff7400">Ferreira de Oliveira</text>
+<text transform="translate(320,154)" font-size="10" style="fill:#ff7400">pessoas</text>
+<text transform="translate(233,286)" font-size="10" style="fill:#ff7400">condições</text>
+<text transform="translate(236,147)" font-size="10" style="fill:#ff9a00">despedimentos</text>
+<text transform="translate(25,9)" font-size="10" style="fill:#ffc100">login</text>
+<text transform="translate(26,324)" font-size="10" style="fill:#ff9a00">REFER</text>
+<text transform="translate(294,207)" font-size="10" style="fill:#ff7400">concessão</text>
+<text transform="translate(244,301)" font-size="10" style="fill:#ff4d00">preços</text>
+<text transform="translate(378,281)" font-size="10" style="fill:#ff9a00">campanha</text>
+<text transform="translate(690,138)" font-size="10" style="fill:#ffc100">verdade</text>
+<text transform="translate(76,38)" font-size="10" style="fill:#ffc100">VISA</text>
+<text transform="translate(128,233)" font-size="10" style="fill:#ff4d00">Finanças</text>
+<text transform="translate(366,73) rotate(-90)" font-size="10" style="fill:#ffc100">acções</text>
+<text transform="translate(405,144) rotate(-90)" font-size="10" style="fill:#ff9a00">dívida</text>
+<text transform="translate(68,105) rotate(-90)" font-size="10" style="fill:#ff7400">destaque</text>
+<text transform="translate(668,277)" font-size="10" style="fill:#ff7400">procurador</text>
+<text transform="translate(13,373) rotate(-90)" font-size="10" style="fill:#ff4d00">divulgação</text>
+<text transform="translate(116,18)" font-size="10" style="fill:#ff4d00">liberdade</text>
+<text transform="translate(154,8)" font-size="10" style="fill:#ff9a00">tribunal</text>
+<text transform="translate(231,221)" font-size="10" style="fill:#ffc100">lucros</text>
+<text transform="translate(123,47)" font-size="10" style="fill:#ffc100">ministro</text>
+<text transform="translate(463,278) rotate(-90)" font-size="10" style="fill:#ff4d00">investigação</text>
+<text transform="translate(689,342)" font-size="10" style="fill:#ff7400">Sindicato</text>
+<text transform="translate(64,303)" font-size="10" style="fill:#ff9a00">secretários</text>
+<text transform="translate(795,251) rotate(-90)" font-size="10" style="fill:#ff9a00">artigos</text>
+<text transform="translate(89,199)" font-size="10" style="fill:#ff9a00">barris</text>
+<text transform="translate(294,233)" font-size="10" style="fill:#ff4d00">farmácias</text>
+<text transform="translate(387,373)" font-size="10" style="fill:#ffc100">EUA</text>
+<text transform="translate(687,235)" font-size="10" style="fill:#ff9a00">Saltar</text>
+<text transform="translate(189,302) rotate(-90)" font-size="10" style="fill:#ff4d00">contribuição</text>
+<text transform="translate(178,17)" font-size="10" style="fill:#ff7400">gestão</text>
+<text transform="translate(750,77)" font-size="10" style="fill:#ff9a00">operação</text>
+<text transform="translate(534,252) rotate(-90)" font-size="10" style="fill:#ffc100">hora</text>
+<text transform="translate(196,367)" font-size="10" style="fill:#ff4d00">proposta</text>
+<text transform="translate(269,213)" font-size="10" style="fill:#ff7400">REN</text>
+<text transform="translate(196,378)" font-size="10" style="fill:#ff9a00">Alentejo</text>
+<text transform="translate(396,124) rotate(-90)" font-size="10" style="fill:#ff4d00">Metro de Lisboa</text>
+<text transform="translate(35,52)" font-size="10" style="fill:#ff9a00">nome</text>
+<text transform="translate(23,391) rotate(-90)" font-size="10" style="fill:#ff4d00">José Penedos</text>
+<text transform="translate(413,135) rotate(-90)" font-size="10" style="fill:#ff4d00">Amorim Energia</text>
+<text transform="translate(378,191)" font-size="10" style="fill:#ff7400">Petrogal</text>
+<text transform="translate(22,199)" font-size="10" style="fill:#ff4d00">Cofina</text>
+<text transform="translate(798,354) rotate(-90)" font-size="10" style="fill:#ff7400">medidas</text>
+<text transform="translate(502,308) rotate(-90)" font-size="10" style="fill:#ff7400">jornalistas</text>
+<text transform="translate(384,303)" font-size="10" style="fill:#ff4d00">causa</text>
+<text transform="translate(24,383)" font-size="10" style="fill:#ff4d00">PM</text>
+<text transform="translate(322,162)" font-size="10" style="fill:#ff9a00">Judiciária</text>
+<text transform="translate(8,311) rotate(-90)" font-size="10" style="fill:#ffc100">pesquisa</text>
+<text transform="translate(302,103) rotate(-90)" font-size="10" style="fill:#ff4d00">avaliação</text>
+<text transform="translate(90,341)" font-size="10" style="fill:#ff9a00">Aveiro</text>
+<text transform="translate(85,234)" font-size="10" style="fill:#ff4d00">queda</text>
+<text transform="translate(343,312) rotate(-90)" font-size="10" style="fill:#ff7400">accionistas</text>
+<text transform="translate(280,343)" font-size="10" style="fill:#ff9a00">Noronha</text>
+<text transform="translate(195,345)" font-size="10" style="fill:#ffc100">Sarmento</text>
+<text transform="translate(551,334)" font-size="6" style="fill:#ff4d00">Tribunal de Aveiro</text>
+<text transform="translate(525,79)" font-size="6" style="fill:#ff7400">Escutados</text>
+<text transform="translate(676,109)" font-size="6" style="fill:#ff7400">apoios</text>
+<text transform="translate(222,251)" font-size="6" style="fill:#ffc100">Sucateiro</text>
+<text transform="translate(60,54)" font-size="6" style="fill:#ff7400">dúvidas</text>
+<text transform="translate(14,16)" font-size="6" style="fill:#ffc100">Restantes</text>
+<text transform="translate(608,252)" font-size="6" style="fill:#ff7400">serviço</text>
+<text transform="translate(612,320)" font-size="6" style="fill:#ff7400">convite</text>
+<text transform="translate(288,133)" font-size="6" style="fill:#ff7400">viagem</text>
+<text transform="translate(34,214)" font-size="6" style="fill:#ff4d00">BPN</text>
+<text transform="translate(184,32)" font-size="6" style="fill:#ff7400">funções</text>
+<text transform="translate(524,104)" font-size="6" style="fill:#ff7400">refinação</text>
+<text transform="translate(524,88)" font-size="6" style="fill:#ff7400">Granadeiro</text>
+<text transform="translate(233,293)" font-size="6" style="fill:#ff9a00">Vasconcelos</text>
+<text transform="translate(620,273)" font-size="6" style="fill:#ffc100">Sol</text>
+<text transform="translate(452,73)" font-size="6" style="fill:#ff4d00">Petrobras</text>
+<text transform="translate(27,329)" font-size="6" style="fill:#ff7400">Parpública</text>
+<text transform="translate(681,283)" font-size="6" style="fill:#ff7400">Armando Vara</text>
+<text transform="translate(564,6)" font-size="6" style="fill:#ff7400">Felícia Cabrita</text>
+<text transform="translate(797,307) rotate(-90)" font-size="6" style="fill:#ff4d00">Pinto Monteiro</text>
+<text transform="translate(501,205) rotate(-90)" font-size="6" style="fill:#ff7400">Ana Paula Azevedo</text>
+<text transform="translate(225,209)" font-size="6" style="fill:#ff7400">Cristo</text>
+<text transform="translate(653,192)" font-size="5" style="fill:#ff7400">Fernando Soares Carneiro</text>
+<text transform="translate(20,274)" font-size="5" style="fill:#ff7400">João Correia</text>
+<text transform="translate(60,281)" font-size="5" style="fill:#ff7400">João Palma</text>
+<text transform="translate(155,356) rotate(-90)" font-size="5" style="fill:#ff4d00">Lino</text>
+<text transform="translate(185,24)" font-size="5" style="fill:#ff7400">Mota Amaral</text>
+<text transform="translate(742,323)" font-size="5" style="fill:#ff9a00">Pais do Amaral</text>
+<text transform="translate(317,39)" font-size="5" style="fill:#ff4d00">Paulo Penedos</text>
+<text transform="translate(349,227)" font-size="5" style="fill:#ff7400">Procurador de Aveiro</text>
+<text transform="translate(530,366) rotate(-90)" font-size="5" style="fill:#ff7400">Saraiva</text>
+<text transform="translate(64,111)" font-size="5" style="fill:#ff9a00">ganhos</text>
+<text transform="translate(704,262)" font-size="5" style="fill:#ff9a00">Ana Jorge</text>
+</svg>

@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400">
+<style>@font-face{font-family:'Droid Sans Mono';font-weight:normal;font-style:normal;src:url("data:application/font-woff;charset=utf-8;base64,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")format("woff");}</style>
+<style>text{font-family:'Droid Sans Mono';font-weight:normal;font-style:normal;}</style>
+<text transform="translate(421,241)" font-size="182" style="fill:#bc2765">BCP</text>
+<text transform="translate(75,381)" font-size="137" style="fill:#bc2765">euros</text>
+<text transform="translate(10,174)" font-size="132" style="fill:#bc2765">banco</text>
+<text transform="translate(71,76)" font-size="99" style="fill:#c83f68">Portugal</text>
+<text transform="translate(53,244)" font-size="80" style="fill:#9a8cab">capital</text>
+<text transform="translate(251,303)" font-size="75" style="fill:#c83f68">Nuno Amado</text>
+<text transform="translate(656,86)" font-size="74" style="fill:#c83f68">BPI</text>
+<text transform="translate(565,396)" font-size="72" style="fill:#9a8cab">anos</text>
+<text transform="translate(485,342)" font-size="50" style="fill:#bc2765">presidente</text>
+<text transform="translate(68,300)" font-size="49" style="fill:#9a8cab">Lisboa</text>
+<text transform="translate(528,31)" font-size="42" style="fill:#333333">Novo Banco</text>
+<text transform="translate(778,287) rotate(-90)" font-size="41" style="fill:#333333">Governo</text>
+<text transform="translate(430,108)" font-size="41" style="fill:#c83f68">Estado</text>
+<text transform="translate(40,349) rotate(-90)" font-size="40" style="fill:#333333">bancos</text>
+<text transform="translate(537,58)" font-size="34" style="fill:#c83f68">acções</text>
+<text transform="translate(687,242)" font-size="33" style="fill:#bc2765">EUA</text>
+<text transform="translate(86,94)" font-size="22" style="fill:#bc2765">Jardim Gonçalves</text>
+<text transform="translate(3,192)" font-size="20" style="fill:#c83f68">Banco de Portugal</text>
+<text transform="translate(602,105)" font-size="20" style="fill:#333333">aumento</text>
+<text transform="translate(287,196)" font-size="20" style="fill:#c83f68">dias</text>
+<text transform="translate(697,100)" font-size="20" style="fill:#333333">conta</text>
+<text transform="translate(386,397)" font-size="20" style="fill:#333333">BES</text>
+<text transform="translate(83,394)" font-size="15" style="fill:#9a8cab">Banco Comercial Português</text>
+<text transform="translate(387,256)" font-size="15" style="fill:#9a8cab">lucros</text>
+<text transform="translate(576,170)" font-size="15" style="fill:#9a8cab">processo</text>
+<text transform="translate(577,86)" font-size="15" style="fill:#9a8cab">mundo</text>
+<text transform="translate(475,386)" font-size="15" style="fill:#bc2765">dívida</text>
+<text transform="translate(124,13)" font-size="15" style="fill:#9a8cab">mercado</text>
+<text transform="translate(53,313)" font-size="15" style="fill:#c83f68">Visa</text>
+<text transform="translate(168,269)" font-size="15" style="fill:#9a8cab">direitos</text>
+<text transform="translate(376,232)" font-size="15" style="fill:#9a8cab">Fosun</text>
+<text transform="translate(439,20)" font-size="15" style="fill:#c83f68">acordo</text>
+<text transform="translate(22,50)" font-size="15" style="fill:#9a8cab">venda</text>
+<text transform="translate(692,254)" font-size="15" style="fill:#333333">fusão</text>
+<text transform="translate(598,189)" font-size="15" style="fill:#333333">fonte</text>
+<text transform="translate(572,202)" font-size="15" style="fill:#c83f68">crédito</text>
+<text transform="translate(493,366)" font-size="15" style="fill:#c83f68">proposta</text>
+<text transform="translate(286,148)" font-size="15" style="fill:#c83f68">banca</text>
+<text transform="translate(371,193)" font-size="15" style="fill:#333333">Europa</text>
+<text transform="translate(13,323) rotate(-90)" font-size="15" style="fill:#9a8cab">Filipe Pinhal</text>
+<text transform="translate(371,13)" font-size="15" style="fill:#333333">empresa</text>
+<text transform="translate(704,305)" font-size="15" style="fill:#333333">Millennium</text>
+<text transform="translate(43,257)" font-size="15" style="fill:#9a8cab">navegação</text>
+<text transform="translate(594,155)" font-size="15" style="fill:#333333">ações</text>
+<text transform="translate(579,354)" font-size="15" style="fill:#c83f68">trabalhadores</text>
+<text transform="translate(196,15)" font-size="15" style="fill:#333333">país</text>
+<text transform="translate(518,255)" font-size="15" style="fill:#c83f68">resultados</text>
+<text transform="translate(447,252)" font-size="15" style="fill:#333333">caso</text>
+<text transform="translate(9,363)" font-size="15" style="fill:#333333">economia</text>
+<text transform="translate(794,162) rotate(-90)" font-size="15" style="fill:#c83f68">Em Portugal</text>
+<text transform="translate(15,173) rotate(-90)" font-size="15" style="fill:#333333">Cristina Ferreira</text>
+<text transform="translate(677,209)" font-size="15" style="fill:#333333">contas</text>
+<text transform="translate(23,378)" font-size="14" style="fill:#9a8cab">campanha</text>
+<text transform="translate(790,279) rotate(-90)" font-size="14" style="fill:#c83f68">administração</text>
+<text transform="translate(503,397)" font-size="14" style="fill:#9a8cab">Polónia</text>
+<text transform="translate(732,389)" font-size="14" style="fill:#c83f68">prejuízo</text>
+<text transform="translate(700,353)" font-size="14" style="fill:#333333">investidores</text>
+<text transform="translate(188,252)" font-size="14" style="fill:#c83f68">empresas</text>
+<text transform="translate(13,394)" font-size="14" style="fill:#c83f68">compra</text>
+<text transform="translate(584,213)" font-size="14" style="fill:#333333">artigos</text>
+<text transform="translate(294,258)" font-size="14" style="fill:#c83f68">restantes</text>
+<text transform="translate(280,18)" font-size="14" style="fill:#9a8cab">instituição</text>
+<text transform="translate(731,371)" font-size="14" style="fill:#333333">trabalho</text>
+<text transform="translate(250,197) rotate(-90)" font-size="14" style="fill:#c83f68">participação</text>
+<text transform="translate(319,396)" font-size="14" style="fill:#bc2765">Tribunal</text>
+<text transform="translate(514,353)" font-size="14" style="fill:#c83f68">semestre</text>
+<text transform="translate(451,151)" font-size="14" style="fill:#bc2765">login</text>
+<text transform="translate(293,94)" font-size="14" style="fill:#9a8cab">dinheiro</text>
+<text transform="translate(5,14)" font-size="14" style="fill:#bc2765">operação</text>
+<text transform="translate(432,272)" font-size="14" style="fill:#bc2765">rating</text>
+<text transform="translate(17,70)" font-size="14" style="fill:#bc2765">decisão</text>
+<text transform="translate(535,227) rotate(-90)" font-size="14" style="fill:#c83f68">Miguel Maya</text>
+<text transform="translate(269,362)" font-size="14" style="fill:#9a8cab">Angola</text>
+<text transform="translate(271,349)" font-size="14" style="fill:#bc2765">cortes</text>
+<text transform="translate(592,69)" font-size="14" style="fill:#9a8cab">resposta</text>
+<text transform="translate(253,382) rotate(-90)" font-size="14" style="fill:#c83f68">accionistas</text>
+<text transform="translate(21,36)" font-size="14" style="fill:#9a8cab">entrada</text>
+<text transform="translate(453,398)" font-size="14" style="fill:#9a8cab">débito</text>
+<text transform="translate(272,220)" font-size="14" style="fill:#bc2765">BCE</text>
+<text transform="translate(427,169) rotate(-90)" font-size="14" style="fill:#333333">prejuízos</text>
+<text transform="translate(751,182) rotate(-90)" font-size="14" style="fill:#bc2765">condições</text>
+<text transform="translate(434,286)" font-size="14" style="fill:#bc2765">horas</text>
+<text transform="translate(101,360)" font-size="14" style="fill:#c83f68">clientes</text>
+<text transform="translate(94,174) rotate(-90)" font-size="14" style="fill:#c83f68">Berardo</text>
+<text transform="translate(581,141)" font-size="14" style="fill:#9a8cab">semana</text>
+<text transform="translate(269,379)" font-size="14" style="fill:#9a8cab">salários</text>
+<text transform="translate(172,179) rotate(-90)" font-size="14" style="fill:#bc2765">resultado</text>
+<text transform="translate(375,210)" font-size="14" style="fill:#bc2765">período</text>
+<text transform="translate(4,204)" font-size="14" style="fill:#bc2765">títulos</text>
+<text transform="translate(208,360) rotate(-90)" font-size="14" style="fill:#bc2765">redução</text>
+<text transform="translate(500,59) rotate(-90)" font-size="14" style="fill:#bc2765">EDP</text>
+<text transform="translate(213,178) rotate(-90)" font-size="14" style="fill:#bc2765">destaque</text>
+<text transform="translate(477,313)" font-size="12" style="fill:#bc2765">Isabel dos Santos</text>
+<text transform="translate(451,331)" font-size="12" style="fill:#c83f68">plano</text>
+<text transform="translate(712,109)" font-size="12" style="fill:#c83f68">trimestre</text>
+<text transform="translate(151,271) rotate(-90)" font-size="12" style="fill:#9a8cab">Joe Berardo</text>
+<text transform="translate(385,180)" font-size="12" style="fill:#9a8cab">queda</text>
+<text transform="translate(344,347)" font-size="12" style="fill:#9a8cab">dados</text>
+<text transform="translate(526,67)" font-size="12" style="fill:#bc2765">Sócrates</text>
+<text transform="translate(711,283)" font-size="12" style="fill:#333333">risco</text>
+<text transform="translate(211,75)" font-size="12" style="fill:#bc2765">minutos</text>
+<text transform="translate(49,348) rotate(-90)" font-size="12" style="fill:#9a8cab">Investimento</text>
+<text transform="translate(406,376) rotate(-90)" font-size="12" style="fill:#9a8cab">pagamentos</text>
+<text transform="translate(281,126)" font-size="12" style="fill:#bc2765">tópicos</text>
+<text transform="translate(672,147)" font-size="12" style="fill:#bc2765">gestão</text>
+<text transform="translate(691,265)" font-size="12" style="fill:#c83f68">leitores</text>
+<text transform="translate(680,216)" font-size="9" style="fill:#bc2765">MILLENNIUM BCP</text>
+<text transform="translate(639,244) rotate(-90)" font-size="9" style="fill:#c83f68">bolsa</text>
+<text transform="translate(797,279) rotate(-90)" font-size="9" style="fill:#c83f68">Santos Ferreira</text>
+<text transform="translate(312,178)" font-size="9" style="fill:#333333">pessoas</text>
+<text transform="translate(164,350) rotate(-90)" font-size="9" style="fill:#bc2765">Bruxelas</text>
+<text transform="translate(750,290)" font-size="9" style="fill:#c83f68">acesso</text>
+<text transform="translate(365,253)" font-size="9" style="fill:#333333">Irão</text>
+<text transform="translate(518,240)" font-size="9" style="fill:#bc2765">Grécia</text>
+<text transform="translate(684,161)" font-size="9" style="fill:#c83f68">líder</text>
+<text transform="translate(614,309) rotate(-90)" font-size="9" style="fill:#333333">LOCALIDADE</text>
+<text transform="translate(452,209)" font-size="9" style="fill:#9a8cab">qualidade</text>
+<text transform="translate(240,62) rotate(-90)" font-size="9" style="fill:#333333">corte</text>
+<text transform="translate(522,115)" font-size="9" style="fill:#9a8cab">sociedade</text>
+<text transform="translate(275,227)" font-size="9" style="fill:#bc2765">PS</text>
+<text transform="translate(342,64) rotate(-90)" font-size="9" style="fill:#c83f68">hora</text>
+<text transform="translate(146,103)" font-size="9" style="fill:#bc2765">limite</text>
+<text transform="translate(243,98)" font-size="5" style="fill:#bc2765">Comissão do Mercado de Valores Mobiliários</text>
+<text transform="translate(479,352) rotate(-90)" font-size="5" style="fill:#333333">Ongoing</text>
+<text transform="translate(672,226)" font-size="5" style="fill:#9a8cab">lucro</text>
+<text transform="translate(42,89)" font-size="5" style="fill:#333333">pagamento</text>
+<text transform="translate(64,98)" font-size="5" style="fill:#333333">fundador</text>
+<text transform="translate(85,217)" font-size="5" style="fill:#c83f68">perdas</text>
+<text transform="translate(629,7)" font-size="5" style="fill:#9a8cab">situação</text>
+</svg>
