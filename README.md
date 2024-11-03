@@ -2,6 +2,8 @@
 
 - [Slides 01](https://hugoverissimo21.github.io/FCD-project/slides01)
 
+- [Slides 02](https://hugoverissimo21.github.io/FCD-project/slides02)
+
 ## structure: folders and files
 
 ```
