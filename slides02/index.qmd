@@ -33,16 +33,33 @@ import time
 from datetime import datetime
 ```
 
-## Objective & Methodology {.justify}
+## lembretes {.justify}
 
-asdsad
+- texto justificado
 
-## slides 02
+- tudo em ingles
 
-aas
+- tlvz fazer ponte de onde se ficou no trabalho 1 para agora ?
 
-# oi
+# plots
 
-## sad
+## newsSources.svg (1/2)
 
-aaaa
+feito com **newsSources v01.ipynb**
+
+apesar de ter tido 30? websites, veio tudo só de três
+
+- alguns sites são mais recentes e o arquivo só foi até 2020
+
+- alguns de facto não têm resposta, ex.:
+
+"banco comercial portugês" site:observador.pt,jornaldenegocios.pt,www.expresso.pt dá 0 resultados
+
+## newsSources.svg (2/2)
+
+```{=html}
+<figure style="text-align: center;">
+    <img src="newsSources.svg" alt="coemcamos com 100% de news e agora" style="width: 100%;">
+    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
+</figure>
+```
