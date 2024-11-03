@@ -1,0 +1,48 @@
+---
+title: "Media Analysis of PSI-20 Companies"
+subtitle: "Insights from News and Public Coverage"
+author:
+  - name: "Hugo Veríssimo"
+    affiliation: "124348"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: ua.png
+    css: mystyle.css
+    theme: serif
+    transition: slide
+echo: true
+---
+
+```{r setup, include = FALSE}
+# packages
+library(dplyr)
+library(knitr)
+library(xtable)
+library(reticulate)
+```
+
+```{python, include=FALSE}
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import time
+from datetime import datetime
+```
+
+## Objective & Methodology {.justify}
+
+asdsad
+
+## slides 02
+
+aas
+
+# oi
+
+## sad
+
+aaaa
