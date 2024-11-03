@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400">
+<style>@font-face{font-family:'Droid Sans Mono';font-weight:normal;font-style:normal;src:url("data:application/font-woff;charset=utf-8;base64,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")format("woff");}</style>
+<style>text{font-family:'Droid Sans Mono';font-weight:normal;font-style:normal;}</style>
+<text transform="translate(53,341)" font-size="215" style="fill:#030f60">Sonae</text>
+<text transform="translate(79,154)" font-size="148" style="fill:#3171f6">euros</text>
+<text transform="translate(147,54)" font-size="70" style="fill:#3171f6">Portugal</text>
+<text transform="translate(463,205)" font-size="70" style="fill:#3171f6">empresa</text>
+<text transform="translate(69,397)" font-size="59" style="fill:#3171f6">Sonae Indústria</text>
+<text transform="translate(469,45)" font-size="45" style="fill:#b0bec5">Sonae Sierra</text>
+<text transform="translate(643,149)" font-size="44" style="fill:#b0bec5">anos</text>
+<text transform="translate(60,329) rotate(-90)" font-size="41" style="fill:#3171f6">Paulo Azevedo</text>
+<text transform="translate(630,78)" font-size="41" style="fill:#3171f6">lojas</text>
+<text transform="translate(167,205)" font-size="41" style="fill:#3171f6">retalho</text>
+<text transform="translate(786,391) rotate(-90)" font-size="40" style="fill:#b0bec5">Sonae Capital</text>
+<text transform="translate(591,122)" font-size="39" style="fill:#3171f6">Mercado</text>
+<text transform="translate(594,376)" font-size="37" style="fill:#3171f6">Lisboa</text>
+<text transform="translate(29,230) rotate(-90)" font-size="37" style="fill:#3171f6">PT</text>
+<text transform="translate(614,309)" font-size="28" style="fill:#3171f6">negócios</text>
+<text transform="translate(63,172)" font-size="22" style="fill:#030f60">Belmiro de Azevedo</text>
+<text transform="translate(616,392)" font-size="21" style="fill:#b0bec5">presidente</text>
+<text transform="translate(111,136)" font-size="21" style="fill:#3171f6">mundo</text>
+<text transform="translate(695,327)" font-size="20" style="fill:#030f60">marca</text>
+<text transform="translate(365,191)" font-size="20" style="fill:#030f60">Sonae MC</text>
+<text transform="translate(649,218)" font-size="20" style="fill:#b0bec5">empresas</text>
+<text transform="translate(276,222)" font-size="20" style="fill:#f6f8ff">Isabel dos Santos</text>
+<text transform="translate(132,70)" font-size="20" style="fill:#3171f6">trabalhadores</text>
+<text transform="translate(444,132) rotate(-90)" font-size="20" style="fill:#3171f6">vendas</text>
+<text transform="translate(509,68)" font-size="19" style="fill:#f6f8ff">Continente</text>
+<text transform="translate(700,261)" font-size="19" style="fill:#3171f6">negócio</text>
+<text transform="translate(112,360)" font-size="19" style="fill:#b0bec5">crescimento</text>
+<text transform="translate(117,232)" font-size="19" style="fill:#3171f6">capital</text>
+<text transform="translate(540,159)" font-size="19" style="fill:#3171f6">centros</text>
+<text transform="translate(443,262)" font-size="19" style="fill:#030f60">compra</text>
+<text transform="translate(332,170)" font-size="19" style="fill:#f6f8ff">Em Portugal</text>
+<text transform="translate(61,55)" font-size="19" style="fill:#f6f8ff">Europa</text>
+<text transform="translate(77,304)" font-size="19" style="fill:#030f60">conta</text>
+<text transform="translate(73,24)" font-size="19" style="fill:#f6f8ff">Espanha</text>
+<text transform="translate(556,139)" font-size="19" style="fill:#030f60">Governo</text>
+<text transform="translate(508,84)" font-size="19" style="fill:#b0bec5">condições</text>
+<text transform="translate(23,183) rotate(-90)" font-size="19" style="fill:#3171f6">supermercados</text>
+<text transform="translate(382,206)" font-size="19" style="fill:#3171f6">acordo</text>
+<text transform="translate(355,319)" font-size="19" style="fill:#f6f8ff">país</text>
+<text transform="translate(698,244)" font-size="19" style="fill:#030f60">fonte</text>
+<text transform="translate(501,16)" font-size="19" style="fill:#030f60">investimento</text>
+<text transform="translate(23,361) rotate(-90)" font-size="19" style="fill:#b0bec5">navegação</text>
+<text transform="translate(511,121)" font-size="19" style="fill:#b0bec5">dias</text>
+<text transform="translate(319,349) rotate(-90)" font-size="19" style="fill:#f6f8ff">operação</text>
+<text transform="translate(689,17)" font-size="19" style="fill:#3171f6">trimestre</text>
+<text transform="translate(316,180) rotate(-90)" font-size="19" style="fill:#b0bec5">parceria</text>
+<text transform="translate(550,356)" font-size="19" style="fill:#f6f8ff">VISA</text>
+<text transform="translate(640,164)" font-size="19" style="fill:#b0bec5">direitos</text>
+<text transform="translate(672,354)" font-size="19" style="fill:#3171f6">Economia</text>
+<text transform="translate(685,281)" font-size="19" style="fill:#3171f6">artigos</text>
+<text transform="translate(4,380)" font-size="19" style="fill:#3171f6">Angola</text>
+<text transform="translate(567,323) rotate(-90)" font-size="19" style="fill:#f6f8ff">resultado</text>
+<text transform="translate(439,335) rotate(-90)" font-size="19" style="fill:#3171f6">resultados</text>
+<text transform="translate(185,269) rotate(-90)" font-size="19" style="fill:#b0bec5">EDP</text>
+<text transform="translate(219,281)" font-size="19" style="fill:#030f60">venda</text>
+<text transform="translate(312,13)" font-size="15" style="fill:#3171f6">Cláudia Azevedo</text>
+<text transform="translate(506,97)" font-size="15" style="fill:#3171f6">centro</text>
+<text transform="translate(191,217)" font-size="15" style="fill:#030f60">campanha</text>
+<text transform="translate(576,220)" font-size="15" style="fill:#f6f8ff">mercados</text>
+<text transform="translate(351,332)" font-size="15" style="fill:#f6f8ff">greve</text>
+<text transform="translate(80,138) rotate(-90)" font-size="15" style="fill:#b0bec5">aquisição</text>
+<text transform="translate(342,204)" font-size="15" style="fill:#030f60">Zon</text>
+<text transform="translate(191,11)" font-size="10" style="fill:#b0bec5">administração</text>
+<text transform="translate(32,354)" font-size="10" style="fill:#3171f6">países</text>
+<text transform="translate(99,36)" font-size="10" style="fill:#b0bec5">Sonaecom</text>
+<text transform="translate(102,242)" font-size="10" style="fill:#3171f6">lucros</text>
+<text transform="translate(359,299)" font-size="10" style="fill:#b0bec5">período</text>
+<text transform="translate(88,180)" font-size="10" style="fill:#b0bec5">Jerónimo Martins</text>
+<text transform="translate(342,348)" font-size="10" style="fill:#3171f6">destaque</text>
+<text transform="translate(346,124) rotate(-90)" font-size="10" style="fill:#b0bec5">dívida</text>
+<text transform="translate(571,92)" font-size="10" style="fill:#3171f6">concorrência</text>
+<text transform="translate(581,52)" font-size="10" style="fill:#b0bec5">trabalho</text>
+<text transform="translate(68,311)" font-size="10" style="fill:#f6f8ff">sociedade</text>
+<text transform="translate(631,99)" font-size="10" style="fill:#b0bec5">Restantes</text>
+<text transform="translate(464,163)" font-size="10" style="fill:#3171f6">oferta</text>
+<text transform="translate(9,337) rotate(-90)" font-size="10" style="fill:#3171f6">semestre</text>
+<text transform="translate(31,188)" font-size="10" style="fill:#030f60">prejuízos</text>
+<text transform="translate(270,134) rotate(-90)" font-size="10" style="fill:#030f60">acções</text>
+<text transform="translate(489,217)" font-size="10" style="fill:#b0bec5">estratégia</text>
+<text transform="translate(287,71)" font-size="10" style="fill:#b0bec5">assinatura</text>
+<text transform="translate(737,52)" font-size="10" style="fill:#f6f8ff">entrada</text>
+<text transform="translate(253,378)" font-size="10" style="fill:#b0bec5">débito</text>
+<text transform="translate(237,350)" font-size="10" style="fill:#3171f6">Bolsa</text>
+<text transform="translate(548,336)" font-size="10" style="fill:#030f60">Brasil</text>
+<text transform="translate(322,138)" font-size="10" style="fill:#b0bec5">fusão</text>
+<text transform="translate(474,358)" font-size="10" style="fill:#f6f8ff">gestão</text>
+<text transform="translate(795,187) rotate(-90)" font-size="10" style="fill:#f6f8ff">internacionalização</text>
+<text transform="translate(257,147) rotate(-90)" font-size="10" style="fill:#030f60">distribuição</text>
+<text transform="translate(238,298)" font-size="10" style="fill:#3171f6">volume</text>
+<text transform="translate(23,361)" font-size="10" style="fill:#b0bec5">acesso</text>
+<text transform="translate(329,358)" font-size="10" style="fill:#3171f6">prémio</text>
+<text transform="translate(577,301) rotate(-90)" font-size="10" style="fill:#030f60">Rosa Soares</text>
+<text transform="translate(529,105)" font-size="10" style="fill:#3171f6">Efanor</text>
+<text transform="translate(29,197)" font-size="10" style="fill:#030f60">abertura</text>
+<text transform="translate(730,85)" font-size="10" style="fill:#f6f8ff">Desporto</text>
+<text transform="translate(243,389)" font-size="10" style="fill:#b0bec5">saúde</text>
+<text transform="translate(354,264)" font-size="10" style="fill:#030f60">aumento</text>
+<text transform="translate(396,350)" font-size="10" style="fill:#3171f6">Utilizador Sair</text>
+<text transform="translate(682,336)" font-size="10" style="fill:#3171f6">José Sócrates</text>
+<text transform="translate(10,177) rotate(-90)" font-size="10" style="fill:#3171f6">Dinheiro Vivo</text>
+<text transform="translate(33,123) rotate(-90)" font-size="10" style="fill:#030f60">participação</text>
+<text transform="translate(766,269)" font-size="10" style="fill:#b0bec5">áreas</text>
+<text transform="translate(318,253) rotate(-90)" font-size="10" style="fill:#f6f8ff">hora</text>
+<text transform="translate(181,309) rotate(-90)" font-size="10" style="fill:#b0bec5">Optimus</text>
+<text transform="translate(9,395)" font-size="10" style="fill:#b0bec5">Sócrates</text>
+<text transform="translate(701,225)" font-size="10" style="fill:#b0bec5">qualidade</text>
+<text transform="translate(222,309)" font-size="10" style="fill:#b0bec5">emprego</text>
+<text transform="translate(442,277)" font-size="10" style="fill:#030f60">loja</text>
+<text transform="translate(724,374)" font-size="10" style="fill:#f6f8ff">vida</text>
+<text transform="translate(72,38) rotate(-90)" font-size="10" style="fill:#3171f6">líder</text>
+<text transform="translate(198,119)" font-size="10" style="fill:#f6f8ff">login</text>
+<text transform="translate(453,66)" font-size="10" style="fill:#f6f8ff">decisão</text>
+<text transform="translate(416,359)" font-size="10" style="fill:#030f60">tópicos</text>
+<text transform="translate(153,338)" font-size="10" style="fill:#f6f8ff">processo</text>
+<text transform="translate(65,285)" font-size="10" style="fill:#030f60">pagamentos</text>
+<text transform="translate(508,147)" font-size="10" style="fill:#b0bec5">comunicado</text>
+<text transform="translate(589,395)" font-size="10" style="fill:#f6f8ff">rede</text>
+<text transform="translate(795,376) rotate(-90)" font-size="10" style="fill:#b0bec5">telecomunicações</text>
+<text transform="translate(511,133)" font-size="10" style="fill:#b0bec5">apoios</text>
+<text transform="translate(490,50)" font-size="10" style="fill:#3171f6">presença</text>
+<text transform="translate(349,278)" font-size="10" style="fill:#030f60">unidades</text>
+<text transform="translate(23,338)" font-size="10" style="fill:#b0bec5">pessoas</text>
+<text transform="translate(291,62)" font-size="10" style="fill:#3171f6">accionistas</text>
+</svg>
