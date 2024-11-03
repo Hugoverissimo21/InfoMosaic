@@ -72,7 +72,7 @@ apesar de ter tido 30? websites, veio tudo só de três
 
 ## wordcloud "company".svg (1/6)
 
-feito com **newsWordcloud v01.ipynb**
+feito com **compWordcloud v01.ipynb**
 
 wordcloud com cores da empresa e palavras mais vistas nas noticias
 
