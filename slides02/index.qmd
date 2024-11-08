@@ -118,7 +118,7 @@ feito com **compWordcloud v01.ipynb**, tendo por base as palavras mais mencionad
 ```
 
 
-## preço acoes e sentimentos
+## preço acoes e sentimentos/qnt news
 
 ```{=html}
 <figure style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
@@ -150,3 +150,10 @@ info = {1: "media dos sentimentos do mes",
 - fiz mal os sentimentos
 
 - tnh noticias irrelevantes
+
+
+feito com **newsVSstock v03**
+
+## next
+
+aa
