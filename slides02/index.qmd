@@ -35,7 +35,7 @@ from datetime import datetime
 
 ## lembretes {.justify}
 
-- meter codigo dos graficos?
+- meter codigo dos graficos?: NAO
 
 $\ $
 
@@ -45,22 +45,43 @@ $\ $
 
 - tlvz fazer ponte de onde se ficou no trabalho 1 para agora ?
 
+## data04.parquet
 
-# plots
+data before
 
-## newsSources.svg (1/2)
+# NER and Sentiment Analysis
 
-feito com **newsSources v01.ipynb**
+## NER
 
-apesar de ter tido 30? websites, veio tudo só de três
+- used spacy and "pt_core_news_sm" to extract {"PER", "ORG", "LOC", "MISC"} and also {NOUN}
 
-- alguns sites são mais recentes e o arquivo só foi até 2020
+- i had to define some words and rules to filter out expressoes/palvras inuteis ou erros de extracao por parte da biblioteca spacy
 
-- alguns de facto não têm resposta, ex.:
+link to file 04_nerandsent
 
-"banco comercial portugês" site:observador.pt,jornaldenegocios.pt,www.expresso.pt dá 0 resultados
+## Sentiment Analysis
 
-## newsSources.svg (2/2)
+- used vaderSentiment (SentimentIntensityAnalyzer), from textblob import TextBlob and from deep_translator import GoogleTranslator, because it was not working for portuguse text, so i decided it would be easy to translate and then do the analysis e pq:
+
+- - pipeline nunca dava, muito complicado
+
+- - estes dois so dao em ingles e um tem mt em conta os factos, tp terrorimos etc, outro tem os sentimentos de qm fala, ent mais vale fazer uma média
+
+- i beleive it wont have much impact , since what matters are some strong keywords which the translate wont have much impact
+
+link to file 04_nerandsent
+
+## data05.parquet
+
+new data
+
+- coluna news agr tem uma componente no dicionario de sentimentos para cada noticia e todas as palavras extraidas categorizadas ({"PER", "ORG", "LOC", "MISC", NOUN})
+
+- coluna keywords é um dicionario com a contagem de palavras por exempresa, sentimento referente à mesma, tipo de categorias onde foi vista, contagem das datas onde foi vista, contagem da source
+
+# Visualizations
+
+## News Sources
 
 ```{=html}
 <figure style="text-align: center;">
@@ -69,14 +90,12 @@ apesar de ter tido 30? websites, veio tudo só de três
 </figure>
 ```
 
+link para **newsSources v01.ipynb**
 
-## wordcloud "company".svg (1/6)
+apesar de ter usado 30 sites, a maioria so tem noticias pós 2020, e alguns n têm respostas de todo
 
-feito com **compWordcloud v01.ipynb**
 
-wordcloud com cores da empresa e palavras mais vistas nas noticias
-
-## wordcloud "company".svg (2/6)
+## Word Cloud
 
 ```{=html}
 <figure style="text-align: center;">
@@ -85,41 +104,19 @@ wordcloud com cores da empresa e palavras mais vistas nas noticias
 </figure>
 ```
 
-## wordcloud "company".svg (3/6)
+feito com **compWordcloud v01.ipynb**, tendo por base as palavras mais mencionadas
+
+## Word Cloud
 
 ```{=html}
-<figure style="text-align: center;">
-    <img src="wordcloud galp.svg" alt="wordcloud galp" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
+<figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+  <img src="wordcloud galp.svg" alt="wordcloud galp" style="width: 100%;">
+  <img src="wordcloud edp.svg" alt="wordcloud galp" style="width: 100%;">
+  <img src="wordcloud sonae.svg" alt="wordcloud galp" style="width: 100%;">
+  <img src="wordcloud motaengil.svg" alt="wordcloud galp" style="width: 100%;">
 </figure>
 ```
 
-## wordcloud "company".svg (4/6)
-
-```{=html}
-<figure style="text-align: center;">
-    <img src="wordcloud edp.svg" alt="wordcloud edp" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
-</figure>
-```
-
-## wordcloud "company".svg (5/6)
-
-```{=html}
-<figure style="text-align: center;">
-    <img src="wordcloud sonae.svg" alt="wordcloud sonae" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
-</figure>
-```
-
-## wordcloud "company".svg (6/6)
-
-```{=html}
-<figure style="text-align: center;">
-    <img src="wordcloud motaengil.svg" alt="wordcloud motaengil" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
-</figure>
-```
 
 ## next
 

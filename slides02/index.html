@@ -347,7 +347,7 @@ Hugo Veríssimo
 <section id="lembretes" class="slide level2 justify">
 <h2>lembretes</h2>
 <ul>
-<li>meter codigo dos graficos?</li>
+<li>meter codigo dos graficos?: NAO</li>
 </ul>
 <p><span class="math inline">\(\ \)</span></p>
 <ul>
@@ -356,66 +356,74 @@ Hugo Veríssimo
 <li><p>tlvz fazer ponte de onde se ficou no trabalho 1 para agora ?</p></li>
 </ul>
 </section>
+<section id="data04.parquet" class="slide level2">
+<h2>data04.parquet</h2>
+<p>data before</p>
+</section>
 <section>
-<section id="plots" class="title-slide slide level1 center">
-<h1>plots</h1>
+<section id="ner-and-sentiment-analysis" class="title-slide slide level1 center">
+<h1>NER and Sentiment Analysis</h1>
 
 </section>
-<section id="newssources.svg-12" class="slide level2">
-<h2>newsSources.svg (1/2)</h2>
-<p>feito com <strong>newsSources v01.ipynb</strong></p>
-<p>apesar de ter tido 30? websites, veio tudo só de três</p>
+<section id="ner" class="slide level2">
+<h2>NER</h2>
 <ul>
-<li><p>alguns sites são mais recentes e o arquivo só foi até 2020</p></li>
-<li><p>alguns de facto não têm resposta, ex.:</p></li>
+<li><p>used spacy and “pt_core_news_sm” to extract {“PER”, “ORG”, “LOC”, “MISC”} and also {NOUN}</p></li>
+<li><p>i had to define some words and rules to filter out expressoes/palvras inuteis ou erros de extracao por parte da biblioteca spacy</p></li>
 </ul>
-<p>“banco comercial portugês” site:observador.pt,jornaldenegocios.pt,www.expresso.pt dá 0 resultados</p>
+<p>link to file 04_nerandsent</p>
 </section>
-<section id="newssources.svg-22" class="slide level2">
-<h2>newsSources.svg (2/2)</h2>
+<section id="sentiment-analysis" class="slide level2">
+<h2>Sentiment Analysis</h2>
+<ul>
+<li><p>used vaderSentiment (SentimentIntensityAnalyzer), from textblob import TextBlob and from deep_translator import GoogleTranslator, because it was not working for portuguse text, so i decided it would be easy to translate and then do the analysis e pq:</p></li>
+<li><ul>
+<li>pipeline nunca dava, muito complicado</li>
+</ul></li>
+<li><ul>
+<li>estes dois so dao em ingles e um tem mt em conta os factos, tp terrorimos etc, outro tem os sentimentos de qm fala, ent mais vale fazer uma média</li>
+</ul></li>
+<li><p>i beleive it wont have much impact , since what matters are some strong keywords which the translate wont have much impact</p></li>
+</ul>
+<p>link to file 04_nerandsent</p>
+</section>
+<section id="data05.parquet" class="slide level2">
+<h2>data05.parquet</h2>
+<p>new data</p>
+<ul>
+<li><p>coluna news agr tem uma componente no dicionario de sentimentos para cada noticia e todas as palavras extraidas categorizadas ({“PER”, “ORG”, “LOC”, “MISC”, NOUN})</p></li>
+<li><p>coluna keywords é um dicionario com a contagem de palavras por exempresa, sentimento referente à mesma, tipo de categorias onde foi vista, contagem das datas onde foi vista, contagem da source</p></li>
+</ul>
+</section></section>
+<section>
+<section id="visualizations" class="title-slide slide level1 center">
+<h1>Visualizations</h1>
+
+</section>
+<section id="news-sources" class="slide level2">
+<h2>News Sources</h2>
 <figure style="text-align: center;">
     <img src="newsSources.svg" alt="noticias por fonte" style="width: 100%;">
     <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
 </figure>
+<p>link para <strong>newsSources v01.ipynb</strong></p>
+<p>apesar de ter usado 30 sites, a maioria so tem noticias pós 2020, e alguns n têm respostas de todo</p>
 </section>
-<section id="wordcloud-company.svg-16" class="slide level2">
-<h2>wordcloud “company”.svg (1/6)</h2>
-<p>feito com <strong>compWordcloud v01.ipynb</strong></p>
-<p>wordcloud com cores da empresa e palavras mais vistas nas noticias</p>
-</section>
-<section id="wordcloud-company.svg-26" class="slide level2">
-<h2>wordcloud “company”.svg (2/6)</h2>
+<section id="word-cloud" class="slide level2">
+<h2>Word Cloud</h2>
 <figure style="text-align: center;">
     <img src="wordcloud bcp.svg" alt="wordcloud bcp" style="width: 100%;">
     <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
 </figure>
+<p>feito com <strong>compWordcloud v01.ipynb</strong>, tendo por base as palavras mais mencionadas</p>
 </section>
-<section id="wordcloud-company.svg-36" class="slide level2">
-<h2>wordcloud “company”.svg (3/6)</h2>
-<figure style="text-align: center;">
-    <img src="wordcloud galp.svg" alt="wordcloud galp" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
-</figure>
-</section>
-<section id="wordcloud-company.svg-46" class="slide level2">
-<h2>wordcloud “company”.svg (4/6)</h2>
-<figure style="text-align: center;">
-    <img src="wordcloud edp.svg" alt="wordcloud edp" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
-</figure>
-</section>
-<section id="wordcloud-company.svg-56" class="slide level2">
-<h2>wordcloud “company”.svg (5/6)</h2>
-<figure style="text-align: center;">
-    <img src="wordcloud sonae.svg" alt="wordcloud sonae" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
-</figure>
-</section>
-<section id="wordcloud-company.svg-66" class="slide level2">
-<h2>wordcloud “company”.svg (6/6)</h2>
-<figure style="text-align: center;">
-    <img src="wordcloud motaengil.svg" alt="wordcloud motaengil" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
+<section id="word-cloud-1" class="slide level2">
+<h2>Word Cloud</h2>
+<figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+  <img src="wordcloud galp.svg" alt="wordcloud galp" style="width: 100%;">
+  <img src="wordcloud edp.svg" alt="wordcloud galp" style="width: 100%;">
+  <img src="wordcloud sonae.svg" alt="wordcloud galp" style="width: 100%;">
+  <img src="wordcloud motaengil.svg" alt="wordcloud galp" style="width: 100%;">
 </figure>
 </section>
 <section id="next" class="slide level2">
