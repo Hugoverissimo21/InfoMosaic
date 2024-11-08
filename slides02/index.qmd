@@ -118,6 +118,35 @@ feito com **compWordcloud v01.ipynb**, tendo por base as palavras mais mencionad
 ```
 
 
-## next
+## preço acoes e sentimentos
 
-aa
+```{=html}
+<figure style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+  <div style="display: flex; flex-direction: row; gap: 5px;">
+    <img src="newsVSsenti01.svg" alt="Image 1" style="width: 50%;" />
+    <img src="newsVSsenti04.svg" alt="Image 2" style="width: 50%;" />
+  </div>
+  <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px text-align: center;">GALP.LS, Galp Energia</figcaption>
+</figure>
+```
+
+info = {1: "media dos sentimentos do mes",
+        4: "mes se é positivo ou negativo",
+        #5: "log da soma dos sentimentos do mes, pq Redução de Disparidades Extremas, Linearização da Relação",
+        #6: "número de notícias do mês",
+        #7: "número de notícias do mês, diferenciado",
+        #8: "número de notícias do mês e varicao do preco em abs",
+        #10: "numero de noticias do mes, mas em log",
+        #11: "número de notícias do mês, diferenciado e em log",
+        #12: "número de notícias do mês, diferenciado e dif de precos em exp",
+        #13: "número de notícias do mês, diferenciado e em log",
+        #14: "número de notícias do mês, diferenciado e dif de precos em %"
+        }
+        
+- a meu ver, e de acordo com os coef de correlacao, n ha nenhuma corr entre qnt de noticias e variacao do preco...
+
+- simplesmente n existe
+
+- fiz mal os sentimentos
+
+- tnh noticias irrelevantes
