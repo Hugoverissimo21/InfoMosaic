@@ -152,8 +152,27 @@ info = {1: "media dos sentimentos do mes",
 - tnh noticias irrelevantes
 
 
-feito com **newsVSstock v03**
+feito com **newsVSstock v02**
 
-## next
+## Stock Price and Sentiment Analysis
 
-aa
+```{=html}
+<div style="text-align: center;">
+  <iframe src="stockVSsenti bcp.html" width="100%" height="300"></iframe>
+</div>
+```
+
+used **newsVSstock v04.ipynb**
+
+api for stock price https://www.alphavantage.co
+
+## Stock Price and Sentiment Analysis
+
+```{=html}
+<figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+  <iframe src="stockVSsenti bcp.html" width="100%" height="300"></iframe>
+  <iframe src="stockVSsenti bcp.html" width="100%" height="300"></iframe>
+  <iframe src="stockVSsenti bcp.html" width="100%" height="300"></iframe>
+  <iframe src="stockVSsenti bcp.html" width="100%" height="300"></iframe>
+</figure>
+```
