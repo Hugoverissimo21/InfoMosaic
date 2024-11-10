@@ -272,16 +272,15 @@ print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'typ
 
 # Visualizations
 
-## News Sources
+## News Sources {.justify}
 
 ```{=html}
 <figure style="text-align: center;">
-    <img src="newsSources.svg" alt="noticias por fonte" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
+    <img src="newsSources.svg" alt="noticias por fonte" style="width: 100%; height: 450px;">
 </figure>
 ```
 
-apesar de ter usado 30 sites, a maioria so tem noticias pós 2020, e alguns n têm respostas de todo
+Even though the search was limited to 33 websites, most only have news from after 2020, and some don’t have any results at all.
 
 ```{=html}
 <div class="footer">
@@ -290,18 +289,23 @@ apesar de ter usado 30 sites, a maioria so tem noticias pós 2020, e alguns n t�
 ```
 
 
-## Word Cloud
+## Word Cloud {.justify}
 
 ```{=html}
 <figure style="text-align: center;">
-    <img src="wordcloud bcp.svg" alt="wordcloud bcp" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
+    <img src="wordcloud bcp.svg" alt="wordcloud bcp" style="width: 100%; height: 450px;">
 </figure>
 ```
 
-feito com **compWordcloud v01.ipynb**, tendo por base as palavras mais mencionadas
+Using a word cloud provides insight into the company’s business areas, as well as the key people involved.
 
-## Word Cloud
+```{=html}
+<div class="footer">
+  /tests/compWordcloud v01.ipynb
+</div>
+```
+
+## Word Cloud {.justify}
 
 ```{=html}
 <figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
@@ -312,8 +316,14 @@ feito com **compWordcloud v01.ipynb**, tendo por base as palavras mais mencionad
 </figure>
 ```
 
+```{=html}
+<div class="footer">
+  /tests/compWordcloud v01.ipynb
+</div>
+```
 
-## preço acoes e sentimentos/qnt news
+
+## Stock Price and News Analysis {.justify}
 
 ```{=html}
 <figure style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
@@ -321,35 +331,21 @@ feito com **compWordcloud v01.ipynb**, tendo por base as palavras mais mencionad
     <img src="newsVSsenti01.svg" alt="Image 1" style="width: 50%;" />
     <img src="newsVSsenti04.svg" alt="Image 2" style="width: 50%;" />
   </div>
-  <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px text-align: center;">GALP.LS, Galp Energia</figcaption>
+  <figcaption style="font-size: 0.45em; margin-top: -10px; margin-bottom: 10px text-align: center;">Visualizations representing data from Galp Energia (GALP.LS).</figcaption>
 </figure>
 ```
 
-info = {1: "media dos sentimentos do mes",
-        4: "mes se é positivo ou negativo",
-        #5: "log da soma dos sentimentos do mes, pq Redução de Disparidades Extremas, Linearização da Relação",
-        #6: "número de notícias do mês",
-        #7: "número de notícias do mês, diferenciado",
-        #8: "número de notícias do mês e varicao do preco em abs",
-        #10: "numero de noticias do mes, mas em log",
-        #11: "número de notícias do mês, diferenciado e em log",
-        #12: "número de notícias do mês, diferenciado e dif de precos em exp",
-        #13: "número de notícias do mês, diferenciado e em log",
-        #14: "número de notícias do mês, diferenciado e dif de precos em %"
-        }
-        
-- a meu ver, e de acordo com os coef de correlacao, n ha nenhuma corr entre qnt de noticias e variacao do preco...
+- The correlation between news and stock prices was analyzed using metrics like news volume, logarithm of volume, volume changes, and sentiment, compared to stock prices and price change measures.
 
-- simplesmente n existe
+- Based on correlation coefficients, there appears to be no significant correlation between them. This lack of correlation may be due to the relatively small trading volume in the Portuguese stock market.
 
-- fiz mal os sentimentos
+```{=html}
+<div class="footer">
+  /tests/newsVSstock v02.ipynb
+</div>
+```
 
-- tnh noticias irrelevantes
-
-
-feito com **newsVSstock v02**
-
-## Stock Price and Sentiment Analysis
+## Stock Price and News Analysis
 
 ```{=html}
 <div style="text-align: center;">
@@ -361,7 +357,7 @@ used **newsVSstock v04.ipynb**
 
 api for stock price https://www.alphavantage.co
 
-## Stock Price and Sentiment Analysis
+## Stock Price and News Analysis
 
 ```{=html}
 <figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
@@ -372,15 +368,28 @@ api for stock price https://www.alphavantage.co
 </figure>
 ```
 
-## grafo
+## Company Relationship Map
 
 ```{=html}
 <div style="text-align: center;">
-  <iframe src="graph_galp.html" width="100%" height="600"></iframe>
+  <iframe src="graph_galp.html" width="100%" height="400"></iframe>
 </div>
 ```
 
-compgraph v04
+```{=html}
+<div style="text-align: center; margin-top: 20px;">
+  <button onclick="window.open('https://hugoverissimo21.github.io/FCD-project/assets/graph_galp.html', '_blank');" style="padding: 10px 20px; font-size: 16px;">Go to Example</button>
+</div>
+```
+
+adicionar 5 botoes, um para cada empresa
+
+
+```{=html}
+<div class="footer">
+  /tests/compGraph v04.ipynb
+</div>
+```
 
 ## grafos compgraph v04
 
@@ -391,6 +400,12 @@ compgraph v04
   <iframe src="graph_sonae.html" width="100%" height="300"></iframe>
   <iframe src="graph_motaengil.html" width="100%" height="300"></iframe>
 </figure>
+```
+
+```{=html}
+<div class="footer">
+  /tests/compGraph v04.ipynb
+</div>
 ```
 
 ## next

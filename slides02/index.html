@@ -628,26 +628,27 @@ tbody td:first-child {
 <h1>Visualizations</h1>
 
 </section>
-<section id="news-sources" class="slide level2">
+<section id="news-sources" class="slide level2 justify">
 <h2>News Sources</h2>
 <figure style="text-align: center;">
-    <img src="newsSources.svg" alt="noticias por fonte" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
+    <img src="newsSources.svg" alt="noticias por fonte" style="width: 100%; height: 450px;">
 </figure>
-<p>apesar de ter usado 30 sites, a maioria so tem noticias pós 2020, e alguns n têm respostas de todo</p>
+<p>Even though the search was limited to 33 websites, most only have news from after 2020, and some don’t have any results at all.</p>
 <div class="footer">
   /tests/newsSources v01.ipynb
 </div>
 </section>
-<section id="word-cloud" class="slide level2">
+<section id="word-cloud" class="slide level2 justify">
 <h2>Word Cloud</h2>
 <figure style="text-align: center;">
-    <img src="wordcloud bcp.svg" alt="wordcloud bcp" style="width: 100%;">
-    <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
+    <img src="wordcloud bcp.svg" alt="wordcloud bcp" style="width: 100%; height: 450px;">
 </figure>
-<p>feito com <strong>compWordcloud v01.ipynb</strong>, tendo por base as palavras mais mencionadas</p>
+<p>Using a word cloud provides insight into the company’s business areas, as well as the key people involved.</p>
+<div class="footer">
+  /tests/compWordcloud v01.ipynb
+</div>
 </section>
-<section id="word-cloud-1" class="slide level2">
+<section id="word-cloud-1" class="slide level2 justify">
 <h2>Word Cloud</h2>
 <figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
   <img src="wordcloud galp.svg" alt="wordcloud galp" style="width: 100%;">
@@ -655,35 +656,37 @@ tbody td:first-child {
   <img src="wordcloud sonae.svg" alt="wordcloud galp" style="width: 100%;">
   <img src="wordcloud motaengil.svg" alt="wordcloud galp" style="width: 100%;">
 </figure>
+<div class="footer">
+  /tests/compWordcloud v01.ipynb
+</div>
 </section>
-<section id="preço-acoes-e-sentimentosqnt-news" class="slide level2">
-<h2>preço acoes e sentimentos/qnt news</h2>
+<section id="stock-price-and-news-analysis" class="slide level2 justify">
+<h2>Stock Price and News Analysis</h2>
 <figure style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
   <div style="display: flex; flex-direction: row; gap: 5px;">
     <img src="newsVSsenti01.svg" alt="Image 1" style="width: 50%;">
     <img src="newsVSsenti04.svg" alt="Image 2" style="width: 50%;">
   </div>
-  <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px text-align: center;">GALP.LS, Galp Energia</figcaption>
+  <figcaption style="font-size: 0.45em; margin-top: -10px; margin-bottom: 10px text-align: center;">Visualizations representing data from Galp Energia (GALP.LS).</figcaption>
 </figure>
-<p>info = {1: “media dos sentimentos do mes”, 4: “mes se é positivo ou negativo”, #5: “log da soma dos sentimentos do mes, pq Redução de Disparidades Extremas, Linearização da Relação”, #6: “número de notícias do mês”, #7: “número de notícias do mês, diferenciado”, #8: “número de notícias do mês e varicao do preco em abs”, #10: “numero de noticias do mes, mas em log”, #11: “número de notícias do mês, diferenciado e em log”, #12: “número de notícias do mês, diferenciado e dif de precos em exp”, #13: “número de notícias do mês, diferenciado e em log”, #14: “número de notícias do mês, diferenciado e dif de precos em %” }</p>
 <ul>
-<li><p>a meu ver, e de acordo com os coef de correlacao, n ha nenhuma corr entre qnt de noticias e variacao do preco…</p></li>
-<li><p>simplesmente n existe</p></li>
-<li><p>fiz mal os sentimentos</p></li>
-<li><p>tnh noticias irrelevantes</p></li>
+<li><p>The correlation between news and stock prices was analyzed using metrics like news volume, logarithm of volume, volume changes, and sentiment, compared to stock prices and price change measures.</p></li>
+<li><p>Based on correlation coefficients, there appears to be no significant correlation between them. This lack of correlation may be due to the relatively small trading volume in the Portuguese stock market.</p></li>
 </ul>
-<p>feito com <strong>newsVSstock v02</strong></p>
+<div class="footer">
+  /tests/newsVSstock v02.ipynb
+</div>
 </section>
-<section id="stock-price-and-sentiment-analysis" class="slide level2">
-<h2>Stock Price and Sentiment Analysis</h2>
+<section id="stock-price-and-news-analysis-1" class="slide level2">
+<h2>Stock Price and News Analysis</h2>
 <div style="text-align: center;">
   <iframe src="stockVSsenti bcp.html" width="100%" height="300"></iframe>
 </div>
 <p>used <strong>newsVSstock v04.ipynb</strong></p>
 <p>api for stock price https://www.alphavantage.co</p>
 </section>
-<section id="stock-price-and-sentiment-analysis-1" class="slide level2">
-<h2>Stock Price and Sentiment Analysis</h2>
+<section id="stock-price-and-news-analysis-2" class="slide level2">
+<h2>Stock Price and News Analysis</h2>
 <figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
   <iframe src="stockVSsenti galp.html" width="100%" height="300"></iframe>
   <iframe src="stockVSsenti edp.html" width="100%" height="300"></iframe>
@@ -691,12 +694,18 @@ tbody td:first-child {
   <iframe src="stockVSsenti motaengil.html" width="100%" height="300"></iframe>
 </figure>
 </section>
-<section id="grafo" class="slide level2">
-<h2>grafo</h2>
+<section id="company-relationship-map" class="slide level2">
+<h2>Company Relationship Map</h2>
 <div style="text-align: center;">
-  <iframe src="graph_galp.html" width="100%" height="600"></iframe>
+  <iframe src="graph_galp.html" width="100%" height="400"></iframe>
 </div>
-<p>compgraph v04</p>
+<div style="text-align: center; margin-top: 20px;">
+  <button onclick="window.open('https://hugoverissimo21.github.io/FCD-project/assets/graph_galp.html', '_blank');" style="padding: 10px 20px; font-size: 16px;">Go to Example</button>
+</div>
+<p>adicionar 5 botoes, um para cada empresa</p>
+<div class="footer">
+  /tests/compGraph v04.ipynb
+</div>
 </section>
 <section id="grafos-compgraph-v04" class="slide level2">
 <h2>grafos compgraph v04</h2>
@@ -706,6 +715,9 @@ tbody td:first-child {
   <iframe src="graph_sonae.html" width="100%" height="300"></iframe>
   <iframe src="graph_motaengil.html" width="100%" height="300"></iframe>
 </figure>
+<div class="footer">
+  /tests/compGraph v04.ipynb
+</div>
 </section>
 <section id="next" class="slide level2">
 <h2>next</h2>
