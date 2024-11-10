@@ -381,3 +381,18 @@ api for stock price https://www.alphavantage.co
 ```
 
 compgraph v04
+
+## grafos compgraph v04
+
+```{=html}
+<figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+  <iframe src="graph_bcp.html" width="100%" height="300"></iframe>
+  <iframe src="graph_edp.html" width="100%" height="300"></iframe>
+  <iframe src="graph_sonae.html" width="100%" height="300"></iframe>
+  <iframe src="graph_motaengil.html" width="100%" height="300"></iframe>
+</figure>
+```
+
+## next
+
+aa
