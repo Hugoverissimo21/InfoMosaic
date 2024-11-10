@@ -47,6 +47,8 @@ $\ $
 
 - tlvz fazer ponte de onde se ficou no trabalho 1 para agora ?
 
+- remover todas as fig caption
+
 ## data04.parquet {.justify}
 
 ```{=html}
@@ -137,9 +139,9 @@ pd.read_parquet("data04.parquet").iloc[0,1][0].keys()
 ```
 
 
-# NER and Sentiment Analysis {.justify}
+# NER and Sentiment Analysis
 
-## NER 
+## NER {.justify}
 
 - Used the model `pt_core_news_sm` from `spacy` to extract:
 
@@ -178,7 +180,7 @@ pd.read_parquet("data04.parquet").iloc[0,1][0].keys()
 </div>
 ```
 
-## data05.parquet
+## data05.parquet {.justify}
 
 ```{=html}
 <table border="1" class="dataframe">
@@ -240,6 +242,12 @@ pd.read_parquet("data05.parquet")["news"].iloc[0][0].keys()
 print("dict_keys(['ExtractedText', 'linkToArchive', 'newsNER', 'newsProbability', 'newsSentiment', 'newsSource', 'tstamp'])")
 ```
 
+```{=html}
+<div class="footer">
+  /notebooks/04_NERandSent.ipynb
+</div>
+```
+
 ## data05.parquet
 
 ```{.python}
@@ -249,9 +257,18 @@ pd.read_parquet("data05.parquet")["keywords"].iloc[0]['03 Mar'].keys()
 print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])")
 ```
 
-- coluna news agr tem uma componente no dicionario de sentimentos para cada noticia e todas as palavras extraidas categorizadas ({"PER", "ORG", "LOC", "MISC", NOUN})
+- oq é cada um
 
-- coluna keywords é um dicionario com a contagem de palavras por exempresa, sentimento referente à mesma, tipo de categorias onde foi vista, contagem das datas onde foi vista, contagem da source
+- ....
+
+- ....
+
+
+```{=html}
+<div class="footer">
+  /notebooks/04_NERandSent.ipynb
+</div>
+```
 
 # Visualizations
 
@@ -264,9 +281,13 @@ print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'typ
 </figure>
 ```
 
-link para **newsSources v01.ipynb**
-
 apesar de ter usado 30 sites, a maioria so tem noticias pós 2020, e alguns n têm respostas de todo
+
+```{=html}
+<div class="footer">
+  /tests/newsSources v01.ipynb
+</div>
+```
 
 
 ## Word Cloud

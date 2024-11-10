@@ -420,6 +420,7 @@ Hugo Veríssimo
 <li><p>texto justificado</p></li>
 <li><p>tudo em ingles</p></li>
 <li><p>tlvz fazer ponte de onde se ficou no trabalho 1 para agora ?</p></li>
+<li><p>remover todas as fig caption</p></li>
 </ul>
 </section>
 <section id="data04.parquet" class="slide level2 justify">
@@ -509,11 +510,11 @@ tbody td:first-child {
 </div>
 </section>
 <section>
-<section id="ner-and-sentiment-analysis" class="title-slide slide level1 justify center">
+<section id="ner-and-sentiment-analysis" class="title-slide slide level1 center">
 <h1>NER and Sentiment Analysis</h1>
 
 </section>
-<section id="ner" class="slide level2">
+<section id="ner" class="slide level2 justify">
 <h2>NER</h2>
 <ul>
 <li><p>Used the model <code>pt_core_news_sm</code> from <code>spacy</code> to extract:</p>
@@ -544,7 +545,7 @@ tbody td:first-child {
   /notebooks/04_NERandSent.ipynb
 </div>
 </section>
-<section id="data05.parquet" class="slide level2">
+<section id="data05.parquet" class="slide level2 justify">
 <h2>data05.parquet</h2>
 <table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -601,6 +602,9 @@ tbody td:first-child {
 <pre><code>dict_keys(['ExtractedText', 'linkToArchive', 'newsNER', 'newsProbability', 'newsSentiment', 'newsSource', 'tstamp'])</code></pre>
 </div>
 </div>
+<div class="footer">
+  /notebooks/04_NERandSent.ipynb
+</div>
 </section>
 <section id="data05.parquet-1" class="slide level2">
 <h2>data05.parquet</h2>
@@ -611,9 +615,13 @@ tbody td:first-child {
 </div>
 </div>
 <ul>
-<li><p>coluna news agr tem uma componente no dicionario de sentimentos para cada noticia e todas as palavras extraidas categorizadas ({“PER”, “ORG”, “LOC”, “MISC”, NOUN})</p></li>
-<li><p>coluna keywords é um dicionario com a contagem de palavras por exempresa, sentimento referente à mesma, tipo de categorias onde foi vista, contagem das datas onde foi vista, contagem da source</p></li>
+<li><p>oq é cada um</p></li>
+<li><p>….</p></li>
+<li><p>….</p></li>
 </ul>
+<div class="footer">
+  /notebooks/04_NERandSent.ipynb
+</div>
 </section></section>
 <section>
 <section id="visualizations" class="title-slide slide level1 center">
@@ -626,8 +634,10 @@ tbody td:first-child {
     <img src="newsSources.svg" alt="noticias por fonte" style="width: 100%;">
     <figcaption style="font-size: 0.45em; margin-top: -25px; margin-bottom: 25px;">Fig. x: Descricao bla bla.</figcaption>
 </figure>
-<p>link para <strong>newsSources v01.ipynb</strong></p>
 <p>apesar de ter usado 30 sites, a maioria so tem noticias pós 2020, e alguns n têm respostas de todo</p>
+<div class="footer">
+  /tests/newsSources v01.ipynb
+</div>
 </section>
 <section id="word-cloud" class="slide level2">
 <h2>Word Cloud</h2>
