@@ -37,6 +37,8 @@ from datetime import datetime
 
 - meter codigo dos graficos?: NAO
 
+- meter modulos usados
+
 $\ $
 
 - texto justificado
@@ -170,9 +172,13 @@ api for stock price https://www.alphavantage.co
 
 ```{=html}
 <figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-  <iframe src="stockVSsenti bcp.html" width="100%" height="300"></iframe>
-  <iframe src="stockVSsenti bcp.html" width="100%" height="300"></iframe>
-  <iframe src="stockVSsenti bcp.html" width="100%" height="300"></iframe>
-  <iframe src="stockVSsenti bcp.html" width="100%" height="300"></iframe>
+  <iframe src="stockVSsenti galp.html" width="100%" height="300"></iframe>
+  <iframe src="stockVSsenti edp.html" width="100%" height="300"></iframe>
+  <iframe src="stockVSsenti sonae.html" width="100%" height="300"></iframe>
+  <iframe src="stockVSsenti motaengil.html" width="100%" height="300"></iframe>
 </figure>
 ```
+
+## next
+
+aa
