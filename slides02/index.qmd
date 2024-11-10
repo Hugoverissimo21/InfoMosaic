@@ -47,35 +47,190 @@ $\ $
 
 - tlvz fazer ponte de onde se ficou no trabalho 1 para agora ?
 
-## data04.parquet
+## data04.parquet {.justify}
 
-data before
+```{=html}
+<style>
+.dataframe {
+  display: block;
+  max-width: 100%;
+  max-height: 75%; /* vertical scrolling */
+  overflow-x: auto;
+  overflow-y: auto;
+  font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /*border: 1px solid #ddd; apply only to big dfs */
+}
 
-# NER and Sentiment Analysis
+table {
+  max-width: 100%;
+  border-collapse: collapse;
+}
 
-## NER
+th, td { /* th is about header*/
+  padding: 8px 16px;
+  border: 1px solid #ddd; /* Border between cells */
+  text-align: left;
+  vertical-align: middle;
+  font-size: 16px;
+}
 
-- used spacy and "pt_core_news_sm" to extract {"PER", "ORG", "LOC", "MISC"} and also {NOUN}
+thead th {
+  background-color: rgba(128, 128, 128, 0.3);
+  font-weight: bold;
+}
 
-- i had to define some words and rules to filter out expressoes/palvras inuteis ou erros de extracao por parte da biblioteca spacy
+tbody td:first-child {
+  background-color: rgba(128, 128, 128, 0.3);
+  font-weight: bold;
+}
+</style>
+```
 
-link to file 04_nerandsent
+```{=html}
+<table style="border: 1px solid #ddd;" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>aliases</th>
+<th>news</th>
+</tr>
+<tr>
+<th>companies</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Banco Comercial Português</th>
+<td>[Banco Comercial Português, BCP]</td>
+<td>[{'ExtractedText': 'DN &nbsp; 13 de Setembro de 200...</td>
+</tr>
+<tr>
+<th>Galp Energia</th>
+<td>[Galp Energia, GALP]</td>
+<td>[{'ExtractedText': 'RTP Galp reforça posição n...</td>
+</tr>
+<tr>
+<th>EDP</th>
+<td>[EDP, Energias de Portugal, Electricidade de P...</td>
+<td>[{'ExtractedText': 'DN-Sinteses Negocios 9 de ...</td>
+</tr>
+<tr>
+<th>Sonae</th>
+<td>[Sonae, SON]</td>
+<td>[{'ExtractedText': 'DN-Sinteses 5 de Março de ...</td>
+</tr>
+<tr>
+<th>Mota-Engil</th>
+<td>[Mota-Engil, EGL]</td>
+<td>[{'ExtractedText': 'RTP Lucro da Mota-Engil so...</td>
+</tr>
+</tbody>
+</table>
+```
 
-## Sentiment Analysis
+$\ $
 
-- used vaderSentiment (SentimentIntensityAnalyzer), from textblob import TextBlob and from deep_translator import GoogleTranslator, because it was not working for portuguse text, so i decided it would be easy to translate and then do the analysis e pq:
+```{python}
+pd.read_parquet("data04.parquet").iloc[0,1][0].keys()
+```
 
-- - pipeline nunca dava, muito complicado
 
-- - estes dois so dao em ingles e um tem mt em conta os factos, tp terrorimos etc, outro tem os sentimentos de qm fala, ent mais vale fazer uma média
+# NER and Sentiment Analysis {.justify}
 
-- i beleive it wont have much impact , since what matters are some strong keywords which the translate wont have much impact
+## NER 
 
-link to file 04_nerandsent
+- Used the model `pt_core_news_sm` from `spacy` to extract:
+
+  - "PER" - named entity that represents a person
+  
+  - "ORG" - named entity that represents a group or organization
+  
+  - "LOC" - named entity that indicates a specific place
+  
+  - "MISC" - named entity that doesn’t fit into the other categories
+  
+  - "NOUN" - part-of-speech tag that identifies a noun in the sentence
+
+- Additionally, the model was not filtering certain meaningless words and expressions, requiring the implementation of specific rules to address this issue.
+
+```{=html}
+<div class="footer">
+  /notebooks/04_NERandSent.ipynb
+</div>
+```
+
+
+## Sentiment Analysis {.justify}
+
+- The initial approach involved using the `pipeline` from `transformers`, but the models consistently failed to load, leading to the exploration of an alternative solution to bypass this issue.
+
+- The solution involved using:
+
+  - `deep_translator` to overcome language restrictions
+  
+  - `vaderSentiment` and `textblob` to extract the sentiment of the news
+
+```{=html}
+<div class="footer">
+  /notebooks/04_NERandSent.ipynb
+</div>
+```
 
 ## data05.parquet
 
-new data
+```{=html}
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>aliases</th>
+<th>news</th>
+<th>keywords</th>
+</tr>
+<tr>
+<th>companies</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Banco Comercial Português</th>
+<td>[Banco Comercial Português, BCP]</td>
+<td>[{'ExtractedText': 'DN &nbsp; 13 de Setembro de 200...</td>
+<td>{'03 Mar': {'count': 2.0, 'date': {'201503': 2...</td>
+</tr>
+<tr>
+<th>Galp Energia</th>
+<td>[Galp Energia, GALP]</td>
+<td>[{'ExtractedText': 'RTP Galp reforça posição n...</td>
+<td>{'00h00': {'count': 7.0, 'date': {'201004': 1....</td>
+</tr>
+<tr>
+<th>EDP</th>
+<td>[EDP, Energias de Portugal, Electricidade de P...</td>
+<td>[{'ExtractedText': 'DN-Sinteses Negocios 9 de ...</td>
+<td>{'00h00': {'count': 4.0, 'date': {'201004': No...</td>
+</tr>
+<tr>
+<th>Sonae</th>
+<td>[Sonae, SON]</td>
+<td>[{'ExtractedText': 'DN-Sinteses 5 de Março de ...</td>
+<td>{'00h00': {'count': 3.0, 'date': {'201004': No...</td>
+</tr>
+<tr>
+<th>Mota-Engil</th>
+<td>[Mota-Engil, EGL]</td>
+<td>[{'ExtractedText': 'RTP Lucro da Mota-Engil so...</td>
+<td>{'15h30': {'count': 2.0, 'date': {'201509': 1....</td>
+</tr>
+</tbody>
+</table>
+```
+
 
 - coluna news agr tem uma componente no dicionario de sentimentos para cada noticia e todas as palavras extraidas categorizadas ({"PER", "ORG", "LOC", "MISC", NOUN})
 
