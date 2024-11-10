@@ -372,6 +372,12 @@ api for stock price https://www.alphavantage.co
 </figure>
 ```
 
-## next
+## grafo
 
-aa
+```{=html}
+<div style="text-align: center;">
+  <iframe src="graph_galp.html" width="100%" height="600"></iframe>
+</div>
+```
+
+compgraph v04
