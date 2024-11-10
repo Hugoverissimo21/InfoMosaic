@@ -594,6 +594,22 @@ tbody td:first-child {
 </tr>
 </tbody>
 </table>
+<p><span class="math inline">\(\ \)</span></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>pd.read_parquet(<span class="st">"data05.parquet"</span>)[<span class="st">"news"</span>].iloc[<span class="dv">0</span>][<span class="dv">0</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['ExtractedText', 'linkToArchive', 'newsNER', 'newsProbability', 'newsSentiment', 'newsSource', 'tstamp'])</code></pre>
+</div>
+</div>
+</section>
+<section id="data05.parquet-1" class="slide level2">
+<h2>data05.parquet</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a>pd.read_parquet(<span class="st">"data05.parquet"</span>)[<span class="st">"keywords"</span>].iloc[<span class="dv">0</span>][<span class="st">'03 Mar'</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])</code></pre>
+</div>
+</div>
 <ul>
 <li><p>coluna news agr tem uma componente no dicionario de sentimentos para cada noticia e todas as palavras extraidas categorizadas ({“PER”, “ORG”, “LOC”, “MISC”, NOUN})</p></li>
 <li><p>coluna keywords é um dicionario com a contagem de palavras por exempresa, sentimento referente à mesma, tipo de categorias onde foi vista, contagem das datas onde foi vista, contagem da source</p></li>

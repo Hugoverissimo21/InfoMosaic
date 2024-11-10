@@ -231,6 +231,23 @@ pd.read_parquet("data04.parquet").iloc[0,1][0].keys()
 </table>
 ```
 
+$\ $
+
+```{.python}
+pd.read_parquet("data05.parquet")["news"].iloc[0][0].keys()
+```
+```{python, echo=FALSE}
+print("dict_keys(['ExtractedText', 'linkToArchive', 'newsNER', 'newsProbability', 'newsSentiment', 'newsSource', 'tstamp'])")
+```
+
+## data05.parquet
+
+```{.python}
+pd.read_parquet("data05.parquet")["keywords"].iloc[0]['03 Mar'].keys()
+```
+```{python, echo=FALSE}
+print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])")
+```
 
 - coluna news agr tem uma componente no dicionario de sentimentos para cada noticia e todas as palavras extraidas categorizadas ({"PER", "ORG", "LOC", "MISC", NOUN})
 
