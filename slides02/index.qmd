@@ -353,9 +353,13 @@ Using a word cloud provides insight into the company’s business areas, as well
 </div>
 ```
 
-used **newsVSstock v04.ipynb**
-
 api for stock price https://www.alphavantage.co
+
+```{=html}
+<div class="footer">
+  /tests/newsVSstock v04.ipynb
+</div>
+```
 
 ## Stock Price and News Analysis
 
@@ -366,6 +370,12 @@ api for stock price https://www.alphavantage.co
   <iframe src="stockVSsenti sonae.html" width="100%" height="300"></iframe>
   <iframe src="stockVSsenti motaengil.html" width="100%" height="300"></iframe>
 </figure>
+```
+
+```{=html}
+<div class="footer">
+  /tests/newsVSstock v04.ipynb
+</div>
 ```
 
 ## Company Relationship Map {.justify}
