@@ -409,7 +409,7 @@ Hugo Veríssimo
 </div>
 
 </section>
-<section id="lembretes" class="slide level2 justify">
+<section id="lembretes" class="slide level2">
 <h2>lembretes</h2>
 <ul>
 <li><p>meter codigo dos graficos?: NAO</p></li>
@@ -419,8 +419,6 @@ Hugo Veríssimo
 <ul>
 <li><p>texto justificado</p></li>
 <li><p>tudo em ingles</p></li>
-<li><p>tlvz fazer ponte de onde se ficou no trabalho 1 para agora ?</p></li>
-<li><p>remover todas as fig caption</p></li>
 </ul>
 </section>
 <section id="data04.parquet" class="slide level2 justify">
@@ -606,18 +604,32 @@ tbody td:first-child {
   /notebooks/04_NERandSent.ipynb
 </div>
 </section>
-<section id="data05.parquet-1" class="slide level2">
+<section id="data05.parquet-1" class="slide level2 justify">
 <h2>data05.parquet</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a>pd.read_parquet(<span class="st">"data05.parquet"</span>)[<span class="st">"keywords"</span>].iloc[<span class="dv">0</span>][<span class="st">'03 Mar'</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])</code></pre>
+<pre><code>dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])
+ </code></pre>
 </div>
 </div>
 <ul>
-<li><p>oq é cada um</p></li>
-<li><p>….</p></li>
-<li><p>….</p></li>
+<li><p><code>count</code>: number of mentions of the <em>keyword</em></p></li>
+<li><p><code>date</code>: dictionary where the keys represent months (<code>%Y%m</code>) and the values represent the count of <em>keyword</em> mentions in that month</p></li>
+<li><p><code>filter</code>: value between 0 and 1 that represents the importance level of the <em>keyword</em></p></li>
+<li><p><code>news</code>: list of URLs linking to news where the <em>keyword</em> appears</p></li>
+</ul>
+<div class="footer">
+  /notebooks/04_NERandSent.ipynb
+</div>
+</section>
+<section id="data05.parquet-2" class="slide level2 justify">
+<h2>data05.parquet</h2>
+<ul>
+<li><p><code>sentiment</code>: average sentiment of the news that mention the <em>keyword</em></p></li>
+<li><p><code>source</code>: dictionary where the keys are news sources and the values represent the count of news from that source that mention the <em>keyword</em></p></li>
+<li><p><code>type</code>: set of values indicating the categories that the <em>keyword</em> belongs to: PER, ORG, LOC, MISC and/or NOUN</p></li>
+<li><p><code>weight</code>: metric that balances factors such as the total number of mentions, the probability of the <em>news being news</em> and the importance of the <em>keyword</em>’s category</p></li>
 </ul>
 <div class="footer">
   /notebooks/04_NERandSent.ipynb
@@ -677,24 +689,25 @@ tbody td:first-child {
   /tests/newsVSstock v02.ipynb
 </div>
 </section>
-<section id="stock-price-and-news-analysis-1" class="slide level2">
+<section id="stock-price-and-news-analysis-1" class="slide level2 justify">
 <h2>Stock Price and News Analysis</h2>
-<div style="text-align: center;">
-  <iframe src="stockVSsenti bcp.html" width="100%" height="400"></iframe>
+<div style="text-align: center; margin-bottom: -55px;">
+  <iframe src="stockVSsenti bcp.html" width="100%" height="450"></iframe>
 </div>
-<p>api for stock price https://www.alphavantage.co</p>
+<p>By using the <a href="https://www.alphavantage.co">Alpha Vantage API</a> to retrieve stock prices and combining this with an analysis of extracted <em>keywords</em> from news, you can gain valuable insights into market movements.</p>
 <div class="footer">
   /tests/newsVSstock v04.ipynb
 </div>
 </section>
-<section id="stock-price-and-news-analysis-2" class="slide level2">
+<section id="stock-price-and-news-analysis-2" class="slide level2 justify">
 <h2>Stock Price and News Analysis</h2>
-<figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-  <iframe src="stockVSsenti galp.html" width="100%" height="300"></iframe>
-  <iframe src="stockVSsenti edp.html" width="100%" height="300"></iframe>
-  <iframe src="stockVSsenti sonae.html" width="100%" height="300"></iframe>
-  <iframe src="stockVSsenti motaengil.html" width="100%" height="300"></iframe>
+<figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr);">
+  <iframe src="stockVSsenti galp.html" width="100%" height="300" style="position: relative; bottom: -35px; top: -5px;"></iframe>
+  <iframe src="stockVSsenti edp.html" width="100%" height="300" style="position: relative; bottom: -35px; top: -5px;"></iframe>
+  <iframe src="stockVSsenti sonae.html" width="100%" height="300" style="position: relative; top: -35px;"></iframe>
+  <iframe src="stockVSsenti motaengil.html" width="100%" height="300" style="position: relative; top: -35px;"></iframe>
 </figure>
+
 <div class="footer">
   /tests/newsVSstock v04.ipynb
 </div>
@@ -725,10 +738,6 @@ tbody td:first-child {
 <div class="footer">
   /tests/compGraph v04.ipynb
 </div>
-</section>
-<section id="next" class="slide level2">
-<h2>next</h2>
-<p>aa</p>
 <div class="quarto-auto-generated-content">
 <p><img src="ua.png" class="slide-logo"></p>
 <div class="footer footer-default">
