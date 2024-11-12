@@ -428,3 +428,20 @@ Choose a company:
   /tests/compGraph v04.ipynb
 </div>
 ```
+
+## aa correlation for each *keyword*
+
+
+```{=html}
+<figure style="text-align: center;">
+    <img src="keywords_correlation.png" alt="matrix corr keywords" style="width: 100%;">
+</figure>
+```
+
+49787136 quadradinhos | ver lista de intersting pairs ?
+
+```{=html}
+<div class="footer">
+  /tests/keysCorr v03.ipynb
+</div>
+```
