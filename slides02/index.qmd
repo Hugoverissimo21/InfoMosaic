@@ -429,7 +429,7 @@ Choose a company:
 </div>
 ```
 
-## aa correlation for each *keyword*
+## *Keywords* Interaction Analysis
 
 
 ```{=html}
@@ -438,7 +438,7 @@ Choose a company:
 </figure>
 ```
 
-49787136 quadradinhos | ver lista de intersting pairs ?
+ns q para ... foi feita uma amtriz de correlacao, tendo 49787136 quadradinhos
 
 ```{=html}
 <div class="footer">
@@ -446,7 +446,7 @@ Choose a company:
 </div>
 ```
 
-## correlacoes interessantes (BCP - GALP)
+## *Keywords* Interaction Analysis
 
 ```{=html}
 <style>
@@ -549,9 +549,9 @@ Choose a company:
 
 ```
 
+$\ $
 
-
-dguyasdghs
+qq coisa meter mais relacoes)) ns algumas das relacoes mais interessantes encontradas
 
 
 ```{=html}
