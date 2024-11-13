@@ -450,59 +450,63 @@ Choose a company:
 
 ```{=html}
 <style>
-/* Classe para tabelas personalizadas */
 .table-custom {
-    border: 2px solid #333;
     width: 100%;
     border-collapse: collapse;
+    font-size: 26px;
     text-align: center;
-    background-color: #f9f9f9;
-}
-
-.table-custom th, .table-custom td {
-    padding: 10px;
-    border: 1px solid #ddd;
+    background-color: transparent;
 }
 
 .table-custom th {
-    background-color: #4CAF50;
-    color: white;
+    padding: 10px;
+    border-bottom: 2px solid #333;
+    font-size: 26px;
+    text-align: center;
+}
+
+.table-custom td {
+    padding: 10px;
+    border: none; 
+    background-color: transparent;
+    font-size: 26px;
+    text-align: center;
+}
+.table-custom td:first-child {
+    background-color: transparent;
+    font-weight: normal;
+    font-size: 26px;
+    text-align: center;
 }
 </style>
 
 <table class="table-custom">
+  <colgroup>
+    <col style="width:13%">
+    <col style="width:37%">
+    <col style="width:37%">
+    <col style="width:13%">
+  </colgroup> 
   <thead>
     <tr>
-      <th>Comp. 1</th>
-      <th><em>Keyword<em> 1</th>
-      <th><em>Keyword<em> 2</th>
-      <th>Comp. 2</th>
+      <th align="center">Comp. 1</th>
+      <th align="center"><em>Keyword<em> 1</th>
+      <th align="center"><em>Keyword<em> 2</th>
+      <th align="center">Comp. 2</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>BCP</td>
-      <td>Sonangol</td>
-      <td>petrolífera</td>
-      <td>BCP</td>
+      <td align="center">BCP</td>
+      <td align="center">Sonangol</td>
+      <td align="center">petrolífera</td>
+      <td align="center">BCP</td>
     </tr>
     <tr>
       <td>BCP</td>
       <td>João Rendeiro</td>
       <td>Tribunal da Relação de Lisboa</td>
       <td>BCP</td>
-    </tr>
-    <tr>
-      <td>BCP</td>
-      <td>compensação</td>
-      <td>acusação</td>
-      <td>GLP</td>
-    </tr>
-    <tr>
-      <td>BCP</td>
-      <td>compensação</td>
-      <td>tribunais</td>
-      <td>GLP</td>
     </tr>
     <tr>
       <td>BCP</td>
@@ -516,11 +520,38 @@ Choose a company:
       <td>Adolfo Mesquita Nunes</td>
       <td>GLP</td>
     </tr>
+    <tr>
+      <td>GLP</td>
+      <td>jogos</td>
+      <td>seleção</td>
+      <td>GLP</td>
+    </tr>
+    <tr>
+      <td>GLP</td>
+      <td>Setgás</td>
+      <td>Setgás</td>
+      <td>EDP</td>
+    </tr>
+    <tr>
+      <td>GLP</td>
+      <td>Petrobrás</td>
+      <td>Petrobrás</td>
+      <td>EGL</td>
+    </tr>
+    <tr>
+      <td>SON</td>
+      <td>Portucel</td>
+      <td>Suzano</td>
+      <td>SON</td>
+    </tr>
   </tbody>
 </table>
 
 ```
 
+
+
+dguyasdghs
 
 
 ```{=html}
