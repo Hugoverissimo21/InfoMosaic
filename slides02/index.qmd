@@ -45,6 +45,8 @@ $\ $
 
 - tudo em ingles
 
+- keywords deixar de ser italico?
+
 ## data04.parquet {.justify}
 
 ```{=html}
@@ -429,7 +431,7 @@ Choose a company:
 </div>
 ```
 
-## *Keywords* Interaction Analysis
+## *Keywords* Interaction Analysis {.justify}
 
 
 ```{=html}
@@ -446,7 +448,7 @@ To analyze how the keywords of different companies relate to each other, a corre
 </div>
 ```
 
-## *Keywords* Interaction Analysis
+## *Keywords* Interaction Analysis {.justify}
 
 Here are some of the standout relationships, chosen for their high correlation and relevance.
 
@@ -541,17 +543,28 @@ Here are some of the standout relationships, chosen for their high correlation a
       <td>EGL</td>
     </tr>
     <tr>
+      <td>EDP</td>
+      <td>Cajastur</td>
+      <td>Hidrocantábrico</td>
+      <td>EDP</td>
+    </tr>
+    <tr>
       <td>SON</td>
       <td>Portucel</td>
       <td>Suzano</td>
       <td>SON</td>
+    </tr>
+    <tr>
+      <td>EGL</td>
+      <td>EGF</td>
+      <td>privatização</td>
+      <td>EGL</td>
     </tr>
   </tbody>
 </table>
 
 ```
 
-meter so mais uma relacao
 
 ```{=html}
 <div class="footer">
