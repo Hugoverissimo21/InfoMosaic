@@ -438,7 +438,7 @@ Choose a company:
 </figure>
 ```
 
-ns q para ... foi feita uma amtriz de correlacao, tendo 49787136 quadradinhos
+To analyze how the keywords of different companies relate to each other, a correlation matrix was created, resulting in 49 787 136 cells.
 
 ```{=html}
 <div class="footer">
@@ -447,6 +447,8 @@ ns q para ... foi feita uma amtriz de correlacao, tendo 49787136 quadradinhos
 ```
 
 ## *Keywords* Interaction Analysis
+
+Here are some of the standout relationships, chosen for their high correlation and relevance.
 
 ```{=html}
 <style>
@@ -549,10 +551,7 @@ ns q para ... foi feita uma amtriz de correlacao, tendo 49787136 quadradinhos
 
 ```
 
-$\ $
-
-qq coisa meter mais relacoes)) ns algumas das relacoes mais interessantes encontradas
-
+meter so mais uma relacao
 
 ```{=html}
 <div class="footer">
