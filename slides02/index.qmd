@@ -395,42 +395,6 @@ By using the [Alpha Vantage API](https://www.alphavantage.co) to retrieve stock 
 </div>
 ```
 
-## Company Relationship Map {.justify}
-
-```{=html}
-<div style="text-align: center; margin-bottom: -50px;">
-  <iframe src="graph_bcp.html" width="100%" height="400"></iframe>
-</div>
-```
-
-Choose a company:
-
-```{=html}
-<div style="display: flex; justify-content: space-around;">
-  <a href="../assets/graph_bcp.html" target="_blank">
-    <img src="logo_bcp.png" alt="logo bcp" width="150"/>
-  </a>
-  <a href="../assets/graph_galp.html" target="_blank">
-    <img src="logo_galp.png" alt="logo galp" width="150"/>
-  </a>
-  <a href="../assets/graph_edp.html" target="_blank">
-    <img src="logo_edp.png" alt="logo edp" width="150"/>
-  </a>
-  <a href="../assets/graph_sonae.html" target="_blank">
-    <img src="logo_sonae.png" alt="logo sonae" width="150"/>
-  </a>
-  <a href="../assets/graph_motaengil.html" target="_blank">
-    <img src="logo_motaengil.png" alt="logo motaengil" width="150"/>
-  </a>
-</div>
-```
-
-```{=html}
-<div class="footer">
-  /tests/compGraph v04.ipynb
-</div>
-```
-
 ## *Keywords* Interaction Analysis {.justify}
 
 
@@ -569,5 +533,41 @@ Here are some of the standout relationships, chosen for their high correlation a
 ```{=html}
 <div class="footer">
   /tests/keysCorr v03.ipynb
+</div>
+```
+
+## Company Relationship Map {.justify}
+
+```{=html}
+<div style="text-align: center; margin-bottom: -50px;">
+  <iframe src="graph_bcp.html" width="100%" height="400"></iframe>
+</div>
+```
+
+Choose a company:
+
+```{=html}
+<div style="display: flex; justify-content: space-around;">
+  <a href="../assets/graph_bcp.html" target="_blank">
+    <img src="logo_bcp.png" alt="logo bcp" width="150"/>
+  </a>
+  <a href="../assets/graph_galp.html" target="_blank">
+    <img src="logo_galp.png" alt="logo galp" width="150"/>
+  </a>
+  <a href="../assets/graph_edp.html" target="_blank">
+    <img src="logo_edp.png" alt="logo edp" width="150"/>
+  </a>
+  <a href="../assets/graph_sonae.html" target="_blank">
+    <img src="logo_sonae.png" alt="logo sonae" width="150"/>
+  </a>
+  <a href="../assets/graph_motaengil.html" target="_blank">
+    <img src="logo_motaengil.png" alt="logo motaengil" width="150"/>
+  </a>
+</div>
+```
+
+```{=html}
+<div class="footer">
+  /tests/compGraph v04.ipynb
 </div>
 ```
