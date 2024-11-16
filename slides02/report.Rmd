@@ -1,5 +1,5 @@
 ---
-title: "FCD Project: 1st intermediate submission"
+title: "FCD Project: 2nd intermediate submission"
 author: "Hugo Veríssimo - 124348"
 date: "`r Sys.Date()`"
 output: pdf_document
@@ -22,10 +22,19 @@ Discover insights about specific companies, traded on the PSI-20 index, by analy
 
 $\ $
 
-**Slides for the first presentation:** https://hugoverissimo21.github.io/FCD-project/slides01
+**Latest source code:** https://github.com/Hugoverissimo21/FCD-project
+
+**Slides for the second presentation:** https://hugoverissimo21.github.io/FCD-project/slides02
+
+**Source code (at the time of the second submission):**   
+https://github.com/Hugoverissimo21/FCD-project/tree/81b5bc8b3dc43eea49162a1fd58a9f008a394e7b
+
+---
+
+**Slides from the first presentation:** https://hugoverissimo21.github.io/FCD-project/slides01
 
 **Source code (at the time of the first submission):**   
 https://github.com/Hugoverissimo21/FCD-project/tree/b3ab43a803f2f0fbcf0049fd1b8e363e0a63f9da
 
-**Latest source code:** https://github.com/Hugoverissimo21/FCD-project
+
 
