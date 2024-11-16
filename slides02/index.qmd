@@ -33,20 +33,6 @@ import time
 from datetime import datetime
 ```
 
-## lembretes
-
-- meter codigo dos graficos?: NAO
-
-- meter modulos usados
-
-$\ $
-
-- texto justificado
-
-- tudo em ingles
-
-- keywords deixar de ser italico?
-
 ## data04.parquet {.justify}
 
 ```{=html}
@@ -255,13 +241,13 @@ pd.read_parquet("data05.parquet")["keywords"].iloc[0]['03 Mar'].keys()
 print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])" +"\n ")
 ```
 
-- `count`: number of mentions of the *keyword*
+- `count`: number of mentions of the keyword
 
-- `date`: dictionary where the keys represent months (`%Y%m`) and the values represent the count of *keyword* mentions in that month
+- `date`: dictionary where the keys represent months (`%Y%m`) and the values represent the count of keyword mentions in that month
 
-- `filter`: value between 0 and 1 that represents the importance level of the *keyword*
+- `filter`: value between 0 and 1 that represents the importance level of the keyword
 
-- `news`: list of URLs linking to news where the *keyword* appears
+- `news`: list of URLs linking to news where the keyword appears
 
 ```{=html}
 <div class="footer">
@@ -271,13 +257,13 @@ print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'typ
 
 ## data05.parquet {.justify}
 
-- `sentiment`: average sentiment of the news that mention the *keyword*
+- `sentiment`: average sentiment of the news that mention the keyword
 
-- `source`: dictionary where the keys are news sources and the values represent the count of news from that source that mention the *keyword*
+- `source`: dictionary where the keys are news sources and the values represent the count of news from that source that mention the keyword
 
-- `type`: set of values indicating the categories that the *keyword* belongs to: PER, ORG, LOC, MISC and/or NOUN
+- `type`: set of values indicating the categories that the keyword belongs to: PER, ORG, LOC, MISC and/or NOUN
 
-- `weight`: metric that balances factors such as the total number of mentions, the probability of the *news being news* and the importance of the *keyword*'s category
+- `weight`: metric that balances factors such as the total number of mentions, the probability of the *news being news* and the importance of the keyword's category
 
 ```{=html}
 <div class="footer">
@@ -338,29 +324,6 @@ Using a word cloud provides insight into the company’s business areas, as well
 </div>
 ```
 
-
-## Stock Price and News Analysis {.justify}
-
-```{=html}
-<figure style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
-  <div style="display: flex; flex-direction: row; gap: 5px;">
-    <img src="newsVSsenti01.svg" alt="Image 1" style="width: 50%;" />
-    <img src="newsVSsenti04.svg" alt="Image 2" style="width: 50%;" />
-  </div>
-  <figcaption style="font-size: 0.45em; margin-top: -10px; margin-bottom: 10px text-align: center;">Visualizations representing data from Galp Energia (GALP.LS).</figcaption>
-</figure>
-```
-
-- The correlation between news and stock prices was analyzed using metrics like news volume, logarithm of volume, volume changes, and sentiment, compared to stock prices and price change measures.
-
-- Based on correlation coefficients, there appears to be no significant correlation between them. This lack of correlation may be due to the relatively small trading volume in the Portuguese stock market.
-
-```{=html}
-<div class="footer">
-  /tests/newsVSstock v02.ipynb
-</div>
-```
-
 ## Stock Price and News Analysis {.justify}
 
 ```{=html}
@@ -369,7 +332,7 @@ Using a word cloud provides insight into the company’s business areas, as well
 </div>
 ```
 
-By using the [Alpha Vantage API](https://www.alphavantage.co) to retrieve stock prices and combining this with an analysis of extracted *keywords* from news, you can gain valuable insights into market movements. 
+By using the [Alpha Vantage API](https://www.alphavantage.co) to retrieve stock prices and combining this with an analysis of extracted keywords from news, you can gain valuable insights into market movements. 
 
 ```{=html}
 <div class="footer">
@@ -395,7 +358,29 @@ By using the [Alpha Vantage API](https://www.alphavantage.co) to retrieve stock 
 </div>
 ```
 
-## *Keywords* Interaction Analysis {.justify}
+## Stock Price and News Analysis {.justify}
+
+```{=html}
+<figure style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+  <div style="display: flex; flex-direction: row; gap: 5px;">
+    <img src="newsVSsenti01.svg" alt="Image 1" style="width: 50%;" />
+    <img src="newsVSsenti04.svg" alt="Image 2" style="width: 50%;" />
+  </div>
+  <figcaption style="font-size: 0.45em; margin-top: -10px; margin-bottom: 10px text-align: center;">Visualizations representing data from Galp Energia (GALP.LS).</figcaption>
+</figure>
+```
+
+- The correlation between news and stock prices was analyzed using metrics like news volume, logarithm of volume, volume changes, and sentiment, compared to stock prices and price change measures.
+
+- Based on correlation coefficients, there appears to be no significant correlation between them. This lack of correlation may be due to the relatively small trading volume in the Portuguese stock market.
+
+```{=html}
+<div class="footer">
+  /tests/newsVSstock v02.ipynb
+</div>
+```
+
+## Keywords Interaction Analysis {.justify}
 
 
 ```{=html}
@@ -412,7 +397,7 @@ To analyze how the keywords of different companies relate to each other, a corre
 </div>
 ```
 
-## *Keywords* Interaction Analysis {.justify}
+## Keywords Interaction Analysis {.justify}
 
 Here are some of the standout relationships, chosen for their high correlation and relevance.
 

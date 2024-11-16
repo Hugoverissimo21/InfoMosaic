@@ -409,19 +409,6 @@ Hugo Veríssimo
 </div>
 
 </section>
-<section id="lembretes" class="slide level2">
-<h2>lembretes</h2>
-<ul>
-<li><p>meter codigo dos graficos?: NAO</p></li>
-<li><p>meter modulos usados</p></li>
-</ul>
-<p><span class="math inline">\(\ \)</span></p>
-<ul>
-<li><p>texto justificado</p></li>
-<li><p>tudo em ingles</p></li>
-<li><p>keywords deixar de ser italico?</p></li>
-</ul>
-</section>
 <section id="data04.parquet" class="slide level2 justify">
 <h2>data04.parquet</h2>
 <style>
@@ -615,10 +602,10 @@ tbody td:first-child {
 </div>
 </div>
 <ul>
-<li><p><code>count</code>: number of mentions of the <em>keyword</em></p></li>
-<li><p><code>date</code>: dictionary where the keys represent months (<code>%Y%m</code>) and the values represent the count of <em>keyword</em> mentions in that month</p></li>
-<li><p><code>filter</code>: value between 0 and 1 that represents the importance level of the <em>keyword</em></p></li>
-<li><p><code>news</code>: list of URLs linking to news where the <em>keyword</em> appears</p></li>
+<li><p><code>count</code>: number of mentions of the keyword</p></li>
+<li><p><code>date</code>: dictionary where the keys represent months (<code>%Y%m</code>) and the values represent the count of keyword mentions in that month</p></li>
+<li><p><code>filter</code>: value between 0 and 1 that represents the importance level of the keyword</p></li>
+<li><p><code>news</code>: list of URLs linking to news where the keyword appears</p></li>
 </ul>
 <div class="footer">
   /notebooks/04_NERandSent.ipynb
@@ -627,10 +614,10 @@ tbody td:first-child {
 <section id="data05.parquet-2" class="slide level2 justify">
 <h2>data05.parquet</h2>
 <ul>
-<li><p><code>sentiment</code>: average sentiment of the news that mention the <em>keyword</em></p></li>
-<li><p><code>source</code>: dictionary where the keys are news sources and the values represent the count of news from that source that mention the <em>keyword</em></p></li>
-<li><p><code>type</code>: set of values indicating the categories that the <em>keyword</em> belongs to: PER, ORG, LOC, MISC and/or NOUN</p></li>
-<li><p><code>weight</code>: metric that balances factors such as the total number of mentions, the probability of the <em>news being news</em> and the importance of the <em>keyword</em>’s category</p></li>
+<li><p><code>sentiment</code>: average sentiment of the news that mention the keyword</p></li>
+<li><p><code>source</code>: dictionary where the keys are news sources and the values represent the count of news from that source that mention the keyword</p></li>
+<li><p><code>type</code>: set of values indicating the categories that the keyword belongs to: PER, ORG, LOC, MISC and/or NOUN</p></li>
+<li><p><code>weight</code>: metric that balances factors such as the total number of mentions, the probability of the <em>news being news</em> and the importance of the keyword’s category</p></li>
 </ul>
 <div class="footer">
   /notebooks/04_NERandSent.ipynb
@@ -675,6 +662,29 @@ tbody td:first-child {
 </section>
 <section id="stock-price-and-news-analysis" class="slide level2 justify">
 <h2>Stock Price and News Analysis</h2>
+<div style="text-align: center; margin-bottom: -55px;">
+  <iframe src="stockVSsenti bcp.html" width="100%" height="450"></iframe>
+</div>
+<p>By using the <a href="https://www.alphavantage.co">Alpha Vantage API</a> to retrieve stock prices and combining this with an analysis of extracted keywords from news, you can gain valuable insights into market movements.</p>
+<div class="footer">
+  /tests/newsVSstock v04.ipynb
+</div>
+</section>
+<section id="stock-price-and-news-analysis-1" class="slide level2 justify">
+<h2>Stock Price and News Analysis</h2>
+<figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr);">
+  <iframe src="stockVSsenti galp.html" width="100%" height="300" style="position: relative; bottom: -35px; top: -5px;"></iframe>
+  <iframe src="stockVSsenti edp.html" width="100%" height="300" style="position: relative; bottom: -35px; top: -5px;"></iframe>
+  <iframe src="stockVSsenti sonae.html" width="100%" height="300" style="position: relative; top: -35px;"></iframe>
+  <iframe src="stockVSsenti motaengil.html" width="100%" height="300" style="position: relative; top: -35px;"></iframe>
+</figure>
+
+<div class="footer">
+  /tests/newsVSstock v04.ipynb
+</div>
+</section>
+<section id="stock-price-and-news-analysis-2" class="slide level2 justify">
+<h2>Stock Price and News Analysis</h2>
 <figure style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
   <div style="display: flex; flex-direction: row; gap: 5px;">
     <img src="newsVSsenti01.svg" alt="Image 1" style="width: 50%;">
@@ -690,31 +700,8 @@ tbody td:first-child {
   /tests/newsVSstock v02.ipynb
 </div>
 </section>
-<section id="stock-price-and-news-analysis-1" class="slide level2 justify">
-<h2>Stock Price and News Analysis</h2>
-<div style="text-align: center; margin-bottom: -55px;">
-  <iframe src="stockVSsenti bcp.html" width="100%" height="450"></iframe>
-</div>
-<p>By using the <a href="https://www.alphavantage.co">Alpha Vantage API</a> to retrieve stock prices and combining this with an analysis of extracted <em>keywords</em> from news, you can gain valuable insights into market movements.</p>
-<div class="footer">
-  /tests/newsVSstock v04.ipynb
-</div>
-</section>
-<section id="stock-price-and-news-analysis-2" class="slide level2 justify">
-<h2>Stock Price and News Analysis</h2>
-<figure style="text-align: center; display: grid; grid-template-columns: repeat(2, 1fr);">
-  <iframe src="stockVSsenti galp.html" width="100%" height="300" style="position: relative; bottom: -35px; top: -5px;"></iframe>
-  <iframe src="stockVSsenti edp.html" width="100%" height="300" style="position: relative; bottom: -35px; top: -5px;"></iframe>
-  <iframe src="stockVSsenti sonae.html" width="100%" height="300" style="position: relative; top: -35px;"></iframe>
-  <iframe src="stockVSsenti motaengil.html" width="100%" height="300" style="position: relative; top: -35px;"></iframe>
-</figure>
-
-<div class="footer">
-  /tests/newsVSstock v04.ipynb
-</div>
-</section>
 <section id="keywords-interaction-analysis" class="slide level2 justify">
-<h2><em>Keywords</em> Interaction Analysis</h2>
+<h2>Keywords Interaction Analysis</h2>
 <figure style="text-align: center;">
     <img src="keywords_correlation.png" alt="matrix corr keywords" style="width: 100%;">
 </figure>
@@ -724,7 +711,7 @@ tbody td:first-child {
 </div>
 </section>
 <section id="keywords-interaction-analysis-1" class="slide level2 justify">
-<h2><em>Keywords</em> Interaction Analysis</h2>
+<h2>Keywords Interaction Analysis</h2>
 <p>Here are some of the standout relationships, chosen for their high correlation and relevance.</p>
 <style>
 .table-custom {
