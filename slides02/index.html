@@ -503,7 +503,7 @@ tbody td:first-child {
 <section id="ner" class="slide level2 justify">
 <h2>NER</h2>
 <ul>
-<li><p>Used the model <code>pt_core_news_sm</code> from <code>spacy</code> to extract:</p>
+<li><p>The model <code>pt_core_news_sm</code> from <code>spacy</code> was used to extract:</p>
 <ul>
 <li><p>“PER” - named entity that represents a person</p></li>
 <li><p>“ORG” - named entity that represents a group or organization</p></li>
@@ -520,11 +520,11 @@ tbody td:first-child {
 <section id="sentiment-analysis" class="slide level2 justify">
 <h2>Sentiment Analysis</h2>
 <ul>
-<li><p>The initial approach involved using the <code>pipeline</code> from <code>transformers</code>, but the models consistently failed to load, leading to the exploration of an alternative solution to bypass this issue.</p></li>
+<li><p>The initial approach involved the use of <code>pipeline</code> from <code>transformers</code>. However the models consistently failed to load, leading to the exploration of an alternative solution in order to bypass this issue.</p></li>
 <li><p>The solution involved using:</p>
 <ul>
-<li><p><code>deep_translator</code> to overcome language restrictions</p></li>
-<li><p><code>vaderSentiment</code> and <code>textblob</code> to extract the sentiment of the news</p></li>
+<li><p><code>deep_translator</code> to overcome language restrictions.</p></li>
+<li><p><code>vaderSentiment</code> and <code>textblob</code> to extract the sentiment of the news.</p></li>
 </ul></li>
 </ul>
 <div class="footer">
@@ -633,7 +633,7 @@ tbody td:first-child {
 <figure style="text-align: center;">
     <img src="newsSources.svg" alt="noticias por fonte" style="width: 100%; height: 450px;">
 </figure>
-<p>Even though the search was limited to 33 websites, most only have news from after 2020, and some don’t have any results at all.</p>
+<p>Even though the search was limited to 33 websites, most of them only have news from after 2020, and others don’t present any results at all.</p>
 <div class="footer">
   /tests/newsSources v01.ipynb
 </div>
@@ -643,7 +643,7 @@ tbody td:first-child {
 <figure style="text-align: center;">
     <img src="wordcloud bcp.svg" alt="wordcloud bcp" style="width: 100%; height: 450px;">
 </figure>
-<p>Using a word cloud provides insight into the company’s business areas, as well as the key people involved.</p>
+<p>A word cloud offers valuable insights into the company’s core business areas and highlights the key individuals associated with them.</p>
 <div class="footer">
   /tests/compWordcloud v01.ipynb
 </div>
@@ -665,7 +665,7 @@ tbody td:first-child {
 <div style="text-align: center; margin-bottom: -55px;">
   <iframe src="stockVSsenti bcp.html" width="100%" height="450"></iframe>
 </div>
-<p>By using the <a href="https://www.alphavantage.co">Alpha Vantage API</a> to retrieve stock prices and combining this with an analysis of extracted keywords from news, you can gain valuable insights into market movements.</p>
+<p>By using the <a href="https://www.alphavantage.co">Alpha Vantage API</a> to retrieve stock prices and combining it with an analysis of extracted keywords from news, valuable insights into market movements can be uncovered.</p>
 <div class="footer">
   /tests/newsVSstock v04.ipynb
 </div>
@@ -693,8 +693,8 @@ tbody td:first-child {
   <figcaption style="font-size: 0.45em; margin-top: -10px; margin-bottom: 10px text-align: center;">Visualizations representing data from Galp Energia (GALP.LS).</figcaption>
 </figure>
 <ul>
-<li><p>The correlation between news and stock prices was analyzed using metrics like news volume, logarithm of volume, volume changes, and sentiment, compared to stock prices and price change measures.</p></li>
-<li><p>Based on correlation coefficients, there appears to be no significant correlation between them. This lack of correlation may be due to the relatively small trading volume in the Portuguese stock market.</p></li>
+<li><p>The correlation between news and stock prices was analyzed using metrics such as news volume, logarithm of volume, volume changes, and sentiment, compared to stock prices and price change measures.</p></li>
+<li><p>Correlation coefficients show no significant link between news and stock prices, possibly due to the low trading volume in the Portuguese stock market.</p></li>
 </ul>
 <div class="footer">
   /tests/newsVSstock v02.ipynb
@@ -712,7 +712,7 @@ tbody td:first-child {
 </section>
 <section id="keywords-interaction-analysis-1" class="slide level2 justify">
 <h2>Keywords Interaction Analysis</h2>
-<p>Here are some of the standout relationships, chosen for their high correlation and relevance.</p>
+<p>Some of the standout relationships are presented, due to their high correlation and relevance.</p>
 <style>
 .table-custom {
     width: 100%;

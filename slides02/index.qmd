@@ -127,7 +127,7 @@ pd.read_parquet("data04.parquet").iloc[0,1][0].keys()
 
 ## NER {.justify}
 
-- Used the model `pt_core_news_sm` from `spacy` to extract:
+- The model `pt_core_news_sm` from `spacy` was used to extract:
 
   - "PER" - named entity that represents a person
   
@@ -150,13 +150,13 @@ pd.read_parquet("data04.parquet").iloc[0,1][0].keys()
 
 ## Sentiment Analysis {.justify}
 
-- The initial approach involved using the `pipeline` from `transformers`, but the models consistently failed to load, leading to the exploration of an alternative solution to bypass this issue.
+- The initial approach involved the use of `pipeline` from `transformers`. However the models consistently failed to load, leading to the exploration of an alternative solution in order to bypass this issue.
 
 - The solution involved using:
 
-  - `deep_translator` to overcome language restrictions
+  - `deep_translator` to overcome language restrictions.
   
-  - `vaderSentiment` and `textblob` to extract the sentiment of the news
+  - `vaderSentiment` and `textblob` to extract the sentiment of the news.
 
 ```{=html}
 <div class="footer">
@@ -282,7 +282,7 @@ print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'typ
 </figure>
 ```
 
-Even though the search was limited to 33 websites, most only have news from after 2020, and some don’t have any results at all.
+Even though the search was limited to 33 websites, most of them only have news from after 2020, and others don’t present any results at all.
 
 ```{=html}
 <div class="footer">
@@ -299,7 +299,7 @@ Even though the search was limited to 33 websites, most only have news from afte
 </figure>
 ```
 
-Using a word cloud provides insight into the company’s business areas, as well as the key people involved.
+A word cloud offers valuable insights into the company’s core business areas and highlights the key individuals associated with them.
 
 ```{=html}
 <div class="footer">
@@ -332,7 +332,7 @@ Using a word cloud provides insight into the company’s business areas, as well
 </div>
 ```
 
-By using the [Alpha Vantage API](https://www.alphavantage.co) to retrieve stock prices and combining this with an analysis of extracted keywords from news, you can gain valuable insights into market movements. 
+By using the [Alpha Vantage API](https://www.alphavantage.co) to retrieve stock prices and combining it with an analysis of extracted keywords from news, valuable insights into market movements can be uncovered.
 
 ```{=html}
 <div class="footer">
@@ -370,9 +370,9 @@ By using the [Alpha Vantage API](https://www.alphavantage.co) to retrieve stock 
 </figure>
 ```
 
-- The correlation between news and stock prices was analyzed using metrics like news volume, logarithm of volume, volume changes, and sentiment, compared to stock prices and price change measures.
+- The correlation between news and stock prices was analyzed using metrics such as news volume, logarithm of volume, volume changes, and sentiment, compared to stock prices and price change measures.
 
-- Based on correlation coefficients, there appears to be no significant correlation between them. This lack of correlation may be due to the relatively small trading volume in the Portuguese stock market.
+- Correlation coefficients show no significant link between news and stock prices, possibly due to the low trading volume in the Portuguese stock market.
 
 ```{=html}
 <div class="footer">
@@ -399,7 +399,7 @@ To analyze how the keywords of different companies relate to each other, a corre
 
 ## Keywords Interaction Analysis {.justify}
 
-Here are some of the standout relationships, chosen for their high correlation and relevance.
+Some of the standout relationships are presented, due to their high correlation and relevance.
 
 ```{=html}
 <style>
