@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Web Functions</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .tabs { display: flex; margin-bottom: 20px; }
+        .tab { padding: 10px 20px; cursor: pointer; border: 1px solid #ccc; }
+        .tab:hover { background-color: #f0f0f0; }
+        .tab-content { padding: 20px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+<h1>Python Web Functions</h1>
+
+<div class="tabs">
+    <div class="tab" onclick="showTab('graph')">Graph</div>
+    <div class="tab" onclick="showTab('read')">Read</div>
+    <div class="tab" onclick="showTab('hilo')">HiLo</div>
+</div>
+
+<div class="tab-content" id="graph" style="display:none;">
+    <h3>Graph Function</h3>
+</div>
+
+
+
+<div class="tab-content" id="hilo">
+    <h3>HiLo Game</h3>
+    
+    {% if not word1 %}
+        <form action="/hiloH_start" method="POST">
+            <button type="submit">Start Game</button>
+        </form>
+    {% else %}
+        <p>Word 1: {{ word1 }}</p>
+        <p>Word 1: {{ word1_mentions }}</p>
+        <p>Word 2: {{ word2 }}</p>
+        {% if word2_mentions_ans %}
+            <p>Word 2: {{ word2_mentions_ans }}</p>
+        {% endif %}
+        {% if score is not none %}
+            <p>Score: {{ score }}</p>
+        {% endif %}
+    {% endif %}
+
+    {% if playable %}
+    <form action="/hiloH" method="POST">
+        <button type="submit" name="choice" value="more">Higher</button>
+        <button type="submit" name="choice" value="less">Lower</button>
+    </form>
+    {% endif %}
+
+    {% if winner %}
+        <p>{{ winner }}</p>
+    {% endif %}
+    {% if loser %}
+        <p>{{ loser }}</p>
+        <form action="/hiloH_restart" method="POST">
+            <button type="submit">New Game?</button>
+        </form>
+    {% endif %}
+</div>
+
+
+
+<div class="tab-content" id="read" style="display:none;">
+    <h3>Read Input</h3>
+    <form action="/read" method="POST">
+        <input type="text" name="input_text" placeholder="Enter some text" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% if output %}
+    <p>Your input: {{ output }}</p>
+    {% endif %}
+</div>
+
+<script>
+    function showTab(tabName) {
+        const tabs = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => tab.style.display = 'none');
+        document.getElementById(tabName).style.display = 'block';
+    }
+
+    // Default to show graph tab
+    showTab('graph');
+</script>
+
+</body>
+</html>
