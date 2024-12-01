@@ -1,0 +1,48 @@
+.justify {
+  text-align: justify !important
+}
+
+h1.title {
+  font-size: 45pt; /* 70pt */
+  font-weight: 600;
+  color: rgb(108, 178, 52);
+  line-height: 1rem;
+  background-color: transparent;
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+
+.subtitle {
+  font-size: 33pt; /* 50pt */
+  font-weight: 600;
+  color: rgba(105, 172, 83, 0.92);
+  line-height: 1rem;
+  margin-top: 150px;
+  margin-bottom: 100px;
+}
+
+p {
+  font-size: 32px; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8em;
+}
+
+th, td {
+    padding: 1px;
+    text-align: center;
+    font-size: 28px;
+}
+
+hr {
+      border: none;
+      border-top: 1px solid rgba(0, 0, 0, 0);
+      margin: 10px 0;
+}
+
+ul, li {
+    text-align: justify; /* Justify the text */
+}

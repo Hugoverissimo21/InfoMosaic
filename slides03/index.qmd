@@ -1,0 +1,156 @@
+---
+title: "Media Analysis of PSI-20 Companies"
+subtitle: "Insights from News and Public Coverage"
+author:
+  - name: "Hugo Veríssimo"
+    affiliation: "124348"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: ua.png
+    css: mystyle.css
+    theme: serif
+    transition: slide
+echo: true
+---
+
+```{r setup, include = FALSE}
+# packages
+library(dplyr)
+library(knitr)
+library(xtable)
+library(reticulate)
+```
+
+```{python, include=FALSE}
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import time
+from datetime import datetime
+```
+
+## NOTAS {.justify}
+
+so para ter a base do df se ainda precisar
+
+```{=html}
+<style>
+.dataframe {
+  display: block;
+  max-width: 100%;
+  max-height: 75%; /* vertical scrolling */
+  overflow-x: auto;
+  overflow-y: auto;
+  font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /*border: 1px solid #ddd; apply only to big dfs */
+}
+
+table {
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+th, td { /* th is about header*/
+  padding: 8px 16px;
+  border: 1px solid #ddd; /* Border between cells */
+  text-align: left;
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+thead th {
+  background-color: rgba(128, 128, 128, 0.3);
+  font-weight: bold;
+}
+
+tbody td:first-child {
+  background-color: rgba(128, 128, 128, 0.3);
+  font-weight: bold;
+}
+</style>
+```
+
+```{=html}
+<table style="border: 1px solid #ddd;" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>aliases</th>
+<th>news</th>
+</tr>
+<tr>
+<th>companies</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Banco Comercial Português</th>
+<td>[Banco Comercial Português, BCP]</td>
+<td>[{'ExtractedText': 'DN &nbsp; 13 de Setembro de 200...</td>
+</tr>
+<tr>
+<th>Galp Energia</th>
+<td>[Galp Energia, GALP]</td>
+<td>[{'ExtractedText': 'RTP Galp reforça posição n...</td>
+</tr>
+<tr>
+<th>EDP</th>
+<td>[EDP, Energias de Portugal, Electricidade de P...</td>
+<td>[{'ExtractedText': 'DN-Sinteses Negocios 9 de ...</td>
+</tr>
+<tr>
+<th>Sonae</th>
+<td>[Sonae, SON]</td>
+<td>[{'ExtractedText': 'DN-Sinteses 5 de Março de ...</td>
+</tr>
+<tr>
+<th>Mota-Engil</th>
+<td>[Mota-Engil, EGL]</td>
+<td>[{'ExtractedText': 'RTP Lucro da Mota-Engil so...</td>
+</tr>
+</tbody>
+</table>
+```
+
+## slide exemplo por causa dos lgoos 
+
+Choose a company:
+
+```{=html}
+<div style="display: flex; justify-content: space-around;">
+  <a href="../assets/graph_bcp.html" target="_blank">
+    <img src="logo_bcp.png" alt="logo bcp" width="150"/>
+  </a>
+  <a href="../assets/graph_galp.html" target="_blank">
+    <img src="logo_galp.png" alt="logo galp" width="150"/>
+  </a>
+  <a href="../assets/graph_edp.html" target="_blank">
+    <img src="logo_edp.png" alt="logo edp" width="150"/>
+  </a>
+  <a href="../assets/graph_sonae.html" target="_blank">
+    <img src="logo_sonae.png" alt="logo sonae" width="150"/>
+  </a>
+  <a href="../assets/graph_motaengil.html" target="_blank">
+    <img src="logo_motaengil.png" alt="logo motaengil" width="150"/>
+  </a>
+</div>
+```
+
+```{=html}
+<div class="footer">
+  /tests/compGraph v04.ipynb
+</div>
+```
+
+
+# INICIO
+
+## ASHFDUAIUS
+
+hdjiahdisahji
