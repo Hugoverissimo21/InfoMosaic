@@ -54,36 +54,25 @@
     
     {% if not word1 %}
         <form action="/hiloH_start" method="POST">
-            <button type="submit">Start Game</button>
+            <button type="submit">Start a New Game</button>
         </form>
     {% else %}
         <p>Word 1: {{ word1 }}</p>
         <p>Word 1: {{ word1_mentions }}</p>
         <p>Word 2: {{ word2 }}</p>
-        {% if word2_mentions_ans %}
-            <p>Word 2: {{ word2_mentions_ans }}</p>
-        {% endif %}
-        {% if score is not none %}
-            <p>Score: {{ score }}</p>
-        {% endif %}
-    {% endif %}
-
-    {% if playable %}
-    <form action="/hiloH" method="POST">
-        <button type="submit" name="choice" value="more">Higher</button>
-        <button type="submit" name="choice" value="less">Lower</button>
-    </form>
-    {% endif %}
-
-    {% if winner %}
-        <p>{{ winner }}</p>
-    {% endif %}
-    {% if loser %}
-        <p>{{ loser }}</p>
-        <form action="/hiloH_restart" method="POST">
-            <button type="submit">New Game?</button>
+        <p>Score: {{ score }}</p>
+    
+        <form action="/hiloH" method="POST">
+            <button type="submit" name="choice" value="more">Higher</button>
+            <button type="submit" name="choice" value="less">Lower</button>
         </form>
+        {% if winner %}
+            <p>{{ winner }}</p>
+        {% elif loser %}
+            <p>{{ loser }}</p>
+        {% endif %}
     {% endif %}
+
     <iframe src="/hilo_plot" width="100%" height="500px" frameborder="0"></iframe>
 </div>
 

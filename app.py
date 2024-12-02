@@ -111,16 +111,11 @@ def hiloH_start():
         word2 = random.choice(keywords)
     word1_mentions = int(keywords_data[word1]["count"])
     score = 0
-    playable = True
-    try:
-        scores_historic[max(scores_historic.keys()) + 1] = {"score": 0,
-                                                            "text": "Current game! GL"}
-    except:
-        scores_historic[1] = {"score": 0,
-                              "text": "Current game! GL"}
+    scores_historic = {}
+    scores_historic[1] = {"score": score,
+                          "text": "Current game! GL"}
     return render_template('app.html', word1=word1, word2=word2,
-                           word1_mentions=word1_mentions, score=score,
-                           playable=playable)
+                           word1_mentions=word1_mentions, score=score)
 
 @app.route('/hiloH', methods=['POST'])
 def hiloH():
@@ -129,7 +124,6 @@ def hiloH():
     global word2
     global score
     global scores_historic
-    playable = True
     word1_mentions = int(keywords_data[word1]["count"])
     word2_mentions = int(keywords_data[word2]["count"])
 
@@ -141,41 +135,35 @@ def hiloH():
         }
         if scenarios[user_choice]:
             winner = "Correct!"
-            loser = None
+            loser = False
+            score += 1
+            scores_historic[max(scores_historic.keys())]["score"] = score
+            # reload the keywords
             word1 = word2
             word1_mentions = word2_mentions
-            score += 1
             word2 = random.choice(keywords)
             while word2 == word1:
                 word2 = random.choice(keywords)
-            word2_mentions_ans = None
-            score_out = score
         else:
+            winner = False
+            loser = f"Incorrect! Final score: {score}"
             scores_historic[max(scores_historic.keys())]["score"] = score
             scores_historic[max(scores_historic.keys())]["text"] = f"""
             Score: {score}
             <br>Word 1: {word1} ({word1_mentions})
             <br>Word 2: {word2} ({word2_mentions})"""
-            loser = f"Incorrect! Final score: {score}"
-            winner = None
-            playable = None
             score = 0
-            score_out = None
-            word2_mentions_ans = int(keywords_data[word2]["count"])
+            scores_historic[max(scores_historic.keys())+1] = {"score": score,
+                                                             "text": "Current game! GL"}
+            word1 = word2
+            word1_mentions = word2_mentions
+            word2 = random.choice(keywords)
+            while word2 == word1:
+                word2 = random.choice(keywords)
     
     return render_template('app.html', word1=word1, word2=word2,
-                           word1_mentions=word1_mentions, score=score_out,
-                           winner=winner, loser=loser,
-                           word2_mentions_ans=word2_mentions_ans,
-                           playable = playable)
-
-@app.route('/hiloH_restart', methods=['POST'])
-def hiloH_restart():
-    return render_template('app.html', word1=None, word2=None,
-                           word1_mentions=None, score=0,
-                           winner=None, loser=None,
-                           word2_mentions_ans=None,
-                           playable = None)
+                           word1_mentions=word1_mentions, score=score,
+                           winner=winner, loser=loser)
 
 @app.route('/hilo_plot', methods=['GET'])
 def hilo_plot():
