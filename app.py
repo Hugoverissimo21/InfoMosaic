@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
 import random
 import matplotlib.pyplot as plt
 import io
@@ -7,6 +7,8 @@ import json
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import plotly.graph_objs as go
+import plotly.io as pio
 
 ##################################################################
 ##################################################################
@@ -19,6 +21,7 @@ keywords = list(keywords_data.keys())
 word1 = None
 word2 = None
 score = None
+scores_historic = {}
 
 # NEWS READER | NEWS READER | NEWS READER
 # Load the news from the JSON file for the News Reader
@@ -91,7 +94,7 @@ def graph():
 
 ##################################################################
 ##################################################################
-########################### HI LO ################################
+############################ hilo ################################
 ##################################################################
 ##################################################################
 
@@ -101,6 +104,7 @@ def hiloH_start():
     global word1
     global word2
     global score
+    global scores_historic
     word1 = random.choice(keywords)
     word2 = random.choice(keywords)
     while word2 == word1:
@@ -108,6 +112,12 @@ def hiloH_start():
     word1_mentions = int(keywords_data[word1]["count"])
     score = 0
     playable = True
+    try:
+        scores_historic[max(scores_historic.keys()) + 1] = {"score": 0,
+                                                            "text": "Current game! GL"}
+    except:
+        scores_historic[1] = {"score": 0,
+                              "text": "Current game! GL"}
     return render_template('app.html', word1=word1, word2=word2,
                            word1_mentions=word1_mentions, score=score,
                            playable=playable)
@@ -118,6 +128,7 @@ def hiloH():
     global word1
     global word2
     global score
+    global scores_historic
     playable = True
     word1_mentions = int(keywords_data[word1]["count"])
     word2_mentions = int(keywords_data[word2]["count"])
@@ -140,6 +151,11 @@ def hiloH():
             word2_mentions_ans = None
             score_out = score
         else:
+            scores_historic[max(scores_historic.keys())]["score"] = score
+            scores_historic[max(scores_historic.keys())]["text"] = f"""
+            Score: {score}
+            <br>Word 1: {word1} ({word1_mentions})
+            <br>Word 2: {word2} ({word2_mentions})"""
             loser = f"Incorrect! Final score: {score}"
             winner = None
             playable = None
@@ -161,14 +177,33 @@ def hiloH_restart():
                            word2_mentions_ans=None,
                            playable = None)
 
+@app.route('/hilo_plot', methods=['GET'])
+def hilo_plot():
+    global scores_historic
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=list(scores_historic.keys()),
+                             y=[x["score"] for x in scores_historic.values()],
+                             mode='lines+markers',
+                             hovertext=[x["text"] for x in scores_historic.values()],
+                             marker=dict(color=["blue"]*(len(scores_historic)-1) + ["red"]),
+                             hoverinfo='text'))
+    fig.update_layout(xaxis_title='Game Number',
+                      yaxis_title='Scores Historic')
+
+    # Use io.StringIO to save the HTML content in memory
+    buffer = io.StringIO()
+    pio.write_html(fig, file=buffer, full_html=True)
+    buffer.seek(0)  # Move to the start of the buffer
+
+    return Response(buffer.getvalue(), mimetype='text/html')
+
 
     
 ##################################################################
 ##################################################################
-########################### read ################################
+#$####################### readexplore ############################
 ##################################################################
 ##################################################################
-
 
 @app.route('/get_first_news', methods=['POST'])
 def get_first_news():

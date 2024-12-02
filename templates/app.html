@@ -37,12 +37,16 @@
     <div class="tab" onclick="showTab('graph')">Graph</div>
     <div class="tab" onclick="showTab('readexplore')">Read & Explore</div>
     <div class="tab" onclick="showTab('hilo')">Word Wars</div>
+    <div class="tab" onclick="showTab('test')">test</div>
 </div>
 
 <div class="tab-content" id="graph" style="display:none;">
     <embed src="https://hugoverissimo21.github.io/FCD-project/assets/graph_bcp.html" style="width:100%; height: 100vh;">
 </div>
 
+<div class="tab-content" id="test" style="display:none;">
+    <h1>TEST</h1>
+</div>
 
 
 <div class="tab-content" id="hilo">
@@ -80,6 +84,7 @@
             <button type="submit">New Game?</button>
         </form>
     {% endif %}
+    <iframe src="/hilo_plot" width="100%" height="500px" frameborder="0"></iframe>
 </div>
 
 
