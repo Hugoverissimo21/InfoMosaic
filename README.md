@@ -4,7 +4,7 @@
 
 - [Slides 02](https://hugoverissimo21.github.io/FCD-project/slides02)
 
-**Note:** `data05.parquet` has not been updated due to its large size.
+[https://hugover.pythonanywhere.com](https://hugover.pythonanywhere.com) - currently deployed here
 
 ## Folders
 

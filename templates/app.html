@@ -49,35 +49,6 @@
 </div>
 
 
-<div class="tab-content" id="hilo">
-    <h3>Word Wars</h3>
-    
-    {% if not word1 %}
-        <form action="/hiloH_start" method="POST">
-            <button type="submit">Start a New Game</button>
-        </form>
-    {% else %}
-        <p>Word 1: {{ word1 }}</p>
-        <p>Word 1: {{ word1_mentions }}</p>
-        <p>Word 2: {{ word2 }}</p>
-        <p>Score: {{ score }}</p>
-    
-        <form action="/hiloH" method="POST">
-            <button type="submit" name="choice" value="more">Higher</button>
-            <button type="submit" name="choice" value="less">Lower</button>
-        </form>
-        {% if winner %}
-            <p>{{ winner }}</p>
-        {% elif loser %}
-            <p>{{ loser }}</p>
-        {% endif %}
-    {% endif %}
-
-    <iframe src="/hilo_plot" width="100%" height="500px" frameborder="0"></iframe>
-</div>
-
-
-
 <div class="tab-content" id="readexplore">
     {% if not not_first_new %}
         <form action="/get_first_news" method="POST">
@@ -122,6 +93,33 @@
             Loading, please wait...
         </iframe>
     {% endif %}
+</div>
+
+<div class="tab-content" id="hilo">
+    <h3>Word Wars</h3>
+    
+    {% if not word1 %}
+        <form action="/hiloH_start" method="POST">
+            <button type="submit">Start a New Game</button>
+        </form>
+    {% else %}
+        <p>Word 1: {{ word1 }}</p>
+        <p>Word 1: {{ word1_mentions }}</p>
+        <p>Word 2: {{ word2 }}</p>
+        <p>Score: {{ score }}</p>
+    
+        <form action="/hiloH" method="POST">
+            <button type="submit" name="choice" value="more">Higher</button>
+            <button type="submit" name="choice" value="less">Lower</button>
+        </form>
+        {% if winner %}
+            <p>{{ winner }}</p>
+        {% elif loser %}
+            <p>{{ loser }}</p>
+        {% endif %}
+    {% endif %}
+
+    <iframe src="/hilo_plot" width="100%" height="500px" frameborder="0"></iframe>
 </div>
 
 <script>
