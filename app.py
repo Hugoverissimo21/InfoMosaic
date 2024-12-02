@@ -4,15 +4,50 @@ import matplotlib.pyplot as plt
 import io
 import base64
 import json
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
+##################################################################
+##################################################################
+
+# HILO | HILO | HILO | HILO | HILO | HILO
 # Load the keywords from the JSON file for the HiLo game
 with open('data/kwrd_bcp.json', 'r', encoding='utf-8') as json_file:
-    data = json.load(json_file)
-keywords = list(data.keys())
+    keywords_data = json.load(json_file)
+keywords = list(keywords_data.keys())
 word1 = None
 word2 = None
 score = None
 
+# NEWS READER | NEWS READER | NEWS READER
+# Load the news from the JSON file for the News Reader
+with open('data/news_bcp.json', 'r', encoding='utf-8') as json_file:
+    news_data = json.load(json_file)
+news_url = list(news_data.keys())
+setences = []
+for new in news_url:
+    setence = " ".join(news_data[new]["keywords"]) # set
+    setences.append(setence)
+ratings = np.array([3.0] * len(setences))
+# Vectorize the setences
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(setences)
+# Compute the cosine similarity matrix to update ratings
+def update_ratings(index, user_rating, learning_rate):
+    global ratings
+    # Compute similarity to all other texts
+    similarity_scores = cosine_similarity(tfidf_matrix[index], tfidf_matrix).flatten()
+    learning_rate = 0.999**news_read
+    ratings += (user_rating - ratings) * (similarity_scores)**0.5 * learning_rate
+    ratings[index] = -1000
+news_read = 0
+current_new_index = 0
+
+##################################################################
+##################################################################
+
+# Intialize the Flask app
 app = Flask(__name__)
 
 ##################################################################
@@ -66,7 +101,7 @@ def hiloH_start():
     word2 = random.choice(keywords)
     while word2 == word1:
         word2 = random.choice(keywords)
-    word1_mentions = int(data[word1]["count"])
+    word1_mentions = int(keywords_data[word1]["count"])
     score = 0
     playable = True
     return render_template('app.html', word1=word1, word2=word2,
@@ -80,8 +115,8 @@ def hiloH():
     global word2
     global score
     playable = True
-    word1_mentions = int(data[word1]["count"])
-    word2_mentions = int(data[word2]["count"])
+    word1_mentions = int(keywords_data[word1]["count"])
+    word2_mentions = int(keywords_data[word2]["count"])
 
     if request.method == 'POST':
         user_choice = request.form.get('choice')  # Get the user's choice
@@ -106,7 +141,7 @@ def hiloH():
             playable = None
             score = 0
             score_out = None
-            word2_mentions_ans = int(data[word2]["count"])
+            word2_mentions_ans = int(keywords_data[word2]["count"])
     
     return render_template('app.html', word1=word1, word2=word2,
                            word1_mentions=word1_mentions, score=score_out,
@@ -126,15 +161,62 @@ def hiloH_restart():
     
 ##################################################################
 ##################################################################
-########################### XXXXX ################################
+########################### read ################################
 ##################################################################
 ##################################################################
 
 
-@app.route('/read', methods=['POST'])
-def read():
-    input_data = request.form.get('input_text')
-    return render_template('app.html', output=input_data)
+@app.route('/get_news', methods=['POST'])
+def get_news():
+    global ratings
+    global news_url
+    global current_new_index
+    # weight for the random choice
+    weights = np.exp(np.array(ratings))
+    weights = weights / weights.sum()
+    # random news index
+    current_new_index = np.random.choice(len(ratings), p=weights)
+    new_to_read = news_url[current_new_index]
+
+    return render_template('app.html', new_to_read=new_to_read,
+                           not_first_new=True)
+
+@app.route('/rate_news', methods=['POST'])
+def rate_news():
+    global current_new_index
+    global ratings
+    global news_read
+    global news_url
+    # process rate
+    rate = int(request.form.get('rating4new'))
+    update_ratings(current_new_index, rate, news_read)
+    # give a new news
+    weights = np.exp(np.array(ratings))
+    weights = weights / weights.sum()
+    # random news index
+    current_new_index = np.random.choice(len(ratings), p=weights)
+    new_to_read = news_url[current_new_index]
+
+    return render_template('app.html', new_to_read=new_to_read,
+                           not_first_new=True)
+
+
+"""
+weights = np.exp(np.array(ratings))  # Exponential gives higher prob to larger values
+weights = weights / weights.sum()  # Normalize to prob
+
+# Select an index based on the weights
+index = np.random.choice(len(ratings), p=weights)
+#print(news[index])
+#rating = int(input(f"Rating of {index}: "))
+rating = random.randint(1, 5)
+rated_news.append(rating)
+learning_rate = 0.999**_
+update_ratings(index, rating, learning_rate)
+"""
+
+##################################################################
+##################################################################
 
 if __name__ == '__main__':
     app.run(debug=True)

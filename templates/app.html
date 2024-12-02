@@ -67,14 +67,23 @@
 
 
 
-<div class="tab-content" id="read" style="display:none;">
+<div class="tab-content" id="read">
     <h3>Read Input</h3>
-    <form action="/read" method="POST">
-        <input type="text" name="input_text" placeholder="Enter some text" required>
-        <button type="submit">Submit</button>
+    {% if not not_first_new %}
+        <form action="/get_news" method="POST">
+            <button type="submit">Start Reading</button>
+        </form>
+    {% endif %}
+    {% if new_to_read %}
+    <form action="/rate_news" method="POST">
+        <button type="submit" name="rating4new" value="1">1</button>
+        <button type="submit" name="rating4new" value="2">2</button>
+        <button type="submit" name="rating4new" value="3">3</button>
+        <button type="submit" name="rating4new" value="4">4</button>
+        <button type="submit" name="rating4new" value="5">5</button>
     </form>
-    {% if output %}
-    <p>Your input: {{ output }}</p>
+    <p>Your new: {{ new_to_read }}</p>
+    <embed src="{{ new_to_read }}" style="width:100vh; height: 100vh;">
     {% endif %}
 </div>
 
