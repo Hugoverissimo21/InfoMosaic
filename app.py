@@ -166,8 +166,8 @@ def hiloH_restart():
 ##################################################################
 
 
-@app.route('/get_news', methods=['POST'])
-def get_news():
+@app.route('/get_first_news', methods=['POST'])
+def get_first_news():
     global ratings
     global news_url
     global current_new_index
@@ -189,7 +189,10 @@ def rate_news():
     global news_url
     # process rate
     rate = int(request.form.get('rating4new'))
-    update_ratings(current_new_index, rate, news_read)
+    if rate != -1:
+        update_ratings(current_new_index, rate, news_read)
+    else:
+        pass
     # give a new news
     weights = np.exp(np.array(ratings))
     weights = weights / weights.sum()
