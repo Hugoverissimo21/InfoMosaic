@@ -34,15 +34,19 @@ ratings = np.array([3.0] * len(setences))
 vectorizer = TfidfVectorizer()
 tfidf_matrix = vectorizer.fit_transform(setences)
 # Compute the cosine similarity matrix to update ratings
-def update_ratings(index, user_rating, learning_rate):
+def update_ratings(index, user_rating):
     global ratings
+    global number_news_read
+    number_news_read += 1
     # Compute similarity to all other texts
     similarity_scores = cosine_similarity(tfidf_matrix[index], tfidf_matrix).flatten()
-    learning_rate = 0.999**news_read
+    learning_rate = 0.999**number_news_read
     ratings += (user_rating - ratings) * (similarity_scores)**0.5 * learning_rate
     ratings[index] = -1000
-news_read = 0
+number_news_read = 0
 current_new_index = 0
+read_news_index = []
+read_news_index_curr = -1
 
 ##################################################################
 ##################################################################
@@ -171,26 +175,30 @@ def get_first_news():
     global ratings
     global news_url
     global current_new_index
+    global read_news_index
+    read_news_index = []
     # weight for the random choice
     weights = np.exp(np.array(ratings))
     weights = weights / weights.sum()
     # random news index
     current_new_index = np.random.choice(len(ratings), p=weights)
     new_to_read = news_url[current_new_index]
+    read_news_index.append(current_new_index)
 
     return render_template('app.html', new_to_read=new_to_read,
-                           not_first_new=True)
+                           not_first_new=True, current=True,
+                           no_more_left=True, no_more_right=True)
 
 @app.route('/rate_news', methods=['POST'])
 def rate_news():
     global current_new_index
     global ratings
-    global news_read
     global news_url
+    global read_news_index
     # process rate
     rate = int(request.form.get('rating4new'))
     if rate != -1:
-        update_ratings(current_new_index, rate, news_read)
+        update_ratings(current_new_index, rate)
     else:
         pass
     # give a new news
@@ -199,24 +207,45 @@ def rate_news():
     # random news index
     current_new_index = np.random.choice(len(ratings), p=weights)
     new_to_read = news_url[current_new_index]
+    read_news_index.append(current_new_index)
 
     return render_template('app.html', new_to_read=new_to_read,
-                           not_first_new=True)
+                           not_first_new=True, current=True,
+                           no_more_left=False, no_more_right=True)
 
+@app.route('/news_history', methods=['POST'])
+def news_history():
+    global read_news_index
+    global news_url
+    global current_new_index
+    global read_news_index_curr
+    no_more_left = False
+    no_more_right = False
 
-"""
-weights = np.exp(np.array(ratings))  # Exponential gives higher prob to larger values
-weights = weights / weights.sum()  # Normalize to prob
+    move = request.form.get('news_hist')
+    if move == "next":
+        read_news_index_curr += 1
+    elif move == "prev":
+        read_news_index_curr -= 1
+    
+    new_to_read = news_url[read_news_index[read_news_index_curr]]
+    
+    if read_news_index_curr == -1:
+        current = True
+    else:
+        current = False
+    
+    if read_news_index_curr == -len(read_news_index):
+        no_more_left=True
+    elif read_news_index_curr == -1:
+        no_more_right=True
 
-# Select an index based on the weights
-index = np.random.choice(len(ratings), p=weights)
-#print(news[index])
-#rating = int(input(f"Rating of {index}: "))
-rating = random.randint(1, 5)
-rated_news.append(rating)
-learning_rate = 0.999**_
-update_ratings(index, rating, learning_rate)
-"""
+    return render_template('app.html', new_to_read=new_to_read,
+                           not_first_new=True, current=current,
+                           a=read_news_index_curr,
+                           no_more_left=no_more_left,
+                           no_more_right=no_more_right)
+
 
 ##################################################################
 ##################################################################
