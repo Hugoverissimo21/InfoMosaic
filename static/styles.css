@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.tab:hover {
+    background-color: #f0f0f0;
+}
+
+.tab-content {
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-left,
+.button-right {
+    margin: 0 10px;
+}
+
+.button-left:disabled,
+.button-right:disabled {
+    background-color: #e0e0e0;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.text-center {
+    flex-grow: 1;
+    text-align: center;
+}
+
+
+
+
+
+
+/* used for HILO */
+.word-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+/* used for HILO */
+.word-column {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Center the text horizontally */
+}
+
+/* used for HILO */
+.word-column p {
+    margin: 5px 0;
+
+}
+
+/* used for HILO */
+.centered-text {
+    position: absolute; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* used for HILO */
+.right-text {
+    float:right;
+}

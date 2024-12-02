@@ -4,32 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Where News Meets Curiosity</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .tabs { display: flex; margin-bottom: 20px; }
-        .tab { padding: 10px 20px; cursor: pointer; border: 1px solid #ccc; }
-        .tab:hover { background-color: #f0f0f0; }
-        .tab-content { padding: 20px; border: 1px solid #ccc; }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .button-left,
-        .button-right {
-            margin: 0 10px;
-        }
-        .button-left:disabled,
-        .button-right:disabled {
-            background-color: #e0e0e0;
-            color: #aaa;
-            cursor: not-allowed;
-        }
-        .text-center {
-            flex-grow: 1;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
 
@@ -103,19 +78,25 @@
             <button type="submit">Start a New Game</button>
         </form>
     {% else %}
-        <p>Word 1: {{ word1 }}</p>
-        <p>Word 1: {{ word1_mentions }}</p>
-        <p>Word 2: {{ word2 }}</p>
-        <p>Score: {{ score }}</p>
-    
-        <form action="/hiloH" method="POST">
-            <button type="submit" name="choice" value="more">Higher</button>
-            <button type="submit" name="choice" value="less">Lower</button>
-        </form>
+        <p></p>
+        <div class="word-container">
+            <div class="word-column">
+                <p>{{ word1 }}</p>
+                <p>Mentions: {{ word1_mentions }}</p>
+            </div>
+            <div class="word-column">
+                <p>{{ word2 }}</p>
+                <form action="/hiloH" method="POST">
+                    <button type="submit" name="choice" value="more">Higher</button>
+                    <button type="submit" name="choice" value="less">Lower</button>
+                </form>  
+            </div>
+        </div>
+        <span class="right-text">Score: {{ score }}</span>
         {% if winner %}
-            <p>{{ winner }}</p>
+            <span class="centered-text">{{ winner }}</span>
         {% elif loser %}
-            <p>{{ loser }}</p>
+            <span class="centered-text">{{ loser }}</span>
         {% endif %}
     {% endif %}
 

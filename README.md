@@ -6,6 +6,8 @@
 
 [https://hugover.pythonanywhere.com](https://hugover.pythonanywhere.com) - currently deployed here
 
+static and templates folders are for the flask app
+
 ## Folders
 
 assets - contains images and visualizations.
