@@ -13,11 +13,17 @@ body {
     border: 1px solid #ccc;
 }
 
-.tab:hover {
-    background-color: #f0f0f0;
+.tab:hover {  /* when mouse is hover the tab */
+    background-color: #0056b3;
 }
 
-.tab-content {
+.tab.active { /* color when tab is selected */
+    background-color: #007bff;
+    color: white;
+    border-bottom: 2px solid #0056b3;
+}
+
+.tab-content { /* border of the tabs inside the tab page */
     padding: 20px;
     border: 1px solid #ccc;
 }
@@ -88,4 +94,60 @@ body {
 /* used for HILO */
 .right-text {
     float:right;
+}
+
+
+
+.button-hilo-win {
+    background-color: #13aa52;
+    border: 1px solid #13aa52;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-hilo-lose {
+    background-color: #C81432;
+    border: 1px solid #C81432;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-hilo-win:hover {
+    box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+    transform: translateY(-2px);
+}
+
+.button-hilo-lose:hover {
+    box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+    transform: translateY(2px);
 }
