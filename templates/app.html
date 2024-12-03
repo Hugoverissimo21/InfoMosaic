@@ -9,11 +9,10 @@
 <body>
 
 <div class="tabs">
-    <!-- por fazer SEARCH -->
     <div class="tab" onclick="showTab('search')">search</div>
     {% if not search_not_done %}
-    <div class="tab" onclick="showTab('graph')">Graph</div>
     <div class="tab" onclick="showTab('readexplore')">Read & Explore</div>
+    <div class="tab" onclick="showTab('graph')">Graph</div>
     <div class="tab" onclick="showTab('hilo')">Word Wars</div>
      <!-- por fazer CORRELATION -->
     <div class="tab" onclick="showTab('correlation')">correlation</div>
@@ -39,12 +38,28 @@
     </iframe>
 </div>
 
-
+<!-- THIS IS NOT HILO, BUT THE CLASSES ARE FROM HILO-->
 <div class="tab-content" id="readexplore">
     {% if not not_first_new %}
-        <form action="/get_first_news" method="POST">
-            <button type="submit">Start Reading</button>
-        </form>
+        <div class="container-starthilo">
+            <div class="content-starthilo">
+                <h1>Welcome to the "Start Reading" not game!</h1>
+                <p></p>
+                <form action="/get_first_news" method="POST">
+                    <button class="button-hilo-start-game" type="submit">Start Reading</button>
+                </form>
+                <p></p>
+                <div class="rules">
+                    <p><strong>Objective:</p></strong></p>
+                    <p>Gdhsuiahdisahdishaiduh</p>
+                    <p><strong>How to it works:</strong></p>
+                    <ul>
+                        <li>bla bla bla</li>
+                        <li>bla bla bla</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     {% endif %}
     {% if new_to_read %}
         {% if current %}
