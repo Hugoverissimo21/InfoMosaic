@@ -86,7 +86,8 @@ body {
 
 /* used for HILO */
 .centered-text {
-    position: absolute; 
+    float: left; 
+    position: relative;
     left: 50%;
     transform: translateX(-50%);
 }

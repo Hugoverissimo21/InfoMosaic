@@ -114,8 +114,10 @@
                 </form>  
             </div>
         </div>
-        <span class="right-text">Score: {{ score }}</span>
-        {% if winner %}
+        {% if not winner and not loser %}
+            <span class="right-text">Score: {{ score }}</span>
+        {% elif winner %}
+            <span class="right-text">Score: {{ score }}</span>
             <span class="centered-text">{{ winner }}</span>
         {% elif loser %}
             <span class="centered-text">{{ loser }}</span>
