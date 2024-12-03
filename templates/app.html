@@ -19,7 +19,17 @@
 </div>
 
 <div class="tab-content" id="search" style="display:none;">
-    <h1>TEST search</h1>
+    <h1>Search Example</h1>
+    
+    <form method="POST" action="/search">
+        <input type="text" name="search" placeholder="Enter search term" required>
+        <button type="submit">Search</button>
+    </form>
+    <p>Avaiable: galp, bcp, edp, sonae, motgil</p>
+
+    {% if search_query %}
+        <p>You searched for: {{ search_query }}</p>
+    {% endif %}
 </div>
 
 <div class="tab-content graph-tab" id="graph" style="display:none;">
@@ -152,7 +162,7 @@
     }
 
     // Retrieve the last tab from localStorage
-    const lastTab = localStorage.getItem('lastTab') || 'graph';
+    const lastTab = localStorage.getItem('lastTab') || 'search';
     showTab(lastTab);
 </script>
 

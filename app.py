@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request, Response, jsonify
 import random
 import matplotlib.pyplot as plt
 import io
@@ -13,11 +13,15 @@ import plotly.io as pio
 ##################################################################
 ##################################################################
 
+# SEARCH | SEARCH | SEARCH | SEARCH | SEARCH
+search_query = None
+
+
 # HILO | HILO | HILO | HILO | HILO | HILO
 # Load the keywords from the JSON file for the HiLo game
 with open('data/kwrd_bcp.json', 'r', encoding='utf-8') as json_file:
     keywords_data = json.load(json_file)
-    keywords_data = {k: v for k, v in keywords_data.items() if int(v["count"]) > 5}
+    keywords_data = {k: v for k, v in keywords_data.items() if int(v["count"]) > 5 and v["filter"] >= 0.015}
 keywords = list(keywords_data.keys())
 word1 = None
 word2 = None
@@ -68,6 +72,20 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return render_template('app.html')
+
+##################################################################
+##################################################################
+############################ search ##############################
+##################################################################
+##################################################################
+
+@app.route('/search', methods=['POST'])
+def search():
+    global search_query
+    search_query = request.form['search']
+    if search_query in ["galp", "bcp", "edp", "sonae", "motgil"]:
+        
+    return render_template('app.html', search_query=search_query)
 
 ##################################################################
 ##################################################################
