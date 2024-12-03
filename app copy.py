@@ -16,25 +16,38 @@ import plotly.io as pio
 # SEARCH | SEARCH | SEARCH | SEARCH | SEARCH
 search_query = None
 
+
 # HILO | HILO | HILO | HILO | HILO | HILO
-keywords_data = None
-keywords = None
+# Load the keywords from the JSON file for the HiLo game
+with open('data/kwrd_bcp.json', 'r', encoding='utf-8') as json_file:
+    keywords_data = json.load(json_file)
+    keywords_data = {k: v for k, v in keywords_data.items() if int(v["count"]) > 5 and v["filter"] >= 0.015}
+keywords = list(keywords_data.keys())
 word1 = None
 word2 = None
 score = None
-scores_historic = {}   
+scores_historic = {}
+
 
 # NEWS READER | NEWS READER | NEWS READER
-news_data = None
-news_url = None
+# Load the news from the JSON file for the News Reader
+with open('data/news_bcp.json', 'r', encoding='utf-8') as json_file:
+    news_data = json.load(json_file)
+news_url = list(news_data.keys())
 setences = []
-ratings = None
+for new in news_url:
+    setence = " ".join(news_data[new]["keywords"]) # set
+    setences.append(setence)
+ratings = np.array([3.0] * len(setences))
+# Vectorize the setences
 vectorizer = TfidfVectorizer()
-tfidf_matrix = None
+tfidf_matrix = vectorizer.fit_transform(setences)
+# Compute the cosine similarity matrix to update ratings
 def update_ratings(index, user_rating):
     global ratings
     global number_news_read
     number_news_read += 1
+    # Compute similarity to all other texts
     similarity_scores = cosine_similarity(tfidf_matrix[index], tfidf_matrix).flatten()
     learning_rate = 0.999**number_news_read
     ratings += (user_rating - ratings) * (similarity_scores)**0.5 * learning_rate
@@ -58,7 +71,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('app.html', search_not_done=True)
+    return render_template('app.html')
 
 ##################################################################
 ##################################################################
@@ -68,37 +81,10 @@ def home():
 
 @app.route('/search', methods=['POST'])
 def search():
-    global search_query    
-
+    global search_query
     search_query = request.form['search']
-    if search_query not in ["galp", "bcp", "edp", "sonae", "motgil"]:
-        return render_template('app.html', search_query="404Hugo",
-                               search_not_done=True)
-    
-    # Load the keywords from the JSON file
-    global keywords_data
-    global keywords
-    with open(f'data/kwrd_{search_query}.json', 'r', encoding='utf-8') as json_file:
-        keywords_data = json.load(json_file)
-        keywords_data = {k: v for k, v in keywords_data.items() if int(v["count"]) > 5 and v["filter"] >= 0.015}
-    keywords = list(keywords_data.keys())
-
-    # Load the news from the JSON file
-    global news_data
-    global news_url
-    global setences
-    global ratings
-    global tfidf_matrix
-    with open(f'data/news_{search_query}.json', 'r', encoding='utf-8') as json_file:
-        news_data = json.load(json_file)
-    news_url = list(news_data.keys())
-    setences = []
-    for new in news_url:
-        setence = " ".join(news_data[new]["keywords"]) # set
-        setences.append(setence)
-    ratings = np.array([3.0] * len(setences))
-    tfidf_matrix = vectorizer.fit_transform(setences)
-      
+    if search_query in ["galp", "bcp", "edp", "sonae", "motgil"]:
+        
     return render_template('app.html', search_query=search_query)
 
 ##################################################################
