@@ -17,11 +17,13 @@ import plotly.io as pio
 # Load the keywords from the JSON file for the HiLo game
 with open('data/kwrd_bcp.json', 'r', encoding='utf-8') as json_file:
     keywords_data = json.load(json_file)
+    keywords_data = {k: v for k, v in keywords_data.items() if int(v["count"]) > 5}
 keywords = list(keywords_data.keys())
 word1 = None
 word2 = None
 score = None
 scores_historic = {}
+
 
 # NEWS READER | NEWS READER | NEWS READER
 # Load the news from the JSON file for the News Reader
@@ -59,38 +61,13 @@ app = Flask(__name__)
 
 ##################################################################
 ##################################################################
-########################### XXXXX ################################
+######################### start page #############################
 ##################################################################
 ##################################################################
 
 @app.route('/')
 def home():
     return render_template('app.html')
-
-# Route for graph tab
-@app.route('/graph', methods=['POST'])
-def graph():
-    data = request.form.get('data', '0')
-    try:
-        # Here you can use any graphing library, e.g., matplotlib
-        x = [i for i in range(10)]
-        y = [int(data) * i for i in x]
-        
-        # Create a plot
-        plt.figure(figsize=(5, 4))
-        plt.plot(x, y)
-        plt.title('Graph based on input data')
-        
-        # Save it to a byte stream and encode to base64
-        img = io.BytesIO()
-        plt.savefig(img, format='png')
-        img.seek(0)
-        plot_data = base64.b64encode(img.getvalue()).decode('utf8')
-        plt.close()
-        
-        return render_template('app.html', graph_data=plot_data)
-    except ValueError:
-        return render_template('app.html', error="Invalid input for graph!")
 
 ##################################################################
 ##################################################################
@@ -126,6 +103,34 @@ def hiloH():
     global scores_historic
     word1_mentions = int(keywords_data[word1]["count"])
     word2_mentions = int(keywords_data[word2]["count"])
+    positive_feedback = [
+        "Great job!",
+        "Well done!",
+        "Fantastic!",
+        "Awesome!",
+        "Keep it up!",
+        "Excellent!",
+        "Brilliant!",
+        "Nice work!",
+        "Superb!",
+        "Impressive!",
+        "Amazing!",
+        "Outstanding!",
+        "Terrific!",
+        "You're doing great!",
+        "Good job!",
+        "Perfect!",
+        "Fabulous!",
+        "You're on the right track!",
+        "Incredible!",
+        "Marvelous!",
+        "Good effort!",
+        "Keep going!",
+        "You're crushing it!",
+        "Spectacular!",
+        "Top-notch!"
+        ]
+
 
     if request.method == 'POST':
         user_choice = request.form.get('choice')  # Get the user's choice
@@ -134,7 +139,10 @@ def hiloH():
             "less": word2_mentions <= word1_mentions
         }
         if scenarios[user_choice]:
-            winner = "Correct!"
+            if score == 0:
+                winner = "Correct!"
+            else:
+                winner = random.choice(positive_feedback)
             loser = False
             score += 1
             scores_historic[max(scores_historic.keys())]["score"] = score
@@ -146,7 +154,7 @@ def hiloH():
                 word2 = random.choice(keywords)
         else:
             winner = False
-            loser = f"Incorrect! Final score: {score}"
+            loser = f"Oops! That didn't go as planned. Final score: {score}."
             scores_historic[max(scores_historic.keys())]["score"] = score
             scores_historic[max(scores_historic.keys())]["text"] = f"""
             Score: {score}
@@ -176,11 +184,14 @@ def hilo_plot():
                              marker=dict(color=["blue"]*(len(scores_historic)-1) + ["red"]),
                              hoverinfo='text'))
     fig.update_layout(xaxis_title='Game Number',
-                      yaxis_title='Scores Historic')
+                      yaxis_title='Score Achieved',
+                      margin=dict(l=10, r=10, t=10, b=10),)
 
     # Use io.StringIO to save the HTML content in memory
     buffer = io.StringIO()
-    pio.write_html(fig, file=buffer, full_html=True)
+    pio.write_html(fig, file=buffer,
+                   full_html=True,
+                   config={"displayModeBar": False})
     buffer.seek(0)  # Move to the start of the buffer
 
     return Response(buffer.getvalue(), mimetype='text/html')

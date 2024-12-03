@@ -22,8 +22,9 @@
     <h1>TEST search</h1>
 </div>
 
-<div class="tab-content" id="graph" style="display:none;">
-    <embed src="https://hugoverissimo21.github.io/FCD-project/assets/graph_bcp.html" style="width:100%; height: 100vh;">
+<div class="tab-content graph-tab" id="graph" style="display:none;">
+    <embed src="https://hugoverissimo21.github.io/FCD-project/assets/graph_bcp.html" style="width:100%; height: calc(100vh - 200px);">
+    <!-- ACERTAR O HEIGHT COM O FINAL DAS TABS -->
 </div>
 
 
@@ -74,12 +75,30 @@
 </div>
 
 <div class="tab-content" id="hilo">
-    <h3>Word Wars</h3>
-    
     {% if not word1 %}
-        <form action="/hiloH_start" method="POST">
-            <button type="submit">Start a New Game</button>
-        </form>
+        <div class="container-starthilo">
+            <div class="content-starthilo">
+                <h1>Welcome to the "Guess the Mentions" game!</h1>
+                <p></p>
+                <form action="/hiloH_start" method="POST">
+                    <button class="button-hilo-start-game" type="submit">Start New Game</button>
+                </form>
+                <p></p>
+                <div class="rules">
+                    <p><strong>Objective:</p></strong></p>
+                    <p>Guess whether the next word or phrase has been mentioned more or less in recent news stories.</p>
+                    
+                    <p><strong>How to Play:</strong></p>
+                    <ul>
+                        <li>You will be presented with a word or phrase.</li>
+                        <li>Your task is to guess if the next word or phrase has been mentioned more or less in the news than the current one.</li>
+                        <li>Make your guess by selecting "Higher" (more mentions) or "Lower" (fewer mentions).</li>
+                        <li>After making your guess, the current word will be updated to the next one.</li>
+                        <li>Keep playing until you want to stop, or you can track your streak of correct guesses!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     {% else %}
         <p></p>
         <div class="word-container">
@@ -101,9 +120,8 @@
         {% elif loser %}
             <span class="centered-text">{{ loser }}</span>
         {% endif %}
-    {% endif %}
-
     <iframe src="/hilo_plot" width="100%" height="500px" frameborder="0"></iframe>
+    {% endif %}
 </div>
 
 <div class="tab-content" id="correlation" style="display:none;">
