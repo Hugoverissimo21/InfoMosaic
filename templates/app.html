@@ -12,8 +12,8 @@
     <div class="tab" onclick="showTab('search')">search</div>
     {% if not search_not_done %}
     <div class="tab" onclick="showTab('readexplore')">Read & Explore</div>
-    <div class="tab" onclick="showTab('graph')">Graph</div>
-    <div class="tab" onclick="showTab('hilo')">Word Wars</div>
+    <div class="tab" onclick="showTab('graph')">Topic Map</div>
+    <div class="tab" onclick="showTab('hilo')">Word Duel</div>
      <!-- por fazer CORRELATION -->
     <div class="tab" onclick="showTab('correlation')">correlation</div>
     {% endif %}
@@ -32,7 +32,7 @@
 </div>
 
 
-<div class="tab-content graph-tab" id="graph" style="display:none;">
+<div class="tab-content tab-graph" id="graph" style="display:none;">
     <iframe src="/graph" style="width:100%; height: calc(100vh - 200px);" frameborder="0">
         <p>Loading, please wait...</p>
     </iframe>
@@ -105,7 +105,7 @@
     {% if not word1 %}
         <div class="container-starthilo">
             <div class="content-starthilo">
-                <h1>Welcome to the "Guess the Mentions" game!</h1>
+                <h1>Welcome to the "Word Duel" game!</h1>
                 <p></p>
                 <form action="/hiloH_start" method="POST">
                     <button class="button-hilo-start-game" type="submit">Start New Game</button>
@@ -113,7 +113,7 @@
                 <p></p>
                 <div class="rules">
                     <p><strong>Objective:</p></strong></p>
-                    <p>Guess whether the next word or phrase has been mentioned more or less in recent news stories.</p>
+                    <p>Guess whether the next word or phrase has been mentioned more or less in the topic's news.</p>
                     
                     <p><strong>How to Play:</strong></p>
                     <ul>
@@ -123,6 +123,9 @@
                         <li>After making your guess, the current word will be updated to the next one.</li>
                         <li>Keep playing until you want to stop, or you can track your streak of correct guesses!</li>
                     </ul>
+
+                    <p><strong>Anything else?</strong></p>
+                    <p>Yes, the considered news stories relate to the period from 2000 to 2020, and were extracted from 33 Portuguese news websites, using <a href="https://arquivo.pt">arquivo.pt</a>. Good luck!</p>
                 </div>
             </div>
         </div>
@@ -180,10 +183,16 @@
         localStorage.setItem('lastTab', tabName);
     }
 
-    // Retrieve the last tab from localStorage
-    const lastTab = localStorage.getItem('lastTab') || 'search';
+    // Determine the default tab based on a server-side condition
+    {% if search_not_done %}
+    const lastTab = 'search';
+    {% else %}
+    const lastTab = localStorage.getItem('lastTab') || 'defaultTab';
+    {% endif %}
+
     showTab(lastTab);
 </script>
+
 
 
 </body>

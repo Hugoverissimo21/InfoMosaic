@@ -238,7 +238,20 @@ def hilo_plot():
                              hoverinfo='text'))
     fig.update_layout(xaxis_title='Game Number',
                       yaxis_title='Score Achieved',
-                      margin=dict(l=10, r=10, t=10, b=10),)
+                      margin=dict(l=10, r=10, t=10, b=10),
+                      paper_bgcolor='rgba(0,0,0,0)',
+                      xaxis=dict(
+                          gridcolor='rgba(208, 216, 226, 0.4)',
+                          gridwidth=1,
+                          linecolor='rgba(208, 216, 226, 1)',
+                          linewidth=2,
+                          type='category'),
+                        yaxis=dict(
+                            gridcolor='rgba(208, 216, 226, 0.35)',
+                            gridwidth=1,
+                            linecolor='rgba(208, 216, 226, 1)',
+                            linewidth=2,
+                            ))
 
     # Use io.StringIO to save the HTML content in memory
     buffer = io.StringIO()

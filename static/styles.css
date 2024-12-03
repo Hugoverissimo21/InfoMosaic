@@ -1,5 +1,7 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
+    background-color: rgb(245, 248, 252);
+    color: rgb(33, 37, 41)
 }
 
 .tabs {
@@ -10,22 +12,22 @@ body {
 .tab {
     padding: 10px 20px;
     cursor: pointer;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(208, 216, 226);
+    background-color: rgb(200, 208, 222);
 }
 
 .tab:hover {  /* when mouse is hover the tab */
-    background-color: #0056b3;
+    background-color: rgb(175, 188, 207);
+
 }
 
 .tab.active { /* color when tab is selected */
-    background-color: #007bff;
-    color: white;
-    border-bottom: 2px solid #0056b3;
+    background-color: rgb(230, 241, 255);
+    border-bottom: 2px solid rgb(51, 122, 183);
 }
 
 .tab-content { /* border of the tabs inside the tab page */
     padding: 20px;
-    border: 1px solid #ccc;
 }
 
 .nav-container {
@@ -68,8 +70,8 @@ body {
 .word-column {
     flex: 1;
     padding: 15px;
-    border: 1px solid #ccc;
-    background-color: #f4f4f4;
+    border: 1px solid rgb(208, 216, 226);
+    background-color: rgb(240, 244, 250);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -103,7 +105,7 @@ body {
     border-radius: 4px;
     margin: 10px;
     box-sizing: border-box;
-    color: #fff;
+    color: rgb(245, 248, 252);
     cursor: pointer;
     font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 16px;
@@ -132,14 +134,33 @@ body {
 
 /* used for HILO */
 .button-hilo-win:hover,
-.button-hilo-lose:hover {
+.button-hilo-lose:hover,
+.button-hilo-start-game:hover {
     box-shadow: rgba(0, 0, 0, 0.2) 0 6px 12px 0; /* Larger and softer shadow */
     transform: translateY(-2px); /* Move up */
 }
 
 .button-hilo-start-game {
-    background-color: #007bff;
-    border: 1px solid #007bff;
+    background-color: rgb(51, 122, 183);
+    border: 1px solid rgb(51, 122, 183);
+    border-radius: 4px;
+    margin: 10px;
+    box-sizing: border-box;
+    color: rgb(245, 248, 252);
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
 }
 
 .container-starthilo {
@@ -151,15 +172,20 @@ body {
 }
 
 .content-starthilo {
-    width: auto;           /* Set width of the div */
+    width: 800px;           /* Set width of the div */
     height: auto;           /* Auto height based on content */
     background-color: rgb(230, 236, 245); /* Your background color */
-    border: 1px solid #ccc; /* Optional border */
+    border: 1px solid rgb(208, 216, 226); /* Optional border */
     display: flex;           /* Make .content a flex container */
     flex-direction: column;  /* Stack items vertically */
     justify-content: center; /* Vertically center items within .content */
     align-items: center;     /* Horizontally center items within .content */
     padding: 10px;           /* Add padding inside the container */
+}
+
+.rules {
+    text-align: justify;
+    float: left;
 }
 
 
@@ -168,8 +194,10 @@ body {
 
 
 /* used for GRAPH */
-.graph-tab {
+.tab-graph{
     background-color: rgb(230, 236, 245);
+    border: 1px solid rgb(208, 216, 226);
+    padding: 0px;
 }
 
 
