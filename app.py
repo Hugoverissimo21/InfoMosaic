@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, Response, jsonify
 import random
 import matplotlib.pyplot as plt
 import io
+import requests
 import base64
 import json
 import numpy as np
@@ -70,7 +71,7 @@ def home():
 def search():
     global search_query    
 
-    search_query = request.form['search']
+    search_query = request.form['query']
     if search_query not in ["galp", "bcp", "edp", "sonae", "motgil"]:
         return render_template('app.html', search_query="404Hugo",
                                search_not_done=True)
@@ -100,6 +101,26 @@ def search():
     tfidf_matrix = vectorizer.fit_transform(setences)
       
     return render_template('app.html', search_query=search_query)
+
+
+##################################################################
+##################################################################
+############################# graph ##############################
+##################################################################
+##################################################################
+
+@app.route('/graph', methods=['GET'])
+def graph():
+    global search_query
+    graph_site = f"https://hugoverissimo21.github.io/FCD-project/assets/graph_{search_query}.html"
+
+    response = requests.get(graph_site)
+    buffer = io.StringIO()
+    buffer.write(response.text)
+    buffer.seek(0)
+    
+    return Response(buffer.getvalue(), mimetype='text/html')
+
 
 ##################################################################
 ##################################################################
