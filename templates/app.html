@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Where News Meets Fun</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- because of the stars rating: -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
 </head>
 <body>
 
 <div class="tabs">
     <div class="tab" onclick="showTab('search')">Explorer</div>
-    {% if not search_not_done %}
+    {% if search_not_done %}
+    <p style="visibility: hidden;"><strong>.</strong></p>
+    {% elif not search_not_done %}
     <div class="tab" onclick="showTab('graph')">Topic Map</div>
-    <div class="tab" onclick="showTab('readexplore')">read explore</div>
+    <div class="tab" onclick="showTab('readexplore')">topic insights</div>
     <div class="tab" onclick="showTab('hilo')">Word Duel</div>
     <div class="tab" onclick="showTab('correlation')">correlation</div>
+    <p style="margin-left: auto;"><strong>{{ g.search_query }}</strong> in focus.</p>
     {% endif %}
 </div>
 
@@ -112,7 +117,7 @@
 
 
 <div class="tab-content tab-graph" id="graph" style="display:none;">
-    <iframe src="/graph" style="width:100%; height: calc(100vh - 125px);" frameborder="0">
+    <iframe src="https://hugoverissimo21.github.io/FCD-project/assets/graph_{{ g.search_query }}.html" style="width:100%; height: calc(100vh - 135px);" frameborder="0">
         <p>Loading, please wait...</p>
     </iframe>
 </div>
@@ -120,22 +125,17 @@
 <!-- THIS IS NOT HILO, BUT THE CLASSES ARE FROM HILO-->
 <div class="tab-content" id="readexplore">
     {% if not not_first_new %}
-        <div class="container-starthilo">
-            <div class="content-starthilo">
-                <h1>Welcome to the "Start Reading" not game!</h1>
-                <p></p>
+        <div class="container-start">
+            <div class="content-start">
+                <h1>Welcome to Topic Insights!</h1>
                 <form action="/get_first_news" method="POST">
-                    <button class="button-hilo-start-game" type="submit">Start Reading</button>
+                    <button class="button-start" type="submit">Dive In</button>
                 </form>
-                <p></p>
                 <div class="rules">
-                    <p><strong>Objective:</p></strong></p>
-                    <p>Gdhsuiahdisahdishaiduh</p>
-                    <p><strong>How to it works:</strong></p>
-                    <ul>
-                        <li>bla bla bla</li>
-                        <li>bla bla bla</li>
-                    </ul>
+                    <p>Here, you'll find news and updates related to your topic. Rate each item from 1 (hated it) to 5 (loved it) stars to help us improve your recommendations. Not interested in a particular article? Feel free to skip it. Want to revisit something? You can go back anytime.</p>
+                    <p>The more you rate, the smarter your experience becomes!</p>
+                    <p><strong>Anything else?</strong></p>
+                    <p>Yes! The news and updates cover the period from 2000 to 2020 and were sourced from 33 portuguese news websites through <a href="https://arquivo.pt">arquivo.pt</a>. Enjoy exploring!</p>
                 </div>
             </div>
         </div>
@@ -143,38 +143,33 @@
     {% if new_to_read %}
         {% if current %}
             <form action="/rate_news" method="POST">
-                <button type="submit" name="rating4new" value="1">1</button>
-                <button type="submit" name="rating4new" value="2">2</button>
-                <button type="submit" name="rating4new" value="3">3</button>
-                <button type="submit" name="rating4new" value="4">4</button>
-                <button type="submit" name="rating4new" value="5">5</button>
-                <button type="submit" name="rating4new" value="-1">Skip</button>
+                <p>Rating:
+                    <span class="star-rating">
+                        <label for="rate-1" style="--i:1"><i class="fa-solid fa-star"></i></label>
+                        <button class="star-buttom" type="radio" name="rating4new" id="rate-1" value="1"></button>
+                        <label for="rate-2" style="--i:2"><i class="fa-solid fa-star"></i></label>
+                        <button class="star-buttom" type="radio" name="rating4new" id="rate-2" value="2"></button>
+                        <label for="rate-3" style="--i:3"><i class="fa-solid fa-star"></i></label>
+                        <button class="star-buttom" type="radio" name="rating4new" id="rate-3" value="3"></button>
+                        <label for="rate-4" style="--i:4"><i class="fa-solid fa-star"></i></label>
+                        <button class="star-buttom" type="radio" name="rating4new" id="rate-4" value="4"></button>
+                        <label for="rate-5" style="--i:5"><i class="fa-solid fa-star"></i></label>
+                        <button class="star-buttom" type="radio" name="rating4new" id="rate-5" value="5"></button>
+                    </span>
+                <button type="radio" name="rating4new" value="-1">Skip</button></p>
+                
             </form>
+    
         {% endif %}
         <form action="/news_history" method="POST" class="nav-container">
-            <button 
-              type="submit" 
-              name="news_hist" 
-              value="prev" 
-              class="button-left"
-              {% if no_more_left %} disabled {% endif %}
-            >
-              prev
-            </button>
+            <button type="submit" name="news_hist" value="prev" class="button-left" {% if no_more_left %} disabled {% endif %}><<</button>
             
             <p class="text-center">Source: {{ new_to_read }}</p>
             
-            <button 
-              type="submit" 
-              name="news_hist" 
-              value="next" 
-              class="button-right"
-              {% if no_more_right %} disabled {% endif %}
-            >
-              next
-            </button>
+            <button type="submit" name="news_hist" value="next" class="button-right" {% if no_more_right %} disabled {% endif %}>>></button>
         </form>
-        <iframe src="{{ new_to_read }}" style="width: 100%; height: 100vh;" onload="disablePrint(this)">
+
+        <iframe src="{{ new_to_read }}" style="width: 100%; height: 100vh; background-color: white;" onload="disablePrint(this)">
             <p>Loading, please wait...</p>
         </iframe>
     {% endif %}
@@ -191,18 +186,15 @@
 
 <div class="tab-content" id="hilo">
     {% if not word1 %}
-        <div class="container-starthilo">
-            <div class="content-starthilo">
-                <h1>Welcome to the "Word Duel" game!</h1>
-                <p></p>
+        <div class="container-start">
+            <div class="content-start">
+                <h1>Welcome to the Word Duel game!</h1>
                 <form action="/hiloH_start" method="POST">
-                    <button class="button-hilo-start-game" type="submit">Start New Game</button>
+                    <button class="button-start" type="submit">Start New Game</button>
                 </form>
-                <p></p>
                 <div class="rules">
                     <p><strong>Objective:</p></strong></p>
                     <p>Guess whether the next word or phrase has been mentioned more or fewer times than the current one in the topic's news.</p>
-                    
                     <p><strong>How to Play:</strong></p>
                     <ul>
                         <li>You will be presented with a word or phrase.</li>
@@ -211,7 +203,6 @@
                         <li>After making your guess, the current word will be updated to the next one.</li>
                         <li>Keep playing until you want to stop, or you can track your streak of correct guesses!</li>
                     </ul>
-
                     <p><strong>Anything else?</strong></p>
                     <p>Yes, the considered news stories relate to the period from 2000 to 2020, and were extracted from 33 Portuguese news websites, using <a href="https://arquivo.pt">arquivo.pt</a>. Good luck!</p>
                 </div>

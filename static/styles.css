@@ -7,6 +7,7 @@ body {
 .tabs {
     display: flex;
     margin-bottom: 20px;
+    align-items: center;
 }
 
 .tab {
@@ -39,6 +40,30 @@ body {
 .button-left,
 .button-right {
     margin: 0 10px;
+
+    background-color: rgb(51, 122, 183);
+    border: 1px solid rgb(51, 122, 183);
+    border-radius: 4px;
+    margin: 10px;
+    box-sizing: border-box;
+    color: rgb(245, 248, 252);
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 7px 14px;
+    text-align: center;
+    user-select: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.button-left:hover,
+.button-right:hover {
+    border: 1px solid rgb(245, 248, 252);
 }
 
 .button-left:disabled,
@@ -132,15 +157,16 @@ body {
     border: 1px solid #C81432;
 }
 
-/* used for HILO */
+/* used for HILO and READ */
 .button-hilo-win:hover,
 .button-hilo-lose:hover,
-.button-hilo-start-game:hover {
+.button-start:hover {
     box-shadow: rgba(0, 0, 0, 0.2) 0 6px 12px 0; /* Larger and softer shadow */
     transform: translateY(-2px); /* Move up */
 }
 
-.button-hilo-start-game {
+/* used for HILO and READ */
+.button-start {
     background-color: rgb(51, 122, 183);
     border: 1px solid rgb(51, 122, 183);
     border-radius: 4px;
@@ -161,9 +187,12 @@ body {
     -webkit-user-select: none;
     touch-action: manipulation;
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.container-starthilo {
+/* used for HILO and READ */
+.container-start {
     display: flex;
     justify-content: center; /* Centers horizontally */
     align-items: center;     /* Centers vertically */
@@ -171,7 +200,8 @@ body {
     flex-direction: column;
 }
 
-.content-starthilo {
+/* used for HILO and READ */
+.content-start {
     width: 800px;           /* Set width of the div */
     height: auto;           /* Auto height based on content */
     background-color: rgb(230, 236, 245); /* Your background color */
@@ -183,6 +213,7 @@ body {
     padding: 10px;           /* Add padding inside the container */
 }
 
+/* used for HILO and READ */
 .rules {
     text-align: justify;
     float: left;
@@ -263,6 +294,7 @@ body {
     gap: 0px; 
 }
 
+/* used for SEARCH */
 .suggestions {
     border: 1px solid #ccc;
     max-height: 175px;
@@ -276,13 +308,56 @@ body {
     overflow-y: auto;
     box-sizing: border-box;
 }
+
+/* used for SEARCH */
 .suggestions div {
     padding: 10px;
     cursor: pointer;
 }
+
+/* used for SEARCH */
 .suggestions div:hover {
     background-color: #f0f0f0;
 }
 
 
-     /* Set a width for the input (can be adjusted) */
+
+
+
+
+/* used for READ */
+.star-rating {
+	white-space: nowrap;
+}
+
+/* used for READ */
+.star-rating [type="radio"] {
+	appearance: none;
+}
+
+/* used for READ */
+.star-rating i {
+	font-size: 1.2em;
+	transition: 0.3s;
+}
+
+/* used for READ */
+.star-rating label:is(:hover, :has(~ :hover)) i {
+	transform: scale(1.35);
+	color: #faec1b;
+	animation: jump 0.5s calc(0.3s + (var(--i) - 1) * 0.15s) alternate infinite;
+}
+
+/* used for READ */
+.star-rating label:has(~ :checked) i {
+	color: #faec1b;
+	text-shadow: 0 0 2px #ffffff, 0 0 10px #ffee58;
+}
+
+.star-buttom {
+    width: 1px;
+    height: 1px;
+    visibility: hidden;
+    padding: 0;
+    border: none;
+}

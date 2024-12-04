@@ -59,7 +59,9 @@ app = Flask(__name__)
 @app.before_request
 def before_request():
     global avaible_queries
+    global search_query
     g.avaible_queries = avaible_queries
+    g.search_query = search_query
 
 ##################################################################
 ##################################################################
@@ -93,6 +95,7 @@ def search():
     elif action == 'lucky':
         search_query = random.choice(avaible_queries)
     
+    
     # Load the keywords from the JSON file
     global keywords_data
     global keywords
@@ -116,7 +119,8 @@ def search():
         setences.append(setence)
     ratings = np.array([3.0] * len(setences))
     tfidf_matrix = vectorizer.fit_transform(setences)
-      
+    
+    g.search_query = search_query
     return render_template('app.html', search_query=search_query,
                            search_finised=True)
 
@@ -140,17 +144,7 @@ def autocomplete():
 ##################################################################
 ##################################################################
 
-@app.route('/graph', methods=['GET'])
-def graph():
-    global search_query
-    graph_site = f"https://hugoverissimo21.github.io/FCD-project/assets/graph_{search_query}.html"
 
-    response = requests.get(graph_site)
-    buffer = io.StringIO()
-    buffer.write(response.text)
-    buffer.seek(0)
-    
-    return Response(buffer.getvalue(), mimetype='text/html')
 
 
 ##################################################################
@@ -326,6 +320,7 @@ def rate_news():
     global ratings
     global news_url
     global read_news_index
+    global read_news_index_curr
     # process rate
     rate = int(request.form.get('rating4new'))
     if rate != -1:
@@ -340,6 +335,7 @@ def rate_news():
     new_to_read = news_url[current_new_index]
     read_news_index.append(current_new_index)
 
+    read_news_index_curr = -1
     return render_template('app.html', new_to_read=new_to_read,
                            not_first_new=True, current=True,
                            no_more_left=False, no_more_right=True)
