@@ -205,7 +205,17 @@ current_new_index = np.random.choice(len(ratings), p=weights)
 
 ## hilo
 
-...
+http://www.higherlowergame.com
+
+https://noticioso.pt
+
+random choise of keywords, user has to say higher or lower, and check if its correct
+
+```{=html}
+<div class="footer">
+  /tests/keysHiLo v01.ipynb
+</div>
+```
 
 ## where everything comes thogether
 
