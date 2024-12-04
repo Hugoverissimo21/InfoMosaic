@@ -21,19 +21,100 @@
 
 <div class="tab-content tab-search" id="search" style="display:none;">
     <h1>Topic Explorer</h1>
-
     <form method="POST" action="/search">
-        <input type="text" name="query" placeholder="What would you like to learn about?" value="{{ search_query if search_query else '' }}">
+        <input type="text" id="search-input" name="query" placeholder="What would you like to learn about?" value="{{ search_query if search_query else '' }}">
+        <div id="suggestions-box" class="suggestions" style="display: none;"></div>
+
         <div class="button-container">
-            <button type="submit" name="action" value="search">Search</button>
-            <button type="submit" name="action" value="lucky">luck</button>
+            <button type="submit" name="action" value="search">Search for Topic</button>
+            <button type="submit" name="action" value="lucky">Discover Something New</button>
         </div>
     </form>
-    {% if not search_finised %}
-        <p>Available: {{ g.avaible_queries }}</p>
-    {% else %}
-        <p>Search results on the tabs or smtg</p>
+    {% if search_finised %}
+        <p>Your topic is waiting! Explore through the tabs above.</p>
     {% endif %}
+    
+    <p>to see avaible queries use * in the search bar</p>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#search-input').on('input', function() {
+                var query = $(this).val();
+    
+                // If query is empty, show the first k suggestions (default behavior)
+                if (query.length === 0) {
+                    $('#suggestions-box').empty().show(); // Show first k suggestions when input is empty
+                }
+    
+                // Make AJAX request to get suggestions
+                $.get('/autocomplete', { query: query }, function(data) {
+                    console.log("Suggestions received: ", data);  // Debugging line
+                    // Clear previous suggestions
+                    $('#suggestions-box').empty();
+                    
+                    // Show suggestions if there are any
+                    if (data.length > 0) {
+                        $('#suggestions-box').show();
+                        data.forEach(function(item) {
+                            $('#suggestions-box').append('<div>' + item + '</div>');
+                        });
+    
+                        // Dynamically position the suggestions box below or above the input
+                        var inputOffset = $('#search-input').offset();
+                        var inputHeight = $('#search-input').outerHeight();
+                        var inputWidth = $('#search-input').outerWidth(); // Get the width of the input field
+                        var suggestionsBox = $('#suggestions-box');
+                        
+                        // Set the width of the suggestion box to match the input field
+                        suggestionsBox.css({
+                            'width': inputWidth-1 + 'px',  // Set the width to match the input field
+                        });
+    
+                        // Position the suggestions box below the input
+                        var topPosition = inputOffset.top + inputHeight;
+                        
+                        // Check if the suggestion box would overflow the bottom of the window
+                        var windowHeight = $(window).height();
+                        var suggestionsBoxHeight = suggestionsBox.outerHeight();
+                        if (topPosition + suggestionsBoxHeight > windowHeight) {
+                            // If it would overflow, show the suggestions above the input
+                            topPosition = inputOffset.top - suggestionsBoxHeight;
+                        }
+    
+                        // Set the calculated position for the suggestions box
+                        suggestionsBox.css({
+                            'top': topPosition,  // Position it below or above the input based on available space
+                            'left': inputOffset.left  // Align with the left edge of the input
+                        });
+                    } else {
+                        $('#suggestions-box').hide(); // Hide the suggestions box if no data
+                    }
+                }).fail(function() {
+                    console.error("AJAX request failed.");
+                });
+            });
+    
+            // When a suggestion is clicked, populate the input field and hide the suggestions box
+            $(document).on('click', '#suggestions-box div', function() {
+                $('#search-input').val($(this).text());
+                $('#suggestions-box').hide();
+            });
+    
+            // Hide suggestions when input is cleared
+            $('#search-input').on('blur', function() {
+                // Delay hiding the suggestions box to allow click event to register
+                setTimeout(function() {
+                    if ($('#search-input').val() === '') {
+                        $('#suggestions-box').hide();
+                    }
+                }, 100);
+            });
+        });
+    </script>
+    
+    
+    
 </div>
 
 
@@ -174,6 +255,7 @@
 
 <div class="tab-content" id="correlation" style="display:none;">
     <h1>TEST corr</h1>
+    <h1>Start typing...</h1>
 </div>
 
 <script>

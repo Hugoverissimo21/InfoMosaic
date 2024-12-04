@@ -16,11 +16,12 @@ import plotly.io as pio
 
 # SEARCH | SEARCH | SEARCH | SEARCH | SEARCH
 search_query = None
-avaible_queries = ["galp",
+avaible_queries = sorted(["galp", "Z",
                    "bcp",
                    "edp",
                    "sonae",
-                   "motgil"]
+                   "motgil"], key=lambda x: x.lower())
+avaible_queries = ["x"] * 100
 
 # HILO | HILO | HILO | HILO | HILO | HILO
 keywords_data = None
@@ -119,6 +120,19 @@ def search():
     return render_template('app.html', search_query=search_query,
                            search_finised=True)
 
+
+@app.route('/autocomplete', methods=['GET'])
+def autocomplete():
+    # Get the query from the URL (user's input)
+    query = request.args.get('query', '').lower()
+    if query == "*":
+        return jsonify(g.avaible_queries)
+    
+    # Filter the recommendations based on user input
+    filtered_recommendations = [item for item in g.avaible_queries if query in item.lower()]
+    
+    # Return the filtered suggestions as JSON
+    return jsonify(filtered_recommendations)
 
 ##################################################################
 ##################################################################

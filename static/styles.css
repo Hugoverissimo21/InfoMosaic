@@ -197,7 +197,6 @@ body {
 .tab-graph{
     background-color: rgb(230, 236, 245);
     border: 1px solid rgb(208, 216, 226);
-    padding: 0px;
     align-items: center;
 }
 
@@ -209,7 +208,7 @@ body {
     align-items: center; /* Center horizontally */
     text-align: center; /* Optional: centers text inside each element */
     height: 100vh; /* Make the container take the full height of the viewport */
-    padding: 20px; /* Optional: adjust padding around content */
+    padding: 100px; /* Optional: adjust padding around content */
 }
 
 /* used for SEARCH */
@@ -237,10 +236,10 @@ body {
     color: rgb(245, 248, 252);
     cursor: pointer;
     font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 400;
     outline: none;
-    padding: 10px 25px;
+    padding: 10px 5px;
     text-align: center;
     transform: translateY(0);
     transition: transform 150ms, box-shadow 150ms;
@@ -250,7 +249,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
     /* Ensure same size by setting width and height */
     height: 40px;
-    width: 150px;
+    width: 180px;
     text-align: center; 
 }
 
@@ -262,5 +261,27 @@ body {
 /* used for SEARCH */
 .button-container {
     display: flex;
-    gap: 10px; 
+    gap: 0px; 
 }
+
+.suggestions {
+    border: 1px solid #ccc;
+    max-height: 200px;
+    position: absolute;
+    background-color: white;
+    z-index: 999;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0; /* Optional, adds shadow for better visibility */
+}
+.suggestions div {
+    padding: 10px;
+    cursor: pointer;
+}
+.suggestions div:hover {
+    background-color: #f0f0f0;
+}
+
+
+     /* Set a width for the input (can be adjusted) */
