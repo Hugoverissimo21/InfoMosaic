@@ -15,6 +15,7 @@ from wordcloud import WordCloud
 import matplotlib
 matplotlib.use('Agg')  
 import matplotlib.pyplot as plt
+from matplotlib.colors import is_color_like
 
 ##################################################################
 ##################################################################
@@ -59,7 +60,7 @@ read_news_index_curr = -1
 
 # WORDCLOUD | WORDCLOUD | WORDCLOUD | WORDCLOUD
 keywords_data = None
-wordcloud_pallete = ["black", "black", "black", "black"]
+wordcloud_pallete = None
 wordcloud_data = None
 def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
     global wordcloud_pallete
@@ -425,8 +426,9 @@ def wordcloudgenerate():
     global keywords_data
     global wordcloud_pallete
     global wordcloud_data
-
     wordcloud_data = {word: data["weight"] for word, data in keywords_data.items()}
+    wordcloud_pallete = ["black", "black", "black", "black"]
+
     wordcloud = WordCloud(width=800, height=400, background_color=None, mode='RGBA').generate_from_frequencies(wordcloud_data)
 
     plt.figure(figsize=(10, 5))
@@ -434,14 +436,51 @@ def wordcloudgenerate():
     plt.imshow(wordcloud.recolor(color_func=color_func), interpolation='nearest')
     plt.axis('off')
     buf = io.BytesIO()
-    plt.savefig(buf, format='svg', transparent=True)
+    plt.savefig(buf, format='png', transparent=True, dpi=300)
     buf.seek(0)
     plt.close()
     encoded_plot = base64.b64encode(buf.getvalue()).decode('utf-8')
     buf.close()
+    return render_template('app.html', plot_data=encoded_plot,
+                           wordcloud=True)
 
-    return render_template('app.html', plot_data=encoded_plot)
+@app.route('/wordcloudcolors', methods=['POST'])
+def wordcloudcolors():
+    global keywords_data
+    global wordcloud_pallete
+    global wordcloud_data
 
+    input1 = request.form.get('input1')
+    input2 = request.form.get('input2')
+    input3 = request.form.get('input3')
+    input4 = request.form.get('input4')
+
+    col1 = input1 if is_color_like(input1) else "black"
+    col2 = input2 if is_color_like(input2) else "black"
+    col3 = input3 if is_color_like(input3) else "black"
+    col4 = input4 if is_color_like(input4) else "black"
+    wordcloud_pallete = [col1, col2, col3, col4]
+
+    if [input1, input2, input3, input4] == wordcloud_pallete:
+        valid_colors = True
+    else:
+        valid_colors = False
+    wordcloud = WordCloud(width=1600, height=800, background_color=None, mode='RGBA').generate_from_frequencies(wordcloud_data)
+
+    plt.figure(figsize=(10, 5))
+    random.seed(0)
+    plt.imshow(wordcloud.recolor(color_func=color_func), interpolation='nearest')
+    plt.axis('off')
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png', transparent=True, dpi=300)
+    buf.seek(0)
+    plt.close()
+    encoded_plot = base64.b64encode(buf.getvalue()).decode('utf-8')
+    buf.close()
+    return render_template('app.html', plot_data=encoded_plot,
+                           col1=col1, col2=col2, col3=col3, col4=col4,
+                           valid_colors=valid_colors,
+                           wordcloud=True)
 
 
 

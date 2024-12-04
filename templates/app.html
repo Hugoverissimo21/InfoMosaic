@@ -239,16 +239,53 @@
 
 
 <div class="tab-content" id="wordcloud" style="display:none;">
-    <h1>TEST corr</h1>
     {% if not wordcloud %}
-    <form action="/wordcloudgenerate" method="POST">
-        <button class="button-start" type="submit">Start New Game</button>
+    <div class="container-start">
+        <div class="content-start">
+            <h1>Welcome to the Word Duel game!</h1>
+            <form action="/wordcloudgenerate" method="POST">
+                <button class="button-start" type="submit">Start New cloud</button>
+            </form>
+            <div class="rules">
+                <p><strong>Objective:</p></strong></p>
+                <p>...</p>
+                <p><strong>How to Play:</strong></p>
+                <ul>
+                    <li>ds.</li>
+                    <li>sd.</li>
+                    <li>dsd.</li>
+                </ul>
+                <p><strong>Anything else?</strong></p>
+                <p>ds<a href="https://arquivo.pt">arquivo.pt</a>. dsad</p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <img style="width: 30%; height: auto;"src="data:image/png;base64,{{ plot_data }}" alt="Test Plot">
+    <form action="/wordcloudcolors" method="POST">
+        <label for="input1">Color 1:</label>
+        <input type="text" id="input1" name="input1" required><br><br>
+        
+        <label for="input2">Color 2:</label>
+        <input type="text" id="input2" name="input2" required><br><br>
+        
+        <label for="input3">Color 3:</label>
+        <input type="text" id="input3" name="input3" required><br><br>
+        
+        <label for="input4">Color 4:</label>
+        <input type="text" id="input4" name="input4" required><br><br>
+        
+        <button type="submit">Submit</button>
     </form>
-    <img src="data:image/svg+xml;base64,{{ plot_data }}" alt="Test SVG Plot">
+    
+    <p>{{ valid_colors }} some colors were not valid, so replaced with black, tlvz dizer em especifico qual</p>
+    <p>adicionar fundo branco/preto a imagem, a partir do html</p>
+    <p>adicionar resizer</p>
+    <a href="data:image/png;base64,{{ plot_data }}" download="wordcloud_{{ g.search_query }}.png">
+        <button class="download-btn">Download Image</button>
+    </a>
     {% endif %}
 </div>
-
-
 
 
 
