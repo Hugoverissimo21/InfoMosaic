@@ -207,7 +207,6 @@ body {
     justify-content: center; /* Center vertically */
     align-items: center; /* Center horizontally */
     text-align: center; /* Optional: centers text inside each element */
-    height: 100vh; /* Make the container take the full height of the viewport */
     padding: 100px; /* Optional: adjust padding around content */
 }
 
