@@ -31,11 +31,14 @@ import requests
 from bs4 import BeautifulSoup
 import time
 from datetime import datetime
+import json
 ```
 
 ## NOTAS {.justify}
 
 so para ter a base do df se ainda precisar
+
+## data05.parquet
 
 ```{=html}
 <style>
@@ -75,15 +78,17 @@ tbody td:first-child {
 ```
 
 ```{=html}
-<table style="border: 1px solid #ddd;" class="dataframe">
+<table border="1" class="dataframe">
 <thead>
 <tr style="text-align: right;">
 <th></th>
 <th>aliases</th>
 <th>news</th>
+<th>keywords</th>
 </tr>
 <tr>
 <th>companies</th>
+<th></th>
 <th></th>
 <th></th>
 </tr>
@@ -93,64 +98,120 @@ tbody td:first-child {
 <th>Banco Comercial Português</th>
 <td>[Banco Comercial Português, BCP]</td>
 <td>[{'ExtractedText': 'DN &nbsp; 13 de Setembro de 200...</td>
+<td>{'03 Mar': {'count': 2.0, 'date': {'201503': 2...</td>
 </tr>
 <tr>
 <th>Galp Energia</th>
 <td>[Galp Energia, GALP]</td>
 <td>[{'ExtractedText': 'RTP Galp reforça posição n...</td>
+<td>{'00h00': {'count': 7.0, 'date': {'201004': 1....</td>
 </tr>
 <tr>
 <th>EDP</th>
 <td>[EDP, Energias de Portugal, Electricidade de P...</td>
 <td>[{'ExtractedText': 'DN-Sinteses Negocios 9 de ...</td>
+<td>{'00h00': {'count': 4.0, 'date': {'201004': No...</td>
 </tr>
 <tr>
 <th>Sonae</th>
 <td>[Sonae, SON]</td>
 <td>[{'ExtractedText': 'DN-Sinteses 5 de Março de ...</td>
+<td>{'00h00': {'count': 3.0, 'date': {'201004': No...</td>
 </tr>
 <tr>
 <th>Mota-Engil</th>
 <td>[Mota-Engil, EGL]</td>
 <td>[{'ExtractedText': 'RTP Lucro da Mota-Engil so...</td>
+<td>{'15h30': {'count': 2.0, 'date': {'201509': 1....</td>
 </tr>
 </tbody>
 </table>
 ```
 
-## slide exemplo por causa dos lgoos 
+```{.python}
+pd.read_parquet("data05.parquet")["news"].iloc[0][0].keys()
+```
+```{python, echo=FALSE}
+print("dict_keys(['ExtractedText', 'linkToArchive', 'newsNER', 'newsProbability', 'newsSentiment', 'newsSource', 'tstamp'])")
+```
 
-Choose a company:
+```{.python}
+pd.read_parquet("data05.parquet")["keywords"].iloc[0]['03 Mar'].keys()
+```
+```{python, echo=FALSE}
+print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])" +"\n ")
+```
+
+## to json
+
+Saved each column as a json file for faster loading
+
+news_bcp.json
+
+```{python}
+list(json.load(open("news_bcp.json")).keys())[0]
+```
+
+```{python}
+list(json.load(open("news_bcp.json")).values())[0].keys()
+```
+
+
+kwrd_bcp.json
+
+```{python}
+list(json.load(open("kwrd_bcp.json")).keys())[0]
+```
+
+```{python}
+list(json.load(open("kwrd_bcp.json")).values())[0].keys()
+```
+
+## news recomendation system
+
+used TfidfVectorizer() from sklearn.feature_extraction.text to create "clusters" for the news recommendation: if good rating, correlated go upper then the otehrs
+
 
 ```{=html}
-<div style="display: flex; justify-content: space-around;">
-  <a href="../assets/graph_bcp.html" target="_blank">
-    <img src="logo_bcp.png" alt="logo bcp" width="150"/>
-  </a>
-  <a href="../assets/graph_galp.html" target="_blank">
-    <img src="logo_galp.png" alt="logo galp" width="150"/>
-  </a>
-  <a href="../assets/graph_edp.html" target="_blank">
-    <img src="logo_edp.png" alt="logo edp" width="150"/>
-  </a>
-  <a href="../assets/graph_sonae.html" target="_blank">
-    <img src="logo_sonae.png" alt="logo sonae" width="150"/>
-  </a>
-  <a href="../assets/graph_motaengil.html" target="_blank">
-    <img src="logo_motaengil.png" alt="logo motaengil" width="150"/>
-  </a>
-</div>
+<figure style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+  <div style="display: flex; flex-direction: row; gap: 2px;">
+    <img src="newsDendrogram.svg" alt="cluster de noticias" style="width: 33%;" />
+    <img src="newsRatings.png" alt="rating de noticias" style="width: 67%; object-fit: contain;" />
+  </div>
+</figure>
 ```
+
+```{.python}
+def update_ratings(index, user_rating):
+    global ratings
+    global number_news_read
+    number_news_read += 1
+    similarity_scores = cosine_similarity(tfidf_matrix[index], tfidf_matrix).flatten()
+    learning_rate = 0.999**number_news_read
+    ratings += (user_rating - ratings) * (similarity_scores)**0.5 * learning_rate
+    ratings[index] = -1000
+weights = np.exp(np.array(ratings)) # talvez meter formula amtematica
+weights = weights / weights.sum()
+# random news index
+current_new_index = np.random.choice(len(ratings), p=weights)
+```
+
 
 ```{=html}
 <div class="footer">
-  /tests/compGraph v04.ipynb
+  /tests/newsCluster v04.ipynb
 </div>
 ```
 
+## hilo
 
-# INICIO
+...
 
-## ASHFDUAIUS
+## where everything comes thogether
 
-hdjiahdisahji
+https://hugover.pythonanywhere.com
+
+## photos / gifs for each tab
+
+photos or gifs or videos of the site working, just in case something goes wrong, use local host since its faster. can only do when site is finished
+

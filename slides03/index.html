@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="mystyle.css">
@@ -347,6 +412,9 @@ Hugo Veríssimo
 <section id="notas" class="slide level2 justify">
 <h2>NOTAS</h2>
 <p>so para ter a base do df se ainda precisar</p>
+</section>
+<section id="data05.parquet" class="slide level2">
+<h2>data05.parquet</h2>
 <style>
 .dataframe {
   display: block;
@@ -382,15 +450,17 @@ tbody td:first-child {
 }
 </style>
 
-<table class="dataframe caption-top" data-quarto-postprocess="true" style="border: 1px solid #ddd;">
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header" style="text-align: right;">
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">aliases</th>
 <th data-quarto-table-cell-role="th">news</th>
+<th data-quarto-table-cell-role="th">keywords</th>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">companies</th>
+<th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 </tr>
@@ -400,69 +470,121 @@ tbody td:first-child {
 <td data-quarto-table-cell-role="th">Banco Comercial Português</td>
 <td>[Banco Comercial Português, BCP]</td>
 <td>[{'ExtractedText': 'DN &nbsp; 13 de Setembro de 200...</td>
+<td>{'03 Mar': {'count': 2.0, 'date': {'201503': 2...</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Galp Energia</td>
 <td>[Galp Energia, GALP]</td>
 <td>[{'ExtractedText': 'RTP Galp reforça posição n...</td>
+<td>{'00h00': {'count': 7.0, 'date': {'201004': 1....</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">EDP</td>
 <td>[EDP, Energias de Portugal, Electricidade de P...</td>
 <td>[{'ExtractedText': 'DN-Sinteses Negocios 9 de ...</td>
+<td>{'00h00': {'count': 4.0, 'date': {'201004': No...</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Sonae</td>
 <td>[Sonae, SON]</td>
 <td>[{'ExtractedText': 'DN-Sinteses 5 de Março de ...</td>
+<td>{'00h00': {'count': 3.0, 'date': {'201004': No...</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Mota-Engil</td>
 <td>[Mota-Engil, EGL]</td>
 <td>[{'ExtractedText': 'RTP Lucro da Mota-Engil so...</td>
+<td>{'15h30': {'count': 2.0, 'date': {'201509': 1....</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="slide-exemplo-por-causa-dos-lgoos" class="slide level2">
-<h2>slide exemplo por causa dos lgoos</h2>
-<p>Choose a company:</p>
-<div style="display: flex; justify-content: space-around;">
-  <a href="../assets/graph_bcp.html" target="_blank">
-    <img src="logo_bcp.png" alt="logo bcp" width="150">
-  </a>
-  <a href="../assets/graph_galp.html" target="_blank">
-    <img src="logo_galp.png" alt="logo galp" width="150">
-  </a>
-  <a href="../assets/graph_edp.html" target="_blank">
-    <img src="logo_edp.png" alt="logo edp" width="150">
-  </a>
-  <a href="../assets/graph_sonae.html" target="_blank">
-    <img src="logo_sonae.png" alt="logo sonae" width="150">
-  </a>
-  <a href="../assets/graph_motaengil.html" target="_blank">
-    <img src="logo_motaengil.png" alt="logo motaengil" width="150">
-  </a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a>pd.read_parquet(<span class="st">"data05.parquet"</span>)[<span class="st">"news"</span>].iloc[<span class="dv">0</span>][<span class="dv">0</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['ExtractedText', 'linkToArchive', 'newsNER', 'newsProbability', 'newsSentiment', 'newsSource', 'tstamp'])</code></pre>
 </div>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>pd.read_parquet(<span class="st">"data05.parquet"</span>)[<span class="st">"keywords"</span>].iloc[<span class="dv">0</span>][<span class="st">'03 Mar'</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])
+ </code></pre>
+</div>
+</div>
+</section>
+<section id="to-json" class="slide level2">
+<h2>to json</h2>
+<p>Saved each column as a json file for faster loading</p>
+<p>news_bcp.json</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="bu">list</span>(json.load(<span class="bu">open</span>(<span class="st">"news_bcp.json"</span>)).keys())[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'https://arquivo.pt/noFrame/replay/20010913052557/http://www.dn.pt/int/13p4x.htm'</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a><span class="bu">list</span>(json.load(<span class="bu">open</span>(<span class="st">"news_bcp.json"</span>)).values())[<span class="dv">0</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['keywords', 'probability', 'sentiment', 'source', 'tstamp'])</code></pre>
+</div>
+</div>
+<p>kwrd_bcp.json</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a><span class="bu">list</span>(json.load(<span class="bu">open</span>(<span class="st">"kwrd_bcp.json"</span>)).keys())[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'03 Mar'</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a><span class="bu">list</span>(json.load(<span class="bu">open</span>(<span class="st">"kwrd_bcp.json"</span>)).values())[<span class="dv">0</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])</code></pre>
+</div>
+</div>
+</section>
+<section id="news-recomendation-system" class="slide level2">
+<h2>news recomendation system</h2>
+<p>used TfidfVectorizer() from sklearn.feature_extraction.text to create “clusters” for the news recommendation: if good rating, correlated go upper then the otehrs</p>
+<figure style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+  <div style="display: flex; flex-direction: row; gap: 2px;">
+    <img src="newsDendrogram.svg" alt="cluster de noticias" style="width: 33%;">
+    <img src="newsRatings.png" alt="rating de noticias" style="width: 67%; object-fit: contain;">
+  </div>
+</figure>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href=""></a><span class="kw">def</span> update_ratings(index, user_rating):</span>
+<span id="cb13-2"><a href=""></a>    <span class="kw">global</span> ratings</span>
+<span id="cb13-3"><a href=""></a>    <span class="kw">global</span> number_news_read</span>
+<span id="cb13-4"><a href=""></a>    number_news_read <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb13-5"><a href=""></a>    similarity_scores <span class="op">=</span> cosine_similarity(tfidf_matrix[index], tfidf_matrix).flatten()</span>
+<span id="cb13-6"><a href=""></a>    learning_rate <span class="op">=</span> <span class="fl">0.999</span><span class="op">**</span>number_news_read</span>
+<span id="cb13-7"><a href=""></a>    ratings <span class="op">+=</span> (user_rating <span class="op">-</span> ratings) <span class="op">*</span> (similarity_scores)<span class="op">**</span><span class="fl">0.5</span> <span class="op">*</span> learning_rate</span>
+<span id="cb13-8"><a href=""></a>    ratings[index] <span class="op">=</span> <span class="op">-</span><span class="dv">1000</span></span>
+<span id="cb13-9"><a href=""></a>weights <span class="op">=</span> np.exp(np.array(ratings)) <span class="co"># talvez meter formula amtematica</span></span>
+<span id="cb13-10"><a href=""></a>weights <span class="op">=</span> weights <span class="op">/</span> weights.<span class="bu">sum</span>()</span>
+<span id="cb13-11"><a href=""></a><span class="co"># random news index</span></span>
+<span id="cb13-12"><a href=""></a>current_new_index <span class="op">=</span> np.random.choice(<span class="bu">len</span>(ratings), p<span class="op">=</span>weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="footer">
-  /tests/compGraph v04.ipynb
+  /tests/newsCluster v04.ipynb
 </div>
 </section>
-<section>
-<section id="inicio" class="title-slide slide level1 center">
-<h1>INICIO</h1>
-
+<section id="hilo" class="slide level2">
+<h2>hilo</h2>
+<p>…</p>
 </section>
-<section id="ashfduaius" class="slide level2">
-<h2>ASHFDUAIUS</h2>
-<p>hdjiahdisahji</p>
+<section id="where-everything-comes-thogether" class="slide level2">
+<h2>where everything comes thogether</h2>
+<p>https://hugover.pythonanywhere.com</p>
+</section>
+<section id="photos-gifs-for-each-tab" class="slide level2">
+<h2>photos / gifs for each tab</h2>
+<p>photos or gifs or videos of the site working, just in case something goes wrong, use local host since its faster. can only do when site is finished</p>
 <div class="quarto-auto-generated-content">
 <p><img src="ua.png" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 

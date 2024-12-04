@@ -11,10 +11,9 @@
 <div class="tabs">
     <div class="tab" onclick="showTab('search')">search</div>
     {% if not search_not_done %}
-    <div class="tab" onclick="showTab('readexplore')">Read & Explore</div>
-    <div class="tab" onclick="showTab('graph')">Topic Map</div>
+    <div class="tab" onclick="showTab('graph')">topic map</div>
+    <div class="tab" onclick="showTab('readexplore')">read explore</div>
     <div class="tab" onclick="showTab('hilo')">Word Duel</div>
-     <!-- por fazer CORRELATION -->
     <div class="tab" onclick="showTab('correlation')">correlation</div>
     {% endif %}
 </div>
@@ -26,7 +25,7 @@
     <!-- Use POST method for form submission -->
     <form method="POST" action="/search">
         <input type="text" name="query" placeholder="Enter search term" required value="{{ search_query if search_query else '' }}">
-        <button type="submit" onclick="showTab('readexplore')">Search</button>
+        <button type="submit" onclick="showTab('graph')">Search</button>
     </form>
     <p>Available: galp, bcp, edp, sonae, motgil</p>
 </div>
