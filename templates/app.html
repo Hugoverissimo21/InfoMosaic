@@ -18,7 +18,7 @@
     <div class="tab" onclick="showTab('graph')">Topic Map</div>
     <div class="tab" onclick="showTab('readexplore')">topic insights</div>
     <div class="tab" onclick="showTab('hilo')">Word Duel</div>
-    <div class="tab" onclick="showTab('correlation')">correlation</div>
+    <div class="tab" onclick="showTab('wordcloud')">wordcloud</div>
     <p style="margin-left: auto;"><strong>{{ g.search_query }}</strong> is the current topic.</p>
     {% endif %}
 </div>
@@ -238,10 +238,23 @@
 </div>
 
 
-<div class="tab-content" id="correlation" style="display:none;">
+<div class="tab-content" id="wordcloud" style="display:none;">
     <h1>TEST corr</h1>
-    <h1>Start typing...</h1>
+    {% if not wordcloud %}
+    <form action="/wordcloudgenerate" method="POST">
+        <button class="button-start" type="submit">Start New Game</button>
+    </form>
+    <img src="data:image/svg+xml;base64,{{ plot_data }}" alt="Test SVG Plot">
+    {% endif %}
 </div>
+
+
+
+
+
+
+
+
 
 
 <script>

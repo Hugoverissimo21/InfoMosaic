@@ -11,6 +11,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 import plotly.graph_objs as go
 import plotly.io as pio
 from collections import Counter
+from wordcloud import WordCloud
+import matplotlib
+matplotlib.use('Agg')  
+import matplotlib.pyplot as plt
 
 ##################################################################
 ##################################################################
@@ -52,6 +56,14 @@ read_news_index = []
 read_news_keys = []
 read_news_dates = []
 read_news_index_curr = -1
+
+# WORDCLOUD | WORDCLOUD | WORDCLOUD | WORDCLOUD
+keywords_data = None
+wordcloud_pallete = ["black", "black", "black", "black"]
+wordcloud_data = None
+def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+    global wordcloud_pallete
+    return random.choice(wordcloud_pallete)
 
 ##################################################################
 ##################################################################
@@ -399,6 +411,38 @@ def news_history():
                            no_more_right=no_more_right,
                            top5words=top5words,
                            newsdate=newsdate)
+
+
+
+##################################################################
+##################################################################
+#$######################## wordcloud ############################
+##################################################################
+##################################################################
+
+@app.route('/wordcloudgenerate', methods=['POST'])
+def wordcloudgenerate():
+    global keywords_data
+    global wordcloud_pallete
+    global wordcloud_data
+
+    wordcloud_data = {word: data["weight"] for word, data in keywords_data.items()}
+    wordcloud = WordCloud(width=800, height=400, background_color=None, mode='RGBA').generate_from_frequencies(wordcloud_data)
+
+    plt.figure(figsize=(10, 5))
+    random.seed(0)
+    plt.imshow(wordcloud.recolor(color_func=color_func), interpolation='nearest')
+    plt.axis('off')
+    buf = io.BytesIO()
+    plt.savefig(buf, format='svg', transparent=True)
+    buf.seek(0)
+    plt.close()
+    encoded_plot = base64.b64encode(buf.getvalue()).decode('utf-8')
+    buf.close()
+
+    return render_template('app.html', plot_data=encoded_plot)
+
+
 
 
 ##################################################################
