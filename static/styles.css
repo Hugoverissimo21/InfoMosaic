@@ -198,7 +198,54 @@ body {
     background-color: rgb(230, 236, 245);
     border: 1px solid rgb(208, 216, 226);
     padding: 0px;
+    align-items: center;
 }
 
+
+.tab-search {
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    text-align: center; /* Optional: centers text inside each element */
+    height: 100vh; /* Make the container take the full height of the viewport */
+    padding: 20px; /* Optional: adjust padding around content */
+}
+
+.tab-search form {
+    display: flex;
+    flex-direction: column; /* Align form elements vertically */
+    gap: 10px; /* Optional: add some spacing between form elements */
+    align-items: center; /* Center the form elements horizontally */
+}
+
+.tab-search input {
+    padding: 10px;
+    width: 500px; /* Set a width for the input (can be adjusted) */
+    text-align: center; /* Optional: centers text inside input */
+}
+
+.tab-search button {
+    background-color: rgb(51, 122, 183);
+    border: 1px solid rgb(51, 122, 183);
+    border-radius: 4px;
+    margin: 10px;
+    box-sizing: border-box;
+    color: rgb(245, 248, 252);
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+}
 
 

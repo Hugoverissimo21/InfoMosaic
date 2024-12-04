@@ -71,10 +71,16 @@ def home():
 def search():
     global search_query    
 
+    avaible_queries = ["galp", "bcp", "edp", "sonae", "motgil"]
+
     search_query = request.form['query']
-    if search_query not in ["galp", "bcp", "edp", "sonae", "motgil"]:
-        return render_template('app.html', search_query="404Hugo",
-                               search_not_done=True)
+    action = request.form.get('action')
+    if action == 'search':
+        if search_query not in avaible_queries:
+            return render_template('app.html', search_query="404Hugo",
+                                search_not_done=True)
+    elif action == 'lucky':
+        search_query = random.choice(avaible_queries)
     
     # Load the keywords from the JSON file
     global keywords_data
@@ -100,7 +106,8 @@ def search():
     ratings = np.array([3.0] * len(setences))
     tfidf_matrix = vectorizer.fit_transform(setences)
       
-    return render_template('app.html', search_query=search_query)
+    return render_template('app.html', search_query=search_query,
+                           search_finised=True)
 
 
 ##################################################################

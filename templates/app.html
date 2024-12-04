@@ -11,7 +11,7 @@
 <div class="tabs">
     <div class="tab" onclick="showTab('search')">search</div>
     {% if not search_not_done %}
-    <div class="tab" onclick="showTab('graph')">topic map</div>
+    <div class="tab" onclick="showTab('graph')">Topic Map</div>
     <div class="tab" onclick="showTab('readexplore')">read explore</div>
     <div class="tab" onclick="showTab('hilo')">Word Duel</div>
     <div class="tab" onclick="showTab('correlation')">correlation</div>
@@ -19,20 +19,24 @@
 </div>
 
 
-<div class="tab-content" id="search" style="display:none;">
-    <h1>Search Example</h1>
+<div class="tab-content tab-search" id="search" style="display:none;">
+    <h1>Topic Explorer</h1>
 
-    <!-- Use POST method for form submission -->
     <form method="POST" action="/search">
-        <input type="text" name="query" placeholder="Enter search term" required value="{{ search_query if search_query else '' }}">
-        <button type="submit" onclick="showTab('graph')">Search</button>
+        <input type="text" name="query" placeholder="What would you like to learn about?" value="{{ search_query if search_query else '' }}">
+        <button type="submit" name="action" value="search">Search</button>
+        <button type="submit" name="action" value="lucky">luck</button>
     </form>
-    <p>Available: galp, bcp, edp, sonae, motgil</p>
+    {% if not search_finised %}
+        <p>Available: galp, bcp, edp, sonae, motgil</p>
+    {% else %}
+        <p>Search results on the tabs or smtg</p>
+    {% endif %}
 </div>
 
 
 <div class="tab-content tab-graph" id="graph" style="display:none;">
-    <iframe src="/graph" style="width:100%; height: calc(100vh - 200px);" frameborder="0">
+    <iframe src="/graph" style="width:100%; height: calc(100vh - 120px);" frameborder="0">
         <p>Loading, please wait...</p>
     </iframe>
 </div>
@@ -94,10 +98,19 @@
               next
             </button>
         </form>
-        <iframe src="{{ new_to_read }}" style="width: 100%; height: 100vh;">
+        <iframe src="{{ new_to_read }}" style="width: 100%; height: 100vh;" onload="disablePrint(this)">
             <p>Loading, please wait...</p>
         </iframe>
     {% endif %}
+    <script>
+        function disablePrint(iframe) {
+            const iframeDocument = iframe.contentWindow.document;
+            iframeDocument.body.onbeforeprint = function() {
+                // Prevent the print dialog from opening
+                return false;
+            };
+        }
+    </script>
 </div>
 
 <div class="tab-content" id="hilo">
