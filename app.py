@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response, jsonify
+from flask import Flask, render_template, request, Response, jsonify, g
 import random
 import matplotlib.pyplot as plt
 import io
@@ -16,6 +16,11 @@ import plotly.io as pio
 
 # SEARCH | SEARCH | SEARCH | SEARCH | SEARCH
 search_query = None
+avaible_queries = ["galp",
+                   "bcp",
+                   "edp",
+                   "sonae",
+                   "motgil"]
 
 # HILO | HILO | HILO | HILO | HILO | HILO
 keywords_data = None
@@ -51,6 +56,11 @@ read_news_index_curr = -1
 # Intialize the Flask app
 app = Flask(__name__)
 
+@app.before_request
+def before_request():
+    global avaible_queries
+    g.avaible_queries = avaible_queries
+
 ##################################################################
 ##################################################################
 ######################### start page #############################
@@ -59,6 +69,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
+    global avaible_queries
     return render_template('app.html', search_not_done=True)
 
 ##################################################################
@@ -70,8 +81,7 @@ def home():
 @app.route('/search', methods=['POST'])
 def search():
     global search_query    
-
-    avaible_queries = ["galp", "bcp", "edp", "sonae", "motgil"]
+    global avaible_queries
 
     search_query = request.form['query']
     action = request.form.get('action')

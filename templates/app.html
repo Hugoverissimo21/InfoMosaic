@@ -24,11 +24,13 @@
 
     <form method="POST" action="/search">
         <input type="text" name="query" placeholder="What would you like to learn about?" value="{{ search_query if search_query else '' }}">
-        <button type="submit" name="action" value="search">Search</button>
-        <button type="submit" name="action" value="lucky">luck</button>
+        <div class="button-container">
+            <button type="submit" name="action" value="search">Search</button>
+            <button type="submit" name="action" value="lucky">luck</button>
+        </div>
     </form>
     {% if not search_finised %}
-        <p>Available: galp, bcp, edp, sonae, motgil</p>
+        <p>Available: {{ g.avaible_queries }}</p>
     {% else %}
         <p>Search results on the tabs or smtg</p>
     {% endif %}

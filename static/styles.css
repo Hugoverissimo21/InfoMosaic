@@ -201,7 +201,7 @@ body {
     align-items: center;
 }
 
-
+/* used for SEARCH */
 .tab-search {
     display: flex;
     flex-direction: column; /* Align items vertically */
@@ -212,6 +212,7 @@ body {
     padding: 20px; /* Optional: adjust padding around content */
 }
 
+/* used for SEARCH */
 .tab-search form {
     display: flex;
     flex-direction: column; /* Align form elements vertically */
@@ -219,12 +220,14 @@ body {
     align-items: center; /* Center the form elements horizontally */
 }
 
+/* used for SEARCH */
 .tab-search input {
     padding: 10px;
     width: 500px; /* Set a width for the input (can be adjusted) */
     text-align: center; /* Optional: centers text inside input */
 }
 
+/* used for SEARCH */
 .tab-search button {
     background-color: rgb(51, 122, 183);
     border: 1px solid rgb(51, 122, 183);
@@ -237,7 +240,6 @@ body {
     font-size: 16px;
     font-weight: 400;
     outline: none;
-    outline: 0;
     padding: 10px 25px;
     text-align: center;
     transform: translateY(0);
@@ -246,6 +248,19 @@ body {
     -webkit-user-select: none;
     touch-action: manipulation;
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+    /* Ensure same size by setting width and height */
+    height: 40px;
+    width: 150px;
+    text-align: center; 
 }
 
+/* used for SEARCH */
+.tab-search button:hover {
+    border: 1px solid rgb(245, 248, 252);
+}
 
+/* used for SEARCH */
+.button-container {
+    display: flex;
+    gap: 10px; 
+}
