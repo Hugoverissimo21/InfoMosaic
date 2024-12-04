@@ -4,6 +4,8 @@
 
 - [Slides 02](https://hugoverissimo21.github.io/FCD-project/slides02)
 
+- [Slides 03](https://hugoverissimo21.github.io/FCD-project/slides03)
+
 [https://hugover.pythonanywhere.com](https://hugover.pythonanywhere.com) - currently deployed here
 
 static and templates folders are for the flask app
