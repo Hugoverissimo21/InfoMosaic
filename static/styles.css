@@ -31,11 +31,7 @@ body {
     padding: 20px;
 }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 
 .text-center {
     flex-grow: 1;
@@ -43,8 +39,13 @@ body {
 }
 
 
-
-
+/* used for READ */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -30px;
+}
 
 /* used for READ */
 .button-left,
