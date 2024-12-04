@@ -164,7 +164,7 @@
         <form action="/news_history" method="POST" class="nav-container">
             <button type="submit" name="news_hist" value="prev" class="button-left" {% if no_more_left %} disabled {% endif %}><<</button>
             
-            <p class="text-center">Source: {{ new_to_read }}</p>
+            <p class="text-center"><a href="{{ new_to_read }}" target="_blank">Source</a><span class="separator"> | </span><strong>Year:</strong> {{ newsdate }}<span class="separator"> | </span><strong>Top 7 Words:</strong> {{ top5words }}<span class="separator"> | </span>EM VEZ DE source, nome do jornal? expected rating? sentimento?</p>
             
             <button type="submit" name="news_hist" value="next" class="button-right" {% if no_more_right %} disabled {% endif %}>>></button>
         </form>
@@ -231,7 +231,7 @@
         {% elif loser %}
             <span class="centered-text">{{ loser }}</span>
         {% endif %}
-    <iframe src="/hilo_plot" width="100%" height="500px" frameborder="0">
+    <iframe src="/hilo_plot" width="100%" height="485px" frameborder="0">
         <p>Loading, please wait...</p>
     </iframe>
     {% endif %}

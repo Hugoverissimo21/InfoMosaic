@@ -37,10 +37,19 @@ body {
     align-items: center;
 }
 
+.text-center {
+    flex-grow: 1;
+    text-align: center;
+}
+
+
+
+
+
+/* used for READ */
 .button-left,
 .button-right {
     margin: 0 10px;
-
     background-color: rgb(51, 122, 183);
     border: 1px solid rgb(51, 122, 183);
     border-radius: 4px;
@@ -59,13 +68,16 @@ body {
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
     margin-top: 20px;
     margin-bottom: 20px;
+    vertical-align: middle;
 }
 
+/* used for READ */
 .button-left:hover,
 .button-right:hover {
     border: 1px solid rgb(245, 248, 252);
 }
 
+/* used for READ */
 .button-left:disabled,
 .button-right:disabled {
     background-color: #e0e0e0;
@@ -73,11 +85,15 @@ body {
     cursor: not-allowed;
 }
 
-.text-center {
-    flex-grow: 1;
-    text-align: center;
+/* used for READ */
+.separator {
+    display: inline-block;
+    margin-right: 10px;
+    margin: 0 10px;
+    font-size: 30px;
+    vertical-align: middle;
+    color:rgb(51, 122, 183)
 }
-
 
 
 
@@ -219,11 +235,6 @@ body {
     float: left;
 }
 
-
-
-
-
-
 /* used for GRAPH */
 .tab-graph{
     background-color: rgb(230, 236, 245);
@@ -320,11 +331,6 @@ body {
     background-color: #f0f0f0;
 }
 
-
-
-
-
-
 /* used for READ */
 .star-rating {
 	white-space: nowrap;
@@ -354,6 +360,7 @@ body {
 	text-shadow: 0 0 2px #ffffff, 0 0 10px #ffee58;
 }
 
+/* used for READ */
 .star-buttom {
     width: 1px;
     height: 1px;

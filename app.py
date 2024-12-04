@@ -10,6 +10,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import plotly.graph_objs as go
 import plotly.io as pio
+from collections import Counter
 
 ##################################################################
 ##################################################################
@@ -48,6 +49,8 @@ def update_ratings(index, user_rating):
 number_news_read = 0
 current_new_index = 0
 read_news_index = []
+read_news_keys = []
+read_news_dates = []
 read_news_index_curr = -1
 
 ##################################################################
@@ -137,12 +140,6 @@ def autocomplete():
     
     # Return the filtered suggestions as JSON
     return jsonify(filtered_recommendations)
-
-##################################################################
-##################################################################
-############################# graph ##############################
-##################################################################
-##################################################################
 
 
 
@@ -301,7 +298,12 @@ def get_first_news():
     global news_url
     global current_new_index
     global read_news_index
+    global read_news_keys
+    global read_news_dates
+    global news_data
     read_news_index = []
+    read_news_keys = []
+    read_news_dates = []
     # weight for the random choice
     weights = np.exp(np.array(ratings))
     weights = weights / weights.sum()
@@ -309,10 +311,19 @@ def get_first_news():
     current_new_index = np.random.choice(len(ratings), p=weights)
     new_to_read = news_url[current_new_index]
     read_news_index.append(current_new_index)
+    top5words = Counter(news_data[new_to_read]["keywords"]).most_common(7)
+    top5words = [f"{x[0]}" for x in top5words]
+    top5words = str(top5words).strip("[]").replace("'", "")
+    read_news_keys.append(top5words)
+    newsdate = news_data[new_to_read]["tstamp"][:4]
+    read_news_dates.append(newsdate)
 
-    return render_template('app.html', new_to_read=new_to_read,
+    return render_template('app.html',
+                           new_to_read=new_to_read,
                            not_first_new=True, current=True,
-                           no_more_left=True, no_more_right=True)
+                           no_more_left=True, no_more_right=True,
+                           top5words=top5words,
+                           newsdate=newsdate)
 
 @app.route('/rate_news', methods=['POST'])
 def rate_news():
@@ -321,6 +332,8 @@ def rate_news():
     global news_url
     global read_news_index
     global read_news_index_curr
+    global read_news_keys
+    global read_news_dates
     # process rate
     rate = int(request.form.get('rating4new'))
     if rate != -1:
@@ -334,11 +347,19 @@ def rate_news():
     current_new_index = np.random.choice(len(ratings), p=weights)
     new_to_read = news_url[current_new_index]
     read_news_index.append(current_new_index)
+    top5words = Counter(news_data[new_to_read]["keywords"]).most_common(7)
+    top5words = [f"{x[0]}" for x in top5words]
+    top5words = str(top5words).strip("[]").replace("'", "")
+    read_news_keys.append(top5words)
+    newsdate = news_data[new_to_read]["tstamp"][:4]
+    read_news_dates.append(newsdate)
 
     read_news_index_curr = -1
     return render_template('app.html', new_to_read=new_to_read,
                            not_first_new=True, current=True,
-                           no_more_left=False, no_more_right=True)
+                           no_more_left=False, no_more_right=True,
+                           top5words=top5words,
+                           newsdate=newsdate)
 
 @app.route('/news_history', methods=['POST'])
 def news_history():
@@ -346,6 +367,8 @@ def news_history():
     global news_url
     global current_new_index
     global read_news_index_curr
+    global read_news_keys
+    global read_news_dates
     no_more_left = False
     no_more_right = False
 
@@ -356,6 +379,8 @@ def news_history():
         read_news_index_curr -= 1
     
     new_to_read = news_url[read_news_index[read_news_index_curr]]
+    top5words = read_news_keys[read_news_index_curr]
+    newsdate = read_news_dates[read_news_index_curr]
     
     if read_news_index_curr == -1:
         current = True
@@ -371,7 +396,9 @@ def news_history():
                            not_first_new=True, current=current,
                            a=read_news_index_curr,
                            no_more_left=no_more_left,
-                           no_more_right=no_more_right)
+                           no_more_right=no_more_right,
+                           top5words=top5words,
+                           newsdate=newsdate)
 
 
 ##################################################################
