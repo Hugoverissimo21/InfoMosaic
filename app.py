@@ -16,12 +16,11 @@ import plotly.io as pio
 
 # SEARCH | SEARCH | SEARCH | SEARCH | SEARCH
 search_query = None
-avaible_queries = sorted(["galp", "Z",
+avaible_queries = sorted(["galp",
                    "bcp",
                    "edp",
                    "sonae",
                    "motgil"], key=lambda x: x.lower())
-avaible_queries = ["x"] * 100
 
 # HILO | HILO | HILO | HILO | HILO | HILO
 keywords_data = None
@@ -88,8 +87,9 @@ def search():
     action = request.form.get('action')
     if action == 'search':
         if search_query not in avaible_queries:
-            return render_template('app.html', search_query="404Hugo",
-                                search_not_done=True)
+            return render_template('app.html',
+                                   search_query="Oops! Invalid topic. Try again or type * to explore valid options.",
+                                   search_not_done=True)
     elif action == 'lucky':
         search_query = random.choice(avaible_queries)
     

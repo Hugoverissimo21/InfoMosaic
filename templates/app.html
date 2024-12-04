@@ -9,7 +9,7 @@
 <body>
 
 <div class="tabs">
-    <div class="tab" onclick="showTab('search')">search</div>
+    <div class="tab" onclick="showTab('search')">Explorer</div>
     {% if not search_not_done %}
     <div class="tab" onclick="showTab('graph')">Topic Map</div>
     <div class="tab" onclick="showTab('readexplore')">read explore</div>
@@ -22,9 +22,8 @@
 <div class="tab-content tab-search" id="search" style="display:none;">
     <h1>Topic Explorer</h1>
     <form method="POST" action="/search">
-        <input type="text" id="search-input" name="query" placeholder="What would you like to learn about?" value="{{ search_query if search_query else '' }}">
+        <input type="text" id="search-input" name="query" placeholder="What would you like to learn about? Type * for topic suggestions." value="{{ search_query if search_query else '' }}">
         <div id="suggestions-box" class="suggestions" style="display: none;"></div>
-
         <div class="button-container">
             <button type="submit" name="action" value="search">Search for Topic</button>
             <button type="submit" name="action" value="lucky">Discover Something New</button>
@@ -33,9 +32,6 @@
     {% if search_finised %}
         <p>Your topic is waiting! Explore through the tabs above.</p>
     {% endif %}
-    
-    <p>to see avaible queries use * in the search bar</p>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
