@@ -442,7 +442,9 @@ def wordcloudgenerate():
     encoded_plot = base64.b64encode(buf.getvalue()).decode('utf-8')
     buf.close()
     return render_template('app.html', plot_data=encoded_plot,
-                           wordcloud=True)
+                           wordcloud=True,
+                           widthIN=800, heightIN=400,
+                           col1="black", col2="black", col3="black", col4="black")
 
 @app.route('/wordcloudcolors', methods=['POST'])
 def wordcloudcolors():
@@ -455,6 +457,10 @@ def wordcloudcolors():
     input3 = request.form.get('input3')
     input4 = request.form.get('input4')
 
+    widthIN = int(request.form.get('widthWC', 800))  
+    heightIN = int(request.form.get('heightWC', 400))
+
+
     col1 = input1 if is_color_like(input1) else "black"
     col2 = input2 if is_color_like(input2) else "black"
     col3 = input3 if is_color_like(input3) else "black"
@@ -465,7 +471,7 @@ def wordcloudcolors():
         valid_colors = True
     else:
         valid_colors = False
-    wordcloud = WordCloud(width=1600, height=800, background_color=None, mode='RGBA').generate_from_frequencies(wordcloud_data)
+    wordcloud = WordCloud(width=widthIN, height=heightIN, background_color=None, mode='RGBA').generate_from_frequencies(wordcloud_data)
 
     plt.figure(figsize=(10, 5))
     random.seed(0)
@@ -478,9 +484,12 @@ def wordcloudcolors():
     encoded_plot = base64.b64encode(buf.getvalue()).decode('utf-8')
     buf.close()
     return render_template('app.html', plot_data=encoded_plot,
-                           col1=col1, col2=col2, col3=col3, col4=col4,
                            valid_colors=valid_colors,
-                           wordcloud=True)
+                           wordcloud=True,
+                           widthIN=widthIN,
+                           heightIN=heightIN,
+                           col1=col1, col2=col2,
+                           col3=col3, col4=col4)
 
 
 

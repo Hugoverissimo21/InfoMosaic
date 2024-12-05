@@ -264,23 +264,45 @@
     <img style="width: 30%; height: auto;"src="data:image/png;base64,{{ plot_data }}" alt="Test Plot">
     <form action="/wordcloudcolors" method="POST">
         <label for="input1">Color 1:</label>
-        <input type="text" id="input1" name="input1" required><br><br>
+        <input type="text" id="input1" name="input1" required value="{{ col1 }}"><br><br>
         
         <label for="input2">Color 2:</label>
-        <input type="text" id="input2" name="input2" required><br><br>
+        <input type="text" id="input2" name="input2" required value="{{ col2 }}"><br><br>
         
         <label for="input3">Color 3:</label>
-        <input type="text" id="input3" name="input3" required><br><br>
+        <input type="text" id="input3" name="input3" required value="{{ col3 }}"><br><br>
         
         <label for="input4">Color 4:</label>
-        <input type="text" id="input4" name="input4" required><br><br>
+        <input type="text" id="input4" name="input4" required value="{{ col4 }}"><br><br>
         
-        <button type="submit">Submit</button>
+        <button type="submit">Submit {{ width }}</button>
+
+        <label for="widthSlider">Width:</label>
+        <input type="range" id="widthSlider" min="400" max="2000" value="{{ widthIN }}" step="100" name="widthWC">
+        <span id="widthValue">{{ widthIN }}</span>
+
+        <label for="heightSlider">Height:</label>
+        <input type="range" id="heightSlider" min="400" max="2000" value="{{ heightIN }}" step="100" name="heightWC">
+        <span id="heightValue">{{ heightIN }}</span>
     </form>
+    <script>
+        function updatePlot() {
+            var width = $('#widthSlider').val();
+            var height = $('#heightSlider').val();
+            $('#widthValue').text(width);
+            $('#heightValue').text(height);
+
+            $.post('/update_plot', { width: width, height: height }, function(data) {
+                $('#plotImage').attr('src', '/update_plot?' + new Date().getTime());  // Cache busting
+            });
+        }
+
+        $('#widthSlider').on('input', updatePlot);
+        $('#heightSlider').on('input', updatePlot);
+    </script>
     
     <p>{{ valid_colors }} some colors were not valid, so replaced with black, tlvz dizer em especifico qual</p>
     <p>adicionar fundo branco/preto a imagem, a partir do html</p>
-    <p>adicionar resizer</p>
     <a href="data:image/png;base64,{{ plot_data }}" download="wordcloud_{{ g.search_query }}.png">
         <button class="download-btn">Download Image</button>
     </a>
