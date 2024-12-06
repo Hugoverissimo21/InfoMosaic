@@ -57,10 +57,35 @@ body {
 
 
 
+.wc-page {
+    display: flex;
+    height: 80vh;
+}
+
+.right-section {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+    width: 90%;
+}
+
+.right-section img {
+    width: 100%;
+    height: auto;
+}
 
 
-
-
+.left-section {
+    flex: 1; 
+    width: 5vh;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    padding: 10px;
+}
 
 
 
