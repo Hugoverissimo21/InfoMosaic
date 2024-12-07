@@ -269,9 +269,16 @@ body {
 }
 
 /* used for HILO */
+.main-word {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* used for HILO */
 .word-column {
     flex: 1;
     padding: 15px;
+    height: 15vh;
     border: 1px solid rgb(208, 216, 226);
     background-color: rgb(240, 244, 250);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
@@ -279,7 +286,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Center the text horizontally */
+    text-align: center; 
 }
 
 /* used for HILO */
@@ -305,16 +312,19 @@ body {
 .button-hilo-lose,
 .button-hilo-win {
     border-radius: 4px;
-    margin: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 2px;
+    margin-right: 2px;
     box-sizing: border-box;
     color: rgb(245, 248, 252);
     cursor: pointer;
     font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     outline: none;
     outline: 0;
-    padding: 10px 25px;
+    padding: 10px 15px;
     text-align: center;
     transform: translateY(0);
     transition: transform 150ms, box-shadow 150ms;
@@ -322,6 +332,15 @@ body {
     -webkit-user-select: none;
     touch-action: manipulation;
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+}
+
+.button-hilo-hidden {
+    visibility: hidden;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 10px 0px;
+    width: 0px;
+    pointer-events: none; /* Prevents any interactions with the button */
 }
 
 /* used for HILO */
