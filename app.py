@@ -444,7 +444,8 @@ def wordcloudgenerate():
     return render_template('app.html', plot_data=encoded_plot,
                            wordcloud=True,
                            widthIN=800, heightIN=400,
-                           col1="black", col2="black", col3="black", col4="black")
+                           col1="black", col2="black", col3="black", col4="black",
+                           valid_colors=True)
 
 @app.route('/wordcloudcolors', methods=['POST'])
 def wordcloudcolors():

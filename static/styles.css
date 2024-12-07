@@ -87,6 +87,28 @@ body {
     padding: 10px;
 }
 
+.ball-button {
+    width: 50px; /* Adjust size to your preference */
+    height: 50px;
+    border-radius: 50%; /* Makes it a circle */
+    border: 2px solid black; /* Define the border color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.white-button {
+    background-color: white; /* White interior */
+    color: black; /* Text color if needed */
+}
+
+.black-button {
+    background-color: black; /* Black interior */
+    color: white; /* Text color if needed */
+}
+
+
 
 
 

@@ -144,7 +144,7 @@
         <form action="/news_history" method="POST" class="nav-container">
             <button type="submit" name="news_hist" value="prev" class="button-left" {% if no_more_left %} disabled {% endif %}><<</button>
             
-            <p class="text-center"><a href="{{ new_to_read }}" target="_blank">Source</a><span class="separator"> | </span><strong>Year:</strong> {{ newsdate }}<span class="separator"> | </span><strong>Top 7 Words:</strong> {{ top5words }}<span class="separator"> | </span>EM VEZ DE source, nome do jornal? expected rating? sentimento?</p>
+            <p class="text-center"><a href="{{ new_to_read }}" target="_blank">Source</a><span class="separator"> | </span><strong>Year:</strong> {{ newsdate }}<span class="separator"> | </span><strong>Top 7 Words:</strong> {{ top5words }}</p>
 
             <button type="submit" name="news_hist" value="next" class="button-right" {% if no_more_right %} disabled {% endif %}>>></button>
         </form>
@@ -290,12 +290,16 @@
                 <span id="heightValue">{{ heightIN }}</span>
             </div>
 
-            <button id="whiteButton">White</button>
-            <button id="blackButton">Black</button>
-
             <button type="submit">Generate WC</button>
-        </form>        
-        <p>{{ valid_colors }} some colors were not valid, so replaced with black, tlvz dizer em especifico qual</p>
+        </form>
+        <div style="display: flex; align-items: center;">
+            <p style="margin-right: 10px;">Background color:</p>
+            <button id="whiteButton" style="margin-right: 5px;" class="ball-button white-button">White</button>
+            <button id="blackButton" class="ball-button black-button">Black</button>
+        </div>
+        {% if not valid_colors %}
+            <p>Some colors were invalid. They have been replaced with black.</p>
+        {% endif %}
         <a href="data:image/png;base64,{{ plot_data }}" download="wordcloud_{{ g.search_query }}.png">
             <button class="download-btn">Download Image</button>
         </a>
