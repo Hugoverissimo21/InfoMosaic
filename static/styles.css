@@ -39,79 +39,169 @@ body {
 }
 
 
-.download-btn {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    border: none;
+
+
+
+
+
+/* used for READ */
+.buttom-skip-read:hover {
+    box-shadow: rgba(0, 0, 0, 0.2) 0 6px 12px 0;
+}
+
+/* used for READ */
+.buttom-skip-read {
+    height: 23px;
+    width: 35px;
+    justify-content: center; 
+    align-items: center; 
+    background-color: rgb(34, 37, 41);
+    border: 1px solid rgb(34, 37, 41);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: rgb(245, 248, 252);
     cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    padding: 2px;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
 }
 
-.download-btn:hover {
-    background-color: #45a049;
+/* Used for WORDCLOUD */
+.wc-btn {
+    width: 140px; /* Fixed width */
+    height: 40px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: rgb(51, 122, 183);
+    border: 1px solid rgb(51, 122, 183);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: rgb(245, 248, 252);
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    padding: 0;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+    margin: 10px 0;
 }
 
+/* Used for WORDCLOUD */
+.wc-btn-download {
+    width: 140px; /* Fixed width */
+    height: 40px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: rgba(51, 122, 183, 0);
+    border: 1px solid rgba(51, 122, 183, 0);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: rgb(51, 122, 183);
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    padding: 0;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+    margin: 5px 0;
+}
 
+/* used for WORDCLOUD */
+.wc-btn:hover,
+.wc-btn-download:hover {
+    box-shadow: rgba(0, 0, 0, 0.2) 0 6px 12px 0;
+    transform: translateY(-2px);
+}
 
+/* used for WORDCLOUD */
+.slider-container {
+    display: flex;
+    flex-direction: column; /* Stack rows vertically */
+    gap: 10px; /* Add space between rows */
+}
 
+/* used for WORDCLOUD */
+.slider-row {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    gap: 10px; /* Space between label, input, and span */
+}
+
+/* used for WORDCLOUD */
+.slider-container label {
+    width: 50px; 
+    text-align: left; /* Align text to the right */
+}
+
+/* used for WORDCLOUD */
+.slider-container input[type="range"] {
+    flex: 0.8; /* Allow the slider to take up remaining space */
+}
+
+/* used for WORDCLOUD */
+.slider-container span {
+    width: 50px; /* Fixed width for value display */
+    text-align: left; /* Align text to the left */
+}
+
+/* used for WORDCLOUD */
 .wc-page {
     display: flex;
     height: 80vh;
+    width: 100vw;
 }
 
+/* Used for WORDCLOUD */
 .right-section {
-    flex: 2;
+    flex: 3; 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #ddd;
+    background-color: rgb(230, 236, 245);
+    border: 1px solid rgb(208, 216, 226);
     width: 90%;
+    padding-bottom: 0;
 }
 
+/* Used for WORDCLOUD */
 .right-section img {
     width: 100%;
     height: auto;
+    margin-bottom: 0;
 }
 
-
+/* Used for WORDCLOUD */
 .left-section {
     flex: 1; 
-    width: 5vh;
     display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center;
-    padding: 10px;
-}
-
-.ball-button {
-    width: 50px; /* Adjust size to your preference */
-    height: 50px;
-    border-radius: 50%; /* Makes it a circle */
-    border: 2px solid black; /* Define the border color */
-    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    cursor: pointer;
+    align-items: flex-start;
+    padding-left: 30px;
 }
-
-.white-button {
-    background-color: white; /* White interior */
-    color: black; /* Text color if needed */
-}
-
-.black-button {
-    background-color: black; /* Black interior */
-    color: white; /* Text color if needed */
-}
-
-
-
-
-
 
 /* used for READ */
 .nav-container {
@@ -239,6 +329,7 @@ body {
     background-color: #13aa52;
     border: 1px solid #13aa52;
 }
+/* used for HILO */
 .button-hilo-lose {
     background-color: #C81432;
     border: 1px solid #C81432;

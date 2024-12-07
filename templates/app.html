@@ -16,9 +16,9 @@
     <p style="visibility: hidden;"><strong>.</strong></p>
     {% elif not search_not_done %}
     <div class="tab" onclick="showTab('graph')">Topic Map</div>
-    <div class="tab" onclick="showTab('readexplore')">topic insights</div>
+    <div class="tab" onclick="showTab('readexplore')">Topic Insights</div>
     <div class="tab" onclick="showTab('hilo')">Word Duel</div>
-    <div class="tab" onclick="showTab('wordcloud')">wordcloud</div>
+    <div class="tab" onclick="showTab('wordcloud')">Word Cloud</div>
     <p style="margin-left: auto;"><strong>{{ g.search_query }}</strong> is the current topic.</p>
     {% endif %}
 </div>
@@ -151,7 +151,7 @@
 
         {% if current %}
             <form action="/rate_news" method="POST">
-                <p>Rating:
+                <p><strong>Rating:</strong>
                     <span class="star-rating">
                         <label for="rate-1" style="--i:1"><i class="fa-solid fa-star"></i></label>
                         <button class="star-buttom" type="radio" name="rating4new" id="rate-1" value="1"></button>
@@ -164,7 +164,7 @@
                         <label for="rate-5" style="--i:5"><i class="fa-solid fa-star"></i></label>
                         <button class="star-buttom" type="radio" name="rating4new" id="rate-5" value="5"></button>
                     </span>
-                <button type="radio" name="rating4new" value="-1">Skip</button></p>
+                <button type="radio" name="rating4new" class="buttom-skip-read" value="-1">Skip</button></p>
             </form>
         {% endif %}
 
@@ -242,28 +242,25 @@
     {% if not wordcloud %}
     <div class="container-start">
         <div class="content-start">
-            <h1>Welcome to the Word Duel game!</h1>
+            <h1>Welcome to the Word Cloud - let's get creative!</h1>
             <form action="/wordcloudgenerate" method="POST">
-                <button class="button-start" type="submit">Start New cloud</button>
+                <button class="button-start" type="submit">Generate Word Cloud</button>
             </form>
             <div class="rules">
-                <p><strong>Objective:</p></strong></p>
-                <p>...</p>
-                <p><strong>How to Play:</strong></p>
-                <ul>
-                    <li>ds.</li>
-                    <li>sd.</li>
-                    <li>dsd.</li>
-                </ul>
+                <p>Here's your personalized word cloud! You can explore the most mentioned terms related to your topic and make it uniquely yours by adjusting the colors to match your taste: choose from named colors such as red, green, blue, or use hex values like #FF5733 (vibrant orange), #4CAF50 (lush green), or #3498DB (cool blue). The image can also be downloaded and resized, giving you even more flexibility to create the perfect look. Enjoy experimenting with the customizations and making it uniquely yours!</p>
                 <p><strong>Anything else?</strong></p>
-                <p>ds<a href="https://arquivo.pt">arquivo.pt</a>. dsad</p>
+                <p>Yes! The word cloud was created using data from <a href="https://arquivo.pt">arquivo.pt</a>, where the frequency of mentions of keywords related to the topic was analyzed.</p>
             </div>
         </div>
     </div>
     {% else %}
     <div class="wc-page">
-    <div class="right-section"  id="rightPane">
+    <div class="right-section" id="rightPane">
         <img src="data:image/png;base64,{{ plot_data }}" alt="Test Plot">
+        <p></p>
+        <a href="data:image/png;base64,{{ plot_data }}" download="wordcloud_{{ g.search_query }}.png">
+            <button class="wc-btn-download">Download Image</button>
+        </a>
     </div>
     <div class="left-section">
         <form action="/wordcloudcolors" method="POST">
@@ -279,30 +276,31 @@
             <label for="input4">Color 4:</label>
             <input type="text" id="input4" name="input4" required value="{{ col4 }}"><br><br>
 
-            <div>
-                <label for="widthSlider">Width:</label>
-                <input type="range" id="widthSlider" min="400" max="2000" value="{{ widthIN }}" step="100" name="widthWC">
-                <span id="widthValue">{{ widthIN }}</span>
-            </div>
-            <div>
-                <label for="heightSlider">Height:</label>
-                <input type="range" id="heightSlider" min="400" max="2000" value="{{ heightIN }}" step="100" name="heightWC">
-                <span id="heightValue">{{ heightIN }}</span>
+            <div class="slider-container">
+                <div class="slider-row">
+                    <label for="widthSlider">Width:</label>
+                    <input type="range" id="widthSlider" min="400" max="2000" value="{{ widthIN }}" step="100" name="widthWC">
+                    <span id="widthValue">{{ widthIN }}</span>
+                </div>
+                <div class="slider-row">
+                    <label for="heightSlider">Height:</label>
+                    <input type="range" id="heightSlider" min="400" max="2000" value="{{ heightIN }}" step="100" name="heightWC">
+                    <span id="heightValue">{{ heightIN }}</span>
+                </div>
             </div>
 
-            <button type="submit">Generate WC</button>
+            <button type="submit" class="wc-btn">Generate WCloud</button>
         </form>
-        <div style="display: flex; align-items: center;">
-            <p style="margin-right: 10px;">Background color:</p>
-            <button id="whiteButton" style="margin-right: 5px;" class="ball-button white-button">White</button>
-            <button id="blackButton" class="ball-button black-button">Black</button>
-        </div>
+        
         {% if not valid_colors %}
-            <p>Some colors were invalid. They have been replaced with black.</p>
+            <p>Some colors were invalid.<br>They have been replaced with black.</p>
         {% endif %}
-        <a href="data:image/png;base64,{{ plot_data }}" download="wordcloud_{{ g.search_query }}.png">
-            <button class="download-btn">Download Image</button>
-        </a>
+        
+        <!--<div style="display: flex; align-items: center;">
+            <p style="margin-right: 10px;">Background color:</p>
+            <button id="whiteButton" class="ball-button white-button">White</button>
+            <button id="blackButton" class="ball-button black-button">Black</button>
+        </div>-->
     </div>
     <script>
         function updatePlot() {
