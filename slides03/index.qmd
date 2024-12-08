@@ -180,7 +180,7 @@ print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'typ
 `TfidfVectorizer()` and `cosine_similarity` from `scikit-learn` were used to compute the similarity between news articles.
 
 ```{=html}
-<figure style="text-align: center">
+<figure style="text-align: center;">
     <img src="newsDendrogram.svg" alt="cluster de noticias" style="width: 95%;">
 </figure>
 ```
@@ -190,7 +190,6 @@ print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'typ
   /tests/newsCluster v04.ipynb
 </div>
 ```
-
 
 ## News Recommendation System {.justify}
 
@@ -234,7 +233,7 @@ def update_ratings(news_i, user_rating):
 ## News Recommendation System {.justify}
 
 ```{=html}
-<figure style="text-align: center; ; margin-top:0px">
+<figure style="text-align: center; margin-top: 0px;">
     <img src="newsRatings.png" alt="rating de noticias" style="width: 100%;">
 </figure>
 ```
@@ -242,6 +241,28 @@ def update_ratings(news_i, user_rating):
 ```{=html}
 <div class="footer">
   /tests/newsCluster v04.ipynb
+</div>
+```
+
+# web app
+
+## where everything comes thogether
+
+Created a web application using Flask, equipped with a range of tools for topic analysis.
+
+- Topic Map
+
+- Topic Insights
+
+- Word Duel
+
+- Word Cloud
+
+https://hugover.pythonanywhere.com
+
+```{=html}
+<div class="footer">
+  app.py + /templates/ + /static/
 </div>
 ```
 
@@ -259,9 +280,7 @@ random choise of keywords, user has to say higher or lower, and check if its cor
 </div>
 ```
 
-## where everything comes thogether
 
-https://hugover.pythonanywhere.com
 
 ## photos / gifs for each tab
 
