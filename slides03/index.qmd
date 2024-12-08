@@ -36,9 +36,9 @@ import json
 
 ## NOTAS {.justify}
 
-so para ter a base do df se ainda precisar
+...
 
-## data05.parquet
+## data05.parquet {.justify}
 
 ```{=html}
 <style>
@@ -132,70 +132,112 @@ tbody td:first-child {
 pd.read_parquet("data05.parquet")["news"].iloc[0][0].keys()
 ```
 ```{python, echo=FALSE}
-print("dict_keys(['ExtractedText', 'linkToArchive', 'newsNER', 'newsProbability', 'newsSentiment', 'newsSource', 'tstamp'])")
+print("dict_keys(['ExtractedText', 'linkToArchive', 'newsNER', 'newsProbability', 'newsSentiment', 'newsSource', 'tstamp'])" +"\n ")
 ```
 
 ```{.python}
 pd.read_parquet("data05.parquet")["keywords"].iloc[0]['03 Mar'].keys()
 ```
 ```{python, echo=FALSE}
-print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])" +"\n ")
+print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])")
 ```
 
-## to json
+## Optimized Data Storage {.justify}
 
-Saved each column as a json file for faster loading
+Optimized data organization by saving each cell as a separate JSON file, enhancing loading speed and flexibility.
 
-news_bcp.json
+**news_{company}.json**
 
-```{python}
-list(json.load(open("news_bcp.json")).keys())[0]
+```{.python}
+json.load(open("news_bcp.json")); .keys()[0] & .values()[0].keys()
 ```
 
-```{python}
-list(json.load(open("news_bcp.json")).values())[0].keys()
+```{python, echo=FALSE}
+print("'https://arquivo.pt/noFrame/replay/20010913052557/http://www.dn.pt/int/13p4x.htm'")
+print("dict_keys(['keywords', 'probability', 'sentiment', 'source', 'tstamp'])\n ")
 ```
 
 
-kwrd_bcp.json
+**kwrd_{company}.json**
 
-```{python}
-list(json.load(open("kwrd_bcp.json")).keys())[0]
+```{.python}
+json.load(open("kwrd_bcp.json")); .keys()[:3] & .values()[0].keys()
 ```
 
-```{python}
-list(json.load(open("kwrd_bcp.json")).values())[0].keys()
+```{python, echo=FALSE}
+print("['03 Mar', '10 Nov', '100 Segundos de Ciência']")
+print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])")
 ```
-
-## news recomendation system
-
-used TfidfVectorizer() from sklearn.feature_extraction.text to create "clusters" for the news recommendation: if good rating, correlated go upper then the otehrs
-
 
 ```{=html}
-<figure style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
-  <div style="display: flex; flex-direction: row; gap: 2px;">
-    <img src="newsDendrogram.svg" alt="cluster de noticias" style="width: 33%;" />
-    <img src="newsRatings.png" alt="rating de noticias" style="width: 67%; object-fit: contain;" />
-  </div>
+<div class="footer">
+  /notebooks/06_DataToJson.ipynb
+</div>
+```
+
+## News Recommendation System {.justify}
+
+`TfidfVectorizer()` and `cosine_similarity` from `scikit-learn` were used to compute the similarity between news articles.
+
+```{=html}
+<figure style="text-align: center">
+    <img src="newsDendrogram.svg" alt="cluster de noticias" style="width: 95%;">
 </figure>
 ```
 
-```{.python}
-def update_ratings(index, user_rating):
-    global ratings
-    global number_news_read
-    number_news_read += 1
-    similarity_scores = cosine_similarity(tfidf_matrix[index], tfidf_matrix).flatten()
-    learning_rate = 0.999**number_news_read
-    ratings += (user_rating - ratings) * (similarity_scores)**0.5 * learning_rate
-    ratings[index] = -1000
-weights = np.exp(np.array(ratings)) # talvez meter formula amtematica
-weights = weights / weights.sum()
-# random news index
-current_new_index = np.random.choice(len(ratings), p=weights)
+```{=html}
+<div class="footer">
+  /tests/newsCluster v04.ipynb
+</div>
 ```
 
+
+## News Recommendation System {.justify}
+
+```{.python}
+iteration = 0
+ratings = np.array([3.0] * len(news))
+
+
+def news_recommendation(ratings):
+  global iteration
+  iteration += 1
+  
+  # The exponential assigns higher probabilities to larger values 
+  weights = np.exp(np.array(ratings)) / weights.sum()
+  
+  # Select the next suggestion based on the weights
+  news_i = np.random.choice(len(news), p = weights)
+  
+  return news_i
+
+
+def update_ratings(news_i, user_rating):
+    global ratings
+    global iteration
+    learning_rate = 0.999 * iteration
+    
+    # Compute similarity to all other texts
+    similarity_scores = cosine_similarity(tfidf[news_i], tfidf).flatten()
+    
+    # Update the ratings for all news
+    ratings += (user_rating - ratings) * similarity_scores * learning_rate
+    ratings[news_i] = -1000
+```
+
+```{=html}
+<div class="footer">
+  /tests/newsCluster v04.ipynb
+</div>
+```
+
+## News Recommendation System {.justify}
+
+```{=html}
+<figure style="text-align: center; ; margin-top:0px">
+    <img src="newsRatings.png" alt="rating de noticias" style="width: 100%;">
+</figure>
+```
 
 ```{=html}
 <div class="footer">

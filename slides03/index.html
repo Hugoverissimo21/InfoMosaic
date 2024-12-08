@@ -411,9 +411,9 @@ Hugo Veríssimo
 </section>
 <section id="notas" class="slide level2 justify">
 <h2>NOTAS</h2>
-<p>so para ter a base do df se ainda precisar</p>
+<p>…</p>
 </section>
-<section id="data05.parquet" class="slide level2">
+<section id="data05.parquet" class="slide level2 justify">
 <h2>data05.parquet</h2>
 <style>
 .dataframe {
@@ -501,68 +501,94 @@ tbody td:first-child {
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a>pd.read_parquet(<span class="st">"data05.parquet"</span>)[<span class="st">"news"</span>].iloc[<span class="dv">0</span>][<span class="dv">0</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>dict_keys(['ExtractedText', 'linkToArchive', 'newsNER', 'newsProbability', 'newsSentiment', 'newsSource', 'tstamp'])</code></pre>
+<pre><code>dict_keys(['ExtractedText', 'linkToArchive', 'newsNER', 'newsProbability', 'newsSentiment', 'newsSource', 'tstamp'])
+ </code></pre>
 </div>
 </div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>pd.read_parquet(<span class="st">"data05.parquet"</span>)[<span class="st">"keywords"</span>].iloc[<span class="dv">0</span>][<span class="st">'03 Mar'</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])
- </code></pre>
-</div>
-</div>
-</section>
-<section id="to-json" class="slide level2">
-<h2>to json</h2>
-<p>Saved each column as a json file for faster loading</p>
-<p>news_bcp.json</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="bu">list</span>(json.load(<span class="bu">open</span>(<span class="st">"news_bcp.json"</span>)).keys())[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'https://arquivo.pt/noFrame/replay/20010913052557/http://www.dn.pt/int/13p4x.htm'</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a><span class="bu">list</span>(json.load(<span class="bu">open</span>(<span class="st">"news_bcp.json"</span>)).values())[<span class="dv">0</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>dict_keys(['keywords', 'probability', 'sentiment', 'source', 'tstamp'])</code></pre>
-</div>
-</div>
-<p>kwrd_bcp.json</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a><span class="bu">list</span>(json.load(<span class="bu">open</span>(<span class="st">"kwrd_bcp.json"</span>)).keys())[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'03 Mar'</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a><span class="bu">list</span>(json.load(<span class="bu">open</span>(<span class="st">"kwrd_bcp.json"</span>)).values())[<span class="dv">0</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
 <pre><code>dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])</code></pre>
 </div>
 </div>
 </section>
-<section id="news-recomendation-system" class="slide level2">
-<h2>news recomendation system</h2>
-<p>used TfidfVectorizer() from sklearn.feature_extraction.text to create “clusters” for the news recommendation: if good rating, correlated go upper then the otehrs</p>
-<figure style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
-  <div style="display: flex; flex-direction: row; gap: 2px;">
-    <img src="newsDendrogram.svg" alt="cluster de noticias" style="width: 33%;">
-    <img src="newsRatings.png" alt="rating de noticias" style="width: 67%; object-fit: contain;">
-  </div>
+<section id="optimized-data-storage" class="slide level2 justify">
+<h2>Optimized Data Storage</h2>
+<p>Optimized data organization by saving each cell as a separate JSON file, enhancing loading speed and flexibility.</p>
+<p><strong>news_{company}.json</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a>json.load(<span class="bu">open</span>(<span class="st">"news_bcp.json"</span>))<span class="op">;</span> .keys()[<span class="dv">0</span>] <span class="op">&amp;</span> .values()[<span class="dv">0</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>'https://arquivo.pt/noFrame/replay/20010913052557/http://www.dn.pt/int/13p4x.htm'</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['keywords', 'probability', 'sentiment', 'source', 'tstamp'])
+ </code></pre>
+</div>
+</div>
+<p><strong>kwrd_{company}.json</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a>json.load(<span class="bu">open</span>(<span class="st">"kwrd_bcp.json"</span>))<span class="op">;</span> .keys()[:<span class="dv">3</span>] <span class="op">&amp;</span> .values()[<span class="dv">0</span>].keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>['03 Mar', '10 Nov', '100 Segundos de Ciência']</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'type', 'weight'])</code></pre>
+</div>
+</div>
+<div class="footer">
+  /notebooks/06_DataToJson.ipynb
+</div>
+</section>
+<section id="news-recommendation-system" class="slide level2 justify">
+<h2>News Recommendation System</h2>
+<p><code>TfidfVectorizer()</code> and <code>cosine_similarity</code> from <code>scikit-learn</code> were used to compute the similarity between news articles.</p>
+<figure style="text-align: center">
+    <img src="newsDendrogram.svg" alt="cluster de noticias" style="width: 95%;">
 </figure>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href=""></a><span class="kw">def</span> update_ratings(index, user_rating):</span>
-<span id="cb13-2"><a href=""></a>    <span class="kw">global</span> ratings</span>
-<span id="cb13-3"><a href=""></a>    <span class="kw">global</span> number_news_read</span>
-<span id="cb13-4"><a href=""></a>    number_news_read <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb13-5"><a href=""></a>    similarity_scores <span class="op">=</span> cosine_similarity(tfidf_matrix[index], tfidf_matrix).flatten()</span>
-<span id="cb13-6"><a href=""></a>    learning_rate <span class="op">=</span> <span class="fl">0.999</span><span class="op">**</span>number_news_read</span>
-<span id="cb13-7"><a href=""></a>    ratings <span class="op">+=</span> (user_rating <span class="op">-</span> ratings) <span class="op">*</span> (similarity_scores)<span class="op">**</span><span class="fl">0.5</span> <span class="op">*</span> learning_rate</span>
-<span id="cb13-8"><a href=""></a>    ratings[index] <span class="op">=</span> <span class="op">-</span><span class="dv">1000</span></span>
-<span id="cb13-9"><a href=""></a>weights <span class="op">=</span> np.exp(np.array(ratings)) <span class="co"># talvez meter formula amtematica</span></span>
-<span id="cb13-10"><a href=""></a>weights <span class="op">=</span> weights <span class="op">/</span> weights.<span class="bu">sum</span>()</span>
-<span id="cb13-11"><a href=""></a><span class="co"># random news index</span></span>
-<span id="cb13-12"><a href=""></a>current_new_index <span class="op">=</span> np.random.choice(<span class="bu">len</span>(ratings), p<span class="op">=</span>weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+  /tests/newsCluster v04.ipynb
+</div>
+</section>
+<section id="news-recommendation-system-1" class="slide level2 justify">
+<h2>News Recommendation System</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a>iteration <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-2"><a href=""></a>ratings <span class="op">=</span> np.array([<span class="fl">3.0</span>] <span class="op">*</span> <span class="bu">len</span>(news))</span>
+<span id="cb11-3"><a href=""></a></span>
+<span id="cb11-4"><a href=""></a></span>
+<span id="cb11-5"><a href=""></a><span class="kw">def</span> news_recommendation(ratings):</span>
+<span id="cb11-6"><a href=""></a>  <span class="kw">global</span> iteration</span>
+<span id="cb11-7"><a href=""></a>  iteration <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-8"><a href=""></a>  </span>
+<span id="cb11-9"><a href=""></a>  <span class="co"># The exponential assigns higher probabilities to larger values </span></span>
+<span id="cb11-10"><a href=""></a>  weights <span class="op">=</span> np.exp(np.array(ratings)) <span class="op">/</span> weights.<span class="bu">sum</span>()</span>
+<span id="cb11-11"><a href=""></a>  </span>
+<span id="cb11-12"><a href=""></a>  <span class="co"># Select the next suggestion based on the weights</span></span>
+<span id="cb11-13"><a href=""></a>  news_i <span class="op">=</span> np.random.choice(<span class="bu">len</span>(news), p <span class="op">=</span> weights)</span>
+<span id="cb11-14"><a href=""></a>  </span>
+<span id="cb11-15"><a href=""></a>  <span class="cf">return</span> news_i</span>
+<span id="cb11-16"><a href=""></a></span>
+<span id="cb11-17"><a href=""></a></span>
+<span id="cb11-18"><a href=""></a><span class="kw">def</span> update_ratings(news_i, user_rating):</span>
+<span id="cb11-19"><a href=""></a>    <span class="kw">global</span> ratings</span>
+<span id="cb11-20"><a href=""></a>    <span class="kw">global</span> iteration</span>
+<span id="cb11-21"><a href=""></a>    learning_rate <span class="op">=</span> <span class="fl">0.999</span> <span class="op">*</span> iteration</span>
+<span id="cb11-22"><a href=""></a>    </span>
+<span id="cb11-23"><a href=""></a>    <span class="co"># Compute similarity to all other texts</span></span>
+<span id="cb11-24"><a href=""></a>    similarity_scores <span class="op">=</span> cosine_similarity(tfidf[news_i], tfidf).flatten()</span>
+<span id="cb11-25"><a href=""></a>    </span>
+<span id="cb11-26"><a href=""></a>    <span class="co"># Update the ratings for all news</span></span>
+<span id="cb11-27"><a href=""></a>    ratings <span class="op">+=</span> (user_rating <span class="op">-</span> ratings) <span class="op">*</span> similarity_scores <span class="op">*</span> learning_rate</span>
+<span id="cb11-28"><a href=""></a>    ratings[news_i] <span class="op">=</span> <span class="op">-</span><span class="dv">1000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+  /tests/newsCluster v04.ipynb
+</div>
+</section>
+<section id="news-recommendation-system-2" class="slide level2">
+<h2>News Recommendation System</h2>
+<figure style="text-align: center; ; margin-top:0px">
+    <img src="newsRatings.png" alt="rating de noticias" style="width: 100%;">
+</figure>
 <div class="footer">
   /tests/newsCluster v04.ipynb
 </div>

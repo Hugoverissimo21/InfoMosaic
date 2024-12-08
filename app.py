@@ -16,6 +16,7 @@ import matplotlib
 matplotlib.use('Agg')  
 import matplotlib.pyplot as plt
 from matplotlib.colors import is_color_like
+import os
 
 ##################################################################
 ##################################################################
@@ -453,6 +454,8 @@ def wordcloudcolors():
     global wordcloud_pallete
     global wordcloud_data
 
+    font_path = os.path.join('static', 'DejaVuSans.ttf')
+
     input1 = request.form.get('input1')
     input2 = request.form.get('input2')
     input3 = request.form.get('input3')
@@ -472,7 +475,12 @@ def wordcloudcolors():
         valid_colors = True
     else:
         valid_colors = False
-    wordcloud = WordCloud(width=widthIN, height=heightIN, background_color=None, mode='RGBA').generate_from_frequencies(wordcloud_data)
+    wordcloud = WordCloud(
+        width=widthIN,
+        height=heightIN,
+        background_color=None,
+        mode='RGBA',
+        font_path=font_path).generate_from_frequencies(wordcloud_data)
 
     plt.figure(figsize=(10, 5))
     random.seed(0)
@@ -491,7 +499,6 @@ def wordcloudcolors():
                            heightIN=heightIN,
                            col1=col1, col2=col2,
                            col3=col3, col4=col4)
-
 
 
 ##################################################################
