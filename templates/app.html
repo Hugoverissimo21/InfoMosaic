@@ -115,12 +115,11 @@
     </script>
 </div>
 
-
 <div class="tab-content tab-graph" id="graph" style="display:none;">
-    <iframe src="https://hugoverissimo21.github.io/FCD-project/assets/graph_{{ g.search_query }}.html" style="width:100%; height: calc(100vh - 135px);" frameborder="0">
+    <button class="help-graph" onclick="alert('Welcome to the Topic Map tab! Here, you\'ll find a dynamic graph displaying the most relevant keywords related to your selected topic. At the center, you\'ll see the topic node, surrounded by keyword nodes. Each keyword node is color-coded to reflect the sentiment associated with it—positive, negative, or neutral.\nBy selecting any keyword, you can dive deeper into its details, including the number of mentions, sentiment analysis, sources of mentions, and a time series showing how mentions have evolved over time. Plus, you\'ll be able to explore the specific articles where the keyword has been featured.\nOh, and did we mention? The bigger the node, the more mentions it has, so it\'s easy to spot what\'s trending! Happy exploring!')">Help</button>
+    <iframe class="the-graph" src="https://hugoverissimo21.github.io/FCD-project/assets/graph_{{ g.search_query }}.html" frameborder="0">
         <p>Loading, please wait...</p>
     </iframe>
-    <!--<button class="help-button" onclick="alert('Redirect to help page or show more info!');">?</button>-->
 </div>
 
 

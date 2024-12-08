@@ -76,7 +76,7 @@ body {
 
 /* Used for WORDCLOUD */
 .wc-btn {
-    width: 140px; /* Fixed width */
+    width: 140px;
     height: 40px; 
     display: flex; 
     justify-content: center; 
@@ -334,6 +334,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
 }
 
+/* used for HILO */
 .button-hilo-hidden {
     visibility: hidden;
     margin-top: 15px;
@@ -405,8 +406,8 @@ body {
     border: 1px solid rgb(208, 216, 226); /* Optional border */
     display: flex;           /* Make .content a flex container */
     flex-direction: column;  /* Stack items vertically */
-    justify-content: center; /* Vertically center items within .content */
-    align-items: center;     /* Horizontally center items within .content */
+    justify-content: center; 
+    align-items: center;     
     padding: 10px;           /* Add padding inside the container */
 }
 
@@ -417,10 +418,59 @@ body {
 }
 
 /* used for GRAPH */
-.tab-graph{
+.tab-graph {
     background-color: rgb(230, 236, 245);
     border: 1px solid rgb(208, 216, 226);
     align-items: center;
+    padding: 0;
+    display: block; /* Ensure the tab-graph is a block-level element */
+    position: relative; /* Create a positioning context for its children */
+    width: 100%; /* Ensure full width */
+    height: calc(100vh - 115px);
+}
+
+/* used for GRAPH */
+.help-graph {
+    position: absolute; 
+    top: 5px;
+    right: 5px;
+    z-index: 1; 
+    padding: 10px;
+    border: none; 
+    cursor: pointer;
+    background-color: rgb(51, 122, 183);
+    border: 1px solid rgb(51, 122, 183);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: rgb(245, 248, 252);
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 7px 10px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+}
+
+/* used for GRAPH */
+.help-graph:hover {
+    box-shadow: rgba(0, 0, 0, 0.2) 0 6px 12px 0;
+}
+
+/* used for GRAPH */
+.the-graph {
+    position: absolute; /* Position relative to .tab-graph */
+    top: 0;
+    left: 0;
+    z-index: 0; /* iframe will stay below the button */
+    width: 100%;
+    height: 100%;
 }
 
 /* used for SEARCH */
