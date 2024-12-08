@@ -244,11 +244,13 @@ def update_ratings(news_i, user_rating):
 </div>
 ```
 
-# web app
+# Web Application
 
 ## where everything comes thogether
 
-Created a web application using Flask, equipped with a range of tools for topic analysis.
+Developed a web application using `Flask`, equipped with a variety of tools for topic (companies) analysis based on news articles. to merge all visualizations and data and all the process from the before projects.
+
+- Explorer
 
 - Topic Map
 
@@ -258,7 +260,7 @@ Created a web application using Flask, equipped with a range of tools for topic 
 
 - Word Cloud
 
-https://hugover.pythonanywhere.com
+[https://hugover.pythonanywhere.com](https://hugover.pythonanywhere.com)
 
 ```{=html}
 <div class="footer">
@@ -266,23 +268,51 @@ https://hugover.pythonanywhere.com
 </div>
 ```
 
-## hilo
-
-http://www.higherlowergame.com
-
-https://noticioso.pt
-
-random choise of keywords, user has to say higher or lower, and check if its correct
+## Explorer {.justify}
 
 ```{=html}
-<div class="footer">
-  /tests/keysHiLo v01.ipynb
-</div>
+<figure style="text-align: center;">
+    <img src="flask_main.gif" alt="explorer page" style="width: 90%; border: 2px solid rgb(57, 61, 61);">
+</figure>
+```
+
+## Topic Map {.justify}
+
+```{=html}
+<figure style="text-align: center;">
+    <img src="flask_grafo.gif" alt="grafo page" style="width: 90%; border: 2px solid rgb(57, 61, 61);">
+</figure>
+```
+
+## Topic Insights {.justify}
+
+```{=html}
+<figure style="text-align: center;">
+    <img src="flask_read.gif" alt="read page" style="width: 90%; border: 2px solid rgb(57, 61, 61);">
+</figure>
+```
+
+## Word Duel {.justify}
+
+Took inspiration from [The Higher Lower Game](http://www.higherlowergame.com) and [Noticioso](https://noticioso.pt).
+
+```{=html}
+<figure style="text-align: center;">
+    <img src="flask_duel.gif" alt="duel page" style="width: 83%; border: 2px solid rgb(57, 61, 61);">
+</figure>
+```
+
+## Word Cloud {.justify}
+
+```{=html}
+<figure style="text-align: center;">
+    <img src="flask_wcloud.gif" alt="wcloud page" style="width: 90%; border: 2px solid rgb(57, 61, 61);">
+</figure>
 ```
 
 
+## spark ???
 
-## photos / gifs for each tab
 
-photos or gifs or videos of the site working, just in case something goes wrong, use local host since its faster. can only do when site is finished
+.... continua ?
 
