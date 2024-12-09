@@ -19,3 +19,5 @@ fcd- e se criar uma database com todas as noticias e pre processar o sentimento 
 - should have used a database to store all the data
 
 - should have processed the set of words for each new will scarrping, would save time later on (implies changing data02)
+
+- bloom filter should be stored in a file instead of being created every time, because of losgin the data when the container is destroyed

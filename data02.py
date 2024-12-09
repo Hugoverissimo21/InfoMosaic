@@ -8,6 +8,7 @@ from textblob import TextBlob
 from deep_translator import GoogleTranslator # deep-translator
 import spacy # python -m spacy download pt_core_news_sm
 from datetime import datetime
+import random
 
 
 # tfidf vectorizer and ML model for news classification task
@@ -87,8 +88,7 @@ def process_keywords(text):
         text (str): The input text to process.
     Returns:
         dict: A dictionary containing organized named entities and significant words/verbs.
-              The keys are entity categories (e.g., "PER", "ORG", "LOC", "MISC") and "TEXT".
-              The values are lists of extracted entities or words/verbs.
+              The values are number of mentions.
     """
     doc = nlp(text)
 
@@ -133,28 +133,25 @@ def process_keywords(text):
         and token.text.lower() not in noticias
         and token.text.isalnum()
         and len(token.text) > 3
+        and random.random() < 0.44 # instead of .5 to give some penalty to "normal" words
     ]
 
-    organized_entities = {}
-    for entity, category in named_entities:
-        if category not in organized_entities:
-            organized_entities[category] = {entity: 1}
-        elif entity not in organized_entities[category]:
-            organized_entities[category][entity] = 1
-        else:
-            organized_entities[category][entity] += 1
-    newsNER = organized_entities
-    
     if palavras_significativas == []:
         return None
-    else:
-        newsNER["TEXT"] = {}
-        for palavra in palavras_significativas:
-            if palavra not in newsNER["TEXT"]:
-                newsNER["TEXT"][palavra] = 1
-            else:
-                newsNER["TEXT"][palavra] += 1
-    return newsNER
+    
+    keywords = {}
+    for entity, category in named_entities:
+        if entity not in keywords:
+            keywords[entity] = 1
+        else:
+            keywords[entity] += 1
+    for palavra in palavras_significativas:
+        if palavra not in keywords:
+            keywords[palavra] = 2
+        else:
+            keywords[palavra] += 2
+    
+    return keywords
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
@@ -188,7 +185,6 @@ def process_sentiment(text):
     return vader_scores["compound"] * 0.6 + textblob_sentiment.polarity * 0.4
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-
 
 def process_url(url,
                 hash_filter=bloom,
@@ -256,7 +252,7 @@ def process_url(url,
 import os
 import json
 from pyspark.sql import SparkSession
-from pyspark.sql.types import StructType, StructField, FloatType, StringType, MapType
+from pyspark.sql.types import StructType, StructField, FloatType, StringType, MapType, IntegerType
 from pyspark.sql.functions import udf, col, substring
 from pyspark.sql.functions import monotonically_increasing_id
 
@@ -279,11 +275,11 @@ df = spark.read.csv(urls_file, header=True, inferSchema=True)
 
 # Preprocess the DataFrame
 df = df.drop("url")
-df = df.withColumn("timestamp", substring(col("timestamp"), 1, 6))
+df = df.withColumn("timestamp", substring(col("timestamp"), 1, 6).cast("int"))
 
 result_schema = StructType([
     StructField("probability", FloatType(), True),
-    StructField("keywords", MapType(StringType(), StringType()), True),
+    StructField("keywords", MapType(StringType(), IntegerType()), True),
     StructField("sentiment", FloatType(), True),
     StructField("status", StringType(), True),
     StructField("error", StringType(), True)
@@ -305,10 +301,10 @@ def update_checkpoint(status):
 
 while True:
     i = get_last_processed_status() or -1
-    df_selected = df.filter((df["id"] > i) & (df["id"] <= i + 10000))
+    df_selected = df.filter((df["id"] > i) & (df["id"] <= i + 10000)) #10000
 
     # Divide the DataFrame into chunks
-    df_selected = df_selected.repartition(32)
+    df_selected = df_selected.repartition(22) #22
 
     # Apply the UDF to the DataFrame
     df_selected = df_selected.withColumn("result", process_url_udf(col("archive")))
@@ -328,4 +324,4 @@ while True:
     last_processed_status = df_selected.agg({"id": "max"}).collect()[0][0]
     update_checkpoint(last_processed_status)
     print(f"Processed partition up to ID: {last_processed_status}. {datetime.now().strftime('%H:%M:%S')}")
-
+    
