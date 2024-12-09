@@ -246,9 +246,9 @@ def update_ratings(news_i, user_rating):
 
 # Web Application
 
-## where everything comes thogether
+## Web Application {.justify}
 
-Developed a web application using `Flask`, equipped with a variety of tools for topic (companies) analysis based on news articles. to merge all visualizations and data and all the process from the before projects.
+A web application was developed using `Flask`, integrating various tools for analyzing topics (e.g., companies) based on news articles. It consolidates visualizations and processes created throughout the project into a unified platform, organized into the following sections:
 
 - Explorer
 
@@ -311,8 +311,84 @@ Took inspiration from [The Higher Lower Game](http://www.higherlowergame.com) an
 ```
 
 
-## spark ???
+# Further Improvements
+
+## Generalize the Topic Search {.justify}
+
+As extracting news articles related to a topic, analyzing the keywords within them and assessing the sentiment of each is a time-consuming and computationally expensive process, it is preferable to extract all the news articles from arquivo.pt and analyze them in advance, avoiding redundant operations. This requires changing some of the methodologies used so far.
+
+To achieve this, the CDX Server API from arquivo.pt is used, which returns preserved pages that begin with a specific URL. Over 100 URLs have been selected, including:
+
+```{python, echo=FALSE}
+print("""[('https://www.rtp.pt/', 'RTP'),
+('https://www.rtp.pt/noticias/', 'RTP'),
+('https://www.rtp.pt/noticias/pais/', 'RTP'),
+('https://www.rtp.pt/noticias/mundo/', 'RTP'),
+('https://www.rtp.pt/noticias/politica/', 'RTP'),
+('https://www.rtp.pt/noticias/economia/', 'RTP'), ...]
+""")
+```
 
 
-.... continua ?
+```{=html}
+<div class="footer">
+  https://github.com/Hugoverissimo21/InfoMosaic/blob/main/data01%20newsUrls.ipynb
+</div>
+```
+
+## Processing CDX API Results {.justify}
+
+To process the 3 056 418 results from the CDX API, tools and methods such as Apache Spark, Bloom Filters, Logistic Regression and Probabilistic Counters are being used. The processing approach for extracting sentiment and keywords from each news result is very similar to the one used so far.
+
+```{python, echo=FALSE}
+print("""
+root
+ |-- timestamp: integer (nullable = true)
+ |-- source: string (nullable = true)
+ |-- archive: string (nullable = true)
+ |-- id: integer (nullable = true)
+ |-- probability: float (nullable = true)
+ |-- keywords: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: integer (valueContainsNull = true)
+ |-- sentiment: float (nullable = true)
+ """)
+```
+
+```{=html}
+<div class="footer">
+  https://github.com/Hugoverissimo21/InfoMosaic/blob/main/data02.py
+</div>
+```
+
+## News Detection {.justify}
+
+A new machine learning model was developed, specifically a logistic regression, to distinguish between news and non-news articles. TF-IDF was used for feature extraction, and the hyperparameters were optimized to maximize the recall of the "news" class.
+
+$\ $
+
+```{=html}
+<figure style="text-align: center;">
+    <img src="MLmetrics_LRnews.png" alt="metrics class news ML" style="width: 65%;">
+    <figcaption style="font-size: 0.45em; margin-top: -22px;">Evaluation metrics for logistic regression classification of the 'news' class.</figcaption>
+</figure>
+```
+
+
+```{=html}
+<div class="footer">
+  https://github.com/Hugoverissimo21/InfoMosaic/tree/main/assets
+</div>
+```
+
+## Remaining Tasks {.justify}
+
+- Process the remaining results from CDX API.
+
+- Develop an algorithm that efficiently selects news articles containing the topic the user is searching for, and converts the data into the input format for the web application.
+
+- Implement the solution in the web application and optimize it for computational efficiency.
+
+- Improve the user interface.
+
 
