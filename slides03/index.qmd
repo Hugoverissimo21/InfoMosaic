@@ -1,6 +1,6 @@
 ---
-title: "Media Analysis of PSI-20 Companies"
-subtitle: "Insights from News and Public Coverage"
+title: "Insights from News and Public Coverage"
+subtitle: "InfoMosaic"
 author:
   - name: "Hugo Veríssimo"
     affiliation: "124348"
@@ -33,10 +33,6 @@ import time
 from datetime import datetime
 import json
 ```
-
-## NOTAS {.justify}
-
-...
 
 ## data05.parquet {.justify}
 
@@ -385,10 +381,11 @@ $\ $
 
 - Process the remaining results from CDX API.
 
-- Develop an algorithm that efficiently selects news articles containing the topic the user is searching for, and converts the data into the input format for the web application.
+- Store the processed data in a database, such as MongoDB.
 
-- Implement the solution in the web application and optimize it for computational efficiency.
+- Design and implement an algorithm to efficiently identify news articles relevant to the user's search topic and convert the data into the required input format for the web application.
+
+- Implement the solution into the web application, ensuring it is optimized for computational performance.
 
 - Improve the user interface.
-
 

@@ -22,5 +22,7 @@ slides01
 
 slides02
 
+slides03
+
 tests - jupyter notebooks for testing and visualizations.
 

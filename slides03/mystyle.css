@@ -3,7 +3,7 @@
 }
 
 h1.title {
-  font-size: 45pt; /* 70pt */
+  font-size: 41pt; /* 70pt */
   font-weight: 600;
   color: rgb(108, 178, 52);
   line-height: 1rem;
@@ -13,7 +13,7 @@ h1.title {
 }
 
 .subtitle {
-  font-size: 33pt; /* 50pt */
+  font-size: 32pt; /* 50pt */
   font-weight: 600;
   color: rgba(105, 172, 83, 0.92);
   line-height: 1rem;
