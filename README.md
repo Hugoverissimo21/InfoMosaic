@@ -1,10 +1,10 @@
 # Media Analysis of PSI-20 Companies
 
-- [Slides 01](https://hugoverissimo21.github.io/FCD-project/slides01)
+- [Slides 01](https://hugoverissimo21.github.io/InfoMosaic-sandbox/slides01)
 
-- [Slides 02](https://hugoverissimo21.github.io/FCD-project/slides02)
+- [Slides 02](https://hugoverissimo21.github.io/InfoMosaic-sandbox/slides02)
 
-- [Slides 03](https://hugoverissimo21.github.io/FCD-project/slides03)
+- [Slides 03](https://hugoverissimo21.github.io/InfoMosaic-sandbox/slides03)
 
 [https://hugover.pythonanywhere.com](https://hugover.pythonanywhere.com) - currently deployed here
 
