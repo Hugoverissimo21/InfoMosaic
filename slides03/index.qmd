@@ -189,10 +189,9 @@ print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'typ
 
 ## News Recommendation System {.justify}
 
-```{.python}
+```{.python code-line-numbers="1-2|4-14|16-26"}
 iteration = 0
 ratings = np.array([3.0] * len(news))
-
 
 def news_recommendation(ratings):
   global iteration
@@ -205,7 +204,6 @@ def news_recommendation(ratings):
   news_i = np.random.choice(len(news), p = weights)
   
   return news_i
-
 
 def update_ratings(news_i, user_rating):
     global ratings
@@ -290,7 +288,7 @@ A web application was developed using `Flask`, integrating various tools for ana
 
 ## Word Duel {.justify}
 
-Took inspiration from [The Higher Lower Game](http://www.higherlowergame.com) and [Noticioso](https://noticioso.pt).
+Inspired by [The Higher Lower Game](http://www.higherlowergame.com) and [Noticioso](https://noticioso.pt).
 
 ```{=html}
 <figure style="text-align: center;">
