@@ -171,7 +171,9 @@ print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'typ
 </div>
 ```
 
-## News Recommendation System {.justify}
+# News Recommendations
+
+## News Similarity {.justify}
 
 `TfidfVectorizer()` and `cosine_similarity` from `scikit-learn` were used to compute the similarity between news articles.
 
@@ -187,7 +189,7 @@ print("dict_keys(['count', 'date', 'filter', 'news', 'sentiment', 'source', 'typ
 </div>
 ```
 
-## News Recommendation System {.justify}
+## Rating News {.justify}
 
 ```{.python code-line-numbers="1-2|4-14|16-26"}
 iteration = 0
