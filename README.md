@@ -5,14 +5,14 @@ The primary goal of this project is to analyze media coverage of companies liste
 The specific objectives and features of the project are:
 
 1. **Sentiment Analysis**<br>
-   Perform sentiment analysis on news articles and media coverage to assess how keywords related to PSI-20 companies impact their public sentiment.
+   Evaluate the sentiment of news articles and media coverage to determine whether specific keywords associated with PSI-20 companies have a positive or negative impact on public perception.
 
 2. **Named Entity Recognition (NER)**<br>
    Extract and identify key entities (such as company names, individuals, locations, etc.) from media coverage to understand how these entities are related to PSI-20 companies. This analysis will help reveal the context and nature of associations, uncovering how different entities are connected to or influence the perception of each company.
 
 
 3. **Media Coverage Analysis**<br>
-   Track the frequency and volume of media mentions for each PSI-20 company, highlighting trends over time and uncovering patterns that can indicate shifts in public perception or market impact.
+   Track the frequency and volume of media mentions for each PSI-20 company, highlighting trends over time and uncovering patterns which can indicate shifts in public perception or market impact.
 
 4. **Data Collection and Analysis**<br>
    Extract data from [arquivo.pt](https://arquivo.pt/) focusing on PSI-20 companies and perform data exploration and analysis using Jupyter notebooks.
