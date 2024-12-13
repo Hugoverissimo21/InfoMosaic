@@ -1,36 +1,20 @@
-# Media Analysis of PSI-20 Companies
+# InfoMosaic Sandbox
+
+**Media Analysis of PSI-20 Companies**  
+
+Gain insights into public and news coverage of PSI-20 companies through data analysis, machine learning, and visualization.
+
+objetivos....
+
+## **Deployed Version**
+
+Visit the live app: [InfoMosaic Sandbox](https://hugover.pythonanywhere.com).
 
 - [Slides 01](https://hugoverissimo21.github.io/InfoMosaic-sandbox/slides01)
 
 - [Slides 02](https://hugoverissimo21.github.io/InfoMosaic-sandbox/slides02)
 
 - [Slides 03](https://hugoverissimo21.github.io/InfoMosaic-sandbox/slides03)
-
-[https://hugover.pythonanywhere.com](https://hugover.pythonanywhere.com) - currently deployed here
-
-static and templates folders are for the flask app
-
-## Folders
-
-assets - contains images and visualizations.
-
-data - includes all data collection.
-
-notebooks - jupyter notebooks related to data files and trained models.
-
-slides01
-
-slides02
-
-slides03
-
-tests - jupyter notebooks for testing and visualizations.
-
-# InfoMosaic Sandbox
-
-**Media Analysis of PSI-20 Companies**  
-
-Gain insights into public and news coverage of PSI-20 companies through data analysis, machine learning, and visualization.
 
 ## **Features**
 
@@ -42,27 +26,24 @@ Gain insights into public and news coverage of PSI-20 companies through data ana
 
 ## **Project Structure**
 
-- **`assets/`**: Visualizations and images.
+- **`assets/`**: Visualizations and images. contains images and visualizations.
 
-- **`data/`**: Data sources and processed files.
+- **`data/`**: Data sources and processed files. includes all data collection.
 
-- **`notebooks/`**: Analysis and model training scripts.
+- **`notebooks/`**: Analysis and model training scripts.  jupyter notebooks related to data files and trained models.
 
-- **`templates/` & `static/`**: Flask app front-end assets.
+- **`templates/` & `static/`**: Flask app front-end assets. static and templates folders are for the flask app
 
-- **`tests/`**: Notebooks for validating models and methods.
 
-## **Deployed Version**
-
-Visit the live app: [InfoMosaic Sandbox](https://hugover.pythonanywhere.com).
+- **`tests/`**: Notebooks for validating models and methods. jupyter notebooks for testing and visualizations.
 
 ## **Technologies**
+
+- **Jupyter Notebooks**: Data analysis.
 
 - **Python**: Backend logic and data processing.
 
 - **Flask**: Web framework for deployment.
-
-- **Jupyter Notebooks**: Data analysis.
 
 - **HTML**: Front-end visualizations.
 
@@ -74,4 +55,14 @@ Visit the live app: [InfoMosaic Sandbox](https://hugover.pythonanywhere.com).
 git clone https://github.com/Hugoverissimo21/InfoMosaic-sandbox.git
 ```
 
+2. Install dependencies: !!!!!!!!!!!!
 
+```bash
+pip install -r requirements.txt
+```
+
+3. Run the Flask app:
+
+```bash
+python app.py
+```
