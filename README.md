@@ -14,14 +14,14 @@ The specific objectives and features of the project are:
 3. **Media Coverage Analysis**<br>
    Track the frequency and volume of media mentions for each PSI-20 company, highlighting trends over time and uncovering patterns that can indicate shifts in public perception or market impact.
 
-4. **Data Collection and Analysis**<br>  
+4. **Data Collection and Analysis**<br>
    Extract data from [arquivo.pt](https://arquivo.pt/) focusing on PSI-20 companies and perform data exploration and analysis using Jupyter notebooks.
 
-5. **Data Visualization**<br>  
+5. **Data Visualization**<br>
    Create static and interactive visualizations to present insights such as sentiment trends, media mentions over time, and relationships between companies and key entities. These visualizations will help to make complex data more accessible and understandable.
 
-6. **Web Application**<br>  
-   Build a web app using `Flask` to showcase key insights and visualizations interactively. The app will allow users to explore the data, view sentiment trends, and gain insights into media coverage in an intuitive manner.
+6. **Web Application**<br>
+   Build a web app using Flask to showcase key insights and visualizations interactively. The app will allow users to explore the data, view sentiment trends, and gain insights into media coverage in an intuitive manner.
 
 By integrating data collection, analysis, machine learning, and visualization techniques, this project seeks to transform media coverage into actionable insights that can inform decision-making for investors, analysts, and stakeholders.
 
@@ -61,18 +61,18 @@ Visit the live app: [InfoMosaic Sandbox](https://hugover.pythonanywhere.com).
 
 1. Clone the repository:
 
-```bash
+```
 git clone https://github.com/Hugoverissimo21/InfoMosaic-sandbox.git
 ```
 
 2. Install dependencies:
 
-```bash
+```
 pip install -r zextra/requirements03.txt
 ```
 
 3. Run the Flask app:
 
-```bash
+```
 python app.py
 ```
