@@ -4,6 +4,9 @@
 
 Gain insights into public and news coverage of PSI-20 companies through data analysis, machine learning, and visualization.
 
+This project focuses on extracting, analyzing, and visualizing data related to PSI-20 companies using multiple tools and technologies. Below are the key features and components of the project.
+
+
 objetivos....
 
 ## **Deployed Version**
@@ -16,29 +19,31 @@ Visit the live app: [InfoMosaic Sandbox](https://hugover.pythonanywhere.com).
 
 - [Slides 03](https://hugoverissimo21.github.io/InfoMosaic-sandbox/slides03)
 
-## **Features** !!!!!!!!!!!
+## **Features**
 
-- **Data Collection**: Includes datasets related to PSI-20 companies.
+- **Data Collection**: Extraction of data from [arquivo.pt](https://arquivo.pt/) focusing on PSI-20 companies.
 
-- **Analysis Tools**: Jupyter notebooks for model training and data exploration.
+- **Data Analysis**: Exploration, analysis, and machine learning using Jupyter notebooks.
 
-- **Flask App**: Deployed web app with visualizations and insights.
+- **Visualizations**: Static and interactive visualizations created with `Matplotlib` and `Plotly`.
 
-## **Project Structure** !!!!!!!!!!!!
+- **Web Application**: A web app showcasing key insights and visualizations interactively, built with `Flask`.
 
-- **`assets/`**: Visualizations and images. contains images and visualizations.
+## **Project Structure**
 
-- **`data/`**: Data sources and processed files. includes all data collection.
+- **`assets/`**: Visualizations and images generated throughout the project.
 
-- **`notebooks/`**: Analysis and model training scripts.  jupyter notebooks related to data files and trained models.
+- **`data/`**: Extracted data from [arquivo.pt](https://arquivo.pt/) and processed datasets for analysis.
 
-- **`templates/` & `static/`**: Flask app front-end assets. static and templates folders are for the flask app
+- **`notebooks/`**: Jupyter notebooks for data analysis, model training, and experiments.
 
-- **`tests/`**: Notebooks for validating models and methods. jupyter notebooks for testing and visualizations.
+- **`templates/` & `static/`**: Front-end assets for the Flask application.
+
+- **`tests/`**: Jupyter notebooks for validating models, testing methods, and generating visualizations.
 
 ## **Technologies**
 
-- **Jupyter Notebooks**: Data analysis.
+- **Jupyter Notebooks**: Data extraction, curation, and analysis.
 
 - **Python**: Backend logic and data processing.
 
