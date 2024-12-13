@@ -1,6 +1,6 @@
 # InfoMosaic Sandbox
 
-**Media Analysis of PSI-20 Companies**  
+**Media Analysis of PSI-20 Companies**  !!!!!!!!!!!!
 
 Gain insights into public and news coverage of PSI-20 companies through data analysis, machine learning, and visualization.
 
@@ -16,7 +16,7 @@ Visit the live app: [InfoMosaic Sandbox](https://hugover.pythonanywhere.com).
 
 - [Slides 03](https://hugoverissimo21.github.io/InfoMosaic-sandbox/slides03)
 
-## **Features**
+## **Features** !!!!!!!!!!!
 
 - **Data Collection**: Includes datasets related to PSI-20 companies.
 
@@ -24,7 +24,7 @@ Visit the live app: [InfoMosaic Sandbox](https://hugover.pythonanywhere.com).
 
 - **Flask App**: Deployed web app with visualizations and insights.
 
-## **Project Structure**
+## **Project Structure** !!!!!!!!!!!!
 
 - **`assets/`**: Visualizations and images. contains images and visualizations.
 
@@ -33,7 +33,6 @@ Visit the live app: [InfoMosaic Sandbox](https://hugover.pythonanywhere.com).
 - **`notebooks/`**: Analysis and model training scripts.  jupyter notebooks related to data files and trained models.
 
 - **`templates/` & `static/`**: Flask app front-end assets. static and templates folders are for the flask app
-
 
 - **`tests/`**: Notebooks for validating models and methods. jupyter notebooks for testing and visualizations.
 
@@ -55,10 +54,10 @@ Visit the live app: [InfoMosaic Sandbox](https://hugover.pythonanywhere.com).
 git clone https://github.com/Hugoverissimo21/InfoMosaic-sandbox.git
 ```
 
-2. Install dependencies: !!!!!!!!!!!!
+2. Install dependencies:
 
 ```bash
-pip install -r requirements.txt
+pip install -r zextra/requirements03.txt
 ```
 
 3. Run the Flask app:
