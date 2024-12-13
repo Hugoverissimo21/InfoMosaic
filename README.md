@@ -1,14 +1,15 @@
-# Media Analysis of Five PSI-20 Companies !!!!
+# Media Analysis of Five PSI-20 Companies
 
 The primary goal of this project is to analyze media coverage of companies listed on the PSI-20 index. By leveraging various data analysis, machine learning, and visualization techniques, the project aims to extract valuable insights regarding the public perception and sentiment around these companies.
 
 The specific objectives and features of the project are:
 
-1. **Sentiment Analysis**  !!!!
-   Perform sentiment analysis on news articles, social media mentions, and other media sources to assess the public sentiment surrounding PSI-20 companies. This will help determine whether the sentiment is positive, negative, or neutral.
+1. **Sentiment Analysis**
+   Perform sentiment analysis on news articles and media coverage to assess how keywords related to PSI-20 companies impact their public sentiment.
 
-2. **Named Entity Recognition (NER)**   !!!!
-   Extract and identify key entities (such as company names, individuals, locations, etc.) from media coverage to understand the context in which PSI-20 companies are mentioned. This will aid in understanding the nature of discussions and their relevance.
+2. **Named Entity Recognition (NER)**
+   Extract and identify key entities (such as company names, individuals, locations, etc.) from media coverage to understand how these entities are related to PSI-20 companies. This analysis will help reveal the context and nature of associations, uncovering how different entities are connected to or influence the perception of each company.
+
 
 3. **Media Coverage Analysis**  
    Track the frequency and volume of media mentions for each PSI-20 company, highlighting trends over time and uncovering patterns that can indicate shifts in public perception or market impact.
