@@ -1,0 +1,67 @@
+{
+    "03 Mar": {
+        "count": 2.0,
+        "date": {
+            "201503": 2.0
+        },
+        "filter": 0.0024783147459727386,
+        "news": [
+            "https://arquivo.pt/wayback/20150303192025/http://www.rtp.pt/noticias/index.php?article=809146&tm=6&layout=123&visual=61",
+            "https://arquivo.pt/wayback/20150304034952/http://www.rtp.pt/noticias/index.php?article=809114&tm=6&layout=123&visual=61"
+        ],
+        "sentiment": 0.7072181851851852,
+        "source": {
+            "RTP": 2.0
+        },
+        "type": [
+            "MISC"
+        ],
+        "weight": 4.0
+    },
+    "10 Nov": {
+        "count": 5.0,
+        "date": {
+            "201711": 5.0
+        },
+        "filter": 0.0,
+        "news": [
+            "https://arquivo.pt/wayback/20171118073101/https://www.rtp.pt/noticias/economia/presidente-do-bcp-diz-esperar-que-sonangol-continue-a-ser-uma-boa-parceira_n1040907",
+            "https://arquivo.pt/wayback/20171114001440/https://www.rtp.pt/noticias/economia/bcp-passa-de-prejuizos-a-lucros-de-133-me-ate-setembro_n1040027",
+            "https://arquivo.pt/wayback/20171125100844/https://www.rtp.pt/noticias/economia/goldman-sachs-bcp-sg-e-ubs-vao-preparar-a-emissao-de-divida-de-300-me-do-bcp_n1042357",
+            "https://arquivo.pt/wayback/20171123074308/https://www.rtp.pt/noticias/economia/presidente-do-bcp-reconhece-momento-dificil-em-mocambique-mas-confia-na-normalizacao_n1041906",
+            "https://arquivo.pt/wayback/20171115073349/https://www.rtp.pt/noticias/economia/presidente-do-bcp-pede-acordo-de-regime-para-a-reducao-da-divida_v1040068"
+        ],
+        "sentiment": 0.500047308269292,
+        "source": {
+            "RTP": 5.0
+        },
+        "type": [
+            "MISC"
+        ],
+        "weight": 0.0
+    },
+    "100 Segundos de Ciência": {
+        "count": 6.0,
+        "date": {
+            "201405": 3.0,
+            "201406": 1.0,
+            "201407": 2.0
+        },
+        "filter": -0.0005576208178438662,
+        "news": [
+            "https://arquivo.pt/wayback/20140526171735/http://www.rtp.pt/noticias/index.php?article=740283&tm=6&layout=122&visual=61",
+            "https://arquivo.pt/wayback/20140727042431/http://www.rtp.pt/noticias/index.php?article=755499&tm=6&layout=121&visual=49",
+            "https://arquivo.pt/wayback/20140502184429/http://www.rtp.pt/noticias/index.php?article=734638&tm=8&layout=122&visual=61",
+            "https://arquivo.pt/wayback/20140601001200/http://www.rtp.pt/noticias/index.php?article=741495&tm=6&layout=121&visual=49",
+            "https://arquivo.pt/wayback/20140727042452/http://www.rtp.pt/noticias/index.php?article=755495&tm=6&layout=121&visual=49",
+            "https://arquivo.pt/wayback/20140506214924/http://www.rtp.pt/noticias/index.php?article=735219&tm=6&layout=121&visual=49"
+        ],
+        "sentiment": 0.4596169552289668,
+        "source": {
+            "RTP": 6.0
+        },
+        "type": [
+            "MISC"
+        ],
+        "weight": -0.9
+    }

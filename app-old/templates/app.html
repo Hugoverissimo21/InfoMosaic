@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where News Meets Fun</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- because of the stars rating: -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+</head>
+<body>
+
+<div class="tabs">
+    <div class="tab" onclick="showTab('search')">Explorer</div>
+    {% if search_not_done %}
+    <p style="visibility: hidden;"><strong>.</strong></p>
+    {% elif not search_not_done %}
+    <div class="tab" onclick="showTab('graph')">Topic Map</div>
+    <div class="tab" onclick="showTab('readexplore')">Topic Insights</div>
+    <div class="tab" onclick="showTab('hilo')">Word Duel</div>
+    <div class="tab" onclick="showTab('wordcloud')">Word Cloud</div>
+    <p style="margin-left: auto;"><strong>{{ g.search_query }}</strong> is the current topic.</p>
+    {% endif %}
+</div>
+
+
+<div class="tab-content tab-search" id="search" style="display:none;">
+    <h1>Topic Explorer</h1>
+    <form method="POST" action="/search">
+        <input type="text" id="search-input" name="query" placeholder="What would you like to learn about? Type * for topic suggestions." value="{{ search_query if search_query else '' }}">
+        <div id="suggestions-box" class="suggestions" style="display: none;"></div>
+        <div class="button-container">
+            <button type="submit" name="action" value="search">Search for Topic</button>
+            <button type="submit" name="action" value="lucky">Discover Something New</button>
+        </div>
+    </form>
+    {% if search_finised %}
+        <p>Your topic is waiting! Explore through the tabs above.</p>
+    {% endif %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#search-input').on('input', function() {
+                var query = $(this).val();
+    
+                // If query is empty, show the first k suggestions (default behavior)
+                if (query.length === 0) {
+                    $('#suggestions-box').empty().show(); // Show first k suggestions when input is empty
+                }
+    
+                // Make AJAX request to get suggestions
+                $.get('/autocomplete', { query: query }, function(data) {
+                    console.log("Suggestions received: ", data);  // Debugging line
+                    // Clear previous suggestions
+                    $('#suggestions-box').empty();
+                    
+                    // Show suggestions if there are any
+                    if (data.length > 0) {
+                        $('#suggestions-box').show();
+                        data.forEach(function(item) {
+                            $('#suggestions-box').append('<div>' + item + '</div>');
+                        });
+    
+                        // Dynamically position the suggestions box below or above the input
+                        var inputOffset = $('#search-input').offset();
+                        var inputHeight = $('#search-input').outerHeight();
+                        var inputWidth = $('#search-input').outerWidth(); // Get the width of the input field
+                        var suggestionsBox = $('#suggestions-box');
+                        
+                        // Set the width of the suggestion box to match the input field
+                        suggestionsBox.css({
+                            'width': inputWidth-1 + 'px',  // Set the width to match the input field
+                        });
+    
+                        // Position the suggestions box below the input
+                        var topPosition = inputOffset.top + inputHeight;
+                        
+                        // Check if the suggestion box would overflow the bottom of the window
+                        var windowHeight = $(window).height();
+                        var suggestionsBoxHeight = suggestionsBox.outerHeight();
+                        if (topPosition + suggestionsBoxHeight > windowHeight) {
+                            // If it would overflow, show the suggestions above the input
+                            topPosition = inputOffset.top - suggestionsBoxHeight;
+                        }
+    
+                        // Set the calculated position for the suggestions box
+                        suggestionsBox.css({
+                            'top': topPosition,  // Position it below or above the input based on available space
+                            'left': inputOffset.left  // Align with the left edge of the input
+                        });
+                    } else {
+                        $('#suggestions-box').hide(); // Hide the suggestions box if no data
+                    }
+                }).fail(function() {
+                    console.error("AJAX request failed.");
+                });
+            });
+    
+            // When a suggestion is clicked, populate the input field and hide the suggestions box
+            $(document).on('click', '#suggestions-box div', function() {
+                $('#search-input').val($(this).text());
+                $('#suggestions-box').hide();
+            });
+    
+            // Hide suggestions when input is cleared
+            $('#search-input').on('blur', function() {
+                // Delay hiding the suggestions box to allow click event to register
+                setTimeout(function() {
+                    if ($('#search-input').val() === '') {
+                        $('#suggestions-box').hide();
+                    }
+                }, 100);
+            });
+        });
+    </script>
+</div>
+
+<div class="tab-content tab-graph" id="graph" style="display:none;">
+    <button class="help-graph" onclick="alert('Welcome to the Topic Map tab! Here, you\'ll find a dynamic graph displaying the most relevant keywords related to your selected topic. At the center, you\'ll see the topic node, surrounded by keyword nodes. Each keyword node is color-coded to reflect the sentiment associated with it—positive, negative, or neutral.\nBy selecting any keyword, you can dive deeper into its details, including the number of mentions, sentiment analysis, sources of mentions, and a time series showing how mentions have evolved over time. Plus, you\'ll be able to explore the specific articles where the keyword has been featured.\nOh, and did we mention? The bigger the node, the more mentions it has, so it\'s easy to spot what\'s trending! Happy exploring!')">Help</button>
+    <iframe class="the-graph" src="https://hugoverissimo21.github.io/InfoMosaic-sandbox/assets/graph_{{ g.search_query }}.html" frameborder="0">
+        <p>Loading, please wait...</p>
+    </iframe>
+</div>
+
+
+<div class="tab-content" id="readexplore">
+    {% if not not_first_new %}
+        <div class="container-start">
+            <div class="content-start">
+                <h1>Welcome to Topic Insights!</h1>
+                <form action="/get_first_news" method="POST">
+                    <button class="button-start" type="submit">Dive In</button>
+                </form>
+                <div class="rules">
+                    <p>Here, you'll find news and updates related to your topic. Rate each item from 1 (hated it) to 5 (loved it) stars to help us improve your recommendations. Not interested in a particular article? Feel free to skip it. Want to revisit something? You can go back anytime.</p>
+                    <p>The more you rate, the smarter your experience becomes!</p>
+                    <p><strong>Anything else?</strong></p>
+                    <p>Yes! The news and updates cover the period from 2000 to 2020 and were sourced from 33 portuguese news websites through <a href="https://arquivo.pt">arquivo.pt</a>. Enjoy exploring!</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if new_to_read %}
+        <form action="/news_history" method="POST" class="nav-container">
+            <button type="submit" name="news_hist" value="prev" class="button-left" {% if no_more_left %} disabled {% endif %}><<</button>
+            
+            <p class="text-center"><strong>Year:</strong> {{ newsdate }}<span class="separator"> | </span><a href="{{ new_to_read }}" target="_blank">Reference</a><span class="separator"> | </span><strong>Top 7 Words:</strong> {{ top5words }}</p>
+
+            <button type="submit" name="news_hist" value="next" class="button-right" {% if no_more_right %} disabled {% endif %}>>></button>
+        </form>
+
+        {% if current %}
+            <form action="/rate_news" method="POST">
+                <p><strong>Rating:</strong>
+                    <span class="star-rating">
+                        <label for="rate-1" style="--i:1"><i class="fa-solid fa-star"></i></label>
+                        <button class="star-buttom" type="radio" name="rating4new" id="rate-1" value="1"></button>
+                        <label for="rate-2" style="--i:2"><i class="fa-solid fa-star"></i></label>
+                        <button class="star-buttom" type="radio" name="rating4new" id="rate-2" value="2"></button>
+                        <label for="rate-3" style="--i:3"><i class="fa-solid fa-star"></i></label>
+                        <button class="star-buttom" type="radio" name="rating4new" id="rate-3" value="3"></button>
+                        <label for="rate-4" style="--i:4"><i class="fa-solid fa-star"></i></label>
+                        <button class="star-buttom" type="radio" name="rating4new" id="rate-4" value="4"></button>
+                        <label for="rate-5" style="--i:5"><i class="fa-solid fa-star"></i></label>
+                        <button class="star-buttom" type="radio" name="rating4new" id="rate-5" value="5"></button>
+                    </span>
+                <button type="radio" name="rating4new" class="buttom-skip-read" value="-1">Skip</button></p>
+            </form>
+        {% endif %}
+
+        <iframe src="{{ new_to_read }}" style="width: 100%; height: 100vh; background-color: white;" onload="disablePrint(this)">
+            <p>Loading, please wait...</p>
+        </iframe>
+    {% endif %}
+    <script>
+        function disablePrint(iframe) {
+            const iframeDocument = iframe.contentWindow.document;
+            iframeDocument.body.onbeforeprint = function() {
+                // Prevent the print dialog from opening
+                return false;
+            };
+        }
+    </script>
+</div>
+
+
+<div class="tab-content" id="hilo">
+    {% if not word1 %}
+        <div class="container-start">
+            <div class="content-start">
+                <h1>Welcome to the Word Duel game!</h1>
+                <form action="/hiloH_start" method="POST">
+                    <button class="button-start" type="submit">Start New Game</button>
+                </form>
+                <div class="rules">
+                    <p><strong>Objective:</p></strong></p>
+                    <p>Guess whether the next word or phrase has been mentioned more or fewer times than the current one in the topic's news.</p>
+                    <p><strong>How to Play:</strong></p>
+                    <ul>
+                        <li>You will be presented with a word or phrase.</li>
+                        <li>Your task is to guess if the next word or phrase has been mentioned more or less in the news than the current one.</li>
+                        <li>Make your guess by selecting "Higher" (more mentions) or "Lower" (fewer mentions).</li>
+                        <li>After making your guess, the current word will be updated to the next one.</li>
+                        <li>Keep playing until you want to stop, or you can track your streak of correct guesses!</li>
+                    </ul>
+                    <p><strong>Anything else?</strong></p>
+                    <p>Yes, the considered news stories relate to the period from 2000 to 2020, and were extracted from 33 Portuguese news websites, using <a href="https://arquivo.pt">arquivo.pt</a>. Good luck!</p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p></p>
+        <div class="word-container">
+            <div class="word-column">
+                <p class="main-word">{{ word1 }}</p>
+                <div style="position: relative; display: inline-block;">
+                    <button class="button-hilo-hidden" style="z-index: 2;">H</button>
+                    <span style="z-index: 1;">Mentions: {{ word1_mentions }}</span>
+                </div>
+            </div>
+            <div class="word-column">
+                <p class="main-word">{{ word2 }}</p>
+                <div style="flex-direction: row;"><form action="/hiloH" method="POST">
+                    <span>Mentions: </span>
+                    <button class= "button-hilo-win" type="submit" name="choice" value="more">Higher</button>
+                    <span>or</span>
+                    <button class="button-hilo-lose" type="submit" name="choice" value="less">Lower</button>
+                </form></div> 
+            </div>
+        </div>
+        {% if not winner and not loser %}
+            <span class="right-text">Score: {{ score }}</span>
+        {% elif winner %}
+            <span class="right-text">Score: {{ score }}</span>
+            <span class="centered-text">{{ winner }}</span>
+        {% elif loser %}
+            <span class="centered-text">{{ loser }}</span>
+        {% endif %}
+    <iframe src="/hilo_plot" width="100%" height="450px" frameborder="0">
+        <p>Loading, please wait...</p>
+    </iframe>
+    {% endif %}
+</div>
+
+
+<div class="tab-content" id="wordcloud" style="display:none;">
+    {% if not wordcloud %}
+    <div class="container-start">
+        <div class="content-start">
+            <h1>Welcome to the Word Cloud - let's get creative!</h1>
+            <form action="/wordcloudgenerate" method="POST">
+                <button class="button-start" type="submit">Generate Word Cloud</button>
+            </form>
+            <div class="rules">
+                <p>Here's your personalized word cloud! You can explore the most mentioned terms related to your topic and make it uniquely yours by adjusting the colors to match your taste: choose from named colors such as red, green, blue, or use hex values like #FF5733 (vibrant orange), #4CAF50 (lush green), or #3498DB (cool blue). The image can also be downloaded and resized, giving you even more flexibility to create the perfect look. Enjoy experimenting with the customizations and making it uniquely yours!</p>
+                <p><strong>Anything else?</strong></p>
+                <p>Yes! The word cloud was created using data from <a href="https://arquivo.pt">arquivo.pt</a>, where the frequency of mentions of keywords related to the topic was analyzed.</p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="wc-page">
+    <div class="right-section" id="rightPane">
+        <img src="data:image/png;base64,{{ plot_data }}" alt="Test Plot">
+        <p></p>
+        <a href="data:image/png;base64,{{ plot_data }}" download="wordcloud_{{ g.search_query }}.png">
+            <button class="wc-btn-download">Download Image</button>
+        </a>
+    </div>
+    <div class="left-section">
+        <form action="/wordcloudcolors" method="POST">
+            <label for="input1">Color 1:</label>
+            <input type="text" id="input1" name="input1" required value="{{ col1 }}"><br><br>
+            
+            <label for="input2">Color 2:</label>
+            <input type="text" id="input2" name="input2" required value="{{ col2 }}"><br><br>
+            
+            <label for="input3">Color 3:</label>
+            <input type="text" id="input3" name="input3" required value="{{ col3 }}"><br><br>
+            
+            <label for="input4">Color 4:</label>
+            <input type="text" id="input4" name="input4" required value="{{ col4 }}"><br><br>
+
+            <div class="slider-container">
+                <div class="slider-row">
+                    <label for="widthSlider">Width:</label>
+                    <input type="range" id="widthSlider" min="400" max="2000" value="{{ widthIN }}" step="100" name="widthWC">
+                    <span id="widthValue">{{ widthIN }}</span>
+                </div>
+                <div class="slider-row">
+                    <label for="heightSlider">Height:</label>
+                    <input type="range" id="heightSlider" min="400" max="2000" value="{{ heightIN }}" step="100" name="heightWC">
+                    <span id="heightValue">{{ heightIN }}</span>
+                </div>
+            </div>
+
+            <button type="submit" class="wc-btn">Generate WCloud</button>
+        </form>
+        
+        {% if not valid_colors %}
+            <p>Some colors were invalid.<br>They have been replaced with black.</p>
+        {% endif %}
+        
+        <!--<div style="display: flex; align-items: center;">
+            <p style="margin-right: 10px;">Background color:</p>
+            <button id="whiteButton" class="ball-button white-button">White</button>
+            <button id="blackButton" class="ball-button black-button">Black</button>
+        </div>-->
+    </div>
+    <script>
+        function updatePlot() {
+            var width = $('#widthSlider').val();
+            var height = $('#heightSlider').val();
+            $('#widthValue').text(width);
+            $('#heightValue').text(height);
+
+            $.post('/update_plot', { width: width, height: height }, function(data) {
+                $('#plotImage').attr('src', '/update_plot?' + new Date().getTime());  // Cache busting
+            });
+        }
+
+        $('#widthSlider').on('input', updatePlot);
+        $('#heightSlider').on('input', updatePlot);
+
+        // Get references to the buttons and the right pane
+        const whiteButton = document.getElementById('whiteButton');
+        const blackButton = document.getElementById('blackButton');
+        const rightPane = document.getElementById('rightPane');
+
+        // Add event listeners to the buttons
+        whiteButton.addEventListener('click', () => {
+        rightPane.style.backgroundColor = 'white';
+        });
+
+        blackButton.addEventListener('click', () => {
+        rightPane.style.backgroundColor = 'black';
+        });
+
+    </script>
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+
+
+
+
+<script>
+    function showTab(tabName) {
+        // Hide all tabs
+        const tabs = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => tab.style.display = 'none');
+
+        // Show the selected tab
+        document.getElementById(tabName).style.display = 'block';
+
+        // Remove active class from all tabs
+        const tabButtons = document.querySelectorAll('.tab');
+        tabButtons.forEach(tab => tab.classList.remove('active'));
+
+        // Add active class to the clicked tab
+        const activeTab = document.querySelector(`.tab[onclick="showTab('${tabName}')"]`);
+        if (activeTab) activeTab.classList.add('active');
+
+        // Store the selected tab in localStorage
+        localStorage.setItem('lastTab', tabName);
+    }
+
+    // Determine the default tab based on a server-side condition
+    {% if search_not_done %}
+    const lastTab = 'search';
+    {% else %}
+    const lastTab = localStorage.getItem('lastTab') || 'defaultTab';
+    {% endif %}
+
+    showTab(lastTab);
+</script>
+
+
+
+</body>
+</html>

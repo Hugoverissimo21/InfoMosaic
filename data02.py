@@ -301,10 +301,10 @@ def update_checkpoint(status):
 
 while True:
     i = get_last_processed_status() or -1
-    df_selected = df.filter((df["id"] > i) & (df["id"] <= i + 10000)) #10000
+    df_selected = df.filter((df["id"] > i) & (df["id"] <= i + 2400)) #2400 10000 500 2500
 
     # Divide the DataFrame into chunks
-    df_selected = df_selected.repartition(22) #22
+    df_selected = df_selected.repartition(4) #4 22 4 4
 
     # Apply the UDF to the DataFrame
     df_selected = df_selected.withColumn("result", process_url_udf(col("archive")))
