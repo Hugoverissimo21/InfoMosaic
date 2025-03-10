@@ -1,37 +1,40 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Connect to the WebSocket server
     var socket = io.connect('http://' + document.domain + ':' + location.port);
 
-    // Listen for status updates from the backend
+    // Listen for WebSocket status updates from Flask
     socket.on('status', function(data) {
         var statusDiv = document.getElementById('status');
-        statusDiv.innerHTML += '<p>' + data.message + '</p>';  // Update the status message on the page
+        statusDiv.innerHTML += '<p>' + data.message + '</p>';
     });
 
-    // Handle the form submission using AJAX (prevent page refresh)
-    document.getElementById('searchForm').addEventListener('submit', function(event) {
-        event.preventDefault();  // Prevent the form from submitting and refreshing the page
-
-        // Get the keyword entered by the user
-        var keyword = document.getElementById('keyword').value;
-
-        // Check if the input is empty
-        if (keyword.trim() === '') {
+    // Function to handle a search query
+    function handleSearch(query) {
+        if (!query || query.trim() === '') {
             alert('Please enter a search term!');
             return;
         }
 
-        // Clear any previous status messages when starting a new search
         var statusDiv = document.getElementById('status');
-        statusDiv.innerHTML = '';  // Clear the status div
+        statusDiv.innerHTML = '';  // Clear previous messages
 
-        // Update the URL with the query parameter
-        var newUrl = '/search?keyword=' + encodeURIComponent(keyword);
-        window.history.pushState({ path: newUrl }, '', newUrl);  // Update the browser's URL without reloading the page
+        var newUrl = '/search?query=' + encodeURIComponent(query);
+        window.history.pushState({ path: newUrl }, '', newUrl);  // Update the URL without reloading
 
-        // Send the search term to Flask via AJAX (GET request)
-        fetch(newUrl)  // Use the updated URL with the keyword
-            .then(response => response.text())
+        // Send the search term to Flask using AJAX (GET request)
+        fetch(newUrl)
+            .then(response => response.text())  // Expecting a complete HTML response
+            .then(data => {
+                // Replace the content of the page with the new response
+                document.body.innerHTML = data;
+                // This will trigger the page reload as needed after rendering.
+            })
             .catch(error => console.error('Error:', error));
+    }
+
+    // Handle form submission
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent page refresh
+        var keyword = document.getElementById('keyword').value;
+        handleSearch(keyword);
     });
 });

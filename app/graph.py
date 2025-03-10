@@ -500,8 +500,10 @@ def create_keyword_graph(data_in, numero_de_palavras, query):
     html_code = create_graph(globalVar)
     final_html = combine_graph_html(html_code, additional_html)
 
-    with open("graph_galptest1.html", 'w') as f:
-        f.write(final_html)
+    #with open("graph_galptest1.html", 'w') as f:
+    #    f.write(final_html)
+
+    return final_html
 
 #%%
 
