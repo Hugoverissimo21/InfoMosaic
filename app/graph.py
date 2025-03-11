@@ -4,6 +4,8 @@
 # - melhorar distribuicao dos nodes
 # 
 # - aplicar à app
+#
+# - esconder plotly logo em cima
 
 # %% [markdown]
 # carregar libraries

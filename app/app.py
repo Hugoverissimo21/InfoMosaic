@@ -50,7 +50,7 @@ socketio = SocketIO(app)
 
 @app.route('/')
 def home():
-    return render_template('app.html')  # Render the search page
+    return render_template('index.html')  # Render the search page
 
 @app.route('/search', methods=['GET'])
 def search():
@@ -120,7 +120,7 @@ def search():
     search_results = ["result 1", "result 2", "result 3", query]  # Example results
 
     # After processing the search, render the template with results
-    return render_template('app.html', hugo="Search completed!", results=search_results)
+    return render_template('index.html', hugo="Search completed!", results=search_results)
 
 
 

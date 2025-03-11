@@ -1,0 +1,32 @@
+<head>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>  <!-- Import Socket.IO -->
+</head>
+<body>
+
+
+
+<!-- Tab Search Contents -->
+<div class="tab-content" id="search" style="display:none;">
+    <form id="searchForm">
+        <input type="text" id="keyword" name="keyword" placeholder="Enter a word">
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="status"></div>  <!-- Status messages from WebSocket or Flask -->
+    
+    <script src="{{ url_for('static', filename='websocket.js') }}"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>-->
+</div>
+
+
+<script src="{{ url_for('static', filename='showtab.js') }}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
