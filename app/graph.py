@@ -2,8 +2,6 @@
 # ## notas
 # 
 # - melhorar distribuicao dos nodes
-# 
-# - aplicar à app
 #
 # - esconder plotly logo em cima
 
@@ -11,6 +9,9 @@
 # carregar libraries
 
 # %%
+import matplotlib
+matplotlib.use('Agg')
+
 import networkx as nx
 import plotly.graph_objects as go
 import numpy as np
@@ -48,7 +49,7 @@ def data_insights(data_in, globalVar):
 def data_filter(data_in, numero_de_palavras, globalVar):
 
     # Filter the data
-    data = {k: v for k, v in data_in.items() if v["count"] > globalVar["sorted_counts"][numero_de_palavras]}
+    data = {k: v for k, v in data_in.items() if v["count"] > globalVar["sorted_counts"][min(numero_de_palavras, len(globalVar["sorted_counts"]))-1]}
 
     # Dependecie for: sentiment intervals
     sentiments2 = []
@@ -152,7 +153,7 @@ def node_info(node,
 
     # Node hovertext
     node_hovertext.append(
-        f"""Palavra: {node}
+        f"""Tópico: {node}
         <br>Menções: {int(G.nodes[node]['count'])}
         <br>Último registo: {last_website_date}"""
     )
@@ -167,7 +168,7 @@ def node_info(node,
     times_said_by_year = {str(k): 0 for k in range(int(first_website_date[:4]),
                                             int(last_website_date[:4])+1)}
     for key in G.nodes[node]["date"].keys():
-        times_said_by_year[key[:4]] += int(G.nodes[node]["date"][key])
+        times_said_by_year[str(key)[:4]] += int(G.nodes[node]["date"][key])
     plt.figure(figsize=(6, 4))
     plt.bar(times_said_by_year.keys(), times_said_by_year.values(), color=rgb_string_to_hex(color))
     plt.xlabel('Ano')

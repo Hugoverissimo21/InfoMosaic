@@ -26,6 +26,7 @@ from flask import redirect, url_for, request
 # Initialize SparkSession
 spark = SparkSession.builder \
     .appName("News App") \
+    .config("spark.ui.enabled", "false") \
     .getOrCreate()
 
 # Define the data schema
@@ -40,7 +41,7 @@ schema = StructType([
 ])
 df = spark.read.format("json").schema(schema).load("../data/news/status=success")
 
-globalVAR = {}
+globalVar = {}
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -50,40 +51,50 @@ socketio = SocketIO(app)
 
 @app.route('/')
 def home():
-    return render_template('index.html')  # Render the search page
+    return render_template('index.html', globalVar=globalVar)
+
+@app.route('/grafo')
+def grafo():
+    return render_template('graph.html', globalVar=globalVar)
 
 @app.route('/search', methods=['GET'])
 def search():
-    global globalVAR
+    global globalVar
 
     # query requested
     query = request.args.get('query', '')
-    globalVAR['query'] = query
-    socketio.emit('status', {'message': 'Estou à procura de notícias com a palavra-chave: ' + query})
+    globalVar['query'] = query
+    #socketio.emit('status', {'message': 'Estou à procura de notícias com a palavra-chave: ' + query})
 
     # data filtering
     df_with_q = df.filter(F.col("keywords").getItem(query).isNotNull() & (F.col("keywords").getItem(query) > 4))
-    socketio.emit('status', {'message': f'A ler {3034030493094039} notícias...'})
-    globalVAR['query_amountofnews'] = df_with_q.count()
+    #socketio.emit('status', {'message': f'A ler {3034030493094039} notícias...'})
+    globalVar['query_amountofnews'] = df_with_q.count()
 
     # more then 0 news with the query?
-    if globalVAR['query_amountofnews'] == 0:
-        socketio.emit('status', {'message': f'Não encontrei notícias com a palavra-chave. Tente outra.'})
+    if globalVar['query_amountofnews'] == 0:
+        #socketio.emit('status', {'message': f'Não encontrei notícias com a palavra-chave. Tente outra.'})
+
+        # create graph src code saying no news found
+        globalVar["graph_html"] = r'''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>HUGO</title><style>body{margin:0;height:100vh;background-color:pink;display:flex;justify-content:center;align-items:center;font-family:Arial,sans-serif;font-size:5rem;color:white;}</style></head><body><div>HUGO</div></body></html>'''
+
+        # render the index page
+        return render_template('graph.html', globalVar=globalVar)
     
     else:
-        socketio.emit('status', {'message': f'Encontrei {globalVAR["query_amountofnews"]} notícias com a palavra-chave.'})
+        #socketio.emit('status', {'message': f'Encontrei {globalVar["query_amountofnews"]} notícias com a palavra-chave.'})
         
         # query already processed?
         hashed_query = hashlib.sha256(query.encode()).hexdigest()[:10]
         if os.path.exists(f"cache/{hashed_query}.json"):
-            socketio.emit('status', {'message': f'Encontrei um arquivo com o resultado da busca. Carregando...'})
+            #socketio.emit('status', {'message': f'Encontrei um arquivo com o resultado da busca. Carregando...'})
             
             with open(f"cache/{hashed_query}.json", 'r') as json_file:
-                globalVAR['keywords'] = json.load(json_file)
+                globalVar['keywords'] = json.load(json_file)
         
         else:
             # process the news if not processed yet
-            socketio.emit('status', {'message': f'Processando notícias...'})
+            #socketio.emit('status', {'message': f'Processando notícias...'})
             result = (
                 df_with_q.rdd
                 .flatMap(lambda row: [
@@ -103,26 +114,22 @@ def search():
                 .collect()
             )
             # change data schema
-            globalVAR['keywords'] = {key: {"count": value[0],
+            globalVar['keywords'] = {key: {"count": value[0],
                             "date": value[1],
                             "sentiment": value[2]/value[0],
                             "source": value[3],
                             "news": value[4]} for key, value in result}
             # save in cache
             with open(f"cache/{hashed_query}.json", 'w') as json_file:
-                json.dump(globalVAR['keywords'], json_file)
+                json.dump(globalVar['keywords'], json_file)
         
-        socketio.emit('status', {'message': f'Processamento concluído. Encontrei {len(globalVAR["keywords"])} palavras relacionadas.'})
+        #socketio.emit('status', {'message': f'Processamento concluído. Encontrei {len(globalVar["keywords"])} palavras relacionadas.'})
 
+        # create graph src code
+        globalVar["graph_html"] = create_keyword_graph(globalVar['keywords'], 50, query)
 
-
-    # Example: If your results are stored in a variable `search_results`
-    search_results = ["result 1", "result 2", "result 3", query]  # Example results
-
-    # After processing the search, render the template with results
-    return render_template('index.html', hugo="Search completed!", results=search_results)
-
-
+        # render the graph page
+        return render_template('graph.html', globalVar=globalVar)
 
 
 
