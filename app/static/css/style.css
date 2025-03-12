@@ -198,6 +198,21 @@ h6,
     background-repeat: no-repeat;
 }
 
+.hero-header-graph {
+    background:
+        url(../img/bg-dot.png),
+        url(../img/bg-dot.png),
+        url(../img/bg-round.png),
+        url(../img/bg-tree.png);
+    background-position:
+        10px 10px,
+        bottom 190px right 10px,
+        left 55% top -1px,
+        left 45% bottom -1px,
+        center bottom -1px;
+    background-repeat: no-repeat;
+}
+
 
 /*** Section Title ***/
 .section-title::before {
