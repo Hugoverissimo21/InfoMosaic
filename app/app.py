@@ -17,7 +17,7 @@ import json
 from graph import create_keyword_graph
 
 # testing
-from flask import redirect, url_for, request
+from flask import redirect, url_for
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -42,6 +42,8 @@ schema = StructType([
 df = spark.read.format("json").schema(schema).load("../data/news/status=success")
 
 globalVar = {}
+
+globalVar["graph_html"] = r'''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>HUGO</title><style>body{margin:0;height:100vh;background-color:pink;display:flex;justify-content:center;align-items:center;font-family:Arial,sans-serif;font-size:5rem;color:white;}</style></head><body><div>HUGO</div></body></html>'''
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -74,9 +76,8 @@ def search():
     # more then 0 news with the query?
     if globalVar['query_amountofnews'] == 0:
         #socketio.emit('status', {'message': f'Não encontrei notícias com a palavra-chave. Tente outra.'})
-
-        # create graph src code saying no news found
-        globalVar["graph_html"] = r'''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>HUGO</title><style>body{margin:0;height:100vh;background-color:pink;display:flex;justify-content:center;align-items:center;font-family:Arial,sans-serif;font-size:5rem;color:white;}</style></head><body><div>HUGO</div></body></html>'''
+        globalVar['keywords'] = {}
+        globalVar["graph_html"] = create_keyword_graph(globalVar['keywords'], 150, query)
 
         # render the index page
         return render_template('graph.html', globalVar=globalVar)

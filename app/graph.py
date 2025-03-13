@@ -501,10 +501,21 @@ additional_html = """
 # %%
 
 def create_keyword_graph(data_in, numero_de_palavras, query):
+    globalVar = {}
+
+    # no data available
+    if len(data_in) == 0:
+        globalVar["node_x"], globalVar["node_y"] = [0], [0]
+        globalVar["node_text"], globalVar["node_form"] = [f"<b>{query}</b>"], ["square"]
+        globalVar["node_size"], globalVar["node_color"] = [0], ["rgb(245, 194, 203)"]
+        globalVar["node_hovertext"], globalVar["custom_data"] = ["Não há tópicos para explorares... &#128533;"], [""]
+        html_code = create_graph(globalVar)
+        final_html = combine_graph_html(html_code, additional_html)
+        return final_html
+    
+    # data available
     if query in data_in:
         del data_in[query]
-
-    globalVar = {}
     data_insights(data_in, globalVar)
     data_filter(data_in, numero_de_palavras, globalVar)
     initialize_graph(globalVar["data_filtered"], globalVar)
