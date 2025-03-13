@@ -280,7 +280,16 @@ def create_graph(globalVar):
     )
 
     # Generate the base HTML with graph
-    html_code = fig.to_html(include_plotlyjs='inline', full_html=True)
+    html_code = fig.to_html(include_plotlyjs='inline',
+                            full_html=True,
+                            config={
+                                'displaylogo': False,
+                                'modeBarButtonsToRemove': [
+                                    'select2d',
+                                    'lasso2d',
+                                    'resetScale2d',
+                                ]
+                            })
 
     return html_code
 # %% [markdown]
