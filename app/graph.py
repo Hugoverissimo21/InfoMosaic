@@ -309,18 +309,11 @@ def combine_graph_html(html_code, additional_html):
 additional_html = """
 <style>
     body, html {
-        height: 100%;
+        height: 100%; !important
         margin: 0;
+        padding: 0;
         font-family: Arial, sans-serif;
         overflow: hidden;
-    }
-    #graph {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1; /* Ensure the graph is behind the panel */
     }
     #info-panel {
         position: absolute;
@@ -328,7 +321,7 @@ additional_html = """
         right: 0; /* Default to right */
         top: 0;
         width: 300px; /* Fixed width of the panel */
-        height: 100vh; /* Full height of container */
+        height: 100%; /* Full height of container */
         background-color: #f4f4f9;
         box-shadow: -2px 0 5px rgba(0,0,0,0.1);
         transform: scale(0); /* Hide initially */
@@ -349,11 +342,9 @@ additional_html = """
         float: right;
         margin-bottom: -15px;
     }
-
     .close-button:hover {
         background-color: #e04343;
     }
-
     #website-urls {
         flex: 1; /* Take remaining vertical space */
         max-height: auto; /* Adjust height as needed */
@@ -364,23 +355,18 @@ additional_html = """
         box-shadow: inset 0 0 5px rgba(0,0,0,0.1); /* Inner shadow */
         margin-top: 7px; /* Spacing from the title */
     }
-    
     #website-urls p {
         white-space: nowrap; /* Prevents line breaks within the item */
     }
-
     p {
         margin: 5px 5px;
     }
-
     ul {
         margin-top: 0; /* Set the top margin of the unordered list to 0 */
     }
-
     li {
         margin-bottom: 5px;
     }
-
     .url-navigation button {
         border: none;
         border-radius: 2px;
@@ -389,7 +375,6 @@ additional_html = """
         color: white;
         transition: background-color 0.3s;
     }
-
     .url-navigation button:hover {
         background-color: #5a6268;
     }
