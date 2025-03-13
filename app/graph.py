@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
 import json
+from itertools import islice
 
 def rgb_string_to_hex(rgb_string):
     rgb_values = rgb_string.strip('rgb()').split(',')
@@ -33,14 +34,10 @@ def rgb_string_to_hex(rgb_string):
 
 def data_insights(data_in, globalVar):
 
-    counts = set()
     sentiments = []
     for word in data_in:
-        counts.add(data_in[word]["count"])
         sentiments.append(data_in[word]["sentiment"])
-    sorted_counts = sorted(counts, reverse=True)
 
-    globalVar["sorted_counts"] = sorted_counts
     globalVar["all_sentiments"] = {"q10": np.quantile(sentiments, 0.1),
                                "q30": np.quantile(sentiments, 0.3),
                                "q70": np.quantile(sentiments, 0.7),
@@ -49,7 +46,10 @@ def data_insights(data_in, globalVar):
 def data_filter(data_in, numero_de_palavras, globalVar):
 
     # Filter the data
-    data = {k: v for k, v in data_in.items() if v["count"] > globalVar["sorted_counts"][min(numero_de_palavras, len(globalVar["sorted_counts"]))-1]}
+    if numero_de_palavras >= len(data_in):
+        data = data_in
+    else:
+        data = dict(islice(sorted(data_in.items(), key=lambda item: item[1]["count"], reverse=True), numero_de_palavras))
 
     # Dependecie for: sentiment intervals
     sentiments2 = []
@@ -84,7 +84,7 @@ def initialize_graph(data, globalVar):
 
     # Node positions
     pos = nx.spring_layout(G, seed=124348)
-    pos = {node: np.random.rand(2) for node in G.nodes}
+    #pos = {node: np.random.rand(2) for node in G.nodes}
 
     globalVar["G"] = G
     globalVar["pos"] = pos
@@ -211,10 +211,10 @@ def node_info(node,
 def populate_nodes(G, query, globalVar):
 
     # Lists for node info
-    node_x, node_y = [], []
-    node_text, node_form = [], []
-    node_size, node_color= [], []
-    node_hovertext, custom_data = [], []
+    node_x, node_y = [0], [0]
+    node_text, node_form = [f"<b>{query}</b>"], ["square"]
+    node_size, node_color= [0], ["rgb(245, 194, 203)"]
+    node_hovertext, custom_data = ["Explora os tópicos ao clicares neles!"], [""]
 
     # Populate node information
     for node in G.nodes:
@@ -276,7 +276,9 @@ def create_graph(globalVar):
         showlegend=False,
         xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
         yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-        margin=dict(l=0, r=0, t=0, b=0)  # Remove all margins
+        margin=dict(l=0, r=0, t=0, b=0),  # Remove all margins
+        plot_bgcolor="rgb(245, 194, 203)",
+        paper_bgcolor="rgb(245, 194, 203)"
     )
 
     # Generate the base HTML with graph
@@ -309,11 +311,15 @@ def combine_graph_html(html_code, additional_html):
 additional_html = """
 <style>
     body, html {
-        height: 100%; !important
+        height: 100vh !important;
+        width: 100vw !important;
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
-        overflow: hidden;
+    }
+    .plotly-graph-div{
+        height:100vh !important;
+        width:100vw !important;
     }
     #info-panel {
         position: absolute;
@@ -447,7 +453,13 @@ additional_html = """
             plotDiv.on('plotly_click', function(data) {
                 if (data.points.length > 0) {
                     var point = data.points[0];
-                    var customData = point.customdata; 
+                    var customData = point.customdata;
+                    var nodeX = point.x;
+                    var nodeY = point.y
+
+                    if (nodeX === 0 && nodeY === 0) {
+                        return;
+                    }
 
                     document.getElementById('node-info').innerHTML = customData; // Use custom data for the panel
 
@@ -489,6 +501,9 @@ additional_html = """
 # %%
 
 def create_keyword_graph(data_in, numero_de_palavras, query):
+    if query in data_in:
+        del data_in[query]
+
     globalVar = {}
     data_insights(data_in, globalVar)
     data_filter(data_in, numero_de_palavras, globalVar)
@@ -497,7 +512,7 @@ def create_keyword_graph(data_in, numero_de_palavras, query):
     html_code = create_graph(globalVar)
     final_html = combine_graph_html(html_code, additional_html)
 
-    #with open("graph_galptest1.html", 'w') as f:
+    #with open("graph_galptest.html", 'w') as f:
     #    f.write(final_html)
 
     return final_html

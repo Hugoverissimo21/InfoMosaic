@@ -126,7 +126,7 @@ def search():
         #socketio.emit('status', {'message': f'Processamento concluído. Encontrei {len(globalVar["keywords"])} palavras relacionadas.'})
 
         # create graph src code
-        globalVar["graph_html"] = create_keyword_graph(globalVar['keywords'], 50, query)
+        globalVar["graph_html"] = create_keyword_graph(globalVar['keywords'], 150, query)
 
         # render the graph page
         return render_template('graph.html', globalVar=globalVar)
