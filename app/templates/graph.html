@@ -31,6 +31,14 @@
 
     <!-- Template Stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        html, body {
+            overflow: hidden !important;
+            height: 100% !important;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -76,7 +84,7 @@
             <!-- Navbar End -->
             
             <div class="container-xxl bg-primary hero-header-graph" style="padding-top:3rem;">
-                <div class="px-lg-5" style="margin-top:3rem;">
+                <div class="px-lg-5" style="padding-top:3rem;">
                     <div class="row" style="--bs-gutter-x: -1.5rem;">
                         <iframe id="myGraph" srcdoc="{{ globalVar['graph_html'] }}" style="border:10px solid black;">
                             Your browser does not support iframes.
@@ -84,33 +92,42 @@
                     </div>
                 </div>
             </div>
-            <script> // Adjust the iframe size to fit the screen properly
+            <script>
                 function adjustIframeSize() {
-                    // Get the screen width and height
+                    // Get viewport height and width
                     let screenWidth = window.innerWidth;
                     let screenHeight = window.innerHeight;
-
-                    // Get the root font size to convert em to px
-                    let rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-                    let emToRemove = 9;
-                    let pxMargins = emToRemove * rootFontSize;
+            
+                    // Get element heights (ensure they exist before accessing offsetHeight)
+                    let navbar = document.getElementById("navbarCollapse");
+                    let footer = document.getElementById("footer-banner");
                     
-                    // Set the iframe size
+                    let navbarHeight = navbar ? navbar.offsetHeight : 0;
+                    let footerHeight = footer ? footer.offsetHeight : 0;
+            
+                    // Calculate the available height for the iframe
+                    let availableHeight = screenHeight - navbarHeight - footerHeight;
+            
+                    // Adjust iframe size
                     let iframe = document.getElementById("myGraph");
-                    iframe.style.width = screenWidth + "px";
-                    iframe.style.height = (screenHeight - pxMargins) + "px";
+                    if (iframe) {
+                        iframe.style.width = screenWidth + "px";
+                        iframe.style.height = availableHeight + "px";
+                    }
+            
+                    console.log(`Navbar: ${navbarHeight}px, Footer: ${footerHeight}px, Available height: ${availableHeight}px`);
                 }
-        
-                // Adjust on load and when resizing the window
-                window.onload = adjustIframeSize;
-                window.onresize = adjustIframeSize;
-            </script>
+            
+                // Run on load and window resize
+                window.addEventListener("load", adjustIframeSize);
+                window.addEventListener("resize", adjustIframeSize);
+            </script>                       
         </div>
         <!-- Hero End -->
 
 
         <!-- Footer Start -->
-        <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
+        <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s" id="footer-banner">
             
             <div class="container px-lg-5">
                 <div class="copyright">
