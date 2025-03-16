@@ -15,6 +15,7 @@ import json
 
 # Local
 from graph import create_keyword_graph
+from info import pie_newsSources
 
 # testing
 from flask import redirect, url_for
@@ -55,6 +56,10 @@ socketio = SocketIO(app)
 def home():
     return render_template('index.html', globalVar=globalVar)
 
+@app.route('/info')
+def info():
+    return render_template('info.html', globalVar=globalVar)
+
 @app.route('/grafo')
 def grafo():
     return render_template('graph.html', globalVar=globalVar)
@@ -69,7 +74,8 @@ def search():
     #socketio.emit('status', {'message': 'Estou à procura de notícias com a palavra-chave: ' + query})
 
     # data filtering
-    df_with_q = df.filter(F.col("keywords").getItem(query).isNotNull() & (F.col("keywords").getItem(query) > 4))
+    query_col_counts = F.col("keywords").getItem(query)
+    df_with_q = df.filter(query_col_counts.isNotNull() & (query_col_counts > 4)).cache()
     #socketio.emit('status', {'message': f'A ler {3034030493094039} notícias...'})
     globalVar['query_amountofnews'] = df_with_q.count()
 
@@ -129,8 +135,12 @@ def search():
         # create graph src code
         globalVar["graph_html"] = create_keyword_graph(globalVar['keywords'], 150, query)
 
+        # create pie plot from news sources
+        globalVar["pie_sources"] = pie_newsSources(df_with_q)
+
+
         # render the graph page
-        return render_template('graph.html', globalVar=globalVar)
+        return render_template('info.html', globalVar=globalVar)
 
 
 
