@@ -15,7 +15,7 @@ import json
 
 # Local
 from graph import create_keyword_graph
-from info import pie_newsSources
+from info import pie_newsSources, timeseries_news
 
 # testing
 from flask import redirect, url_for
@@ -136,7 +136,10 @@ def search():
         globalVar["graph_html"] = create_keyword_graph(globalVar['keywords'], 150, query)
 
         # create pie plot from news sources
-        globalVar["pie_sources"] = pie_newsSources(df_with_q)
+        globalVar["pie_sources"] = pie_newsSources(df_with_q) 
+
+        # create ts plot from news
+        globalVar["ts_news"] = timeseries_news(df_with_q, query)
 
 
         # render the graph page
