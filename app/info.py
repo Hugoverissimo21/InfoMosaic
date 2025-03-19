@@ -90,7 +90,7 @@ def timeseries_news(df_with_query, query):
 
     fig.update_traces(
         hovertemplate="<b>Data:</b> %{customdata[0]}<br>"
-                    "<b>📊 Notícias:</b> %{y}<br>"
+                    "<b>Notícias:</b> %{y}<br>"
                     "<b>Top 5 Tópicos:</b><br>%{customdata[1]}"
     )
 
@@ -99,7 +99,9 @@ def timeseries_news(df_with_query, query):
         yaxis_title="Quantidade de Notícias",
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="pink",
-        margin=dict(t=0, b=0, l=0, r=0)
+        margin=dict(t=0, b=0, l=0, r=0),
+        xaxis=dict(showgrid=False),
+        yaxis=dict(showgrid=True)
     )
 
     fig.update_traces(line=dict(color='rgb(255, 255, 0)'),
