@@ -1,11 +1,4 @@
 # %% [markdown]
-# ## notas
-# 
-# - melhorar distribuicao dos nodes
-#
-# - esconder plotly logo em cima
-
-# %% [markdown]
 # carregar libraries
 
 # %%
@@ -53,8 +46,10 @@ def data_filter(data_in, numero_de_palavras, globalVar):
 
     # Dependecie for: sentiment intervals
     sentiments2 = []
+    counts2 = []
     for word in data:
         sentiments2.append(data[word]["sentiment"])
+        counts2.append(data[word]["count"])
 
     # Set sentiment intervals
     quantile10 = globalVar["all_sentiments"]["q10"]*0.4 + np.quantile(sentiments2, 0.1)*0.6
@@ -67,6 +62,8 @@ def data_filter(data_in, numero_de_palavras, globalVar):
                                         "q30": quantile30,
                                         "q70": quantile70,
                                         "q90": quantile90}
+    
+    globalVar["min_count"] = min(counts2)
 
 # %% [markdown]
 # criar a base do grafo
@@ -119,7 +116,7 @@ def node_info(node,
     node_form.append("circle")
 
     # Node size
-    node_size.append(np.log(G.nodes[node]["count"])**1.3*5)
+    node_size.append(np.log(G.nodes[node]["count"]/globalVar["min_count"])**2 + 30)
     
     # Node color
     sentiment = G.nodes[node]["sentiment"]
@@ -290,6 +287,7 @@ def create_graph(globalVar):
                                     'select2d',
                                     'lasso2d',
                                     'resetScale2d',
+                                    'toImage',
                                 ]
                             })
 
