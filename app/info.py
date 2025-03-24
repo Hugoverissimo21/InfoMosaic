@@ -1,10 +1,18 @@
 from pyspark.sql import functions as F
-import plotly.graph_objects as go
-import plotly.io as pio
 from pyspark.sql.window import Window
 from pyspark.sql.functions import collect_list
+import numpy as np
 import pandas as pd
+import plotly.io as pio
 import plotly.express as px
+import plotly.graph_objects as go
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+from PIL import Image, ImageDraw, ImageFont
+import base64
+from io import BytesIO
+
+#%%
 
 def pie_newsSources(df_with_query):
     # Group by the column and count the values
@@ -35,6 +43,8 @@ def pie_newsSources(df_with_query):
     )
 
     return pio.to_html(fig, full_html=False, config={'displayModeBar': False})
+
+#%%
 
 def timeseries_news(df_with_query, query):
     traducao_meses = {
@@ -113,7 +123,62 @@ def timeseries_news(df_with_query, query):
 
     return pio.to_html(fig, full_html=False, config={'displayModeBar': False})
 
+#%%
 
+def topic_wordcloud(word_counts, query, FONT_PATH):
+    # Constants
+    MAX_SIZE = 500  # Maximum font size
+    IMAGE_SIZE = (1920, 1080)  # Image dimensions
+
+    # Load font
+    font = ImageFont.truetype(FONT_PATH, size=MAX_SIZE)
+
+    def get_optimal_font_size(text, font, max_size, image_size):
+        """Determine the best font size to fit within the image."""
+        temp_img = Image.new("RGBA", image_size, (0, 0, 0, 0))
+        draw = ImageDraw.Draw(temp_img)
+
+        # Start at max size and reduce iteratively (Binary search can also be used)
+        for size in range(max_size, 5, -5):  # Step down in increments for efficiency
+            font = ImageFont.truetype(FONT_PATH, size=size)
+            bbox = draw.textbbox((0, 0), text, font=font)
+            text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+
+            if text_width <= image_size[0] and text_height <= image_size[1]:
+                return font, bbox  # Return the optimal font and bounding box
+
+        return font, bbox  # Return the smallest size if no fit
+
+    # Get optimal font size
+    font, bbox = get_optimal_font_size(query, font, MAX_SIZE, IMAGE_SIZE)
+
+    # Create text image
+    text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    text_img = Image.new("RGBA", (text_width, text_height), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(text_img)
+    draw.text((-bbox[0], -bbox[1]), query, fill=(255, 105, 180), font=font)  # Pink text
+
+    # Generate mask for WordCloud (grayscale to use as mask)
+    mask = np.array(text_img.convert("L"))
+
+    wc = WordCloud(
+        width=text_width, height=text_height,
+        background_color=None, min_font_size=5, mode="RGBA",
+        colormap="winter", mask=~mask, contour_color="black"
+    ).generate_from_frequencies(word_counts)
+
+    wc_image = wc.to_image()
+    final_img = Image.alpha_composite(text_img, wc_image)
+
+    def pil_to_base64(img):
+        buffered = BytesIO()
+        img.save(buffered, format="PNG")
+        return base64.b64encode(buffered.getvalue()).decode()
+    base64_img = pil_to_base64(final_img)
+
+    return base64_img
+
+# %%
 
 if __name__ == '__main__':
     print("abracadabra")

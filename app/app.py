@@ -15,7 +15,7 @@ import json
 
 # Local
 from graph import create_keyword_graph
-from info import pie_newsSources, timeseries_news
+from info import pie_newsSources, timeseries_news, topic_wordcloud
 
 # testing
 from flask import redirect, url_for
@@ -140,6 +140,10 @@ def search():
 
         # create ts plot from news
         globalVar["ts_news"] = timeseries_news(df_with_q, query)
+
+        # create wordcloud
+        globalVar["wordcloud"] = topic_wordcloud({k: v["count"] for k,v in globalVar['keywords'].items()},
+                                                 query, "static/wcloud.ttf")
 
 
         # render the graph page
