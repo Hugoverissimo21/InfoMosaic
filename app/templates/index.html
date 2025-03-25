@@ -68,9 +68,11 @@
                         </div>-->
                     </div>
                     {% if not globalVar['query'] %}
-                    <butaton type="button" class="btn text-secondary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+                    <button type="button" class="btn text-secondary ms-3" onclick="window.location.href='/'">
+                        <i class="fa fa-search"></i>
+                    </button>
                     {% else %}
-                    <a href="https://htmlcodex.com/startup-company-website-template" class="btn btn-secondary text-light rounded-pill py-2 px-4 ms-3">{{ globalVar['query'] }}</a>
+                    <a href="javascript:void(0);" style="pointer-events: none; cursor: default;" class="btn btn-secondary text-light rounded-pill py-2 px-4 ms-3">{{ globalVar['query'] }}</a>
                     {% endif %}
                 </div>
             </nav>
