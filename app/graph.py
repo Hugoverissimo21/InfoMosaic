@@ -210,7 +210,7 @@ def populate_nodes(G, query, globalVar):
     # Lists for node info
     node_x, node_y = [0], [0]
     node_text, node_form = [f"<b>{query}</b>"], ["square"]
-    node_size, node_color= [0], ["rgb(245, 194, 203)"]
+    node_size, node_color= [0], ["rgb(217, 238, 252)"]
     node_hovertext, custom_data = ["Explora os tópicos ao clicares neles!"], [""]
 
     # Populate node information
@@ -274,8 +274,8 @@ def create_graph(globalVar):
         xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
         yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
         margin=dict(l=0, r=0, t=0, b=0),  # Remove all margins
-        plot_bgcolor="rgb(245, 194, 203)",
-        paper_bgcolor="rgb(245, 194, 203)"
+        plot_bgcolor="rgb(217, 238, 252)", #
+        paper_bgcolor="rgb(217, 238, 252)" #rgb(65, 67, 190) rgb(240, 251, 254) rgb(217, 238, 252)
     )
 
     # Generate the base HTML with graph
@@ -326,13 +326,14 @@ additional_html = """
         top: 0;
         width: 300px; /* Fixed width of the panel */
         height: 100%; /* Full height of container */
-        background-color: #f4f4f9;
-        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        background-color: rgb(217, 238, 252);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         transform: scale(0); /* Hide initially */
         transition: transform 0.3s ease; /* Smooth slide in */
         z-index: 2; /* Panel above the graph */
         display: flex;
         flex-direction: column; /* Arrange children vertically */
+        color: rgb(48, 62, 92);
     }
     #info-panel.open {
         transform: scale(1); /* Slide in the panel */
@@ -505,8 +506,8 @@ def create_keyword_graph(data_in, numero_de_palavras, query):
     if len(data_in) == 0:
         globalVar["node_x"], globalVar["node_y"] = [0], [0]
         globalVar["node_text"], globalVar["node_form"] = [f"<b>{query}</b>"], ["square"]
-        globalVar["node_size"], globalVar["node_color"] = [0], ["rgb(245, 194, 203)"]
-        globalVar["node_hovertext"], globalVar["custom_data"] = ["Não há tópicos para explorares... &#128533;"], [""]
+        globalVar["node_size"], globalVar["node_color"] = [0], ["rgb(217, 238, 252)"]
+        globalVar["node_hovertext"], globalVar["custom_data"] = ["Não foram encontrados tópicos relevantes..."], [""]
         html_code = create_graph(globalVar)
         final_html = combine_graph_html(html_code, additional_html)
         return final_html

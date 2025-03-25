@@ -44,7 +44,7 @@ df = spark.read.format("json").schema(schema).load("../data/news/status=success"
 
 globalVar = {}
 
-globalVar["graph_html"] = r'''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>HUGO</title><style>body{margin:0;height:100vh;background-color:pink;display:flex;justify-content:center;align-items:center;font-family:Arial,sans-serif;font-size:5rem;color:white;}</style></head><body><div>HUGO</div></body></html>'''
+globalVar["graph_html"] = r'''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>HUGO</title><style>body{margin:0;height:100vh;background-color:rgb(217, 238, 252);display:flex;justify-content:center;align-items:center;font-family:Arial,sans-serif;font-size:5rem;color:white;}</style></head><body><div>HUGO</div></body></html>'''
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
