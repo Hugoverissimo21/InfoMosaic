@@ -108,15 +108,30 @@ def timeseries_news(df_with_query, query):
         xaxis_title="Data",
         yaxis_title="Quantidade de Notícias",
         paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="pink",
+        plot_bgcolor="rgba(0,0,0,0)",
         margin=dict(t=0, b=0, l=0, r=0),
-        xaxis=dict(showgrid=False),
-        yaxis=dict(showgrid=True)
+        xaxis=dict(
+            showgrid=False,
+            zeroline=True,
+            zerolinecolor="black",  # Change zero line color
+            linecolor="black",  # Axis border color
+            linewidth=2  # Axis border width
+        ),
+        yaxis=dict(
+            range=[0, max(news_history["count_of_news"])*1.1],
+            showgrid=True,  
+            gridcolor="lightgray",  
+            zeroline=True,
+            zerolinecolor="black",
+            linecolor="black",
+            linewidth=2
+        ),
     )
 
-    fig.update_traces(line=dict(color='rgb(255, 255, 0)'),
-                    hoverlabel=dict(bgcolor='rgb(0, 255, 0)',
-                                    font=dict(color='black')))
+    fig.update_traces(line=dict(color='rgb(101, 110, 242)'),
+                    hoverlabel=dict(bgcolor='rgb(101, 110, 242)',
+                                    bordercolor='rgb(101, 110, 242)',
+                                    font=dict(color='white')))
 
 
     fig.update_xaxes(tickformat="%m/%Y")
