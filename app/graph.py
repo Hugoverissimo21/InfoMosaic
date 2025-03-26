@@ -95,7 +95,6 @@ def initialize_graph(data, globalVar):
             distance_from_center = np.linalg.norm([x, y])
 
             if distance_from_center >= min_distance:
-                print(word, x, y, distance_from_center)
                 pos[word] = (x, y)
                 break
 
