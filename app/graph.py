@@ -75,13 +75,36 @@ def initialize_graph(data, globalVar):
     # Create the graph
     G = nx.Graph()
 
-    # Add nodes to the graph with attributes
+    #np.random.seed(21)
+    spread_x = 300
+    spread_y = 150
+    min_distance = 50
+
+    pos = {}
+    G.add_node("center")
+    pos["center"] = (0, 0)
+
+    # Add nodes to the graph with attributes and positions
     for word, attributes in data.items():
         G.add_node(word, **attributes)
 
+        while True:
+            x = np.random.uniform(-spread_x, spread_x)
+            y = np.random.uniform(-spread_y, spread_y)
+
+            distance_from_center = np.linalg.norm([x, y])
+
+            if distance_from_center >= min_distance:
+                print(word, x, y, distance_from_center)
+                pos[word] = (x, y)
+                break
+
     # Node positions
-    pos = nx.spring_layout(G, seed=124348)
-    #pos = {node: np.random.rand(2) for node in G.nodes}
+    #pos = nx.spring_layout(G, seed=124348)
+    pos = nx.spring_layout(G, pos=pos, fixed=["center"], k=0.1, iterations=150, seed=21)
+
+    G.remove_node("center")
+    del pos["center"]
 
     globalVar["G"] = G
     globalVar["pos"] = pos
@@ -116,7 +139,7 @@ def node_info(node,
     node_form.append("circle")
 
     # Node size
-    node_size.append(np.log(G.nodes[node]["count"]/globalVar["min_count"])**2 + 30)
+    node_size.append(np.log(G.nodes[node]["count"]/globalVar["min_count"])**3.5 + 50)
     
     # Node color
     sentiment = G.nodes[node]["sentiment"]
@@ -534,7 +557,7 @@ if __name__ == "__main__":
     with open("cache/7ab9dd2c21.json", "r") as f:
         data_in = json.load(f)
 
-    numero_de_palavras = 50
+    numero_de_palavras = 200
 
     query = "QUERY"
 
