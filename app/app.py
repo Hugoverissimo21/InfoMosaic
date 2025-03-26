@@ -143,7 +143,7 @@ def search():
 
         # create wordcloud
         globalVar["wordcloud"] = topic_wordcloud({k: v["count"] for k,v in globalVar['keywords'].items()},
-                                                 query, "static/wcloud.ttf")
+                                                 query, "static/Roboto-Black.ttf")
 
 
         # render the graph page
