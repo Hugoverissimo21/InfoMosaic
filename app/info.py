@@ -136,7 +136,7 @@ def timeseries_news(df_with_query, query):
 
     fig.update_xaxes(tickformat="%m/%Y")
 
-    return pio.to_html(fig, full_html=False, config={'displayModeBar': False})
+    return pio.to_html(fig, full_html=False, config={'displayModeBar': False}), news_by_month
 
 #%%
 

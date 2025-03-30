@@ -16,9 +16,10 @@ import json
 # Local
 from graph import create_keyword_graph
 from info import pie_newsSources, timeseries_news, topic_wordcloud
+from info2 import ts_topicrelation, sources_topicrelation
 
 # testing
-from flask import redirect, url_for
+#from flask import redirect, url_for
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -86,7 +87,7 @@ def search():
         globalVar["graph_html"] = create_keyword_graph(globalVar['keywords'], 150, query)
 
         # render the index page
-        return render_template('graph.html', globalVar=globalVar)
+        return render_template('info.html', globalVar=globalVar)
     
     else:
         #socketio.emit('status', {'message': f'Encontrei {globalVar["query_amountofnews"]} notícias com a palavra-chave.'})
@@ -139,18 +140,47 @@ def search():
         globalVar["pie_sources"] = pie_newsSources(df_with_q) 
 
         # create ts plot from news
-        globalVar["ts_news"] = timeseries_news(df_with_q, query)
+        globalVar["ts_news"], globalVar["news_by_month"] = timeseries_news(df_with_q, query)
 
         # create wordcloud
         globalVar["wordcloud"] = topic_wordcloud({k: v["count"] for k,v in globalVar['keywords'].items()},
                                                  query, "static/Roboto-Black.ttf")
-
+        
+        # disable topic relation
+        globalVar["topicrelation"] = False
 
         # render the graph page
         return render_template('info.html', globalVar=globalVar)
 
 
+@app.route('/relation', methods=['GET'])
+def relation():
+    global globalVar
 
+    # topic relation requested
+    related_topic = request.args.get('related_topic', '')
+    globalVar['related_topic'] = related_topic
+    
+    # validate it
+    globalVar["topicrelation"] = True
+
+    # return results
+    if related_topic in globalVar['keywords']:
+        globalVar["count_topicrelation"] = globalVar['keywords'][related_topic]["count"]
+        globalVar["sentiment_topicrelation"] = globalVar['keywords'][related_topic]["sentiment"]
+        globalVar["ts_topicrelation"] = ts_topicrelation(globalVar["news_by_month"], globalVar['keywords'], related_topic, globalVar['query'])
+        globalVar["sources_topicrelation"] = sources_topicrelation(globalVar['keywords'], related_topic)
+    
+    else: # MELHORAR QND NAO EXISTE!!!
+        globalVar["count_topicrelation"] = 0
+        globalVar["sentiment_topicrelation"] = 0
+        globalVar["ts_topicrelation"] = []
+        globalVar["sources_topicrelation"] = {}
+    
+    
+    return render_template('info.html', globalVar=globalVar)
+    
+    
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
