@@ -164,15 +164,16 @@ def news_topicrelation(keywords, search_topic):
     for url in keywords[search_topic]["news"]:
         link_content = url.split("/")
 
-        # set title
+        # set title and verify if it is repeated
         title = link_content[-1] if link_content[-1] != "" else link_content[-2]
         title = title.split("?")[0].split("_")[0]
         title = re.sub(r'^\d{4}-\d{2}-\d{2}-', '', title)
-        title = title.lower() if "-" in title else "Sem título disponível..."
-
-        # check if title is repeated
-        if title not in titles:
+        if "-" in title and title not in titles:
+            title = title.lower()
             titles.add(title)
+        elif title not in titles:
+            titles.add(title)
+            title = "Sem título disponível..."
         else:
             continue
 
