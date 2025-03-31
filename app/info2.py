@@ -1,3 +1,4 @@
+import re
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
@@ -130,6 +131,101 @@ def sources_topicrelation(keywords, search_topic):
     )
 
     return pio.to_html(fig, full_html=False, config={'displayModeBar': False})
+
+# %%
+
+def news_topicrelation(keywords, search_topic):
+
+    company_logos = [
+        'record.png',
+        'noticiasaominuto.png',
+        'lusa.png',
+        'jornaldenegocios.png',
+        'tsf.png',
+        'sicnoticias.png',
+        'expresso.png',
+        'publico.png',
+        'dn.png',
+        'observador.png',
+        'sapo.png',
+        'iol.png',
+        'rtp.png',
+        'cnn.png',
+        'cmjornal.png',
+        'jn.png',
+        'nit.png',
+        'dinheirovivo.png',
+        'aeiou.png',
+    ]
+
+    divs = {}
+    titles = set()
+
+    for url in keywords[search_topic]["news"]:
+        link_content = url.split("/")
+
+        # set title
+        title = link_content[-1] if link_content[-1] != "" else link_content[-2]
+        title = title.split("?")[0].split("_")[0]
+        title = re.sub(r'^\d{4}-\d{2}-\d{2}-', '', title)
+        title = title.lower() if "-" in title else "Sem título disponível..."
+
+        # check if title is repeated
+        if title not in titles:
+            titles.add(title)
+        else:
+            continue
+
+        # set date
+        date = link_content[5]
+        date = f"{date[:4]}-{date[4:6]}-{date[6:8]}"
+
+        # set source
+        company = link_content[8].replace("www.", "")
+
+        # get source logo if exists
+        is_there_a_logo = False
+        for img in company_logos:
+            if img[:-4] in company:
+                img = f"static/img/logo_{img}"
+                is_there_a_logo = True
+                break
+        if not is_there_a_logo:
+            img = f"static/img/logo_404.png"
+
+        # create the div
+        div = f"""
+                            <div class="testimonial-item bg-transparent border rounded text-white p-4">
+                                <i class="fa fa-quote-left fa-2x mb-3"></i>
+                                <a href="{url}" target="_blank" rel="noopener noreferrer" class="d-block text-decoration-none mb-3" style="color: inherit; height: 4.5em;">
+                                    <p style="margin: 0; text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; height: 100%;">{title}</p>
+                                </a>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid flex-shrink-0 rounded-circle" src="{img}" alt="news source logo" style="width: 50px; height: 50px;">
+                                    <div class="ps-3">
+                                        <h6 class="text-white mb-1">
+                                            {company} 
+                                            <a href="{url}" target="_blank" rel="noopener noreferrer" style="margin-left: 5px;">
+                                                <i class="bi bi-box-arrow-up-right"></i>
+                                            </a>
+                                        </h6>
+                                        <small>{date[:-3]}</small>
+                                    </div>
+                                </div>
+                            </div>
+        """
+
+        # save the div
+        if date in divs:
+            divs[date].append(div)
+        else:
+            divs[date] = [div]
+
+    # sort the divs by date and prepare for output
+    divs = dict(sorted(divs.items(), key=lambda item: item[0], reverse=False))
+    divs = "\n".join([div for divs_list in divs.values() for div in divs_list])
+
+    return divs, len(titles)
 
 # %%
 

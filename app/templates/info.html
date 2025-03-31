@@ -223,7 +223,6 @@
                     <!-- POR ENDIREITAR POR ENDIREITAR POR ENDIREITAR POR ENDIREITAR POR ENDIREITAR POR ENDIREITAR POR ENDIREITAR POR ENDIREITAR-->
                 </div>
             </div>
-            
             <script>
                 function updateSentiment(sentiment) {
                     let percentage = ((sentiment + 1) / 2) * 100;
@@ -232,6 +231,14 @@
             
                 updateSentiment({{ globalVar['sentiment_topicrelation'] }});
             </script>
+        </div>
+        <div class="container-xxl bg-primary testimonial py-5 wow fadeInUp" data-wow-delay="0.1s" style="margin: 6rem 0;">
+            <small class="text-white" style="position: absolute; left: 50%; transform: translateX(-50%);">aqui em baixo tens {{ globalVar['amount_news_topicrelation'] }} noticias sobre o QUERY onde o SEARCH TOPIC aparece :!:!:!:!::!:!:!:!</small>
+            <div class="container py-5 px-lg-5">
+                <div class="owl-carousel testimonial-carousel">
+                    {{ globalVar['news_topicrelation'] | safe }}
+                </div>
+            </div>
         </div>
         <!-- Custom Word End -->
         
@@ -275,6 +282,37 @@
 
     <!-- Template Javascript -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <!-- Overwrite testimonial-carousel settings -->
+    <script>
+        $(document).ready(function(){
+            $(".testimonial-carousel").owlCarousel('destroy'); // Remove old instance
+            $(".testimonial-carousel").owlCarousel({
+                autoplay: true,
+                smartSpeed: 1000,
+                margin: 25,
+                dots: false,
+                loop: true,
+                center: true,
+                nav: true,
+                responsive: {
+                    0:{
+                        items:1
+                    },
+                    576:{
+                        items:1
+                    },
+                    768:{
+                        items:2
+                    },
+                    992:{
+                        items:3
+                    }
+                }
+            });
+        });
+    </script>
+    
 </body>
 
 </html>

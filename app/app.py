@@ -16,7 +16,7 @@ import json
 # Local
 from graph import create_keyword_graph
 from info import pie_newsSources, timeseries_news, topic_wordcloud
-from info2 import ts_topicrelation, sources_topicrelation
+from info2 import ts_topicrelation, sources_topicrelation, news_topicrelation
 
 # testing
 #from flask import redirect, url_for
@@ -170,12 +170,16 @@ def relation():
         globalVar["sentiment_topicrelation"] = globalVar['keywords'][related_topic]["sentiment"]
         globalVar["ts_topicrelation"] = ts_topicrelation(globalVar["news_by_month"], globalVar['keywords'], related_topic, globalVar['query'])
         globalVar["sources_topicrelation"] = sources_topicrelation(globalVar['keywords'], related_topic)
+        globalVar["news_topicrelation"], globalVar["amount_news_topicrelation"] = news_topicrelation(globalVar['keywords'], related_topic)
     
     else: # MELHORAR QND NAO EXISTE!!!
         globalVar["count_topicrelation"] = 0
         globalVar["sentiment_topicrelation"] = 0
         globalVar["ts_topicrelation"] = []
         globalVar["sources_topicrelation"] = {}
+        globalVar["news_topicrelation"] = []
+        globalVar["amount_news_topicrelation"] = 0
+
     
     
     return render_template('info.html', globalVar=globalVar)
