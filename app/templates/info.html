@@ -126,7 +126,7 @@
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="section-title position-relative mb-4 pb-2">
                             <h6 class="position-relative text-primary ps-4">Sobre o teu query ou ns</h6>
-                            <h2 class="mt-2">The best SEO solution with 10 years of experience</h2>
+                            <h2 class="mt-2">The best SEO solution with {{ globalVar['query_amountofnews'] }} noticias</h2>
                         </div>
                         <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor eirmod magna dolore erat amet</p>
                         <div class="row g-3">
@@ -286,9 +286,9 @@
     <!-- Overwrite testimonial-carousel settings -->
     <script>
         $(document).ready(function(){
-            $(".testimonial-carousel").owlCarousel('destroy'); // Remove old instance
+            $(".testimonial-carousel").owlCarousel('destroy');
             $(".testimonial-carousel").owlCarousel({
-                autoplay: true,
+                autoplay: false,
                 smartSpeed: 1000,
                 margin: 25,
                 dots: false,
