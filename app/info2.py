@@ -127,10 +127,12 @@ def sources_topicrelation(keywords, search_topic):
         showlegend=False,
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
-        margin=dict(t=0, b=0, l=0, r=0)
+        margin=dict(t=0, b=0, l=0, r=0),
+        height=None,
+        autosize=True
     )
 
-    return pio.to_html(fig, full_html=False, config={'displayModeBar': False})
+    return fig.to_html(full_html=True, config={'displayModeBar': False})
 
 # %%
 
