@@ -34,6 +34,31 @@
 
     <!-- Script for Plotly plots-->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Overwrite testimonial-carousel navigations buttons settings -->
+    <style>
+        /* container */
+        .owl-nav {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 1.5em;
+            z-index: 10;
+            margin-top: 0.7em;
+            margin-bottom: -3.7em;
+        }
+
+        /* buttons */
+        .owl-prev, .owl-next {
+            color: white;
+            font-size: 2em;
+        }
+
+        /* hover buttons */
+        .owl-prev:hover, .owl-next:hover {
+            color: #4345B7;
+        }
+    </style>
 </head>
 
 <body>
@@ -239,10 +264,11 @@
                     let percentage = ((sentiment + 1) / 2) * 100;
                     document.getElementById("arrow").style.left = percentage + "%";
                 }
-            
                 updateSentiment({{ globalVar['sentiment_topicrelation'] }});
             </script>
         </div>
+
+
         <div class="container-xxl bg-primary testimonial py-5 wow fadeInUp" data-wow-delay="0.1s" style="margin: 6rem 0;">
             <small class="text-white" style="position: absolute; left: 50%; transform: translateX(-50%);">aqui em baixo tens {{ globalVar['amount_news_topicrelation'] }} noticias sobre o QUERY onde o SEARCH TOPIC aparece :!:!:!:!::!:!:!:!</small>
             <div class="container py-5 px-lg-5">
@@ -251,6 +277,8 @@
                 </div>
             </div>
         </div>
+
+        
         <!-- Custom Word Info End -->
         
         <p> ADICIONAR AQUI REDIRECT PARA O GRAFO</p>
@@ -322,6 +350,8 @@
                     }
                 }
             });
+            $(".owl-prev").text("<");
+            $(".owl-next").text(">");
         });
     </script>
     
