@@ -84,16 +84,12 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="/" class="nav-item nav-link">Início</a>
-                        <a href="/info" class="nav-item nav-link active">Sobre</a>
-                        <a href="/grafo" class="nav-item nav-link">Grafo</a>
-                        <!--<div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="team.html" class="dropdown-item">Our Team</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
-                        </div>-->
+                        <a href="/sobre" class="nav-item nav-link active">Sobre</a>
+                        {% if globalVar['zero_results'] %}
+                            <a href="javascript:void(0);" class="nav-item nav-link" style="cursor: not-allowed;" data-bs-toggle="tooltip" title="No results!" data-bs-placement="bottom">Grafo</a>
+                        {% else %}
+                            <a href="/grafo" class="nav-item nav-link">Grafo</a>
+                        {% endif %}
                     </div>
                     <button type="button" class="btn text-secondary ms-3" onclick="window.location.href='/'">
                         <i class="fa fa-search"></i>
@@ -103,6 +99,14 @@
                     {% endif %}
                 </div>
             </nav>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                  var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+                  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                    new bootstrap.Tooltip(tooltipTriggerEl);
+                  });
+                });
+            </script>
 
             <div class="container-xxl py-5 bg-primary hero-header mb-5">
                 <div class="container my-5 py-5 px-lg-5">
@@ -202,7 +206,7 @@
                             function redirectToRelation() {
                                 let inputValue = document.getElementById("relationInput").value.trim();
                                 if (inputValue) {
-                                    window.location.href = `/relation?related_topic=${inputValue}`;
+                                    window.location.href = `/relacao?entre=${inputValue}`;
                                 } else {
                                     alert("Por favor, digite um tópico!");
                                 }
