@@ -57,11 +57,11 @@
                     <div class="navbar-nav ms-auto py-0">
                         <a href="/" class="nav-item nav-link active">Início</a>
                         {% if not globalVar['search_done'] %}
-                            <a href="#" class="nav-item nav-link" style="cursor: not-allowed;" data-bs-toggle="tooltip" title="Search first!" data-bs-placement="bottom">Sobre</a>
-                            <a href="#" class="nav-item nav-link" style="cursor: not-allowed;" data-bs-toggle="tooltip" title="Search first!" data-bs-placement="bottom">Grafo</a>
+                            <a href="#" class="nav-item nav-link" style="cursor: not-allowed;" data-bs-toggle="tooltip" title="Começa com uma pesquisa!" data-bs-placement="bottom">Sobre</a>
+                            <a href="#" class="nav-item nav-link" style="cursor: not-allowed;" data-bs-toggle="tooltip" title="Começa com uma pesquisa!" data-bs-placement="bottom">Grafo</a>
                         {% elif globalVar['zero_results'] %}
                             <a href="/sobre" class="nav-item nav-link">Sobre</a>
-                            <a href="#" class="nav-item nav-link" style="cursor: not-allowed;" data-bs-toggle="tooltip" title="No results!" data-bs-placement="bottom">Grafo</a>
+                            <a href="#" class="nav-item nav-link" style="cursor: not-allowed;" data-bs-toggle="tooltip" title="Nada por aqui..." data-bs-placement="bottom">Grafo</a>
                         {% else %}
                             <a href="/sobre" class="nav-item nav-link">Sobre</a>
                             <a href="/grafo" class="nav-item nav-link">Grafo</a>

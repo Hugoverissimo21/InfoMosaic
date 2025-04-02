@@ -99,6 +99,8 @@ def pesquisa():
     if globalVar['query_amountofnews'] == 0:
         globalVar['keywords'] = {}
         globalVar["zero_results"] = True
+        globalVar["wordcloud"] = topic_wordcloud({},
+                                                query, "static/Roboto-Black.ttf")
 
         # render the index page
         return render_template('info.html', globalVar=globalVar)
@@ -173,9 +175,11 @@ def relacao():
     related_topic = request.args.get('entre', '')
     globalVar['related_topic'] = related_topic
     
+    globalVar["topicrelation_exists"] = related_topic in globalVar['keywords']
+
 
     # return results
-    if related_topic in globalVar['keywords']:
+    if globalVar["topicrelation_exists"]:
         globalVar["count_topicrelation"] = globalVar['keywords'][related_topic]["count"]
         globalVar["sentiment_topicrelation"] = globalVar['keywords'][related_topic]["sentiment"]
         globalVar["ts_topicrelation"] = ts_topicrelation(globalVar["news_by_month"], globalVar['keywords'], related_topic, globalVar['query'])

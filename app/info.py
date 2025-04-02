@@ -143,6 +143,12 @@ def timeseries_news(df_with_query, query):
 def topic_wordcloud(word_counts, TEXT, FONT_PATH,
                     MAX_FONT_SIZE=500,
                     IMAGE_SIZE=(2250, 400)):
+    if word_counts == {}:
+        word_counts = {"abracadabra": 1}
+        wcloud_colour = "rgb(34, 36, 170)"
+
+    else:
+        wcloud_colour = "white"
 
     # get optimal font size and calculate centered position (function)
     def get_optimal_font_size(text, font_path, max_size, image_size):
@@ -185,7 +191,7 @@ def topic_wordcloud(word_counts, TEXT, FONT_PATH,
         background_color=None,
         mask=~mask,
         min_font_size=1,
-        color_func=lambda *args, **kwargs: "white",
+        color_func=lambda *args, **kwargs: wcloud_colour,
     ).generate_from_frequencies(word_counts)
 
     # create output image
