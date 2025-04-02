@@ -31,14 +31,6 @@
 
     <!-- Template Stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-    <style>
-        html, body {
-            overflow: hidden !important;
-            height: 100% !important;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -63,9 +55,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="/" class="nav-item nav-link">Início</a>
+                        <a href="/" class="nav-item nav-link active">Início</a>
                         <a href="/info" class="nav-item nav-link">Sobre</a>
-                        <a href="/grafo" class="nav-item nav-link active">Grafo</a>
+                        <a href="/grafo" class="nav-item nav-link">Grafo</a>
                         <!--<div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
@@ -83,53 +75,49 @@
                     {% endif %}
                 </div>
             </nav>
-            <!-- Navbar End -->
-            
-            <div class="container-xxl bg-primary hero-header-graph" style="padding-top:3rem;">
-                <div class="px-lg-5" style="padding-top:3rem;">
-                    <div class="row" style="--bs-gutter-x: -1.5rem;">
-                        <iframe id="myGraph" srcdoc="{{ globalVar['graph_html'] }}" style="border:10px solid rgba(21, 49, 127, 0.8);">
-                            Your browser does not support iframes.
-                        </iframe>
+
+            <div class="container-xxl py-5 bg-primary hero-header mb-5">
+                <div class="container my-5 py-5 px-lg-5">
+                    <div class="row g-5 py-5">
+                        <div class="col-12 text-center">
+                            <h1 class="text-white animated zoomIn">Página Indisponível</h1>
+                            <hr class="bg-white mx-auto mt-0" style="width: 90px;">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a class="text-white" href="/">Voltar ao Início?</a></li>
+                                </ol>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
-            <script>
-                function adjustIframeSize() {
-                    // Get viewport height and width
-                    let screenWidth = window.innerWidth;
-                    let screenHeight = window.innerHeight;
-            
-                    // Get element heights (ensure they exist before accessing offsetHeight)
-                    let navbar = document.getElementById("navbarCollapse");
-                    let footer = document.getElementById("footer-banner");
-                    
-                    let navbarHeight = navbar ? navbar.offsetHeight : 0;
-                    let footerHeight = footer ? footer.offsetHeight : 0;
-            
-                    // Calculate the available height for the iframe
-                    let availableHeight = screenHeight - navbarHeight - footerHeight;
-            
-                    // Adjust iframe size
-                    let iframe = document.getElementById("myGraph");
-                    if (iframe) {
-                        iframe.style.width = screenWidth + "px";
-                        iframe.style.height = availableHeight + "px";
-                    }
-            
-                    console.log(`Navbar: ${navbarHeight}px, Footer: ${footerHeight}px, Available height: ${availableHeight}px`);
-                }
-            
-                // Run on load and window resize
-                window.addEventListener("load", adjustIframeSize);
-                window.addEventListener("resize", adjustIframeSize);
-            </script>                       
         </div>
-        <!-- Hero End -->
+        <!-- Navbar & Hero End -->
 
 
+
+        <!-- 404 Start -->
+        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container px-lg-5 text-center">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <i class="bi bi-exclamation-triangle display-1 text-primary"></i>
+                        <h1 class="mb-4">Página Indisponível</h1>
+                        <p class="mb-4">Ups! A página que procuras está indisponível ou não existe. Que tal voltar à página inicial?</p>
+                        <a class="btn btn-primary rounded-pill py-3 px-5" href="">Voltar ao Início</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 404 End -->
+        
+
+
+
+
+        
         <!-- Footer Start -->
-        <div class="container-fluid bg-primary text-light smallfooter wow fadeIn" data-wow-delay="0.1s" id="footer-banner">
+        <div class="container-fluid bg-primary text-light smallfooter wow fadeIn mt-5" data-wow-delay="0.1s" id="footer-banner">
             <div class="container px-lg-5">
                 <div class="copyright">
                     <div class="row">
@@ -140,8 +128,8 @@
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
                                 <a href="/">Início</a>
-                                <a href="/info">Sobre</a>
-                                <a href="#">Grafo</a>
+                                <a href="#">Sobre</a>
+                                <a href="/grafo">Grafo</a>
                             </div>
                         </div>
                     </div>
@@ -151,7 +139,7 @@
         <!-- Footer End -->
 
         <!-- Back to Top -->
-        <!--<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>-->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->
@@ -166,7 +154,6 @@
 
     <!-- Template Javascript -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
 </body>
 
 </html>
