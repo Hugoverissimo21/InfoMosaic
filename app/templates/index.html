@@ -88,8 +88,8 @@
                 <div class="container my-5 py-5 px-lg-5">
                     <div class="row g-5 py-5">
                         <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="text-white mb-4 animated zoomIn">Descubra o Passado Digital da Informação</h1>
-                            <p class="text-white pb-3 animated zoomIn">A Lupa Digital permite explorar notícias armazenadas no Arquivo.pt, revelando como as histórias se conectam, evoluem e influenciam o mundo digital.</p>
+                            <h1 class="text-white mb-4 animated zoomIn">A Lupa que Revela Conexões</h1>
+                            <p class="text-white pb-3 animated zoomIn" style="text-align: justify;">A Lupa Digital permite-te explorar e analisar notícias arquivadas ao longo da era digital, revelando conexões e padrões entre tópicos, entidades e eventos.</p>
                             <div class="position-relative w-100 mt-3 animated zoomIn">
                                 <input id="searchInput" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Procura sobre um tópico..." style="height: 48px;">
                                 <button onclick="redirectToSearch()" type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-search text-primary fs-4"></i></button>
@@ -122,44 +122,25 @@
         </div>
         <!-- Navbar & Hero End -->
 
-
-        <!-- Full Screen Search Start -->
-        <div class="modal fade" id="searchModal" tabindex="-1">
-            <div class="modal-dialog modal-fullscreen">
-                <div class="modal-content" style="background: rgba(29, 29, 39, 0.7);">
-                    <div class="modal-header border-0">
-                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body d-flex align-items-center justify-content-center">
-                        <div class="input-group" style="max-width: 600px;">
-                            <input type="text" class="form-control bg-transparent border-light p-3" placeholder="Type search keyword">
-                            <button class="btn btn-light px-4"><i class="bi bi-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Full Screen Search End -->
-
-
         <!-- About Start -->
         <div class="container-xxl py-5">
             <div class="container px-lg-5">
                 <div class="row g-5">
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="section-title position-relative mb-4 pb-2">
-                            <h6 class="position-relative text-primary ps-4">Sobre Nós</h6>
+                            <h6 class="position-relative text-primary ps-4">Sobre a Lupa Digital</h6>
                             <h2 class="mt-2">O que é a Lupa Digital?</h2>
                         </div>
-                        <p class="mb-4">A Lupa Digital é uma plataforma inovadora que utiliza dados históricos de notícias coletados ao longo dos anos no Arquivo.pt. Nosso objetivo é fornecer uma visão profunda sobre como a informação digital tem se formado e evoluído desde o nascimento dos websites, desde os primeiros registros de notícias na internet até os eventos atuais.</p>
+                        <p class="mb-4" style="text-align: justify;">A Lupa Digital é uma plataforma que explora milhares de notícias arquivadas ao longo dos anos no Arquivo.pt, de modo a revelar conexões entre tópicos, entidades e eventos ao longo do tempo. Através do uso de inteligência artificial e processamento avançado de linguagem, a Lupa Digital identifica padrões, descobre relações inesperadas e permite uma nova forma de compreender a evolução da relação entre os mais variados tópicos.
+                        </p>
                         <div class="row g-3">
                             <div class="col-sm-6">
-                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Histórico Completo</h6>
-                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Processamento Avançado</h6>
+                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>História Preservada</h6>
+                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Análise de Relações</h6>
                             </div>
                             <div class="col-sm-6">
-                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Análise de Conexões</h6>
-                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>+1 ?????????</h6>
+                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Pesquisa Inteligente</h6>
+                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Visualizações Interativas</h6>
                             </div>
                         </div>
                         <!--
@@ -253,53 +234,37 @@
         <div class="container-xxl py-5">
             <div class="container px-lg-5">
                 <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="position-relative d-inline text-primary ps-4">our featires</h6>
-                    <h2 class="mt-2">as features do lupa digital ...</h2>
+                    <h6 class="position-relative d-inline text-primary ps-4">Recursos da Lupa Digital</h6>
+                    <h2 class="mt-2">Descobre tudo o que podes fazer com a Lupa Digital!</h2>
                 </div>
 
 
                 <div class="row g-4 portfolio-container">
-
-                    <!--
-                    01. pesquisa
-                    - ts
-                    - sources
-                    - ts related
-                    - sentimento related
-                    - sources related
-                    - urls related
-                    99. grafo
-                    -->
-
                     <div class="col-lg-4 col-md-6 portfolio-item third wow zoomIn" data-wow-delay="0.1s">
                         <div class="position-relative rounded overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/portfolio-1.jpg') }}" alt="">
+                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/feature_01.png') }}" alt="">
                             <div class="portfolio-overlay p-3">
-                                <a class="btn btn-light" href="{{ url_for('static', filename='img/portfolio-1.jpg') }}" data-lightbox="portfolio">
+                                <a class="btn btn-light" href="{{ url_for('static', filename='img/feature_01.gif') }}" data-lightbox="portfolio">
                                     <i class="fa fa-plus fa-2x text-primary"></i>
                                 </a>
                                 <div class="mt-auto">
-                                    <a class="h5 d-block text-white mt-1 mb-2" href="">Pesquisa de Tópicos</a>
+                                    <a class="h5 d-block text-white mt-1 mb-2" href="">&#128270; Pesquisa Avançada</a>
                                     <p class="text-white small mb-0" style="text-align: justify;">
-                                        Esta feature permite-te pesquisar tópicos em várias notícias ao longo dos anos e ter acesso à era digital dos jornais, 
-                                        vendo qual é a perceção passada ao público sobre o teu tópico.
+                                        Pesquisa por qualquer tópico, tema ou entidade, e encontra notícias relacionadas, mesmo aquelas que já não estão mais disponíveis online. A Lupa Digital permite uma análise profunda de milhares de notícias.
                                     </p>    
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-
                     <div class="col-lg-4 col-md-6 portfolio-item second wow zoomIn" data-wow-delay="0.3s">
                         <div class="position-relative rounded overflow-hidden">
                             <img class="img-fluid w-100" src="{{ url_for('static', filename='img/portfolio-2.jpg') }}" alt="">
                             <div class="portfolio-overlay p-3">
                                 <a class="btn btn-light" href="{{ url_for('static', filename='img/portfolio-2.jpg') }}" data-lightbox="portfolio"><i class="fa fa-plus fa-2x text-primary"></i></a>
                                 <div class="mt-auto">
-                                    <a class="h5 d-block text-white mt-1 mb-2" href="">Pesquisa de Tópicos</a>
+                                    <a class="h5 d-block text-white mt-1 mb-2" href="">&#128240; Descobre as Fontes</a>
                                     <p class="text-white small mb-0" style="text-align: justify;">
-                                        Esta feature permite-te pesquisar tópicos em várias notícias ao longo dos anos e ter acesso à era digital dos jornais, 
-                                        vendo qual é a perceção passada ao público sobre o teu tópico.
+                                        Identifica as fontes de notícias que mais mencionaram o tópico de interesse, proporcionando uma visão clara sobre que meios de comunicação estão a abordar o tema e em que contexto.
                                     </p>    
                                 </div>
                             </div>
@@ -311,10 +276,9 @@
                             <div class="portfolio-overlay p-3">
                                 <a class="btn btn-light" href="{{ url_for('static', filename='img/portfolio-3.jpg') }}" data-lightbox="portfolio"><i class="fa fa-plus fa-2x text-primary"></i></a>
                                 <div class="mt-auto">
-                                    <a class="h5 d-block text-white mt-1 mb-2" href="">Pesquisa de Tópicos</a>
+                                    <a class="h5 d-block text-white mt-1 mb-2" href="">&#128200; Séries Temporais</a>
                                     <p class="text-white small mb-0" style="text-align: justify;">
-                                        Esta feature permite-te pesquisar tópicos em várias notícias ao longo dos anos e ter acesso à era digital dos jornais, 
-                                        vendo qual é a perceção passada ao público sobre o teu tópico.
+                                        Acompanha a evolução do número de menções do teu tópico ao longo do tempo. Descobre como ele se associa a outros temas e como essa relação tem vindo a mundar ao longo dos anos.
                                     </p>    
                                 </div>
                             </div>
@@ -326,10 +290,9 @@
                             <div class="portfolio-overlay p-3">
                                 <a class="btn btn-light" href="{{ url_for('static', filename='img/portfolio-4.jpg') }}" data-lightbox="portfolio"><i class="fa fa-plus fa-2x text-primary"></i></a>
                                 <div class="mt-auto">
-                                    <a class="h5 d-block text-white mt-1 mb-2" href="">Pesquisa de Tópicos</a>
+                                    <a class="h5 d-block text-white mt-1 mb-2" href="">&#129300; Análise de Sentimento</a>
                                     <p class="text-white small mb-0" style="text-align: justify;">
-                                        Esta feature permite-te pesquisar tópicos em várias notícias ao longo dos anos e ter acesso à era digital dos jornais, 
-                                        vendo qual é a perceção passada ao público sobre o teu tópico.
+                                        Avalia a percepção que as notícias têm sobre o tópico pesquisado. Entende se a narrativa em torno do tema é predominantemente positiva, negativa ou neutra, com base no tom das publicações.
                                     </p>    
                                 </div>
                             </div>
@@ -341,10 +304,9 @@
                             <div class="portfolio-overlay p-3">
                                 <a class="btn btn-light" href="{{ url_for('static', filename='img/portfolio-5.jpg') }}" data-lightbox="portfolio"><i class="fa fa-plus fa-2x text-primary"></i></a>
                                 <div class="mt-auto">
-                                    <a class="h5 d-block text-white mt-1 mb-2" href="">Pesquisa de Tópicos</a>
+                                    <a class="h5 d-block text-white mt-1 mb-2" href="">&#128279; Pesquisa de Relações</a>
                                     <p class="text-white small mb-0" style="text-align: justify;">
-                                        Esta feature permite-te pesquisar tópicos em várias notícias ao longo dos anos e ter acesso à era digital dos jornais, 
-                                        vendo qual é a perceção passada ao público sobre o teu tópico.
+                                        Investiga se outros tópicos estão relacionados ao tema pesquisado. Descobre de que forma estão ligados e como essa relação se desenvolveu ao longo do tempo.
                                     </p>    
                                 </div>
                             </div>
@@ -356,10 +318,9 @@
                             <div class="portfolio-overlay p-3">
                                 <a class="btn btn-light" href="{{ url_for('static', filename='img/portfolio-6.jpg') }}" data-lightbox="portfolio"><i class="fa fa-plus fa-2x text-primary"></i></a>
                                 <div class="mt-auto">
-                                    <a class="h5 d-block text-white mt-1 mb-2" href="">Pesquisa de Tópicos</a>
+                                    <a class="h5 d-block text-white mt-1 mb-2" href="">&#127760; Grafo de Relações</a>
                                     <p class="text-white small mb-0" style="text-align: justify;">
-                                        Esta feature permite-te pesquisar tópicos em várias notícias ao longo dos anos e ter acesso à era digital dos jornais, 
-                                        vendo qual é a perceção passada ao público sobre o teu tópico.
+                                        Visualiza os 150 tópicos mais relacionados com o teu, incluindo a percepção associada, as principais fontes que mencionam esses tópicos e a sua evolução ao longo do tempo. Um mapa interativo para uma compreensão mais profunda das conexões entre os temas.
                                     </p>    
                                 </div>
                             </div>
@@ -401,7 +362,7 @@
                         <h5 class="text-white mb-4">Project Gallery [ACABAR]</h5>
                         <div class="row g-2">
                             <div class="col-4">
-                                <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio-1.jpg') }}" alt="Image">
+                                <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio-2.jpg') }}" alt="Image">
                             </div>
                             <div class="col-4">
                                 <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio-2.jpg') }}" alt="Image">
@@ -421,8 +382,8 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
-                        <h5 class="text-white mb-4">Newsletter [ACABAR]</h5>
-                        <p>disclarimer a dizer algo sobre o arquivo e isso O Arquivo do Parlamento é um agregador de artigos sobre o Parlamento Português com base em informação recolhida do Arquivo.pt e do Parlamento.pt.</p>
+                        <h5 class="text-white mb-4">Sobre o Projeto</h5>
+                        <p style="text-align: justify;">Desenvolvido em 2025, por Hugo Veríssimo, no âmbito do Prémio Arquivo 2025, o projeto "Lupa Digital" tem como principal fonte de informação o Arquivo.pt.</p>
                     </div>
                 </div>
             </div>
