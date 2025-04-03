@@ -59,6 +59,13 @@
             color: #4345B7;
         }
     </style>
+
+    <!-- Style for topic recommendations when there are no results -->
+    <style>
+        .recomendations a {
+            font-weight: normal;
+        }
+    </style>
 </head>
 
 <body>
@@ -117,7 +124,7 @@
                             <hr class="bg-white mx-auto mt-0" style="width: 90px;">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb justify-content-center">
-                                    <li class="breadcrumb-item text-white active" aria-current="page">infor sobre o teu query</li>
+                                    <li class="breadcrumb-item text-white active" aria-current="page">Resultados da Pesquisa</li>
                                 </ol>
                             </nav>
                         </div>
@@ -132,28 +139,54 @@
         <div class="container-xxl py-5">
             <div class="container px-lg-5">
                 <div class="row g-5">
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="section-title position-relative mb-4 pb-2">
-                            <h6 class="position-relative text-primary ps-4">Sobre o teu query ou ns</h6>
-                            <h2 class="mt-2">QUERY SEM RESULTADOS solution with {{ globalVar['query_amountofnews'] }} noticias</h2>
+                            <h6 class="position-relative text-primary ps-4">Resultados</h6>
+                            <h2 class="mt-2">Nenhum Resultado Encontrado</h2>
                         </div>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor eirmod magna dolore erat amet</p>
+                    </div>
+                    <div class="col-lg-6 wow fadeInUp mt-0" data-wow-delay="0.1s">
+                        <p class="mb-3" style="text-align: justify;">Infelizmente, não foram encontrados quaisquer resultados relativos à pesquisa <u>{{ globalVar['query'] }}</u> nas {{ globalVar['total_amount_of_news'] }} notícias analisadas.<br>Isto pode dever-se a razões como:</p>
                         <div class="row g-3">
                             <div class="col-sm-6">
-                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Award Winning</h6>
-                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Professional Staff</h6>
+                                <h6 class="mb-4 text-center"><i class="fa fa-times text-primary me-2"></i>Tópico não disponível</h6>
                             </div>
                             <div class="col-sm-6">
-                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>24/7 Support</h6>
-                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Fair Prices</h6>
+                                <h6 class="mb-4 text-center"><i class="fa fa-times text-primary me-2"></i>Erro ortográfico</h6>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center mt-4">
-                            <a class="btn btn-primary rounded-pill px-4 me-3" href="">Read More</a>
-                            <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <p class="mb-0" style="text-align: justify;">Assim, podes optar por uma nova pesquisa ou explorar alguns exemplos de tópicos em diversas vertentes, como Economia, Desporto, Cultura, Política ou Temáticas.</p>
+                        <div class="d-flex justify-content-center align-items-center mt-4">
+                            <a class="btn btn-primary rounded-pill px-4 me-3 mb-3" href="/">Nova Pesquisa</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeInUp mt-0" data-wow-delay="0.1s">
+                        <div class="row g-3 recomendations">
+                                <h6 class="mb-2"><i class="fa fa-check text-primary me-2"></i>Economia:
+                                    <a href="/pesquisa?topico=Banco%20de%20Portugal">Banco de Portugal</a><a>, </a>
+                                    <a href="/pesquisa?topico=inflação">inflação</a><a>, </a>
+                                    <a href="/pesquisa?topico=Sonae">Sonae</a>
+                                </h6>
+                                <h6 class="mb-2"><i class="fa fa-check text-primary me-2"></i>Desporto:
+                                    <a href="/pesquisa?topico=futebol">futebol</a><a>, </a>
+                                    <a href="/pesquisa?topico=Benfica">Benfica</a><a>, </a>
+                                    <a href="/pesquisa?topico=José%20Mourinho">José Mourinho</a>
+                                </h6>
+                                <h6 class="mb-2"><i class="fa fa-check text-primary me-2"></i>Cultura:
+                                    <a href="/pesquisa?topico=fado">fado</a><a>, </a>
+                                    <a href="/pesquisa?topico=Eurovisão">Eurovisão</a><a>, </a>
+                                    <a href="/pesquisa?topico=Fernando%20Pessoa">Fernando Pessoa</a>
+                                </h6>
+                                <h6 class="mb-2"><i class="fa fa-check text-primary me-2"></i>Política:
+                                    <a href="/pesquisa?topico=governo">governo</a><a>, </a>
+                                    <a href="/pesquisa?topico=PS">PS</a><a>, </a>
+                                    <a href="/pesquisa?topico=António%20Costa">António Costa</a>
+                                </h6>
+                                <h6 class="mb-2"><i class="fa fa-check text-primary me-2"></i>Temáticas:
+                                    <a href="/pesquisa?topico=saúde">saúde</a><a>, </a>
+                                    <a href="/pesquisa?topico=educação">educação</a><a>, </a>
+                                    <a href="/pesquisa?topico=migração">migração</a>
+                                </h6>
                         </div>
                     </div>
                 </div>
@@ -167,10 +200,10 @@
                 <div class="row g-5">
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="section-title position-relative mb-4 pb-2">
-                            <h6 class="position-relative text-primary ps-4">Sobre o teu query ou ns</h6>
-                            <h2 class="mt-2">The best SEO solution with {{ globalVar['query_amountofnews'] }} noticias</h2>
+                            <h6 class="position-relative text-primary ps-4">Resultados</h6>
+                            <h2 class="mt-2">Foram econtrados {{ globalVar['query_amountofnews'] }} resultados!</h2>
                         </div>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor eirmod magna dolore erat amet</p>
+                        <p class="mb-4" style="text-align: justify;">Foram encontradas {{ globalVar['query_amountofnews'] }} notícias sobre o tópico <u>{{ globalVar['query'] }}</u>, com a primeira notícia a {{ globalVar['query_firstnews'] }}.<br>lalal grafico pie, ts, ...</p>
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Award Winning</h6>
@@ -180,13 +213,6 @@
                                 <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>24/7 Support</h6>
                                 <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Fair Prices</h6>
                             </div>
-                        </div>
-                        <div class="d-flex align-items-center mt-4">
-                            <a class="btn btn-primary rounded-pill px-4 me-3" href="">Read More</a>
-                            <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -206,7 +232,7 @@
             <div class="container px-lg-5">
                 <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="position-relative d-inline text-primary ps-4">Conexões Entre Tópicos</h6>
-                    <h2 class="mt-2">Explore as Ligações Entre Temas e Entidades</h2>
+                    <h2 class="mt-2">Explore as Ligações Entre Diferentes Tópicos</h2>
                 </div>
                 <div class="row align-items-center" style="height: 250px;">
                     <div class="col-12 col-md-6">

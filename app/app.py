@@ -47,6 +47,7 @@ globalVar = {
             "search_done": False,
             "zero_results": True,
             "topicrelation": False,
+            "total_amount_of_news": df.count(), # substituir por contagem "manual"
             }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -105,6 +106,13 @@ def pesquisa():
         # render the index page
         return render_template('info.html', globalVar=globalVar)
     
+    # data exploration
+    query_firstnews = str(df_with_q.agg(F.min("timestamp")).collect()[0][0])
+    meses = {
+        "01": "janeiro", "02": "fevereiro", "03": "março", "04": "abril",
+        "05": "maio", "06": "junho", "07": "julho", "08": "agosto",
+        "09": "setembro", "10": "outubro", "11": "novembro", "12": "dezembro"}
+    globalVar["query_firstnews"] = f"{meses[query_firstnews[4:]]} de {query_firstnews[:4]}"
 
     # query already processed?
     hashed_query = hashlib.sha256(query.encode()).hexdigest()[:10]
