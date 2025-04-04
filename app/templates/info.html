@@ -203,15 +203,14 @@
                             <h6 class="position-relative text-primary ps-4">Resultados</h6>
                             <h2 class="mt-2">Foram econtrados {{ globalVar['query_amountofnews'] }} resultados!</h2>
                         </div>
-                        <p class="mb-4" style="text-align: justify;">Foram encontradas {{ globalVar['query_amountofnews'] }} notícias sobre o tópico <u>{{ globalVar['query'] }}</u>, com a primeira notícia a {{ globalVar['query_firstnews'] }}.<br>lalal grafico pie, ts, ...</p>
+                        <p class="mb-4" style="text-align: justify;">
+                            Foram encontradas {{ globalVar['query_amountofnews'] }} notícias sobre o tópico <u>{{ globalVar['query'] }}</u>, com a primeira notícia a {{ globalVar['query_firstnews'] }}.
+                            <br>Podes agora explorar as fontes de informação que mais escreveram sobre o teu tópico (ao interagir com o gráfico circular) e ?!?!??!
+                        </p>
                         <div class="row g-3">
-                            <div class="col-sm-6">
-                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Award Winning</h6>
-                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Professional Staff</h6>
-                            </div>
-                            <div class="col-sm-6">
-                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>24/7 Support</h6>
-                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Fair Prices</h6>
+                            <div class="col-sm-12">
+                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Gráfico circular</h6>
+                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Série temporal</h6>
                             </div>
                         </div>
                     </div>
@@ -236,8 +235,8 @@
                 </div>
                 <div class="row align-items-center" style="height: 250px;">
                     <div class="col-12 col-md-6">
-                        <h3>Descubra Conexões a <i>{{ globalVar['query'] }}</i></h3>
-                        <small>Digite um tópico para explorar notícias arquivadas e encontrar relações entre temas, entidades e eventos ao longo do tempo. (falar do grafo)</small>
+                        <h3>Descubra Ligações a <u>{{ globalVar['query'] }}</u></h3>
+                        <small style="text-align: justify; display: block;">Escolhe um tópico para verificar se está relacionado com <u>{{ globalVar['query'] }}</u>, e se estiver, qual é a perceção dessa relação, as fontes de informação que a mais mencionam e como é que esta tem vindo a evoluir ao longo dos anos.</small>
                         <div class="position-relative w-100 mt-3 rounded-pill" style="border:2px solid #2124B1;">
                             <input id="relationInput" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Escolha um tópico para verificar..." style="height: 48px;">
                             <button onclick="redirectToRelation()" type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-search text-primary fs-4"></i></button>
@@ -254,7 +253,7 @@
                         </script>
                     </div>
                     <div class="col-md-6 text-center mb-n5 d-none d-md-block">
-                        <img class="img-fluid mt-5" style="height: 250px;" src="{{ url_for('static', filename='img/newsletter.png') }}">
+                        <img class="img-fluid mt-0" style="height: 250px;" src="{{ url_for('static', filename='img/newsletter.png') }}">
                     </div>
                 </div>
             </div>
@@ -268,16 +267,19 @@
                 <div class="row g-5">
                     <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="section-title position-relative mb-4 pb-2">
-                            <h6 class="position-relative text-primary ps-4">resutlados para a tua pesquisa ?</h6>
-                            <!--<h2 class="mt-2">The best SEO solution with 10 years of experience</h2>-->
+                            <h2 class="mt-2"><u>{{ globalVar['query'] }}</u> & <u>{{ globalVar['related_topic'] }}</u></h2>
                         </div>
-                        <p class="mb-4">SEM RESULTADOS? {{ globalVar['count_topicrelation'] }} mencoes da palavra {{ globalVar['related_topic'] }} em noticias de {{ globalVar['query'] }}. Customizar para qnd existe ou nao existe resultado. Rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore.</p>
+                        {% if not globalVar['topicrelation_exists'] %}
+                        <p class="mb-4" style="text-align: justify;">infelizmente n houve resultados</p>
+                        {% else %}
+                        <p class="mb-4" style="text-align: justify;">foram encontradas {{ globalVar['count_topicrelation'] }} noticias da palavra {{ globalVar['related_topic'] }} em noticias de {{ globalVar['query'] }}. Customizar para qnd existe ou nao existe resultado. Rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore.</p>
                         <div class="row g-3">
                             <div class="col-sm-3"><h6 class="mb-5"><i class="fa fa-check text-primary me-2"></i>sentimento</h6></div>
                             <div class="col-sm-3"><h6 class="mb-5"><i class="fa fa-check text-primary me-2"></i>fontes</h6></div>
                             <div class="col-sm-3"><h6 class="mb-5"><i class="fa fa-check text-primary me-2"></i>time series</h6></div>
                             <div class="col-sm-3"><h6 class="mb-5"><i class="fa fa-check text-primary me-2"></i>noticias</h6></div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
