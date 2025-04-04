@@ -66,6 +66,23 @@
             font-weight: normal;
         }
     </style>
+
+    <!-- JavaScript to automatically scroll to topic relation search -->
+    {% if scroll_to_relation %}
+    <style>
+        #topic-relation {
+            scroll-margin-top: 1em;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+                let target = document.getElementById("topic-relation");
+                
+                // Scroll to the target section slowly with a smooth behavior
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    </script>
+    {% endif %}
 </head>
 
 <body>
@@ -203,14 +220,14 @@
                             <h6 class="position-relative text-primary ps-4">Resultados</h6>
                             <h2 class="mt-2">Foram econtrados {{ globalVar['query_amountofnews'] }} resultados!</h2>
                         </div>
-                        <p class="mb-4" style="text-align: justify;">
+                        <p class="mb-3" style="text-align: justify;">
                             Foram encontradas {{ globalVar['query_amountofnews'] }} notícias sobre o tópico <u>{{ globalVar['query'] }}</u>, com a primeira notícia a {{ globalVar['query_firstnews'] }}.
-                            <br>Podes agora explorar as fontes de informação que mais escreveram sobre o teu tópico (ao interagir com o gráfico circular) e ?!?!??!
+                            <br>Podes agora explorar as fontes de informação que mais escreveram sobre o teu tópico e como é que a sua perceção tem vindo a evoluir ao longo do tempo, através dos gráficos interativos.
                         </p>
                         <div class="row g-3">
                             <div class="col-sm-12">
-                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Gráfico circular</h6>
-                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Série temporal</h6>
+                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Gráfico circular (MELHORAR)</h6>
+                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Série temporal (MELHORAR)</h6>
                             </div>
                         </div>
                     </div>
@@ -227,7 +244,7 @@
 
 
         <!-- Custom Word Search Start -->
-        <div class="container-xxl py-5" data-wow-delay="0.1s"> <!-- +(bg-primary newsletter my-5 wow fadeInUp) -(py-5)-->
+        <div class="container-xxl py-5" data-wow-delay="0.1s">
             <div class="container px-lg-5">
                 <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="position-relative d-inline text-primary ps-4">Conexões Entre Tópicos</h6>
@@ -262,7 +279,7 @@
         {% endif %}
         <!-- Custom Word Info Start -->
         {% if globalVar['topicrelation'] %}
-        <div class="container-xxl py-5" data-wow-delay="0.1s"> <!-- +(bg-primary newsletter my-5 wow fadeInUp) -(py-5)-->
+        <div id="topic-relation" class="container-xxl py-5" data-wow-delay="0.1s">
             <div class="container px-lg-5">
                 <div class="row g-5">
                     <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
@@ -270,15 +287,27 @@
                             <h2 class="mt-2"><u>{{ globalVar['query'] }}</u> & <u>{{ globalVar['related_topic'] }}</u></h2>
                         </div>
                         {% if not globalVar['topicrelation_exists'] %}
-                        <p class="mb-4" style="text-align: justify;">infelizmente n houve resultados</p>
+                            <p class="mb-3" style="text-align: justify;">Não foi encontrada qualquer relação entre <u>{{ globalVar['query'] }}</u> e <u>{{ globalVar['related_topic'] }}</u> nas {{ globalVar['query_amountofnews'] }} notícias sobre <u>{{ globalVar['query'] }}</u>.<br>Isto pode dever-se a razões como:</p>
+                            <div class="row g-3">
+                                <div class="col-sm-4">
+                                    <h6 class="mb-4 text-center"><i class="fa fa-times text-primary me-2"></i>Relação inexistente</h6>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h6 class="mb-4 text-center"><i class="fa fa-times text-primary me-2"></i>Menções insuficentes sobre <u>{{ globalVar['related_topic'] }}</u></h6>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h6 class="mb-4 text-center"><i class="fa fa-times text-primary me-2"></i>Erro ortográfico</h6>
+                                </div>
+                            </div>
+                            <p class="mb-0" style="text-align: justify;">Podes agora optar por verificar outra ligação entre tópicos à tua escolha, ou uma aleatória, por exemplo {{ globalVar['recomendations_topicrelation'] | safe }}.</p>
                         {% else %}
-                        <p class="mb-4" style="text-align: justify;">foram encontradas {{ globalVar['count_topicrelation'] }} noticias da palavra {{ globalVar['related_topic'] }} em noticias de {{ globalVar['query'] }}. Customizar para qnd existe ou nao existe resultado. Rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore.</p>
-                        <div class="row g-3">
-                            <div class="col-sm-3"><h6 class="mb-5"><i class="fa fa-check text-primary me-2"></i>sentimento</h6></div>
-                            <div class="col-sm-3"><h6 class="mb-5"><i class="fa fa-check text-primary me-2"></i>fontes</h6></div>
-                            <div class="col-sm-3"><h6 class="mb-5"><i class="fa fa-check text-primary me-2"></i>time series</h6></div>
-                            <div class="col-sm-3"><h6 class="mb-5"><i class="fa fa-check text-primary me-2"></i>noticias</h6></div>
-                        </div>
+                            <p class="mb-4" style="text-align: justify;">Nas {{ globalVar['query_amountofnews'] }} notícias sobre <u>{{ globalVar['query'] }}</u>, foram encontradas {{ globalVar['count_topicrelation'] }} menções em relação a <u>{{ globalVar['related_topic'] }}</u>.<br>Utilizando as ferramentas da Lupa Digital disponíveis poderás agora verificar quanto à relação:</p>
+                            <div class="row g-3">
+                                <div class="col-sm-3"><h6 class="mb-5 text-center"><i class="fa fa-check text-primary me-2"></i>Fontes de Informação</h6></div>
+                                <div class="col-sm-3"><h6 class="mb-5 text-center"><i class="fa fa-check text-primary me-2"></i>Perceção do Sentimento</h6></div>
+                                <div class="col-sm-3"><h6 class="mb-5 text-center"><i class="fa fa-check text-primary me-2"></i>Evolução da Relação</h6></div>
+                                <div class="col-sm-3"><h6 class="mb-5 text-center"><i class="fa fa-check text-primary me-2"></i>Notícias Arquivadas</h6></div>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
@@ -320,10 +349,9 @@
             {% endif %}
         </div>
         
-
         {% if globalVar['topicrelation_exists'] %}
-        <div class="container-xxl bg-primary testimonial py-5 wow fadeInUp" data-wow-delay="0.1s" style="margin: 6rem 0;">
-            <small class="text-white" style="position: absolute; left: 50%; transform: translateX(-50%);">aqui em baixo tens {{ globalVar['amount_news_topicrelation'] }} noticias sobre o QUERY onde o SEARCH TOPIC aparece :!:!:!:!::!:!:!:!</small>
+        <div class="container-xxl bg-primary testimonial py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <small class="text-white text-center" style="position: absolute; left: 50%; transform: translateX(-50%);">Encontra aqui algumas notícias arquivadas pelo <a href="https://arquivo.pt" target="_blank" style="text-decoration: none; color: inherit;">Arquivo.pt</a> que contêm a relação <u>{{ globalVar['query'] }}</u> & <u>{{ globalVar['related_topic'] }}</u>.</small>
             <div class="container py-5 px-lg-5">
                 <div class="owl-carousel testimonial-carousel">
                     {{ globalVar['news_topicrelation'] | safe }}

@@ -12,6 +12,7 @@ import time
 import os
 import hashlib
 import json
+import random
 
 # Local
 from graph import create_keyword_graph
@@ -20,6 +21,7 @@ from info2 import ts_topicrelation, sources_topicrelation, news_topicrelation
 
 # testing
 #from flask import redirect, url_for
+
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -147,6 +149,8 @@ def pesquisa():
                         "sentiment": value[2]/value[0],
                         "source": value[3],
                         "news": value[4]} for key, value in result}
+        globalVar['keywords'] = {k: v for k, v in globalVar['keywords'].items() if v["count"] >= 5}
+
         # save in cache
         with open(f"cache/{hashed_query}.json", 'w') as json_file:
             json.dump(globalVar['keywords'], json_file)
@@ -192,18 +196,18 @@ def relacao():
         globalVar["sentiment_topicrelation"] = globalVar['keywords'][related_topic]["sentiment"]
         globalVar["ts_topicrelation"] = ts_topicrelation(globalVar["news_by_month"], globalVar['keywords'], related_topic, globalVar['query'])
         globalVar["sources_topicrelation"] = sources_topicrelation(globalVar['keywords'], related_topic)
-        globalVar["news_topicrelation"], globalVar["amount_news_topicrelation"] = news_topicrelation(globalVar['keywords'], related_topic)
+        globalVar["news_topicrelation"] = news_topicrelation(globalVar['keywords'], related_topic)
     
-    else: # MELHORAR QND NAO EXISTE!!!
-        globalVar["count_topicrelation"] = 0
-        globalVar["sentiment_topicrelation"] = 0
-        globalVar["ts_topicrelation"] = []
-        globalVar["sources_topicrelation"] = {}
-        globalVar["news_topicrelation"] = []
-        globalVar["amount_news_topicrelation"] = 0
+    else:
+        recomendations_amount = min(5, len(globalVar['keywords']))
+        list_of_recomendations = random.sample(list(globalVar['keywords'].keys()), recomendations_amount)
+        recomendation_output = ""
+        for possible_topic in list_of_recomendations:
+            recomendation_output += f"<a href='/relacao?entre={possible_topic}'>{possible_topic}</a>, "
+        globalVar["recomendations_topicrelation"] = recomendation_output[:-2]
 
     
-    return render_template('info.html', globalVar=globalVar)
+    return render_template('info.html', globalVar=globalVar, scroll_to_relation=True)
     
     
 

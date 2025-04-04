@@ -228,7 +228,7 @@ def news_topicrelation(keywords, search_topic):
     divs = dict(sorted(divs.items(), key=lambda item: item[0], reverse=False))
     divs = "\n".join([div for divs_list in divs.values() for div in divs_list])
 
-    return divs, len(titles)
+    return divs
 
 # %%
 
