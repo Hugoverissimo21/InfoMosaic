@@ -138,30 +138,30 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tutorial do Grafo</h5>
+                        <h5 class="modal-title">Sobre o Grafo</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                     </div>
                     <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
 
                         <!-- 1.0: Explicação do grafo -->
                         <div class="mb-4">
-                            <h5>O Grafo</h5>
-                            <p>neste grafo interativo podes ver os topicos com têm uma maior relação com GALP e a partir da iteracao com cada nó (tópico) consegues descobrir mais sobre essa relacao. este grafo tem muita informacao condesada, le os topicos seguintes para ficares a saber mais sobre o seu funcionamento</p>
+                            <!--<h5>O Grafo</h5>-->
+                            <p style="text-align: justify;">A partir deste grafo interativo, podes explorar as relações mais notáveis com <u>{{ globalVar['query'] }}</u>. Este grafo tem a capacidade de comprimir uma grande quantidade de informações sobre cada relação, tornando-o uma ferramenta poderosa para entender as dinâmicas entre <u>{{ globalVar['query'] }}</u> e os vários tópicos. Lê as seguintes instruções para teres a melhor experiência possível.</p>
                             <div class="border-top border-light my-4"></div>
                         </div>
 
                         <!-- Seção 2.1: Explicação do Tamanho dos Nós -->
                         <div class="mb-4">
                             <h5>Tamanho dos Nós</h5>
-                            <img src="imgs/grafo-sizes.png" class="d-block w-100" alt="Tamanho dos nós">
-                            <p>cada nó tem um tamanho relativo a quantidade de mencoes do seu tópico, ou seja, quanto maior o nó, mais vezes o seu tópico foi mencionado!</p>
+                            <img src="{{ url_for('static', filename='img/grafo_mencoes.png') }}" class="d-block w-100" alt="node size">
+                            <p style="text-align: justify;">O tamanho de cada nó reflete a frequência com que o tópico se relacionado com o tópico principal (<u>{{ globalVar['query'] }}</u>).</p>
                         </div>
 
                         <!-- 2.2: Explicação das cores -->
                         <div class="mb-4">
                             <h5>Cores dos Nós</h5>
-                            <img src="imgs/grafo-colors.png" class="d-block w-100" alt="Cores dos nós">
-                            <p>cada nó tem uma cor de uma palete de 5 cores que repsenta a percecao de sentimentos de cada relacao:
+                            <img src="{{ url_for('static', filename='img/grafo_sentimento.png') }}" class="d-block w-100" alt="cores">
+                            <p style="text-align: justify;">Cada nó tem uma cor que representa a percepção do sentimento de cada relação. A palete de cores utilizada é dada por AQUI AQUI AQUI AQUI
                                 <a style="color: rgb(204, 0, 0);">muito negativo</a>,
                                 <a style="color: rgb(239, 83, 80);">negativo</a>,
                                 <a style="color: rgb(204, 204, 204);">neutro</a>,
@@ -173,45 +173,45 @@
                         <!-- 2.3: Hover -->
                         <div class="mb-4">
                             <h5>hover</h5>
-                            <img src="imgs/grafo-colors.png" class="d-block w-100" alt="Cores dos nós">
-                            <p>ao passares o rato? por cima de cada topico, obtems informacao relativamente a quantidade de mencoes e a ultima vez em que o mesmo foi mencionado (CONFIRMAR SE É VDD)</p>
+                            <img src="{{ url_for('static', filename='img/grafo_hover.png') }}" class="d-block w-100" alt="Hover">
+                            <p style="text-align: justify;">ao passares o rato? por cima de cada topico, obtems informacao relativamente a quantidade de mencoes e a ultima vez em que o mesmo foi mencionado (CONFIRMAR SE É VDD)</p>
                             <div class="border-top border-light my-4"></div>
                         </div>
 
                         <!-- 3.0: Clicar nos tópicos -->
                         <div class="mb-4">
-                            <h5>interação mais aprofundada? mais informacao?</h5>
-                            <p>para alem dessas interacoes, podes tbm clicar nos nós, fazendo aparecer uma janela com ainda mais informações sobre a relação entre o tópico clicado e GALP. </p>
+                            <h5>Detalhes da Relação</h5>
+                            <p style="text-align: justify;">para alem dessas interacoes, podes tbm clicar nos nós, fazendo aparecer uma janela com ainda mais informações sobre a relação entre o tópico clicado e GALP. </p>
                         </div>
 
                         <!-- 3.1: Mentions -->
                         <div class="mb-4">
-                            <img src="imgs/grafo-interaction.gif" class="d-block w-100" alt="Exemplo de interação">
-                            <p>numero de mencoes do topico em noticias relativas a GALP</p>
+                            <img src="{{ url_for('static', filename='img/grafo_imencoes.png') }}" class="d-block w-100" alt="Mentions">
+                            <p style="text-align: justify;">numero de mencoes do topico em noticias relativas a GALP</p>
                         </div>
 
                         <!-- 3.2: Sentiment -->
                         <div class="mb-4">
-                            <img src="imgs/grafo-interaction.gif" class="d-block w-100" alt="Exemplo de interação">
-                            <p>percecao do sentimento sobre a relacao entre o topico e GALP</p>
+                            <img src="{{ url_for('static', filename='img/grafo_isentimento.png') }}" class="d-block w-100" alt="Sentimento">
+                            <p style="text-align: justify;">percecao do sentimento sobre a relacao entre o topico e GALP</p>
                         </div>
 
                         <!-- 3.3: Sources -->
                         <div class="mb-4">
-                            <img src="imgs/grafo-interaction.gif" class="d-block w-100" alt="Exemplo de interação">
-                            <p>quantidade de mencoes de cada fonte de informacao do topico num contexto sobre GALP</p>
+                            <img src="{{ url_for('static', filename='img/grafo_ifontes.png') }}" class="d-block w-100" alt="Fontes">
+                            <p style="text-align: justify;">quantidade de mencoes de cada fonte de informacao do topico num contexto sobre GALP</p>
                         </div>
 
                         <!-- 3.4: News -->
                         <div class="mb-4">
-                            <img src="imgs/grafo-interaction.gif" class="d-block w-100" alt="Exemplo de interação">
-                            <p>lista de noticias sobre GALP, ordenadas cronologicamente, que mencionam o tópico</p>
+                            <img src="{{ url_for('static', filename='img/grafo_iurls.png') }}" class="d-block w-100" alt="Noticias">
+                            <p style="text-align: justify;">lista de noticias sobre GALP, ordenadas cronologicamente, que mencionam o tópico</p>
                         </div>
 
                         <!-- 3.5: Time Series -->
                         <div class="mb-4">
-                            <img src="imgs/grafo-interaction.gif" class="d-block w-100" alt="Exemplo de interação">
-                            <p>evolucao ao longo do tempo das mencoes do topico em noticias sobre GALP</p>
+                            <img src="{{ url_for('static', filename='img/grafo_ievolucao.png') }}" class="d-block w-100" alt="Time Series">
+                            <p style="text-align: justify;">evolucao ao longo do tempo das mencoes do topico em noticias sobre GALP</p>
                         </div>
 
                     </div>
