@@ -80,7 +80,7 @@
                         <i class="fa fa-search"></i>
                     </button>
                     {% if globalVar['query'] %}
-                    <a href="javascript:void(0);" style="pointer-events: none; cursor: default;" class="btn btn-secondary text-light rounded-pill py-2 px-4 ms-3">{{ globalVar['query'] }}</a>
+                    <a href="javascript:void(0);" style="pointer-events: none; cursor: default; box-shadow: inset 0 0 0 2px rgb(82, 118, 237); color: rgb(82, 118, 237);" class="nav-item nav-link btn rounded-pill py-2 px-4 ms-3">{{ globalVar['query'] }}</a>
                     {% endif %}
                 </div>
             </nav>
@@ -104,6 +104,13 @@
                                 <button onclick="redirectToSearch()" type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-search text-primary fs-4"></i></button>
                             </div>
                             <script>
+                                document.getElementById("searchInput").addEventListener("keydown", function(event) {
+                                    if (event.key === "Enter") {
+                                        event.preventDefault();
+                                        redirectToSearch();
+                                    }
+                                });
+
                                 function redirectToSearch() {
                                     let inputValue = document.getElementById("searchInput").value.trim();
                                     if (inputValue) {
