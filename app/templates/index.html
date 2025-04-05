@@ -31,6 +31,15 @@
 
     <!-- Template Stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Remove Features Arrow (navigation) and Number of Images -->
+    <style>
+        .lb-prev,
+        .lb-next,
+        .lb-number {
+        display: none !important;
+        }
+    </style>
 </head>
 
 <body>

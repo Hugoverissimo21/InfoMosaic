@@ -79,7 +79,11 @@
                 let target = document.getElementById("topic-relation");
                 
                 // Scroll to the target section slowly with a smooth behavior
+                {% if globalVar['topicrelation_exists'] %}
                 target.scrollIntoView({ behavior: "smooth", block: "start" });
+                {% else %}
+                target.scrollIntoView({ behavior: "smooth", block: "end" });
+                {% endif %}
         });
     </script>
     {% endif %}
@@ -361,10 +365,28 @@
         {% endif %}
         {% endif %}
         <!-- Custom Word Info End -->
-        
+
+        <!-- Start Redirect to Graph -->
         {% if not globalVar["zero_results"]%}
-        <p> ADICIONAR AQUI REDIRECT PARA O GRAFO se resultado query > 0</p>
+        <div class="container-xxl py-5">
+            <div class="border-top border-light my-4"></div>
+            <div class="container px-lg-5">
+                <div class="row g-4">
+                    <div class="col-lg-12 col-md-6 wow zoomIn" data-wow-delay="0.1s">
+                        <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+                            <div class="service-icon flex-shrink-0">
+                                <i class="fa fa-network-wired fa-2x"></i>
+                            </div>
+                            <h5 class="mb-12">Aprofunda as Conexões</h5>
+                            <p>Já exploraste as principais fontes de informação e analisaste como as notícias evoluíram ao longo do tempo sobre este tópico. Se não quiseres verificar a presença de mais relações à tua escolha, dá o próximo passo: visualiza o grafo de relações e descobre quais são os tópicos que mais se relacionam com a tua pesquisa.</p>
+                            <a class="btn px-3 mt-auto mx-auto" href="/grafo">Ver Grafo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% endif %}
+        <!-- End Redirect to Graph -->
 
         <!-- Footer Start -->
         <div class="container-fluid bg-primary text-light smallfooter wow fadeIn mt-5" data-wow-delay="0.1s" id="footer-banner">
