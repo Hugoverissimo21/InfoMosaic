@@ -51,6 +51,14 @@
             </div>
         </div>
         <!-- Spinner End -->
+        <!-- Loading Search Start -->
+        <div id="loadingIndicator" style="display: none;" class="text-center pt-3">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">A analisar {{ globalVar['total_amount_of_news'] }} notícias...</p>
+        </div>
+         <!-- Loading Search End -->
 
 
         <!-- Navbar & Hero Start -->
@@ -101,25 +109,8 @@
                             <p class="text-white pb-3 animated zoomIn" style="text-align: justify;">A Lupa Digital permite-te explorar e analisar notícias arquivadas ao longo da era digital, revelando conexões e padrões entre tópicos, entidades e eventos.</p>
                             <div class="position-relative w-100 mt-3 animated zoomIn">
                                 <input id="searchInput" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Procura sobre um tópico..." style="height: 48px;">
-                                <button onclick="redirectToSearch()" type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-search text-primary fs-4"></i></button>
+                                <button id="searchInput-buttom" onclick="redirectToSearch()" type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-search text-primary fs-4"></i></button>
                             </div>
-                            <script>
-                                document.getElementById("searchInput").addEventListener("keydown", function(event) {
-                                    if (event.key === "Enter") {
-                                        event.preventDefault();
-                                        redirectToSearch();
-                                    }
-                                });
-
-                                function redirectToSearch() {
-                                    let inputValue = document.getElementById("searchInput").value.trim();
-                                    if (inputValue) {
-                                        window.location.href = `/pesquisa?topico=${inputValue}`;
-                                    } else {
-                                        alert("Por favor, digite um tópico!");
-                                    }
-                                }
-                            </script>
                             <p class="text-white pb-3 animated zoomIn mt-3 pt-3">
                                 Baseado em dados do
                                 <a href="https://arquivo.pt" target="_blank">
@@ -129,12 +120,49 @@
                                 </a>
                             </p>
                         </div>
-                        <div class="col-lg-6 text-center text-lg-start">
-                            <img class="img-fluid" src="{{ url_for('static', filename='img/hero.png') }}" alt="">
+                        <div id="normalState" class="col-lg-6 text-center text-lg-start">
+                            <img class="img-fluid" src="{{ url_for('static', filename='img/hero.png') }}" alt="Lupa Digital">
                         </div>
+                        <!--
+                        <div id="loadingState" class="col-lg-6 text-center text-lg-start" style="display: none;">
+                            <img class="img-fluid" src="{{ url_for('static', filename='img/feature_01.gif') }}" alt="Lupa Digital">
+                            <p class="mt-2">Digite um tópico e pressione Enter LOADGIN</p>
+                            <p class="mt-2">Procurando tópico...</p>                           
+                        </div>
+                        -->
                     </div>
                 </div>
             </div>
+            <script>
+                document.getElementById("searchInput").addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        redirectToSearch();
+                    }
+                });
+
+                function redirectToSearch() {
+                    let inputValue = document.getElementById("searchInput").value.trim();
+                    if (inputValue) {
+                        // Show the loading indicator
+                        document.getElementById("loadingIndicator").style.display = "block";
+                        // Show loading state, hide normal state
+                        // document.getElementById("normalState").style.display = "none";
+                        // document.getElementById("loadingState").style.display = "block";
+
+                        // Disable input & button
+                        document.getElementById("searchInput").disabled = true;
+                        document.getElementById("searchInput-buttom").disabled = true;
+
+                        // Delay to allow the loader to be visible before redirect
+                        setTimeout(function() {
+                            window.location.href = `/pesquisa?topico=${encodeURIComponent(inputValue)}`;
+                        }, 500); // Adjust delay as needed
+                    } else {
+                        alert("Por favor, digite um tópico!");
+                    }
+                }
+            </script>
         </div>
         <!-- Navbar & Hero End -->
 
