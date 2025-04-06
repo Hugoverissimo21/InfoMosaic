@@ -89,12 +89,12 @@
             <div class="container-xxl bg-primary hero-header-graph" style="padding-top:3rem;">
                 <div class="px-lg-5" style="padding-top:3rem;">
                     <div class="row" style="--bs-gutter-x: -1.5rem;">
-                        <!-- button in top right corner of iframe -->
-                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tutorialModal" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
+                        <!-- button in top right corner of iframe ??? -->
+                         <button type="button" class="btn btn-primary wow zoomIn" data-wow-delay="0.1s" data-bs-toggle="modal" data-bs-target="#tutorialModal" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
                             Como ler este grafo?
                         </button>
-                        <iframe id="myGraph" srcdoc="{{ globalVar['graph_html'] }}" style="border:10px solid rgba(21, 49, 127, 0.8);">
-                            Your browser does not support iframes.
+                        <iframe class="wow zoomIn" data-wow-delay="0.1s" id="myGraph" srcdoc="{{ globalVar['graph_html'] }}" style="border:10px solid rgba(21, 49, 127, 0.8);">
+                            Este browser não suporta iframes. Por favor, atualize o seu navegador ou utilize um diferente.
                         </iframe>
                     </div>
                 </div>
@@ -220,7 +220,7 @@
         <!-- End Help Grafo -->
 
         <!-- Footer Start -->
-        <div class="container-fluid bg-primary text-light smallfooter wow fadeIn" data-wow-delay="0.1s" id="footer-banner">
+        <div class="container-fluid bg-primary text-light smallfooter" id="footer-banner">
             <div class="container px-lg-5">
                 <div class="copyright">
                     <div class="row">

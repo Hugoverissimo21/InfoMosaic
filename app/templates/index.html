@@ -121,7 +121,7 @@
                             </p>
                         </div>
                         <div id="normalState" class="col-lg-6 text-center text-lg-start">
-                            <img class="img-fluid" src="{{ url_for('static', filename='img/hero.png') }}" alt="Lupa Digital">
+                            <img class="img-fluid animated zoomIn" src="{{ url_for('static', filename='img/hero.png') }}" alt="Lupa Digital">
                         </div>
                         <!--
                         <div id="loadingState" class="col-lg-6 text-center text-lg-start" style="display: none;">
@@ -159,7 +159,7 @@
                             window.location.href = `/pesquisa?topico=${encodeURIComponent(inputValue)}`;
                         }, 500); // Adjust delay as needed
                     } else {
-                        alert("Por favor, digite um tópico!");
+                        alert("Por favor, digite um tópico.");
                     }
                 }
             </script>
@@ -294,7 +294,7 @@
                                 <div class="mt-auto">
                                     <a class="h5 d-block text-white mt-1 mb-2" href="">&#128270; Pesquisa Avançada</a>
                                     <p class="text-white small mb-0" style="text-align: justify;">
-                                        Pesquisa por qualquer tópico, tema ou entidade, e encontra notícias relacionadas, mesmo aquelas que já não estão mais disponíveis online. A Lupa Digital permite uma análise profunda de milhares de notícias.
+                                        Pesquisa por qualquer tópico, tema ou entidade, e encontra notícias relacionadas, mesmo aquelas que já não estão mais disponíveis online. A Lupa Digital permite uma análise profunda de milhares de notícias, desde {{ globalVar['first_news'] }} até {{ globalVar['last_news'] }}.
                                     </p>    
                                 </div>
                             </div>
@@ -302,7 +302,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 portfolio-item second wow zoomIn" data-wow-delay="0.3s">
                         <div class="position-relative rounded overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/portfolio-2.jpg') }}" alt="">
+                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/feature_02.png') }}" alt="">
                             <div class="portfolio-overlay p-3">
                                 <a class="btn btn-light" href="{{ url_for('static', filename='img/portfolio-2.jpg') }}" data-lightbox="portfolio"><i class="fa fa-plus fa-2x text-primary"></i></a>
                                 <div class="mt-auto">
@@ -316,7 +316,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 portfolio-item first wow zoomIn" data-wow-delay="0.6s">
                         <div class="position-relative rounded overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/portfolio-3.jpg') }}" alt="">
+                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/feature_03.png') }}" alt="">
                             <div class="portfolio-overlay p-3">
                                 <a class="btn btn-light" href="{{ url_for('static', filename='img/portfolio-3.jpg') }}" data-lightbox="portfolio"><i class="fa fa-plus fa-2x text-primary"></i></a>
                                 <div class="mt-auto">
@@ -330,7 +330,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 portfolio-item second wow zoomIn" data-wow-delay="0.1s">
                         <div class="position-relative rounded overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/portfolio-4.jpg') }}" alt="">
+                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/feature_04.png') }}" alt="">
                             <div class="portfolio-overlay p-3">
                                 <a class="btn btn-light" href="{{ url_for('static', filename='img/portfolio-4.jpg') }}" data-lightbox="portfolio"><i class="fa fa-plus fa-2x text-primary"></i></a>
                                 <div class="mt-auto">
@@ -344,7 +344,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 portfolio-item first wow zoomIn" data-wow-delay="0.3s">
                         <div class="position-relative rounded overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/portfolio-5.jpg') }}" alt="">
+                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/feature_05.png') }}" alt="">
                             <div class="portfolio-overlay p-3">
                                 <a class="btn btn-light" href="{{ url_for('static', filename='img/portfolio-5.jpg') }}" data-lightbox="portfolio"><i class="fa fa-plus fa-2x text-primary"></i></a>
                                 <div class="mt-auto">
@@ -358,7 +358,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 portfolio-item wow zoomIn" data-wow-delay="0.6s">
                         <div class="position-relative rounded overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/portfolio-6.jpg') }}" alt="">
+                            <img class="img-fluid w-100" src="{{ url_for('static', filename='img/feature_06.png') }}" alt="">
                             <div class="portfolio-overlay p-3">
                                 <a class="btn btn-light" href="{{ url_for('static', filename='img/portfolio-6.jpg') }}" data-lightbox="portfolio"><i class="fa fa-plus fa-2x text-primary"></i></a>
                                 <div class="mt-auto">

@@ -50,6 +50,8 @@ globalVar = {
             "zero_results": True,
             "topicrelation": False,
             "total_amount_of_news": df.count(), # substituir por contagem "manual"
+            "first_news": str(df.agg(F.min("timestamp")).collect()[0][0]), # substituir por ano à mão
+            "last_news": str(df.agg(F.max("timestamp")).collect()[0][0]), # substituir por ano à mão
             }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 

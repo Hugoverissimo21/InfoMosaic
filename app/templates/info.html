@@ -141,7 +141,6 @@
                     <div class="row g-5 py-5">
                         <div class="col-12 text-center">
                             <img class="animated zoomIn" src="data:image/png;base64,{{ globalVar['wordcloud'] }}" alt="Topic WordCloud" style="max-width: 100%; height: auto; display: block; margin: 0 auto; margin-top: -6em;">
-                            <!--<h1 class="text-white animated zoomIn">QUERY HERE OR WORDCLOUD OF IT</h1>-->
                             <hr class="bg-white mx-auto mt-0" style="width: 90px;">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb justify-content-center">
@@ -235,11 +234,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                         {{ globalVar['pie_sources'] | safe }}
                     </div>
                 </div>
-                <div class="row g-5">
+                <div class="row g-5 wow zoomIn" data-wow-delay="0.1s">
                     {{ globalVar['ts_news'] | safe }}
                 </div>
             </div>
@@ -275,7 +274,7 @@
                                 if (inputValue) {
                                     window.location.href = `/relacao?entre=${inputValue}`;
                                 } else {
-                                    alert("Por favor, digite um tópico!");
+                                    alert("Por favor, digite um tópico.");
                                 }
                             }
                         </script>
@@ -325,7 +324,7 @@
             </div>
 
             {% if globalVar['topicrelation_exists'] %}
-            <div class="container px-lg-5">
+            <div class="container px-lg-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="row g-4">
                     
                     <div class="col-12 col-md-3" style="position: relative;">
