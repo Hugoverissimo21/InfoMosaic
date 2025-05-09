@@ -27,13 +27,13 @@ By integrating data collection, analysis, machine learning, and visualization te
 
 ## **Deployed Version**
 
-Visit the live app: [InfoMosaic Sandbox](https://hugover.pythonanywhere.com).
+Visit the live app: [InfoMosaic](https://hugover.pythonanywhere.com).
 
-- [Slides 01](https://hugoverissimo21.github.io/InfoMosaic-sandbox/slides01)
+- [Slides 01](https://hugoverissimo21.github.io/InfoMosaic/slides01)
 
-- [Slides 02](https://hugoverissimo21.github.io/InfoMosaic-sandbox/slides02)
+- [Slides 02](https://hugoverissimo21.github.io/InfoMosaic/slides02)
 
-- [Slides 03](https://hugoverissimo21.github.io/InfoMosaic-sandbox/slides03)
+- [Slides 03](https://hugoverissimo21.github.io/InfoMosaic/slides03)
 
 ## **Project Structure**
 
@@ -62,7 +62,7 @@ Visit the live app: [InfoMosaic Sandbox](https://hugover.pythonanywhere.com).
 1. Clone the repository:
 
 ```
-git clone https://github.com/Hugoverissimo21/InfoMosaic-sandbox.git
+git clone https://github.com/Hugoverissimo21/InfoMosaic.git
 ```
 
 2. Install dependencies:
